@@ -13,3 +13,6 @@ MuRcIeLaGo: barrejades
 */
 let paraula = prompt("Digues una paraula");
 
+for (let i = 0; i <= paraula.length(); i++){
+    
+}
