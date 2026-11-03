@@ -35,3 +35,15 @@ function esMesGran(valor1, valor2){
         return "Són iguals";
     }
 }
+
+
+function prova (){
+    alert("Funciona")
+}
+
+
+
+
+//Funcion calculadora
+//Funcion comparar simbols 
+//Funcion invertirtexto

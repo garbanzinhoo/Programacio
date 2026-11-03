@@ -1,6 +1,8 @@
 "use strict";
 
 const LLETRES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const MIN = 1;
+const MAX = 9;
 menu();
 
 function menu() {
@@ -89,7 +91,7 @@ function menu() {
 }
 
 function comprovaMenu(opcio) {
-    return esEnter(opcio) && estaEntre(opcio, 1, 9);
+    return esEnter(opcio) && estaEntre(opcio, MIN, MAX);
 }
 
 // Retorna un caràcter aleatori entre inicial i final (inclosos)
