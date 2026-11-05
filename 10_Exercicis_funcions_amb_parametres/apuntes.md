@@ -1,1 +1,0 @@
-lo que esta entre * @param se llama precondicio, sirve para "explicar" y poner contexto sobre lo que hace la funcion
