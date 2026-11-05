@@ -1,5 +1,5 @@
 "use strict";
-import { comprovaMenu, esNumero } from "../utils/validacions_prueba.js";
+import { comprovaMenu, esNumero } from "../utils/validacions.js";
 /*
 Exercici 2. Caixer automàtic
 Crea un programa que simuli el funcionament d'un caixer automàtic. El saldo inicial serà de 500 €.

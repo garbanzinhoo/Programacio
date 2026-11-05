@@ -8,7 +8,7 @@ Preus:
 - Esmorzar: 12 € per persona i nit.
 - Aparcament: 8 € per nit.
 */
-import { esEnter, esPositiu } from "../utils/validacions_prueba.js";
+import { esEnter, esPositiu } from "../utils/validacions.js";
 
 const ESTANDARD = 60;
 const SUPERIOR = 90;
