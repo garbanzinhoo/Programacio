@@ -3,9 +3,6 @@
 Exercici 1. Control de factures
 Crea un programa que permeti calcular l'import final d'una factura aplicant-hi descomptes i impostos.
 */
-let preuInicial = Number(prompt("Digues el preu inicial"));
-let descompte = Number(prompt("Digues de quant es el descompte"))
-alert(calcularTotal(preuInicial,descompte));
 //--------------------FUNCIONS--------------------
 /**
  * 
@@ -46,9 +43,9 @@ function calcularIVA(preu){
  * @param {descompte} 
  * @returns total de la factura amb l'IVA inclòs
  */
-function calcularTotal(preu, descompte){
+export function calcularTotal(preu, descompte){
     let preuDescompte = aplicarDescompte(preu, descompte);
-    let preuiva = calcularIVA(preuDescompte);
-    let preufinal = preuDescompte + preuiva;
+    let preuIva = calcularIVA(preuDescompte);
+    let preufinal = "El preu final és de " + (preuDescompte + preuIva).toFixed(2) + "€"; // L'IVA s'aplica sobre el preu ja descomptat
     return(preufinal);
 }
