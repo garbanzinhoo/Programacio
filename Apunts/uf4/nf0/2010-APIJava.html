@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="API de Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>API de Java</header>
+    <section>
+      <h2>La API de Java</h2>
+      <p>Per desenvolupar un programa, no cal crear tot el codi partint de zero.<br>
+        Hi ha disponibles moltes llibreries que ens poden estalviar molta feina.</p>
+      <p>Java disposa d'un conjunt molt ampli de classes agrupades en paquets.<br>
+        Un bon programador ha de ser capaç de localitzar i saber utilitzar les classes que li poden ser útils.</p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/">Documentació general Java SE 17</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/index.html">API Java SE 17</a></p>
+      <h3>Mòdul <em>java.base</em></h3>
+      <p>En Java, encara hi ha una forma d'agrupació superior als paquets: els mòduls.<br>
+        Aquesta formar d'agrupar paquets es pot utilitzar a partir Java SE 9, però no es veurà aquí en detall.</p>
+      <p>El mòdul <span class="c_arxiu">java.base</span> inclou els paquets i classes més utilitzats.<br>
+        Dins d'aquet mòdul hi ha el paquet <span class="c_arxiu">java.lang</span> que s'inclou automàticament en tots el programes.</p>
+      <p>Les classes que es troben en el paquet <span class="c_arxiu">java.lang</span> estan disponibles sense necessitat d'importar-les.<br>
+        Algunes de les classes més útils d'aquest paquet són <strong>Math</strong>, <strong>String</strong> i <strong>System</strong>.<br>
+        Aquestes classes disposen de mètodes estàtics que ja s'han utilitzat anteriorment.</p>
+      <h3>Altres mòduls i paquets</h3>
+      <p>Alguns mòduls i paquets que s'utilitzaran en aquest curs:</p>
+      <ul>
+        <li>java.util</li>
+        <li>java.time</li>
+        <li>java.io</li>
+        <li>java.sql</li>
+        <li>java.desktop</li>
+        <ul>
+          <li>java.awt</li>
+          <li>java.swing</li>
+          <li>java.sound</li>
+        </ul>
+      </ul>
+      <h4>Paquet <em>java.utils</em></h4>
+      <p>Es poden trobar altres classes interessants amb mètodes estàtics en el paquet <span class="c_arxiu">java.util</span>:</p>
+      <ul>
+        <li>Random</li>
+        <li>Scanner</li>
+        <li>Arrays</li>
+      </ul>
+      <p>Aquestes classes sí que cal importar-les per poder-les utilitzar.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

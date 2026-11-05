@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Bucle For">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Bucle <em>for</em></header>
+    <section>
+      <h2>Banderes</h2>
+      <p>En programació, una bandera és una variable booleana (només pot tenir els valors <em>true</em> o <em>false</em>) que serveix per detectar si ha succeït alguna cosa.</p>
+      <p>Per exemple, en un bucle es pot utilitzar una bandera per saber si es donen les condicions per finalitzar-lo.<br>
+        O també per saber si el bucle ha finalitzat d'una forma o una altra (per exemple, si s'ha trobat l'element que es buscaba o no).</p>
+      <p>La bandera cal inicialitzar-la amb un valor (<em>true</em> o <em>false</em>) que canviarà dins del bucle quan es doni una condició determinada. <strong>El canvi només s'ha de produir en un sentit: si el valor inicial era <em>true</em>, només ha de poder canviar a <em>false</em>. Si es canvia en sentit contrari no podrem saber si s'ha produït la situació que es volia controlar.</strong><br>
+        Cal pensar bé quin ha de ser el valor inicial i amb quines condicions s'haurà de canviar el seu valor.<br>
+        Un cop hagi canviat el valor, la bandera no hauria de tornar al valor original.</p>
+      <h4>Exemple</h4>
+      <p class="p_codi">let nom;<br>
+        let edat;<br>
+        let altura;<br>
+        <strong>let edatIncorrecta = false;</strong><br>
+        <br>
+        nom =&nbsp; promt("Com et dius? ");<br>
+        while (nom.toUpperCase() != "FI") {<br>
+        &nbsp;&nbsp;&nbsp; edat = prompt("Quina edat tens?");<br>
+        <strong>&nbsp;&nbsp;&nbsp; if (edat &lt; 18 || edat &gt; 65) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; edatIncorrecta = true;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+        </strong>&nbsp;&nbsp;&nbsp; // Processar o guardar les dades<br>
+        &nbsp;&nbsp;&nbsp; // ...<br>
+        &nbsp;&nbsp;&nbsp; nom =&nbsp; promt("Com et dius? ");<br>
+        }<br>
+        <br>
+        <strong>if (edatIncorrecta) alert("S'ha introduït una edat incorrecta");</strong></p>
+      <h3>Altres tipus de banderes</h3>
+      <p>De vegades cal tenir en compte més de dos possibles estats, per exemple, un semàfor pot estar en verd, en groc o en vermell, i només pot passar de verd a groc, de groc a vermell i de vermell a verd.</p>
+      <p>En aquests casos es pot tenir una bandera amb diferents valors numèrics per indicar l'estat actual, per exemple, 1 per indicar que està en verd, 2 en groc i 3 en vermell.</p>
+      <h2>Comptadors i acumuladors</h2>
+      <p>Una de les utilitats dels bucles pot ser comptar quantes dades compleixen certes condicions, calcular un total a partir d'un conjunt de valors o juntar diferents trossos de text.</p>
+      <p>Normalment, els comptadors i acumuladors s'inicialitzen a 0.<br>
+        Si es vol juntar trossos de text, es comença inicialitzant un text buit.</p>
+      <p>Un comptador també pot servir com a bandera: si el seu valor no es mou del 0, no s'ha produït l'edeveniment concret; si al final té un valor <em>n</em> superior a 0, l'esdeveniment s'haurà produït <em>n</em> vegades.</p>
+      <h4>Exemple</h4>
+      <p class="p_codi">let paraula;<br>
+        let frase = "";&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Per juntar trossos de text<br>
+        let paraules123 = 0;&nbsp;&nbsp;&nbsp; // Comptador<br>
+        let totalLletres = 0;&nbsp;&nbsp; // Acumulador<br>
+        <br>
+        paraula = prompt("Escriu una paraula (sense espais)");<br>
+        while (paraula.toUpperCase() != "FI") {<br>
+        &nbsp;&nbsp;&nbsp; <strong>frase += paraula + " ";</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Juntar text<br>
+        &nbsp;&nbsp;&nbsp; <strong>totalLletres += paraula.length();</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Acumulador<br>
+        &nbsp;&nbsp;&nbsp; if (paraula.length() &lt; 4) <strong>++paraules123;</strong>&nbsp;&nbsp; // Comptador<br>
+        &nbsp;&nbsp;&nbsp; paraula = prompt("Escriu una paraula (sense espais)");<br>
+        }<br>
+        <br>
+        alert("Frase: " + frase);<br>
+        alert("Lletres: " + totalLletres);<br>
+        alert("Paraules de menys de 4 lletres: " + paraules123);</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

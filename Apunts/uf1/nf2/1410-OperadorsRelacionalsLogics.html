@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Operadors de Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Operadors de Java</header>
+    <section>
+      <h2>Operadors relacionals</h2>
+      <p>S'utilitzen per fer comparacions.<br>
+        El resultat només pot ser <span class="c_comanda">true</span> o <span class="c_comanda">false</span>.</p>
+      <ul>
+        <li>Menor que (<span class="c_comanda">&lt;</span>)</li>
+        <li>Major que (<span class="c_comanda">&gt;</span>)</li>
+        <li>Menor o igual que (<span class="c_comanda">&lt;=</span>)</li>
+        <li>Major o igual que (<span class="c_comanda">&gt;=</span>)</li>
+        <li>Igual que (<span class="c_comanda">==</span>)</li>
+        <li>No igual que (<span class="c_comanda">!=</span>)</li>
+      </ul>
+      <h5>Exemples</h5>
+      <p class="p_codi">let <strong>edat1 = 18</strong>, <strong>edat2 = 20</strong>;<br>
+        alert(<strong>edat1 &gt;= edat2</strong>);&nbsp;&nbsp; // Mostrarà <strong>false</strong><br>
+        alert(<strong>edat1 &lt; edat2</strong>);&nbsp;&nbsp;&nbsp; // Mostrarà <strong>true</strong><br>
+        alert(<strong>edat1 != edat2</strong>);&nbsp;&nbsp; // Mostrarà <strong>true</strong></p>
+      <ul>
+      </ul>
+      <h2>Operadors lògics</h2>
+      <p>S'apliquen a valors binaris (<span class="c_comanda">true</span> i <span class="c_comanda">false</span>).<br>
+        Es poden utilitzar per combinar el resultat de diferents operacions relacionals.<br>
+        El resultat només pot ser <span class="c_comanda">true</span> o <span class="c_comanda">false</span>.</p>
+      <ul>
+        <li>NOT (<span class="c_comanda">!</span>): inverteix el valor (si era <span class="c_comanda">true</span>, el converteix a <span class="c_comanda">false</span>; si era <span class="c_comanda">false</span> el converteix a <span class="c_comanda">true</span>).</li>
+        <li>AND (<span class="c_comanda">&amp;&amp;</span>): només si els dos valors són true, el resultat és true.</li>
+        <li>OR (<span class="c_comanda">||</span>): només que un dels dos valors sigui <span class="c_comanda">true</span>, el resultat serà <span class="c_comanda">true</span>.</li>
+        <li>XOR (<span class="c_comanda">^</span>): si els dos valors són iguals, el resultat serà <span class="c_comanda">false</span>.</li>
+      </ul>
+      <h5>Exemples</h5>
+      <p class="p_codi">let <strong>edat = 18</strong>;<br>
+        let <strong>cConduir = false</strong>;<br>
+        alert(<strong>edat &gt;= 18 &amp;&amp; cConduir == true</strong>);&nbsp;&nbsp; // Mostrarà <strong>false</strong><br>
+        alert(<strong>edat &gt;= 18 &amp;&amp; !cConduir</strong>);&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // Igual que l'anterior<br>
+        <br>
+        let <strong>nFills = 2</strong>;<br>
+        let <strong>vidua = true</strong>;<br>
+        let fNombrosa = <strong>nFills &gt;= 3 || (nFills == 2 &amp;&amp; vidua == true)</strong>;&nbsp;&nbsp; // <strong>true</strong><br>
+        &nbsp;&nbsp;&nbsp; fNombrosa = <strong>nFills &gt;= 3 || (nFills == 2 &amp;&amp; vidua)</strong>;&nbsp;&nbsp; // Igual que l'anterior<strong></strong></p>
+      <ul>
+      </ul>
+      <div class="p_important">
+        <p>Al utilitzar operadors lògics per combinar diferents operadors relacionals que utilitzen la mateixa variable, no es pot obviar la variable en la segona comparació:</p>
+        <p class="p_codi">if(a &gt;= 5 &amp;&amp; <strong>&lt;= 10</strong>) ...&nbsp;&nbsp;&nbsp;&nbsp; // <strong>ERROR</strong>: cal posar la variable <strong>'a'</strong> en la segona comparació<br>
+          if(a &gt;= 5 &amp;&amp; <strong>a &lt;= 10</strong>) ... &nbsp; // <strong>OK</strong></p>
+      </div>
+      <h3>Taules de veritat</h3>
+      <div style="display:inline-block;vertical-align:top;">
+        <table>
+          <tbody>
+            <tr>
+              <th> A </th>
+              <th> !A </th>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> true </td>
+              <td style="text-align: center;"><strong> false </strong></td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> false </td>
+              <td style="text-align: center;"><strong> true </strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:inline-block;margin-left:1rem">
+        <table>
+          <tbody>
+            <tr>
+              <th> A </th>
+              <th> B </th>
+              <th> A &amp;&amp; B </th>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"><strong> true<br>
+                </strong> </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"> false<br>
+              </td>
+              <td style="text-align: center;"> <strong>false<br>
+                </strong> </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">false<br>
+              </td>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"><strong>false<br>
+                </strong> </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> false</td>
+              <td style="text-align: center;"> false </td>
+              <td style="text-align: center;"> <strong>false<br>
+                </strong> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:inline-block;margin-left:1rem">
+        <table>
+          <tbody>
+            <tr>
+              <th> A </th>
+              <th> B </th>
+              <th> A || B </th>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"><strong> true<br>
+                </strong> </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> true </td>
+              <td style="text-align: center;"> false </td>
+              <td style="text-align: center;"> <strong>true<br>
+                </strong> </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">false </td>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"><strong> true<br>
+                </strong> </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> false </td>
+              <td style="text-align: center;"> false </td>
+              <td style="text-align: center;"> <strong>false<br>
+                </strong> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:inline-block;margin-left:1rem">
+        <table>
+          <tbody>
+            <tr>
+              <th> A </th>
+              <th> B </th>
+              <th> A ^ B </th>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"><strong>false<br>
+                </strong> </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> true </td>
+              <td style="text-align: center;"> false </td>
+              <td style="text-align: center;"> <strong>true<br>
+                </strong> </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;">false </td>
+              <td style="text-align: center;"> true<br>
+              </td>
+              <td style="text-align: center;"><strong>true<br>
+                </strong> </td>
+            </tr>
+            <tr>
+              <td style="text-align: center;"> false </td>
+              <td style="text-align: center;"> false </td>
+              <td style="text-align: center;"> <strong>false<br>
+                </strong> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h2>Operadors binaris</h2>
+      <ul>
+      </ul>
+      <p>També existeixen els operadors <span class="c_comanda">^</span>, <span class="c_comanda">|</span>, <span class="c_comanda">&amp;</span>, <span class="c_comanda">&gt;&gt;</span>, <span class="c_comanda">&lt;&lt;</span> i <span class="c_comanda">&gt;&gt;&gt;</span> per fer operacions binàries (bit a bit) amb números enters, però no s'acostumen a utilitzar excepte en casos especials.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

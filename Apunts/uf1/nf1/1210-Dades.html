@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Dades, constants i variables en JavaScript">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Dades, constants i variables en JavaScript</header>
+    <section>
+      <h2>Tipus de dades</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_datatypes.asp">Tipus de dades en JavaScript</a></p>
+      <p>En un programa es poden utilitzar diferents tipus de dades:</p>
+      <ul>
+        <li>Valors simples (<em>primitive data</em>):</li>
+        <ul>
+          <li><strong>Números</strong>: enters o decimals (la part decimal se separa amb un punt).</li>
+          <li><strong>Text</strong>: caràcters (lletres), dígits i altres símbols, paraules i frases.</li>
+          <li><strong>Booleans</strong>: només poden representar dos valors (si/no, vertader/fals...).</li>
+        </ul>
+        <li>Valors compostos: <strong>dates</strong>, <strong></strong><strong>llistes</strong>, <strong>objectes</strong>... (es veuran més endavant).</li>
+      </ul>
+      <h3>Literals</h3>
+      <p>Els <strong>literals</strong> representen un valor que ja es coneix en el moment d'escriure el programa.<br>
+        No es guarden en memòria sinò que formen part del codi del programa.</p>
+      <ul>
+        <li><strong>Literals numèrics</strong>: <span class="c_comanda">2768</span>, <span class="c_comanda">12.59</span> o <span class="c_comanda">3.45e3</span> (notació científica equivalent a <strong>3,45 x 10<sup>3</sup></strong> = <strong>3450,0</strong>).</li>
+        <li><strong>Literals de text</strong>: <span class="c_comanda">"Hola"</span>, <span class="c_comanda">'74'</span> o <span class="c_comanda">'@'</span> (s'han de posar entre cometes simples o dobles).</li>
+        <li><strong>Literals booleans</strong>: <span class="c_comanda">true</span> o <span class="c_comanda">false</span>.</li>
+      </ul>
+      <p>En el següent exemple, el número <strong><span>10</span></strong> i el missatge <strong>"La nota no pot ser superior a 10"</strong>, són literals:</p>
+      <p class="p_codi">if (nota &gt; <strong>10</strong>) alert(<strong>"La nota no pot ser superior a 10"</strong>);</p>
+      <p class="p_important">Es poden posar cometes simples dintre de les dobles o al revés, però només un nivell:<br>
+        <span class="c_comanda">"Els 'strings' són cadenes de caràcters"</span><br>
+        Per posar cometes d'un tipus dins de cometes del mateix tipus cal posar <span class="c_comanda">\</span> al davant:<br>
+        <span class="c_comanda">"Els \"strings\" són cadenes de caràcters"</span></p>
+      <h3>Constants i variables</h3>
+      <p>Les dades que necessita un programa es guarden a la memòria.<br>
+        Per reservar espai a la memòria, cal definir <strong>constants</strong> i <strong>variables</strong>.<br>
+        La diferència és que el valor que es guarda en una constant no es pot modificar posteriorment.</p>
+      <p>Per poder localitzar i utilitzar les dades guardades en les constants i variables, cal definir-les posant-hi un nom.<br>
+        Podem imaginar el fet de definir una variable com l'acció de crear una caixa en un gran armari i posar-li una etiqueta per saber què conté.</p>
+      <p>Per definir una <strong>constant</strong>, cal posar la paraula <span class="c_comanda">const</span> al davant del nom:</p>
+      <p class="p_codi"><strong>const</strong> MAX = 10;<br>
+      </p>
+      <p>Per definir una <strong>variable</strong>, cal posar la paraula <span class="c_comanda">let</span> al davant del nom (també es pot utilitzarla paraula <span class="c_comanda">var</span>, però actualment no és recomanable):</p>
+      <p class="p_codi"><strong>let</strong> nom;<br>
+        <strong class="c_strikethrough">var</strong> edat;&nbsp;&nbsp; // <strong>No recomanable!</strong></p>
+      <p>Els noms de les constants i variables han de seguir unes regles:</p>
+      <ul>
+        <li>Ha de ser una paraula (no pot contenir espais entre mig)</li>
+        <li>Pot contenir números però no pot començar amb un número</li>
+        <li>Pot començar amb guió baix (<span class="c_comanda">_</span>) o <span class="c_comanda">$</span> però, de moment, millor no utilitzar-los</li>
+        <li>No pot ser una <a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_reserved.asp">paraula reservada de JavaScript</a></li>
+        <li>No pot contenir caràcters especials, excepte el guió baix</li>
+        <li>Les majúscules i minúscules es consideren diferents (<em>case-sensitive</em>)</li>
+      </ul>
+      <p class="p_codi">const NOTA_MAXIMA = 10;&nbsp;&nbsp;&nbsp; // OK<br>
+        const NOTA MAXIMA = 10;&nbsp;&nbsp;&nbsp; // ERROR<br>
+        const NOTA*MAXIMA = 10;&nbsp;&nbsp;&nbsp; // ERROR<br>
+        let edat2 = 0;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // OK<br>
+        let 2edat;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // ERROR (comença amb un dígit)<br>
+        let break;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // ERROR (paraula reservada)<br>
+        let nomPersona = "";&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // OK<br>
+        let nompersona = "Mary";&nbsp;&nbsp; // OK (és una variable diferent de nomPersona)</p>
+      <p>Altres recomanacions:</p>
+      <ul>
+        <li>Els noms de constants i variables han de ser significatius</li>
+        <li>Els noms de les constants es posaran en majúscules i, si contenen més d'una paraula, separades per guió baix.</li>
+        <li>Els noms de les variables el posaran en minúscules i, si contenen més d'una paraula, cada nova paraula es posarà amb la primera lletra majúscula (<em>camelCase</em>)</li>
+      </ul>
+      <p class="p_codi">const PI;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // OK<br>
+        const NOMBRE_MAXIM_DE_PERSONES_EN_EL_CONCERT;&nbsp;&nbsp; // OK però... no es podria simplificar una mica?<br>
+        const NMPC;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // OK però... convé evitar sigles (poc significatiu)<br>
+        const NOMBREPARTICIPANTS;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // OK però... separar les paraules amb guió baix<br>
+        let maximPersones;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // OK<br>
+        let MaximPersones;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // OK però... primera lletra ha de ser minúscula<br>
+        let maxim_persones;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // OK però... no utilitzar guió baix</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+* {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 1rem;
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0;
+}
+
+button {
+	margin: 1rem;
+	width: 8rem;
+}
+
+.inputs {
+	display: flex;
+	flex: 0;
+	flex-direction: column;
+	padding: 1rem;
+}
+
+.botons {
+	display: flex;
+	flex: 0;
+	flex-direction: row;
+}
+
+.terminal {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 1.2rem;
+	flex: 1;
+	margin: 1rem;
+	padding: .5rem;
+	border: 1px solid gray;
+	background-color: #eee;
+	white-space: nowrap;
+	overflow: auto;
+}

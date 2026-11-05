@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Set">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Set</header>
+    <section>
+      <h2>Set</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_object_sets.asp">Referència "Set"</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Referència Set detallada (MDN)</a></p>
+      <p>Serveix per emmagatzemar un conjunt d'objectes únics (no es poden guardar dos objectes repetits).<br>
+        Per saber si un objecte està repetit s'utilitza la comparació estricta (<span class="c_comanda">obj1 === obj2</span>).<br>
+        Els elements mantenen l'ordre en què s'han afegit al Set.<br>
+        Cada objecte emmagatzemat pot ser d'un tipus diferent.</p>
+      <h4>Crear un Set</h4>
+      <p class="p_codi">const s = new Set();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Crea un conjunt buit<br>
+        const s = new Set([1, 2, 3, 4]); // Crea un conjunt amb els valors 1, 2, 3 i 4<br>
+        const s = new Set([1, 1, 1, 1]); // Crea un conjunt amb l'element 1</p>
+      <h4>Atributs i mètodes</h4>
+      <ul>
+        <li><span class="c_comanda">size</span>: conté la mida (quants elements té).</li>
+        <li><span class="c_comanda">add(obj)</span>: afegeix un element.</li>
+        <li><span class="c_comanda">has(obj)</span>: retorna <em>true</em> si <span class="c_comanda">obj</span> està dins del Set.</li>
+        <li><span class="c_comanda">delete(obj)</span>: elimina <span class="c_comanda">obj</span> si el troba dins del Set.</li>
+        <li><span class="c_comanda">clear()</span>: elimina tots els objectes del Set.</li>
+      </ul>
+      <h4>Recòrrer un Set</h4>
+      <p>Es pot fer de la mateixa forma que es fa amb un <em>Array</em>: amb un bucle <span class="c_comanda">for ... of</span></p>
+      <p class="p_codi">const s = new Set([1, 2, 3, 4]);<br>
+        for (let o of s) {<br>
+        &nbsp;&nbsp;&nbsp; console.log(o);<br>
+        }</p>
+      <h4>Convertir Set en Array</h4>
+      <p>Es pot obtenir un <em>array</em> amb els objectes del Set utilitzant <span class="c_comanda">const array = [...set]</span>. </p>
+      <h2>Map</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_object_maps.asp">Referència "Map"</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Referència Map detallada (MDN)</a></p>
+      <p>Serveix per emmagatzemar parelles clau-objecte (les claus no es poden repetir).<br>
+        Els elements mantenen l'ordre què s'han afegit al Map.<br>
+        Es pot utilitzar qualsevol tipus d'objecte o primitiva, tant per la clau com per l'objecte que s'ha d'emmagatzemar.</p>
+      <h4>Crear un Map</h4>
+      <p class="p_codi">const m = new Map();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Crea un conjunt buit<br>
+        const m = new Map([["pomes", 500], ["bananas", 300], ["taronges", 200]]);</p>
+      <h4>Atributs i mètodes</h4>
+      <ul>
+        <li><span class="c_comanda">size</span>: conté la mida (quants elements té).</li>
+        <li><span class="c_comanda">set(key, obj)</span>: afegeix una parella clau-objecte.</li>
+        <li><span class="c_comanda">get(key)</span>: retorna l'objecte associat a la clau.</li>
+        <li><span class="c_comanda">delete(key)</span>: elimina l'objecte associat a la clau.</li>
+        <li><span class="c_comanda">clear()</span>: elimina tots els objectes del Map.</li>
+      </ul>
+      <p class="p_important">És recomanable triar una clau que representi l'objecte.<br>
+        Pot ser un dels atributs o un String que combini diversos atributs.</p>
+      <ul>
+      </ul>
+      <h4>Recòrrer un Map</h4>
+      <p>Es pot fer de la mateixa forma que es fa amb un <em>Array</em>: amb un bucle <span class="c_comanda">for ... of</span> però cada objecte és un <em>array</em> amb una parella clau-objecte.</p>
+      <p class="p_codi">const m = new Map([["pomes", 500], ["bananas", 300], ["taronges", 200]]);<br>
+        for (let a of m) {<br>
+        &nbsp;&nbsp;&nbsp; console.log(a[0] + " - " + a[1]);<br>
+        }</p>
+      <h4>Convertir Map en Array</h4>
+      <p>Es pot obtenir un <em>array</em> amb les claus utilitzant <span class="c_comanda">const array = [...map.keys()]</span>.</p>
+      <p>Es pot obtenir un <em>array</em> amb els objectes utilitzant <span class="c_comanda">const array = [...map.values()]</span>.</p>
+      <p>També es pot crear un array d'<em>arrays</em> amb les parelles clau-objecte: <span class="c_comanda">const array = [...map]</span>.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

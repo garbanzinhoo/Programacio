@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Classes abstractes i interfícies</h1>
+      <div class="enun">
+        <h3>Animals "abstractes"</h3>
+        <p>Modifica la classe <strong>Animal</strong> d'exercicis anteriors fent que sigui abstracta.<br>
+          El mètode <span class="c_comanda">moure()</span> també ha de ser abstracte.</p>
+        <p>Donat que cada mamífer es pot moure de diferent forma, caldrà afegir l'atribut <strong>moviment</strong> de tipus <em>String</em> en la classe i afegir aquest paràmetre al constructor.<br>
+          S'haurà de sobreescriure el mètode <span class="c_comanda">moure()</span> en la classe <strong>Mamifer</strong> fent que mostri quin moviment fa.</p>
+        <div class="p_important">
+          <p>Si el mètode <span class="c_comanda">moure()</span> d'alguna subclasse cridava al de la superclasse, ara ja no es podrà fer:</p>
+          <p class="p_codi">public void moure() {<br>
+            &nbsp;&nbsp;&nbsp; <strong>super.moure()</strong>;&nbsp;&nbsp;&nbsp; // <strong>ERROR</strong><br>
+            &nbsp;&nbsp;&nbsp; System.out.println("Estic volant");<br>
+            }</p>
+        </div>
+        <div class="p_important">
+          <p>Al ser una classe abstracta, no es podran crear objectes de la classe <strong>Animal</strong>:</p>
+          <p class="p_codi">Animal serp = <span><strong>new Animal("Serp")</strong></span>;&nbsp;&nbsp;&nbsp; // <strong>ERROR</strong></p>
+        </div>
+      </div>
+      <div class="enun">
+        <h3>Poligons</h3>
+        <p>Modifica l'estructura de classes de PoligonsRegulars de la següent forma:</p>
+        <ul>
+          <li><strong>Poligon</strong> (classe abstracta):</li>
+          <ul>
+            <li>Atributs: nom</li>
+            <li>Mètodes: constructor, calcularArea (abstracte), calcularPerimetre (abstracte), getArea, getPerimetre, calcularHipotenusa (estàtica).</li>
+          </ul>
+          <li>Classes que hereten de <strong>Poligon</strong> (implementa almenys 3):</li>
+          <ul>
+            <li><strong>PoligonRegular</strong>:</li>
+            <ul>
+              <li>Atributs: radi, nCostats, costat, apotema</li>
+              <li>Mètodes: constructor, calcularArea, calcularPerimetre</li>
+            </ul>
+            <li><strong>Quadrat</strong>:</li>
+            <ul>
+              <li>Atributs: costat</li>
+              <li>Mètodes: constructor, calcularArea, calcularPerimetre</li>
+            </ul>
+            <li><strong>Rectangle</strong>:</li>
+            <ul>
+              <li>Atributs: base, altura</li>
+              <li>Mètodes: constructor, calcularArea, calcularPerimetre</li>
+            </ul>
+            <li><strong>Triangle</strong>:</li>
+            <ul>
+              <li>Atributs: base, altura</li>
+              <li>Mètodes: constructor, calcularArea, calcularPerimetre</li>
+            </ul>
+            <li><strong>Trapezi</strong>:</li>
+            <ul>
+              <li>Atributs: bMajor, bMenor, altura</li>
+              <li>Mètodes: constructor, calcularArea, calcularPerimetre</li>
+            </ul>
+            <li><strong>Rombe</strong>:</li>
+            <ul>
+              <li>Atributs: dMajor, dMenor</li>
+              <li>Mètodes: constructor, calcularArea, calcularPerimetre</li>
+            </ul>
+          </ul>
+        </ul>
+        <ul>
+          <ul>
+            <ul>
+            </ul>
+          </ul>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Ordenar polígons</h3>
+        <p>Implementa la interfície <strong>Comparable</strong> en la classe <strong>Poligon</strong> de l'exercici anterior per poder comparar polígons basant-nos en l'àrea de cada un.</p>
+        <p>Implementa els següents mètodes publics:</p>
+        <ul>
+          <li>boolean equals(Object o)</li>
+          <li>static boolean equals(Poligon p1, Poligon p2)<br>
+            Fes-la utilitzant el mètode anterior.</li>
+          <li>int compareTo(Poligon p)</li>
+          <li>static int compareTo(Poligon p1, Poligon p2)<br>
+            Fes-la utilitzant el mètode anterior.</li>
+        </ul>
+        <p>Finalment, implementa una petita aplicació per provar aquestes classes.<br>
+          Ha de tenir un <em>array</em> amb 10 polígons de diferents tipus.<br>
+          Ha de poder ordenar l'<em>array</em> de polígons de menor a major segons l'àrea de cada un (degut a que la classe <strong>Poligon</strong> és <strong>Comparable</strong>, es pot utilitzar el mètode <span class="c_comanda">Arrays.sort(array)</span>).<br>
+          Ha de mostrar tots els polígons de l'<em>array</em> amb els seus atributs:</p>
+        <p class="p_consola">Rectangle: diagonal major=8.0, diagonal menor=6.0, <strong>area=24.0</strong>, perímetre=20.0<br>
+          Quadrat: lCostat=5.0, <strong>area=25.0</strong>, perímetre=20.0<br>
+          Rectangle: base=10.0, altura=2.5, <strong>area=25.0</strong>, perímetre=25.0<br>
+          Rectangle: base=10.0, altura=5.0, <strong>area=50.0</strong>, perímetre=30.0</p>
+        <p>Prova també a comparar dos polígons utilitzant els mètodes estàtics.</p>
+      </div>
+      <div class="enun">
+        <h3>Astèrix el gal</h3>
+        <blockquote>
+          <p><em>"Som a l’any 50 a.C. Tota la Gàl·lia és ocupada pels romans... Tota? No!</em><br>
+            <em>Un llogaret del nord habitat per gals indomables rebutja ferotgement l’invasor romà."</em></p>
+        </blockquote>
+        <h4>Funcionament del joc</h4>
+        <p>En aquest joc, Astèrix ha de lluitar contra 4 legionaris de l'exèrcit romà.</p>
+        <p>El jugador pot moure l'Astèrix cap a l'esquerra, dreta, amunt i avall dins d'un bosc de 20x20.<br>
+          Si es pren la poció màgica del druida Panoràmix que apareix en punts aleatoris del bosc, durant 10 moviments es pot moure al doble de velocitat i pot deixar sense sentit un legionari al colpejar-lo.</p>
+        <p>Els legionaris sempre es mouen cap a on es troba l'Astèrix.<br>
+          Si toquen l'Astèrix quan no està sota els efectes de la poció, serà capturat.</p>
+        <p>El joc s'acaba quan l'Astèrix acaba amb tots els legionaris o quan és capturat.</p>
+        <h4>Classes i interfícies necessàries</h4>
+        <p>No es tracta d'implementar tot el joc: només cal&nbsp; muntar l'estructura general.<br>
+          Els mètodes que no s'implementin, poden mostrar un missatge per consola.</p>
+        <p>Crea les classes i interfícies a partir de la <a target="_blank" rel="noopener" href="./arxius/javadoc-joc/index.html">documentació en JavaDoc</a></p>
+      </div>
+    </section>
+  </body>
+</html>

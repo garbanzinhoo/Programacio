@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Condicional <em>Switch</em></h1>
+      <p class="p_important">Tots els exercicis s'han de fer utilitzant l'estructura <em>switch</em>, excepte que es digui el contrari.</p>
+      <div class="enun">
+        <h3>Calculadora</h3>
+        <p>L'usuari ha d'introduir les dades en el format <span class="c_comanda">valor operació valor</span>, on <span class="c_comanda">valor</span> han de ser números reals i <span class="c_comanda">operació</span> ha de ser un dels caràcters&nbsp; <span class="c_comanda">+</span>&nbsp; <span class="c_comanda">-</span>&nbsp; <span class="c_comanda">*</span>&nbsp; <span class="c_comanda">/</span></p>
+        <p>Si no és cap d'aquestes, ha de mostrar un error.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Escriu la operació que vols fer (Ex: 2 + 2): <strong>123,5 * 46,789</strong><br>
+          Resultat: 5778.4415<br>
+        </p>
+      </div>
+      <div class="enun">
+        <h3>Dies de cada mes</h3>
+        <p>Fes un programa que, introduïnt el nom del mes, digui quants dies té.</p>
+        <p>Si el mes és febrer, ha de demanar l'any i dir 29 o 28 depenent si és any de traspàs o no.<br>
+          Si no es reconeix el nom, ha de mostrar un error.<br>
+        </p>
+        <h5>Exemples de sortida per consola</h5>
+        <p class="p_consola">Introdueix el nom d'un mes: <strong>gener</strong><br>
+          Nombre de dies: 31</p>
+        <p class="p_consola">Introdueix el nom d'un mes: <strong>febrer</strong><br>
+          Febrer pot tenir 28 o 29 dies depenent de l'any<br>
+          Per a quin any ho vols saber? <strong>2021</strong><br>
+          Nombre de dies: 28</p>
+        <p class="p_consola">Introdueix el nom d'un mes: <strong>marzo</strong><br>
+          No reconec el mes MARZO</p>
+      </div>
+      <div class="enun">
+        <h3>Transformar qualificacions amb lletres a valors numèrics</h3>
+        <p>En alguns països, les notes es donen amb lletres: A = Excel·lent (9-10), B = Notable (7-8), C = Aprovat (5-6), D = Suspès (1-4).</p>
+        <p>Fes un programa on, introduïnt una d'aquestes notes (A, B, C o D) ho tradueixi a un dels textos anteriors.<br>
+          Si no s'introdueix una d'aquestes lletres, ha de mostrar un error.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Escriu la nota (A, B, C, D): <strong>b</strong><br>
+          Nota: Notable (7-8)</p>
+        <p class="p_consola">Escriu la nota (A, B, C, D): <strong>e</strong><br>
+          No reconec la nota E</p>
+      </div>
+      <div class="enun">
+        <h3>Transformar qualificacions numèriques a lletres</h3>
+        <p> Ara es tracta d'introduir un número enter entre 1 i 10 i mostrar la lletra equivalent: 9-10=A, 7-8=B, 5-6=C, 1-4=Suspès.</p>
+        <p>Si el valor introduït no és cap dels anteriors, ha de mostrar un dels següents missatges: "La nota no pot ser inferior a 1" o "La nota no pot ser superior a 10".</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p></p>
+        <p class="p_consola">Escriu la nota (1 a 10): <strong>5</strong><br>
+          Nota: C</p>
+        <p class="p_consola">Escriu la nota (1 a 10): <strong>11</strong><br>
+          La nota no pot ser superior a 10</p>
+      </div>
+      <div class="enun">
+        <h3>Urgències a l'hospital comarcal</h3>
+        <p>A Urgències de l'hospital comarcal, abans d'atendre els pacients fan un procés de cribatge per determinar el grau d'urgència i el tipus de problema per fer-lo entrar abans o després, i per derivar-lo a un especialista o un altre.</p>
+        <p>Les observacions que ha de fer el metge de cribatge són (s'ha de comprovar que les dades introduïdes siguin correctes):</p>
+        <ul>
+          <li>Temperatura: el termòmetre pot mesurar temperatures entre entre 25 i 45</li>
+          <li>Tos: No, Seca, Expectorant</li>
+          <li>Presió màxima: entre 80 i 180</li>
+        </ul>
+        <p>A partir d'aquestes dades s'assigna al pacient una de les següents categories (aquesta primera part s'ha de fer amb "if"):</p>
+        <ul>
+          <li>M: si la temperatura està per sota de 32 o per sobre de 42 o la presió està per sota de 100.</li>
+          <li>E: si la temperatura està entre 35 i 38, no té tos i la presió està entre 120 i 140.</li>
+          <li>D: si la temperatura està per sobre de 38 i té tos expectorant.</li>
+          <li>C: si la temperatura està per sobre de 38 i té tos seca.</li>
+          <li>B: Si la temperatura està entre 35 i 38, no té tos i la presió està per sota de 120 o per sobre de 140.</li>
+          <li>A: en qualsevol altre cas</li>
+        </ul>
+        <p>Ara, a partir de la categoria que se li ha assignat, s'ha de mostrar un missatge indicant què s'ha de fer amb ell (aquesta part s'ha de fer amb "switch"):</p>
+        <ul>
+          <li>M: "No hi ha res a fer."</li>
+          <li>E o M: "Que esperi sentat... o estirat."</li>
+          <li>D: "L'ha de visitar el neumòleg d'urgències."</li>
+          <li>C: "Envia'l a la planta COVID."</li>
+          <li>B: "Ràpid! Que vingui un cardiòleg!"</li>
+          <li>A: "Fes-lo esperar una mica i li passes al Dr House, el de 'casos especials'."</li>
+        </ul>
+        <h5>Exemple de sortida per consola</h5>
+        <p></p>
+        <p class="p_consola">Introdueix la temperatura (25-45),<br>
+          el tipus de tos (No, Seca o Expectorant)<br>
+          i la presió (80-180): <strong>39 No 140</strong><br>
+          Fes-lo esperar una mica i li passes al Dr House, el de 'casos especials'.</p>
+      </div>
+      <div class="enun">
+        <h3>Canviar <em>switch</em> per <em>if</em></h3>
+        <p>En el programa anterior, transforma la part del <em>switch</em> utilitzant condicionals <em>if</em>.</p>
+      </div>
+    </section>
+  </body>
+</html>

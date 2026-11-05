@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Operadors de Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+    <script defer="defer" src="../../animations.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Operadors de JavaScript</header>
+    <section>
+      <h2>Operadors matemàtics</h2>
+      <p>En principi, les operacions sempre s'han de fer entre dades del mateix tipus.</p>
+      <p>Més endavant veurem quins tipus es poden barrejar i de quin tipus serà el resultat.</p>
+      <h3>Operador assignació</h3>
+      <p>L'operador assignació (<span class="c_comanda">=</span>) serveix per guardar una dada en una variable o constant.<br>
+        La variable o constant s'ha d'haver definit prèviament.<br>
+        La dada pot ser un literal o estar en una altra constant o variable.<br>
+        Es pot definir i assignar en una mateixa sentència (no cal fer-ho en 2 passos).<br>
+        Les constants s'han de definir i inicialitzar en la mateixa sentència.</p>
+      <p class="p_codi">const NOTA_MAX = 10;&nbsp;&nbsp;&nbsp; // Definir i inicialitzar una constant<br>
+        NOTA_MAX = 5;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>ERROR: no es pot modificar el valor d'una constant</strong><br>
+        <br>
+        let edat;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // Definir variable (1r pas)<br>
+        edat = 25;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // Assignar valor a variable (2n pas)<br>
+        <br>
+        nom = "Peter";&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>ERROR: la variable 'nom' encara no està definida</strong><br>
+        let nom = "Mary";&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Definir i inicialitzar variable en un sol pas</p>
+      <p>Una variable només pot contenir una dada.<br>
+        Si posteriorment se li assigna un altre valor, el valor anterior es perd.</p>
+      <p class="p_codi">let nota;&nbsp;&nbsp;&nbsp; // Definir variable<br>
+        nota = 4;&nbsp;&nbsp;&nbsp; // Assignar valor<br>
+        nota = 9;&nbsp;&nbsp;&nbsp; // Modificar valor</p>
+      <p><object onload="initAnimation(this)" data="imatges/guardar.svg" style="width:30em;">El teu navegador no suporta SVGs!</object></p>
+      <h4>Intercanviar els valors de 2 variables</h4>
+      <p>Es necessita una tercera variable per poder fer l'intercanvi.</p>
+      <p>Els passos a seguir són:</p>
+      <ol>
+        <li>Guardar el valor d'una de les variables en la variable temporal.</li>
+        <li>Passar del valor de l'altra variable a la primera.</li>
+        <li>Passar el valor de la variable temporal a la segona variable.</li>
+      </ol>
+      <p class="p_codi">let min = 9;<br>
+        let max = 4;<br>
+        // Intercanvi<br>
+        <strong>let t = min;<br>
+          min = max;<br>
+          max = t;</strong></p>
+      <p><object onload="initAnimation(this)" data="imatges/intercanviar.svg" style="width:40em;">El teu navegador no suporta SVGs!</object></p>
+      <h3>Operadors binaris amb números</h3>
+      <p>Permeten realitzar operacions amb dos valors (dues variables o constants, dos literals, una variable i un literal...) i obtenir el resultat.</p>
+      <p>En el cas de variables de tipus numèric són:</p>
+      <ul>
+        <li>Suma (<span class="c_comanda">+</span>)</li>
+        <li>Resta (<span class="c_comanda">-</span>)</li>
+        <li>Multiplicació (<span class="c_comanda">*</span>)</li>
+        <li>Divisió (<span class="c_comanda">/</span>)</li>
+      </ul>
+      <p>Els resultat d'una operació s'ha de guardar en alguna variable si es vol utilitzar més endavant; si no es guarda, es perd:</p>
+      <p class="p_codi">let a = 2;<br>
+        let b;<br>
+        a + 3;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>No serveix de res: el resultat es perd</strong><br>
+        b = a + 3;&nbsp;&nbsp;&nbsp; // OK: el resultat s'ha guardat i es podrà utilitzar més endavant</p>
+      <p><object onload="initAnimation(this)" data="imatges/sumar.svg" style="width:31em;">El teu navegador no suporta SVGs!</object></p>
+      <ul>
+        <li>Operació i assignació (<span class="c_comanda">+=</span>, <span class="c_comanda">-=</span>, <span class="c_comanda">*=</span>, <span class="c_comanda">/=</span>):</li>
+        <ul>
+          <li> <span class="c_comanda">a += b</span> → <span class="c_comanda">a = a + b</span></li>
+          <li> <span class="c_comanda">a -= b</span> → <span class="c_comanda">a = a - b</span></li>
+          <li> <span class="c_comanda">a *= b</span> → <span class="c_comanda">a = a * b</span></li>
+          <li> <span class="c_comanda">a /= b</span> → <span class="c_comanda">a = a / b</span></li>
+        </ul>
+      </ul>
+      <p>Aquests operador realitzen la operació entre la variable de l'esquerra i una constant, variable o literal, i guarden el resultat en la variable de l'esquerra:</p>
+      <p class="p_codi">let a = 2;<br>
+        let b = 3;<br>
+        a += b;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Equival a <strong>a = a + b;</strong> → a = 5</p>
+      <p><object onload="initAnimation(this)" data="imatges/sumarguardar.svg" style="width:31em;">El teu navegador no suporta SVGs!</object></p>
+      <h4>Operador mòdul (%)</h4>
+      <p>En el cas dels <strong>nombres enters</strong>, a més dels operadors anteriors cal afegir l'operació mòdul (<span class="c_comanda">%</span>).<br>
+        Aquesta operació retorna el residu d'una divisió entera.</p>
+      <p class="p_codi">let divisio = 26 / 7;&nbsp;&nbsp; // divisio = 3;<br>
+        let residu = 26 % 7;&nbsp;&nbsp;&nbsp; // residu = 5;</p>
+      <p>També es pot utilitzar en format d'operació i assignació: <span class="c_comanda">a %= 5</span> → <span class="c_comanda">a = a % 5</span></p>
+      <p>Aquest operador s'utilitza sovint en informàtica:</p>
+      <ul>
+        <li>Calcular si un número és múltiple d'un altre (si <strong>25 % 5 == 0</strong>, 25 és múltiple de 5).</li>
+        <li>Descomposar en múltiples i submúltiples (250 segons equivalen a <strong>250 / 60 minuts</strong> i <strong>250 % 60 segons</strong>).</li>
+        <li>Gestionar operacions cícliques (sumar <strong>X</strong> de forma repetida i cada cop que s'arribi a <strong>N</strong>, reiniciar).</li>
+      </ul>
+      <h3>Operadors binaris amb text</h3>
+      <p>En el cas dels textos, els operadors <strong>suma</strong> (<span class="c_comanda">+</span>) i <strong>suma i assignació</strong> (<span class="c_comanda">+=</span>) serveixen per concatenar (enganxar) textos.<br>
+        La resta d'operadors (<span class="c_comanda">-</span>, <span class="c_comanda">*</span>, ...) no es poden utilitzar amb textos.</p>
+      <p class="p_codi">let nom = "Peter";<br>
+        let cognom = "Soft";<br>
+        let <strong>persona = nom + " " + cognom;</strong>&nbsp;&nbsp;&nbsp; // 'persona' conté el text "Peter Soft"<br>
+        <br>
+        <strong>persona = nom;</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // 'persona' conté el text "Peter"<br>
+        <strong>persona += " ";</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // 'persona' conté el text "Peter "<br>
+        <strong>persona += cognom;</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // 'persona' conté el text "Peter Soft"</p>
+      <h3>Operadors unaris</h3>
+      <p>Són operadors que només afecten a una dada.</p>
+      <ul>
+        <li>Signe negatiu (<span class="c_comanda">-</span>): canvia el signe d'una dada o variable.</li>
+        <li>Increment (<span class="c_comanda">++</span>): <span class="c_comanda">a++</span> → <span class="c_comanda">a = a + 1</span>.</li>
+        <li>Decrement (<span class="c_comanda">--</span>): <span class="c_comanda">a--</span> → <span class="c_comanda">a = a - 1</span>).</li>
+      </ul>
+      <p>Els operadors <strong>increment</strong> i <strong>decrement</strong> modifiquen directament la variable, sense haver de fer una assignació.</p>
+      <p class="p_codi">let a = 5;<br>
+        let b = -a;&nbsp;&nbsp;&nbsp; // b = -5<br>
+        ++a;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // a = 6&nbsp;&nbsp;&nbsp; // També es podria haver fet a++;<br>
+        a--;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // a = 5&nbsp;&nbsp;&nbsp; // També es podria haver fet --a;</p>
+      <ul>
+      </ul>
+      <div class="p_important">
+        <p> Els operadors increment i decrement es poden posar abans o després de la variable.<br>
+          En la majoria de casos, és igual fer <span class="c_comanda">a++</span> que <span class="c_comanda">++a</span>, però en alguns casos, no: </p>
+        <ol type="A">
+          <li><span class="c_comanda">v = b + ++a;</span> → <span class="c_comanda">++a; v = b + a;</span></li>
+          <li><span class="c_comanda">v = b + a++;</span> → <span class="c_comanda">v = b + a; ++a;</span></li>
+        </ol>
+        <p class="p_codi">let a = 5;<br>
+          let b = 5;<br>
+          let v = b + ++a;&nbsp;&nbsp;&nbsp; // a = 6; <strong>v = 11;</strong><br>
+          v = b + a++;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>v = 10;</strong> a = 6;<br>
+        </p>
+      </div>
+      <div class="p_important">
+        <p>Els següents exemples s'entendran quan s'expliquin els <em>arrays</em> i les funcions:</p>
+        <ul>
+          <li>Cas 1 (<em>arrays</em>)<br>
+            <ol type="A">
+              <li><span class="c_comanda">v = a[++i];</span> → <span class="c_comanda">++i; v = a[i];</span></li>
+              <li><span class="c_comanda">v = a[i++];</span> → <span class="c_comanda">v = a[i]; ++i;</span></li>
+            </ol>
+          </li>
+        </ul>
+        <ul>
+          <li>Cas 2 (<em>return</em>)<br>
+            <ol type="A">
+              <li><span class="c_comanda">return ++i;</span> → <span class="c_comanda">++i; return i;</span></li>
+              <li><span class="c_comanda">return i++;</span> no té equivalent (seria equivalent a <span class="c_comanda">return i;<span class="c_strikethrough"> ++i;</span></span> però <span class="c_comanda">--i;</span> no s'executaria mai)</li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      <h2>Precedència dels operadors</h2>
+      <p>Si no es posen parèntesis, les operacions s'executen en el següent ordre:</p>
+      <ul>
+      </ul>
+      <ol>
+        <li>Operadors unaris (signe <span class="c_comanda">-</span>, increment <span class="c_comanda">++</span>, decrement <span class="c_comanda">--</span>)</li>
+        <li>Multiplicació, divisió i residu (<span class="c_comanda">*</span>, <span class="c_comanda">/</span>, <span class="c_comanda">%</span>)</li>
+        <li>Suma i resta (<span class="c_comanda">+</span>, <span class="c_comanda">-</span>)</li>
+        <li>Relacionals (<span class="c_comanda">&lt;</span>, <span class="c_comanda">&gt;</span>, <span class="c_comanda">&lt;=</span>, <span class="c_comanda">&gt;=</span>, <span class="c_comanda">==</span>, <span class="c_comanda">!=</span>)</li>
+        <li>Lògics (<span class="c_comanda">!</span>, <span class="c_comanda">&amp;&amp;</span>, <span class="c_comanda">||</span>)</li>
+      </ol>
+      <div class="p_important">
+        <p> Igual que en matemàtiques, la prioritat es pot modificar utilitzant parèntesis.<br>
+          Fins i tot en expressions simples, és convenient utilitzar parèntesis per indicar l'ordre de les operacions.</p>
+        <p class="p_codi">let a = 2 * 3 + 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a = 7<br>
+          let b = 1 + 2 * 3;&nbsp; &nbsp; &nbsp; // b = 7<br>
+          let c = 2 * (3 + 1);&nbsp;&nbsp;&nbsp; // c = 8</p>
+      </div>
+      <p> En el cas d'operadors que tinguin la mateixa precedència, s'executa primer el que es troba més a l'esquerra en l'expressió:</p>
+      <p class="p_codi">let a = 10 / 5 * 3;&nbsp;&nbsp;&nbsp;&nbsp; // primer es fa 10 / 5 i el resultat (2) es multiplica per 3</p>
+      <div class="p_important">
+        <p><strong>IMPORTANT:</strong> quan es combinen textos i números en una operació, es poden produir resultats imprevistos:</p>
+        <p class="p_codi">let import = 1000;<br>
+          let iva = import * 21 / 100;<br>
+          let resultat = "El total és " + import + iva + " €";&nbsp;&nbsp;&nbsp; // resultat = <strong>El total és 1000210 €</strong><strong></strong></p>
+      </div>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="XML">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>XML</header>
+    <section>
+      <h2>Documents XML</h2>
+      <p>Els documents XML estan formats per:</p>
+      <ul>
+        <li>Text (fulles): conté la informació.</li>
+        <li>Elements: agrupen diferents continguts (altres elements) i la informació (text).<br>
+          També s'anomenen etiquetes i s'escriuen en la forma <span class="c_comanda">&lt;nomElement&gt;...&lt;/nomElement&gt;</span>.</li>
+        <li>Atributs: formats per un nom i un valor.<br>
+          S'inclouen dins dels elements en la forma <span class="c_comanda">nom="valor"</span>.</li>
+        <li>Pròleg (opcional): proporciona informació sobre el format de l'arxiu.</li>
+      </ul>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.xml/org/w3c/dom/Document.html">org.w3c.dom.Document ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.xml/org/w3c/dom/Node.html">org.w3c.dom.Node ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.xml/org/w3c/dom/Element.html">org.w3c.dom.Element ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.xml/org/w3c/dom/Attr.html">org.w3c.dom.Attr ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.xml/org/w3c/dom/Text.html">org.w3c.dom.Text ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.xml/org/w3c/dom/NodeList.html">org.w3c.dom.NodeList ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.xml/org/w3c/dom/NamedNodeMap.html">org.w3c.dom.NamedNodeMap ref. (Java SE 17)</a></p>
+      <h2>Llegir arxius amb format XML</h2>
+      <p>Plantilla bàsica:</p>
+      <p class="p_codi"><strong>DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</strong><br>
+        DocumentBuilder db;&nbsp;&nbsp;&nbsp; // Constructor d'objectes XML a partir d'arxius XML<br>
+        Document doc;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // Document (objecte) XML<br>
+        Node root;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Node arrel del document XML<br>
+        File f;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Ruta cap a l'arxiu XML<br>
+        <br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; f = new File("src/uf5/exemples/xml/menu.xml");<br>
+        &nbsp;&nbsp;&nbsp; <strong>db = dbf.newDocumentBuilder();</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>doc = db.parse(f);</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>root = doc.getDocumentElement();</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>// TODO:</strong> codi per gestionar les dades<br>
+        } catch (ParserConfigurationException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        } catch (IOException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        } catch (SAXException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <h2>Processar un document XML</h2>
+      <h3>Mètodes bàsics de la interfície <em>Document</em></h3>
+      <ul>
+        <li><span class="c_comanda">getDocumentElement()</span>: retorna l'element arrel del document.</li>
+        <li><span class="c_comanda">createElement(String nom)</span>: crea un element (etiqueta).</li>
+        <li><span class="c_comanda">createTextNode(String nom)</span>: crea un node de text (contingut textual d'un element).</li>
+        <li><span class="c_comanda">createAttribute(String nom)</span>: crea un node de tipus atribut (Attr).</li>
+      </ul>
+      <h4>Mètodes per afegir, modificar i eliminar nodes</h4>
+      <ul>
+        <li><span class="c_comanda">appendChild(Node nou)</span>: afegeix un nou fill al final.</li>
+        <li><span class="c_comanda">insertBefore(Node nou, Node ref)</span>: afegeix un nou fill abans d'un altre.</li>
+        <li><span class="c_comanda">removeChild(Node n)</span>: elimina un fill.</li>
+        <li><span class="c_comanda">replaceChild(Node nou, Node antic)</span>: substitueix un fill per un altre.</li>
+        <li><span class="c_comanda">setTextContent(String text)</span>: afegeix un node de tipus text.</li>
+      </ul>
+      <h3>Mètodes bàsics de la interfície <em>Node</em></h3>
+      <ul>
+        <li><span class="c_comanda">getChildNodes()</span>: obté una llista amb tots els fills, siguin del tipus que siguin.</li>
+        <li><span class="c_comanda">getFirstChild()</span>: obté el primer fill.</li>
+        <li><span class="c_comanda">getNextSibling()</span>: obté el següent germà.</li>
+        <li><span class="c_comanda">getAttributes()</span>: obté un conjunt amb els atributs del node (si és un <strong>Element</strong>).</li>
+        <li><span class="c_comanda">getTextContent()</span>: obté el contingut textual del node i tots els descendents.</li>
+        <li><span class="c_comanda">getNodeType()</span>: retorna el tipus de node (element, text, comentari...).</li>
+        <li><span class="c_comanda">getParentNode()</span>: retorna el pare del node.</li>
+        <li><span class="c_comanda">getOwnerDocument()</span>: retorna l'objecte de tipus <strong>Document</strong> que conté aquest node.<br>
+          <strong>Aquest objecte es pot utilitzar per crear nous nodes</strong>.</li>
+      </ul>
+      <ul>
+      </ul>
+      <h3>Mètodes bàsics de la interfície <em>Element</em></h3>
+      <ul>
+        <li><span class="c_comanda">getTagName()</span>: retorna el nom (etiqueta) de l'element.</li>
+        <li><span class="c_comanda">getElementsByTagName(String nomElement)</span>: obté tots els elements per sota d'aquest element (fills, nets...) que tinguin el nom <span class="c_comanda">nomElement</span>.</li>
+      </ul>
+      <h4>Mètodes per afegir, modificar i esborrar atributs</h4>
+      <ul>
+        <li><span class="c_comanda">hasAttribute(String nomAtribut)</span>: retorna <em>true</em> si l'element conté l'atribut <span class="c_comanda">nomAtribut</span>.</li>
+        <li><span class="c_comanda">getAttribute(String nomAtribut)</span>: obté el valor de l'atribut <span class="c_comanda">nomAtribut</span>.</li>
+        <li><span class="c_comanda">removeAttribute(String nomAtribut)</span>: elimina l'atribut <span class="c_comanda">nomAtribut</span>.</li>
+        <li><span class="c_comanda">setAttribute(String nomAtribut, String valor)</span>: afegeix un atribut o modifica el seu valor.</li>
+      </ul>
+      <h3>Mètodes bàsics de la interfície <em>Attr</em></h3>
+      <ul>
+        <li><span class="c_comanda">getName()</span>: retorna un <em>String</em> amb el nom de l'atribut.</li>
+        <li><span class="c_comanda">getValue()</span>: retorna un <em>String</em> amb el valor de l'atribut.</li>
+        <li><span class="c_comanda">setName(String valor)</span>: modifica el valor de l'atribut.</li>
+      </ul>
+      <h3>Mètodes bàsics de la interfície <em>Text</em></h3>
+      <ul>
+        <li><span class="c_comanda">getWholeText()</span>: retorna un <em>String</em> amb tot el text.<br>
+          Pot ser necessari "netejar-lo" (si en el document hi ha salts de línia i espais al principi de les línies, aquests també apareixen). Es podria utilitzar la comanda <span class="c_comanda">t.replaceAll("\\s+", " ").trim()</span> per fer-ho.</li>
+        <li><span class="c_comanda">replaceWholeText(String nouText)</span>: substitueix el contingut d'un node de text.</li>
+      </ul>
+      <p class="p_important"><strong>Element</strong>, <strong>Text</strong> i <strong>Attr</strong> són subinterfícies de la interfície genèrica <strong>Node</strong>.<br>
+        Alguns mètodes retornen un objecte de tipus <strong>Node</strong> en comptes de retornar el tipus específic.<br>
+        Per poder utilitzar els mètodes específics de cada tipus, cal convertir el node al tipus correcte<em></em>.</p>
+      <h3>Llistes de nodes</h3>
+      <p>Alguns mètodes retornen una llista de nodes (<strong>NodeList</strong> o <strong>NamedNodeMap</strong>).<br>
+        Per recuperar processar els elements d'un <strong>NodeList</strong> es pot utilitzar un bucle com el següent:</p>
+      <p class="p_codi"><strong>NodeList l</strong> = doc.getElementsByTagName("llibre");<br>
+        for (int i = 0; i &lt; <strong>l.getLength()</strong>; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; Node n = <strong>l.item(i)</strong>;<br>
+        &nbsp;&nbsp;&nbsp; System.out.println(<strong>((Element)n)</strong>.getTagName());<br>
+        }</p>
+      <p>En el cas de <strong>NamedNodeMap</strong>, que pot contenir una llista d'atributs, es pot fer el mateix però també es pot obtenir directament un element a partir de l'identificador, sense haver de recórrer tota la llista:</p>
+      <p class="p_codi">Attr a = <strong>(Attr)l.getNamedItem("edat")</strong>;<br>
+        System.out.println(a.getName() + ": " + a.getValue());</p>
+      <h2>Guardar informació amb format XML</h2>
+      <p>Plantilla bàsica:</p>
+      <p class="p_codi"><strong>DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</strong><br>
+        DocumentBuilder db;<br>
+        Document doc;<br>
+        Node root;<br>
+        File f;<br>
+        <br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; f = new File("src/uf5/exercicis/xml/prova.xml");<br>
+        &nbsp;&nbsp;&nbsp; <strong>db = dbf.newDocumentBuilder();</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>doc = db.newDocument();<br>
+          &nbsp;&nbsp;&nbsp; root = doc.createElement("arrel");<br>
+          &nbsp;&nbsp;&nbsp; doc.appendChild(root);</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>// TODO: afegir elements dins de l'arrel</strong><br>
+        &nbsp;&nbsp;&nbsp; TransformerFactory tf = TransformerFactory.newInstance();<br>
+        &nbsp;&nbsp;&nbsp; Transformer transformer = tf.newTransformer();<br>
+        &nbsp;&nbsp;&nbsp; DOMSource source = new DOMSource(doc);<br>
+        &nbsp;&nbsp;&nbsp; StreamResult result = new StreamResult(f);<br>
+        &nbsp;&nbsp;&nbsp; transformer.transform(source, result);<br>
+        } catch (ParserConfigurationException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        } catch (TransformerConfigurationException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        } catch (TransformerException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }<br>
+      </p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

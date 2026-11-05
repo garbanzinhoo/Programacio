@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Eines de depuració">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Eines de depuració</header>
+    <section>
+      <h2>Eines de depuració</h2>
+      <p>És pràcticament impossible fer un programa perfecte a la primera.</p>
+      <p>Es poden utilitzar opcions vistes anteriorment per mostrar els valors que prenen les dades en cada moment, però hi ha altres formes millors de trobar i controlar els errors.</p>
+      <h3>Comanda "debugger"</h3>
+      <p>JavaScript disposa de la comanda <span class="c_comanda">debugger</span> que permet aturar el programa (si l'opció de depuració està activada) quan la seva execució arribi on es troba aquesta comanda.</p>
+      <p>De totes formes, els navegadors actuals, en les eines de depuració, també tenen opcions per posar punts d'aturada (<em>break points</em>).</p>
+      <p></p>
+      <h3>Opcions bàsiques</h3>
+      <p>Amb el botó secundari (menú contextual), tots els navegadors mostren algunes opcions bàsiques:</p>
+      <ul>
+        <li>Tornar a carregar la pàgina per si s'havia obtingut directament de la caché i no del servidor.</li>
+        <li>Veure el codi original de la pàgina (no el contingut generat dinàmidament amb JS).</li>
+        <li>Quan la pàgina conté <em>frames</em>:</li>
+        <ul>
+          <li>Tornar a carregar el marc per si s'havia obtingut directament de la caché i no del servidor.</li>
+          <li>Veure el codi original del marc (no el contingut generat dinàmidament amb JS).</li>
+        </ul>
+      </ul>
+      <p>En el codi font es poden veure els enllaços que carreguen els arxius de JavaScript i/o CSS.<br>
+        Clicant aquests enllaços es poden carregar els arxius corresponents per veure el codi.</p>
+      <p class="p_important">Per actualitzar una web, no és el mateix prémer només la tecla <kbd>F5</kbd> que la combinació <kbd>Ctrl</kbd> + <kbd>F5</kbd>:<br>
+        amb la segona opció ens assegurem que el navegador torna a demanar la pàgina al servidor en lloc d'agafar-la de la memòria caché.<br>
+        Tot i això, és possible que els marcs (<span class="c_comanda">&lt;iframe&gt;</span>) no s'actualitzin.</p>
+      <h3>Eines de depuració dels navegadors</h3>
+      <p>En el mateix menú contextual també hi ha una opció per obrir les eines de depuració.<br>
+        Aquesta opció s'anomena <strong><span>Inspeccionar</span></strong> o <strong><span>Inspeccionar elemento</span></strong>.</p>
+      <p>Les eines acostumen a estar disposades en diferents blocs que es poden amagar, redimensionar o situar en diferents punts de la finestra.<br>
+        En alguns casos, fins i tot es poden mostrar en una finestra a part.</p>
+      <p>Les eines de cada bloc estan disposades en diferents pestanyes.<br>
+        Les més habituals són les següents:</p>
+      <ul>
+        <li><strong>Elements</strong>: mostra els elements que hi ha actualment en el document (també els amagats).<br>
+          Es mostren en forma d'arbre, es poden plegar i desplegar, al passar el ratolí per sobre es destaquen sobre el document i al seleccionar-los es poden veure els seus atributs (color, color de fons, marges, vores...), els atributs calculats i els gestors d'esdeveniments, entre altres.</li>
+        <li><strong>Consola</strong>: a més de mostrar els missatges que s'envien amb les comandes <span class="c_comanda">console.log()</span>, <span class="c_comanda">console.warn()</span> i <span class="c_comanda">console.error()</span>, també <strong>permet executar codi JavaScript</strong>.</li>
+        <li><strong>Codi font</strong>: es poden triar els arxius on hi ha codi JavaScript per depurar-lo: es poden posar punts d'aturada, avançar pas a pas, veure els valors que tenen les variables, la pila de crides a funcions...</li>
+        <li><strong>Xarxa</strong>: per veure l'ordre i el temps que ha trigat en carregar cada un dels arxius del document.</li>
+        <li><strong>Aplicació</strong>: entre altres coses, permet veure les <em>cookies</em>, l'emmagatzematge local i de sessió (<em>local storage</em> i <em>session storage</em>), les bases de dades locals (WebSQL i IndexedDB), la caché...<br>
+          També es poden esborrar les dades emmagatzemades.</li>
+      </ul>
+      <p>Alguns navegadors també poden simular com es veuria en un dispositiu mòbil, amb diferents resolucions de pantalla o amb els estils CSS dels diferents tipus de <span class="c_comanda">@media</span> (<span class="c_comanda">print</span>, <span class="c_comanda">screen</span>...).</p>
+      <p class="p_important">Una utilitat molt important és veure si s'ha produït un error al carregar la pàgina: algun arxiu que no s'ha trobat, errors en el codi, errors al obtenir dades d'un altre domini...</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

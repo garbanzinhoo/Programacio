@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let preu = prompt("Introdueix el preu");<br>
+          preu = parseFloat(preu);<br>
+          <br>
+          // Aplicar descompte<br>
+          if (preu &gt;= 500) {<br>
+          &nbsp;&nbsp;&nbsp; preu -= preu * 10 / 100;<br>
+          }<br>
+          <br>
+          // Afegir transport<br>
+          if (preu &lt; 20) {<br>
+          &nbsp;&nbsp;&nbsp; preu += 5;<br>
+          }<br>
+          <br>
+          alert("El preu final és " + preu);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// <strong>Contrasenya numèrica</strong><br>
+          const CONTRASENYA = 1234;<br>
+          let contrasenya;<br>
+          <br>
+          contrasenya = prompt("Introdueix la contrasenya");<br>
+          contrasenya = parseInt(contrasenya);<br>
+          <br>
+          if (<strong>contrasenya == CONTRASENYA</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; alert("OK");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("ERROR");<br>
+          }<br>
+          <br>
+          // <strong>Contrasenya alfanumèrica</strong><br>
+          const CONTRASENYA2 = "1234";<br>
+          let contrasenya2;<br>
+          <br>
+          contrasenya2 = prompt("Introdueix la contrasenya: ");<br>
+          <br>
+          if (<strong>contrasenya2 == CONTRASENYA2</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; alert("OK");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("ERROR");<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let n1, n2;<br>
+          &nbsp;<br>
+          n1 = parseInt(prompt("Introdueix el primer número"));<br>
+          n2 = parseInt(prompt("Introdueix el segon número"));<br>
+          &nbsp;<br>
+          if (n1 % n2 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert(n1 + " és múltiple de " + n2);<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert(n1 + " NO és múltiple de " + n2);<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let numero = parseInt(prompt("Introdueix un numero enter"));<br>
+          <br>
+          if (numero &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("És positiu");<br>
+          } else if (numero &lt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("És negatiu");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("És 0");<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let edat = parseInt(prompt("Quants anys tens?"));<br>
+          <br>
+          if (edat &gt;= 18 &amp;&amp; edat &lt; 80) alert("Pots conduir cotxe");<br>
+          if(!(edat &gt;= 16 &amp;&amp; edat &lt;= 65)) alert("No estàs en edat de treballar");<br>
+          if(edat &lt; 3) alert("Has d'anar a la guarderia");<br>
+          if(edat &gt;= 18 &amp;&amp; edat &lt;= 24) alert("Pots estudiar un CFGM");<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// <strong>Solució amb 2 números</strong><br>
+          let n1 = parseFloat(prompt("Introdueix el primer número"));<br>
+          let n2 = parseFloat(prompt("Introdueix el segon número"));<br>
+          <br>
+          if (n1 &gt; n2) {&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // Comprovar si n1 és més gran que n2<br>
+          &nbsp;&nbsp;&nbsp; alert(n1 + " és el més gran");<br>
+          } else if (n2 &gt; n1) {&nbsp;&nbsp; // Comprovar si n2 és més gran que n1<br>
+          &nbsp;&nbsp;&nbsp; alert(n2 + " és el més gran");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("Tots dos són iguals");<br>
+          }<br>
+          <br>
+          // <strong>Solució amb 3 números</strong><br>
+          let n1 = parseFloat(prompt("Introdueix el primer número"));<br>
+          let n2 = parseFloat(prompt("Introdueix el segon número"));<br>
+          let n3 = parseFloat(prompt("Introdueix el tercer número"));<br>
+          <br>
+          if (n1 &gt; n2 &amp;&amp; n1 &gt; n3) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Comprovar si n1 és més gan que els altres dos<br>
+          &nbsp;&nbsp;&nbsp; alert(n1 + " és el més gran");<br>
+          } else if (n2 &gt; n1 &amp;&amp; n2 &gt; n3) {&nbsp;&nbsp; // Comprovar si n2 és més gan que els altres dos<br>
+          &nbsp;&nbsp;&nbsp; alert(n2 + " és el més gran");<br>
+          } else if (n3 &gt; n1 &amp;&amp; n3 &gt; n2) {&nbsp;&nbsp; // Comprovar si n3 és més gan que els altres dos<br>
+          &nbsp;&nbsp;&nbsp; alert(n3 + " és el més gran");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("Tots tres són iguals");<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let any = parseInt(prompt("Introdueix un any: "));<br>
+          <br>
+          // <strong>Solució 1</strong><br>
+          if (any % 400 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("SÍ és any de traspàs");<br>
+          } else if (any % 100 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("NO és any de traspàs");<br>
+          } else if (any % 4 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("SÍ és any de traspàs");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("NO és any de traspàs");<br>
+          }<br>
+          <br>
+          // <strong>Solució 2</strong><br>
+          if (any % 400 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("SÍ és any de traspàs");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; if (any % 100 == 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("NO és any de traspàs");<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (any % 4 == 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("SÍ és any de traspàs");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("NO és any de traspàs");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // <strong>Solució 3</strong><br>
+          if (any % 400 == 0 || (any % 4 == 0 &amp;&amp; any % 100 != 0)) {<br>
+          &nbsp;&nbsp;&nbsp; alert("SÍ és any de traspàs");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("NO és any de traspàs");<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">...<br>
+          <br>
+          monedes = Math.trunc(canviCentims / 200);<br>
+          canviCentims %= 200;<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) resultat.innerHTML += "1 moneda de 2 euros&lt;br&gt;";<br>
+          &nbsp;&nbsp;&nbsp; else resultat.innerHTML += monedes.toFixed(0) + " monedes de 2 euros&lt;br&gt;";<br>
+          }<br>
+          <br>
+          monedes = Math.trunc(canviCentims / 100);<br>
+          canviCentims %= 100;<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) resultat.innerHTML += "1 moneda de 1 euro&lt;br&gt;";<br>
+          &nbsp;&nbsp;&nbsp; else resultat.innerHTML += monedes.toFixed(0) + " monedes de 1 euro&lt;br&gt;";<br>
+          }<br>
+          <br>
+          monedes = Math.trunc(canviCentims / 50);<br>
+          canviCentims %= 50;<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) resultat.innerHTML += "1 moneda de 50 cent&lt;br&gt;"<br>
+          &nbsp;&nbsp;&nbsp; else resultat.innerHTML += monedes.toFixed(0) + " monedes de 50 cent&lt;br&gt;";<br>
+          }<br>
+          <br>
+          monedes = Math.trunc(canviCentims / 20);<br>
+          canviCentims %= 20;<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) resultat.innerHTML += ("1 moneda de 20 cent&lt;br&gt;";<br>
+          &nbsp;&nbsp;&nbsp; else resultat.innerHTML += monedes.toFixed(0) + " monedes de 20 cent&lt;br&gt;";<br>
+          }<br>
+          <br>
+          monedes = Math.trunc(canviCentims / 10);<br>
+          //canviCentims %= 10; // No és necessari si no cal 5, 2 i 1 ctm<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) resultat.innerHTML += "1 moneda de 10 cent&lt;br&gt;";<br>
+          &nbsp;&nbsp;&nbsp; else resultat.innerHTML += monedes.toFixed(0) + " monedes de 10 cent&lt;br&gt;";<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          // Inputs per introduir els dos números<br>
+          const iN1 = document.getElementById("iN1");<br>
+          const iN2 = document.getElementById("iN2");<br>
+          <br>
+          // Botons per fer els càlculs<br>
+          const bSumar = document.getElementById("bSumar");<br>
+          const bRestar = document.getElementById("bRestar");<br>
+          const bMultiplicar = document.getElementById("bMultiplicar");<br>
+          const bDividir = document.getElementById("bDividir");<br>
+          <br>
+          // Element on mostrar el resultat<br>
+          const resultat = document.getElementById("resultat");<br>
+          <br>
+          // Quan es fa clic en el botó 'exec' es crida la funció 'executar()'<br>
+          bSumar.addEventListener("click", sumar);<br>
+          bRestar.addEventListener("click", restar);<br>
+          bMultiplicar.addEventListener("click", multiplicar);<br>
+          bDividir.addEventListener("click", dividir);<br>
+          <br>
+          // Funció suma<br>
+          function sumar() {<br>
+          &nbsp;&nbsp;&nbsp; let n1 = parseFloat(iN1.value.replace(",", "."));<br>
+          &nbsp;&nbsp;&nbsp; let n2 = parseFloat(iN2.value.replace(",", "."));<br>
+          &nbsp;&nbsp;&nbsp; if (isNaN(n1) || isNaN(n2)) alert("Algun dels dos valors no és correcte");<br>
+          &nbsp;&nbsp;&nbsp; resultat.innerHTML = n1 + n2;<br>
+          }<br>
+          <br>
+          // Funció resta<br>
+          function restar() {<br>
+          &nbsp;&nbsp;&nbsp; let n1 = parseFloat(iN1.value.replace(",", "."));<br>
+          &nbsp;&nbsp;&nbsp; let n2 = parseFloat(iN2.value.replace(",", "."));<br>
+          &nbsp;&nbsp;&nbsp; if (isNaN(n1) || isNaN(n2)) alert("Algun dels dos valors no és correcte");<br>
+          &nbsp;&nbsp;&nbsp; resultat.innerHTML = n1 - n2;<br>
+          }<br>
+          <br>
+          // Funció multiplicació<br>
+          function multiplicar() {<br>
+          &nbsp;&nbsp;&nbsp; let n1 = parseFloat(iN1.value.replace(",", "."));<br>
+          &nbsp;&nbsp;&nbsp; let n2 = parseFloat(iN2.value.replace(",", "."));<br>
+          &nbsp;&nbsp;&nbsp; if (isNaN(n1) || isNaN(n2)) alert("Algun dels dos valors no és correcte");<br>
+          &nbsp;&nbsp;&nbsp; resultat.innerHTML = n1 * n2;<br>
+          }<br>
+          <br>
+          // Funció divisió<br>
+          function dividir() {<br>
+          &nbsp;&nbsp;&nbsp; let n1 = parseFloat(iN1.value.replace(",", "."));<br>
+          &nbsp;&nbsp;&nbsp; let n2 = parseFloat(iN2.value.replace(",", "."));<br>
+          &nbsp;&nbsp;&nbsp; if (isNaN(n1) || isNaN(n2)) alert("Algun dels dos valors no és correcte");<br>
+          &nbsp;&nbsp;&nbsp; resultat.innerHTML = n1 / n2;<br>
+          }<br>
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

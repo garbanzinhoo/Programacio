@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Comunicació entre ordinadors: sockets">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Comunicació entre ordinadors: sockets</header>
+    <section>
+      <h2><em>Sockets</em></h2>
+      <p>Una forma de comunicar ordinadors a través de la xarxa és utilitzant <em>sockets</em>.</p>
+      <p>Un <em>socket</em> representa un canal de comunicació permanent bidireccional entre dues màquines:</p>
+      <ul>
+        <li>"<strong>servidor</strong>" és la màquina que engega el procés que acceptarà connexions amb altres màquines.<br>
+          Aquest procés (servei) necessita un port lliure en una de les interfícies de xarxa del servidor.</li>
+        <li>"<strong>client</strong>" és cada una de les màquines que es connectaran amb el "servidor".<br>
+          El client necessita saber l'adreça IP i el port on el servidor està esperant les connexions.<br>
+          També reservarà automàticament un port lliure per realitzar la connexió.</li>
+      </ul>
+      <h3>Servidor</h3>
+      <h4>Engegar el servei per acceptar connexions</h4>
+      <p>Java té la classe <strong>ServerSocket</strong> per posar en marxa el servei.</p>
+      <p>S'ha de crear un objecte passant-li el número d'un port lliure (també es pot incloure la IP d'una interfície).<br>
+        Si se li passa el port 0, triarà automàticament un que estigui lliure.</p>
+      <p class="p_codi"><strong>ServerSocket servidor</strong> = new <strong>ServerSocket(port)</strong>;</p>
+      <div class="p_important">
+        <p>Si s'especifica un port que no sigui 0, és convenient assegurar-se que està lliure.</p>
+        <p>Si no s'especifica, s'ha de conèixer l'adreça IP amb la que el servidor es connecta amb l'"exterior".<br>
+          La següent pot ser una forma senzilla d'obtenir-la:</p>
+        <ol>
+          <li>Connectem el servidor amb un altre servidor conegut.</li>
+          <li>Mirem quina adreça local ha utilitzat per connectar-se.</li>
+          <li>Tanquem la connexió.</li>
+        </ol>
+        <p class="p_codi">//Socket s = new Socket("8.8.8.8", 53);<br>
+          Socket s = new Socket("www.google.com", 80);<br>
+          String <strong>serverIP</strong> = s.getLocalAddress().getHostAddress();<br>
+          s.close();</p>
+      </div>
+      <h4>Acceptar connexions</h4>
+      <p>Amb l'objecte <strong>ServerSocket</strong> creat, la comanda <span class="c_comanda">accept()</span> fa que esperi una sol·licitud de connexió.</p>
+      <p>Quan es rep una sol·licitud, retorna un objecte de tipus <strong>Socket</strong>.<br>
+        Aquesta classe representa una connexió amb una altra màquina.</p>
+      <p class="p_codi"><strong>Socket connexio</strong> = <strong>servidor.accept()</strong>;</p>
+      <h4>Convertir les dades per enviar i rebre pels canals de sortida i d'entrada</h4>
+      <p>Per poder enviar i rebre correctament objectes, cal utilitzar algunes classes extra:</p>
+      <ul>
+        <li><strong>ObjectOutputStream</strong>: "serialitza" un objecte (el converteix en <em>bytes</em>) per poder-lo enviar.<br>
+          <strong></strong></li>
+        <li><strong>ObjectInputStream</strong>: converteix a objecte les dades rebudes.</li>
+      </ul>
+      <p class="p_codi"><strong>ObjectOutputStream out</strong> = new <strong>ObjectOutputStream</strong>(<strong>connexio.getOutputStream()</strong>);<br>
+        <strong>ObjectInputStream in</strong> = new <strong>ObjectInputStream</strong>(new BufferedInputStream(<strong>connexio.getInputStream()</strong>));</p>
+      <div class="p_important">
+        <p>Per poder enviar i rebre objectes per aquests canals cal que la classe implementi la interfície <strong>Serializable</strong>:</p>
+        <p class="p_codi">public class Missatge <strong>implements Serializable</strong> { ... }</p>
+      </div>
+      <h4>Enviar i rebre dades</h4>
+      <p>Les classes anteriors tenen els següents metodes per enviar i rebre objectes:</p>
+      <p class="p_codi">out.writeObject(missatge);<br>
+        obj = in.readObject();</p>
+      <div class="p_important">
+        <p>L'objecte rebut és de tipus <strong>Object</strong>, per tant caldrà convertir-lo:</p>
+        <p class="p_codi">missatge = (Missatge)in.readObject();</p>
+      </div>
+      <h3>Client</h3>
+      <h4>Connectar amb el servidor</h4>
+      <p>Per establir una connexió cal crear un <em>socket</em> indicant l'adreça IP del servidor i el port en que està escoltant:</p>
+      <p class="p_codi">Socket connexio = new Socket(IP, port);</p>
+      <h4>Convertir i enviar i rebre dades</h4>
+      <p>Es fa de la mateixa forma que en el servidor.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

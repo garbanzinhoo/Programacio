@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció als gràfics en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció als gràfics en Java</header>
+    <section>
+      <h2>Introducció als gràfics</h2>
+      <p class="p_important">Pots provar el codi complet dels exemples descomprimint l'arxiu <a target="_blank" rel="noopener" href="arxius/Grafics.zip">Grafics.zip</a> dins la carpeta <span class="c_arxiu">src</span> d'un projecte de <em>IntelliJ</em>.</p>
+      <p>Abans de treballar amb gràfics, convé conèixer les classes <strong>Image</strong> i <strong>ImageIcon</strong>, que s'utilitzaran sovint.<br>
+      </p>
+      <h3>Image i ImageIcon</h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/Image.html">Image ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/javax/swing/ImageIcon.html">ImageIcon ref. (Java SE 17)</a></p>
+      <p>Per utilitzar una imatge guardada en un arxiu, primer cal carregar-la en un objecte d'un d'aquests tipus.<br>
+        Els tipus d'imatges que es poden utilitzar són <strong>JPG</strong>, <strong>GIF</strong>, <strong>PNG</strong>, <strong>BMP</strong> i <strong>WBMP</strong>.</p>
+      <p><strong>Image</strong> s'utilitza per posar la imatge en un component genèric (<em>JPanel</em>, <em>Canvas</em>...).<br>
+        <strong>IconImage</strong> s'utilitza per afegir la imatge a un botó, menú o etiqueta (<em>JButton</em>, <em>JMenuItem</em> o <em>JLabel</em>).</p>
+      <p>Es poden utilitzar els següents mètodes per carregar una imatge.<br>
+        És convenient posar-los en una llibreria per poder-los utilitzar fàcilment quan calgui.</p>
+      <p class="p_codi">/**<br>
+        &nbsp;* Carrega una icona i la redimensiona.<br>
+        &nbsp;* @param path Ruta on es troba la imatge<br>
+        &nbsp;* @return La icona creada o null si no l'ha trobada<br>
+        &nbsp;*/</p>
+      <p class="p_codi"> <strong>public static ImageIcon carregarIcona(String path, int width, int height)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; Image imatge = carregarImatge(path);<br>
+        &nbsp;&nbsp;&nbsp; if (imatge == null) return null;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; imatge = imatge.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);<br>
+        &nbsp;&nbsp;&nbsp; return new ImageIcon(imatge);<br>
+        }<br>
+        <br>
+        /**<br>
+        &nbsp;* Carrega una imatge i la redimensiona.<br>
+        &nbsp;* @param path Ruta on es troba la imatge<br>
+        &nbsp;* @return La imatge creada o null si no l'ha trobada<br>
+        &nbsp;*/<br>
+        <strong>public static Image carregarImatge(String path, int width, int height)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; Image imatge = carregarImatge(path);<br>
+        &nbsp;&nbsp;&nbsp; if (imatge == null) return null;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; imatge = imatge.getScaledInstance(width, height, Image.SCALE_SMOOTH);<br>
+        &nbsp;&nbsp;&nbsp; return imatge;<br>
+        }<br>
+        <br>
+        /**<br>
+        &nbsp;* Carrega una imatge.<br>
+        &nbsp;* @param path Ruta on es troba la imatge<br>
+        &nbsp;* @return La imatge creada o null si no l'ha trobada<br>
+        &nbsp;*/<br>
+        <strong>public static Image carregarImatge(String path)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; java.net.URL imgURL = ClassLoader.getSystemResource(path);<br>
+        &nbsp;&nbsp;&nbsp; if (imgURL != null) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ImageIcon icona = new ImageIcon(imgURL);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return icona.<strong>getImage()</strong>;<br>
+        &nbsp;&nbsp;&nbsp; } else {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.err.println("No s'ha trobat l'arxiu: " + path);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <h4>Utilitzar MediaTracker per carregar imatges</h4>
+      <p>El problema amb la càrrega d'imatges (mètode <span class="c_comanda">getImage()</span> i alguns altres) és que Java ho fa de forma asíncrona: el programa no espera a que s'hagi carregat la imatge per continuar, sinò que segueix endavant i carrega la imatge quan el sistema està lliure.<br>
+        Això pot provocar que, si es vol utilitzar la imatge immediatament, aquesta no estigui encara disponible.</p>
+      <p>Per fer que el programa esperi a tenir les imatges carregades es pot utilitzar un objecte <strong>MediaTracker</strong>.</p>
+      <p class="p_codi">// Directori per les imatges<br>
+        String RES = "uf5/exemples/resources/";<br>
+        <br>
+        <strong>MediaTracker tracker = new MediaTracker(new Container());</strong><br>
+        <br>
+        Image imatge = LlibreriaGrafica.<strong>carregarImatge(RES + "java.png", 48, 48)</strong>;<br>
+        if (imatge != null) <strong>tracker.addImage(imatge, 0);</strong><br>
+        <br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; <strong>tracker.waitForAll();</strong><br>
+        } catch (InterruptedException e) {<br>
+        &nbsp;&nbsp;&nbsp; System.err.println("No s'han pogut carregar les imatges");<br>
+        }</p>
+      <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/table.html"></a>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

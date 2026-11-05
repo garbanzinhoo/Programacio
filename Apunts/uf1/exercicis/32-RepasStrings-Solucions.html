@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi"><strong>// Solució simple</strong><br>
+          let s = "12:34:56";<br>
+          <br>
+          let sHores = s.substring(0,2);<br>
+          let sMinuts = s.substring(3,5);<br>
+          let sSegons = s.substring(6,8);<br>
+          <br>
+          let hores = parseInt(sHores);<br>
+          let minuts = parseInt(sMinuts);<br>
+          let segons = parseInt(sSegons);<br>
+          <br>
+          if (hores &lt; 0 || hores &gt; 23 || minuts &lt; 0 || minuts &gt; 59 || segons &lt; 0 || segons &gt; 59) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Hora incorrecta!");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("Hora correcta: " + hores + ":" + minuts + ":" + segons);<br>
+          }<br>
+          <br>
+          <strong>// Solució més general</strong><br>
+          s = "2:4";<br>
+          <br>
+          let ndx1;<br>
+          let ndx2;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// SOLUCIÓ ILLEGIBLE: NO UTILITZAR MAI !!!</strong><br>
+          &nbsp;&nbsp;&nbsp; //let ndx;<br>
+          &nbsp;&nbsp;&nbsp; //sHores = s.substring(0, ndx = s.indexOf(':'));<br>
+          &nbsp;&nbsp;&nbsp; //sMinuts = s.substring(++ndx, (ndx = s.indexOf(':', ndx)) &gt;= 0 ? ndx : s.length());<br>
+          &nbsp;&nbsp;&nbsp; //sSegons = ndx &gt;= 0 ? s.substring(++ndx) : "0";<br>
+          <br>
+          ndx1 = s.indexOf(':');&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Posició del primer ':'<br>
+          sHores = s.substring(0, ndx1);<br>
+          hores = parseInt(sHores);<br>
+          <br>
+          ndx2 = s.indexOf(':', ndx1 + 1);&nbsp;&nbsp;&nbsp; // Posició del segon ':' (o -1 si no l'ha trobat)<br>
+          if (ndx2 &lt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; // No hi ha segons<br>
+          &nbsp;&nbsp;&nbsp; sMinuts = s.substring(ndx1 + 1);<br>
+          &nbsp;&nbsp;&nbsp; minuts = parseInt(sMinuts);<br>
+          &nbsp;&nbsp;&nbsp; segons = 0;<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; // Sí que hi ha segons<br>
+          &nbsp;&nbsp;&nbsp; sMinuts = s.substring(ndx1 + 1, ndx2);<br>
+          &nbsp;&nbsp;&nbsp; minuts = parseInt(sMinuts);<br>
+          &nbsp;&nbsp;&nbsp; sSegons = s.substring(ndx2 + 1);<br>
+          &nbsp;&nbsp;&nbsp; segons = parseInt(sSegons);<br>
+          }<br>
+          <br>
+          if (hores &lt; 0 || hores &gt; 23 || minuts &lt; 0 || minuts &gt; 59 || segons &lt; 0 || segons &gt; 59) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Hora incorrecta!");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("Hora correcta: " + hores + ":" + minuts + ":" + segons);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi"><strong>// Solució simple</strong><br>
+          let s = "17/11/22";<br>
+          <br>
+          let sDia = s.substring(0,2);<br>
+          let sMes = s.substring(3,5);<br>
+          let sAny = s.substring(6,8);<br>
+          <br>
+          let dia = parseInt(sDia);<br>
+          let mes = parseInt(sMes);<br>
+          let any = parseInt(sAny);<br>
+          <br>
+          if (dia &lt; 1 || dia &gt; 31 || mes &lt; 1 || mes &gt; 12 || (any &gt;= 100 &amp;&amp; any &lt;= 999)) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Data incorrecta!");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; // TODO: falta comprovar el dia en funció del més (i l'any)<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (any &lt; 100) any += 2000;<br>
+          &nbsp;&nbsp;&nbsp; alert("Data correcta: " + dia + "/" +&nbsp; mes + "/" + any);<br>
+          }<br>
+          <br>
+          <strong> // Solució més general</strong><br>
+          s = "2/4/2022";<br>
+          <br>
+          let ndx1;<br>
+          let ndx2;<br>
+          <br>
+          ndx1 = s.indexOf('/');&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Posició de la primer '/'<br>
+          ndx2 = s.indexOf('/', ndx1 + 1);&nbsp;&nbsp; // Posició de la segon '/' (o -1 si no&nbsp; l'ha trobat)<br>
+          if (ndx2 &lt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Data incorrecta!");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          sDia = s.substring(0, ndx1);<br>
+          sMes = s.substring(ndx1 + 1, ndx2);<br>
+          sAny = s.substring(ndx2 + 1);<br>
+          <br>
+          dia = parseInt(sDia);<br>
+          mes = parseInt(sMes);<br>
+          any = parseInt(sAny);<br>
+          <br>
+          if (dia &lt; 1 || dia &gt; 31 || mes &lt; 1 || mes &gt; 12 || (any &gt;= 100 &amp;&amp; any &lt;= 999)) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Data incorrecta!");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; // TODO: falta comprovar el dia en funció del més (i l'any)<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (any &lt; 100) any += 2000;<br>
+          &nbsp;&nbsp;&nbsp; alert("Data correcta: " + dia + "/" +&nbsp; mes + "/" + any);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let s = "1234-ABC";<br>
+          let ndx = s.indexOf("-");<br>
+          <br>
+          if (s.length() != 8 || ndx &lt; 0 || ndx != 4) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Error en la matrícula");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          let s1 = s.substring(0, ndx);<br>
+          for (let i = 0; i &lt; s1.length(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (s1.charAt(i) &lt; '0' || s1.charAt(i) &gt; '9') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Error en la matrícula");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          s1 = s.substring(ndx + 1);<br>
+          for (int i = 0; i &lt; s1.length(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (s1.charAt(i) &lt; 'A' || s1.charAt(i) &gt; 'Z') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Error en la matrícula");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          alert("Matrícula OK");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let s = "12345678Z";<br>
+          <br>
+          if (s.length() != 9 || s.charAt(8) &lt; 'A' || s.charAt(8) &gt; 'Z') {<br>
+          &nbsp;&nbsp;&nbsp; alert("Error en el NIF");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          for (let i = 0; i &lt; 8; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (s.charAt(i) &lt; '0' || s.charAt(i) &gt; '9') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Error en el NIF");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // TODO: falta comprovar si la lletra és correcta<br>
+          <br>
+          alert("NIF OK");</p>
+      </div>
+    </section>
+  </body>
+</html>

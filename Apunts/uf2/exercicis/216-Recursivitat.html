@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Recursivitat</h1>
+      <div class="enun">
+        <h3>Prova els exemples dels apunts</h3>
+        <p>Copia i executa pas a pas els exemples dels apunts.</p>
+        <p>Assegura't que entens el funcionament.</p>
+      </div>
+      <div class="enun">
+        <h3>Comprovar palíndrom recursivament</h3>
+        <p>Donada una paraula o frase sense espais, accents i amb minúscules, <strong>comprova de forma recursiva</strong> si és un palíndrom (es llegeix igual del dret que del revés).</p>
+        <p>El cas base ha de comprovar si la mida de la paraula és inferior a 2 (és palíndrom) i si la primera i l'última lletra no són iguals (no és palíndrom).</p>
+        <p>El cas recursiu ha d'eliminar la primera i l'última lletra i tornar a cridar la funció.</p>
+        <ol type="A">
+        </ol>
+      </div>
+      <div class="enun">
+        <h3>Invertir frase recusivament</h3>
+        <p>Donada una frase (paraules separades per un espai), fes que escrigui les paraules al revés utilitzant <strong>indexOf()</strong>, <strong>substring()</strong> i <strong>recursivitat</strong>.</p>
+        <p>Primer pots començar per fer-ho amb un bucle <strong>while</strong>, amb <strong>lastIndexOf</strong>...</p>
+        <h5>Exemple</h5>
+        <p class="p_codi">La programació recursiva és molt útil<br>
+          útil molt és recursiva programació La</p>
+      </div>
+      <div class="enun">
+        <h3>El salt de cavall</h3>
+        <p><a target="_blank" rel="noopener" href="https://es.wikipedia.org/wiki/Problema_del_caballo">El problema de la peregrinació del cavall</a></p>
+        <p>Aquest és un típic problema de recursivitat: donat un tauler de N x M caselles, posar el cavall en una de les caselles i, fent el seu moviment (dues caselles en horitzontal i una en vertical o dues caselles en vertical i una en horitzontal), aconseguir passar per totes les caselles sense repetir-ne cap.</p>
+        <p>El tauler més petit en què es pot aconseguir és el de 3 x 4 i començant amb el cavall en la fila 1 columna 0.</p>
+      </div>
+      <div class="enun">
+        <h3>Recusivitat sobre gel</h3>
+        <p>Aquest cap de setmana hem decidit aprendre a patinar sobre gel.</p>
+        <p>Al principi, el que més costa és frenar i girar.<br>
+          Pensant en els "novatos", a la pista han posat uns blocs de forma que només cal agafar impuls i patinar en línia recta fins a trobar un bloc. Després ens podem donar impuls per anar en qualsevol altre direcció.<br>
+          El problema és aconseguir sortir de la pista en el mínim nombre de moviments possibles.</p>
+        <p>En la pista, que està representada més avall, l'entrada està en la fila 13 columna 14 (marcada amb una <span class="c_comanda">↑</span>) i la sortida està en la fila 7 columna 15 (marcada amb una <span class="c_comanda">→</span>).</p>
+        <p class="p_codi">final static char[][] PISTA = {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','<span style="color: white; background-color: red;">→</span>'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ',' ','#','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ',' ',' ','#',' ',' ',' ',' ',' ',' ',' ','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#'},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','<span style="color: white; background-color: red;">↑</span>','#'}<br>
+          };</p>
+        <h4>Pistes<br>
+        </h4>
+        <p>En aquest cas es poden produir trajectòries en bucle, fent que el nivell de recursivitat creixi indefinidament fins que es produeixi un <em>stack overflow</em>.</p>
+        <p>Detectar que s'ha produït un bucle pot ser força complicat, per això cal buscar altres solucions.</p>
+        <p>Un possibilitat és limitar el nivell de recursivitat, però al no tenir una idea de quants moviments poden ser necessaris, si es posa un límit més alt, es podria trobar una solució que no sigui la millor.</p>
+        <p>A partir d'aquesta idea, es pot fer un bucle cridant la rutina recursiva augmentant cada vegada el nivell màxim de recursivitat fins que es trobi una solució.</p>
+      </div>
+    </section>
+  </body>
+</html>

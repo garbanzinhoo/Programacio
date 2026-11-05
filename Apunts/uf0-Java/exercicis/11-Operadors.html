@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Operadors</h1>
+      <div class="enun">
+        <h3>Càlculs senzills</h3>
+        <p>Calcula el resultat de les següents operacions i comprova-ho utilitzant la comanda <span class="c_comanda">System.out.println(operació)</span>.</p>
+        <p class="p_codi">9 - 3<br>
+          10 * 2.5<br>
+          9 / 2<br>
+          9 / -2.0<br>
+          9 % 2<br>
+          -9 % 2<br>
+          3 + 4 * 5<br>
+          (3 + 4) * 5<br>
+          -(5 + 3) / (3 - 1)<br>
+          (-5 + 3) / (3 - 1)</p>
+      </div>
+      <div class="enun">
+        <h3>Més càlculs</h3>
+        <p>Calcula quin valor tindran les variables <strong>a</strong>, <strong>b</strong> i <strong>c</strong> quan es mostrin per pantalla.<br>
+          Comprova-ho executant el programa.<br>
+          Si el resultat no és el mateix, executa el programa pas a pas (mode depuració) i comprova si el valor que pren cada variable en cada pas és el què tu havies calculat.</p>
+        <p class="p_codi">int a = 5;<br>
+          int b = 7;<br>
+          int c;<br>
+          <br>
+          ++b;<br>
+          b = (b * 3) / 8;<br>
+          a += 3;<br>
+          a = a + 4 / 2;<br>
+          c = a / 5 + b;<br>
+          <br>
+          System.out.println("a = " + a + "\nb = "+ b + "\nc = "+ c);<br>
+          <br>
+          a = 5;<br>
+          b = 8;<br>
+          <br>
+          ++a;<br>
+          a += 4;<br>
+          b -= a / 2;<br>
+          c = ++a + b;<br>
+          c += a - b++;<br>
+          <br>
+          System.out.println("a = " + a + "\nb = "+ b + "\nc = "+ c);</p>
+        <ul>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Operadors lògics</h3>
+        <p>Pensa quin resultat (<strong>true</strong> o <strong>false</strong>) donen les següents operacions lògiques.<br>
+          Comprova després el resultat <em>printant</em> aquestes expressions.</p>
+        <p class="p_codi">false &amp;&amp; true<br>
+          true &amp;&amp; true<br>
+          false || false<br>
+          false || true<br>
+          !true<br>
+          !(true || false)<br>
+          !true &amp;&amp; !false<br>
+          !(true &amp;&amp; false)<br>
+          !true || !false<br>
+          !((true &amp;&amp; true) || (false &amp;&amp; false))</p>
+      </div>
+      <div class="enun">
+        <h3>Combinar operadors lògics</h3>
+        <p>Fes un programa que mostri el resultat de totes les combinacions possibles amb els operadors lògics.<br>
+          El resultat ha de tenir un format semblant a aquest:</p>
+        <p class="p_consola">Operador AND (&amp;&amp;)<br>
+          false &amp;&amp; false --&gt; false<br>
+          false &amp;&amp; true --&gt; ...<br>
+          ...<br>
+          <br>
+          Operador OR (||)<br>
+          false || false --&gt; ...</p>
+      </div>
+      <div class="enun">
+        <h3>Comparacions</h3>
+        <p>Escriu amb operadors de comparació les següents expressions (<strong>x</strong> i <strong>y</strong> són variables):</p>
+        <ul>
+          <li>x és igual a 0</li>
+          <li>x no és igual a 10</li>
+          <li>x és positiu</li>
+          <li>x és positiu o negatiu</li>
+          <li>x és més gran o igual que 10</li>
+          <li>x és més petit que y</li>
+          <li>x és més gran que el doble de y</li>
+          <li>x està entre -5 i +5 (tots dos inclosos)</li>
+          <li>x no està entre -5 i +5 (tots dos inclosos)</li>
+          <li>x és més gran que 4 i y és més gran que 5</li>
+          <li>x és més gran que 4 però y no és més gran que 5</li>
+          <li>ni x ni y són iguals a 10</li>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Calcular el preu final (PVP)</h3>
+        <p>Fes un programa que, a partir del preu d'un article, calculi el preu final aplicant un descompte d'un 15% i un IVA del 21%.</p>
+        <p>Posa el preu inicial de l'article en una variable.<br>
+          Pel valor del descompte, utilitza un literal.<br>
+          Pel valor de l'IVA utilitza una constant entera.</p>
+        <p class="p_important"><strong>ATENCIÓ:</strong> el preu amb IVA es calcula a partir del preu amb el descompte ja fet.<br>
+          Si el preu inicial és <strong>1000</strong>, el resultat hauria de ser <strong>1028.5</strong></p>
+      </div>
+      <div class="enun">
+        <h3>Calculs matemàtics</h3>
+        <p>Fes un programa que calculi la hipotenusa d'un triangle rectangle i l'area d'un cercle utilitzant constants i mètodes de la classe <strong>Math</strong>.</p>
+        <p>Els valors de la base, l'altura i el radi han de ser variables.</p>
+      </div>
+    </section>
+  </body>
+</html>

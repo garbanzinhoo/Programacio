@@ -1,0 +1,126 @@
+<svg width="672" height="448" version="1.1" viewBox="0 0 672 448" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<marker id="DotM" style="overflow:visible" orient="auto">
+<path transform="matrix(.4 0 0 .4 2.96 .4)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" style="fill-rule:evenodd;stroke-width:1pt;stroke:#000"/>
+</marker>
+<path id="arrowhead" d="m-9-4 9 4-9 4z" style="stroke-linecap:round;stroke-linejoin:round"/>
+<marker id="blackArrow" markerHeight="20" markerWidth="10" orient="auto" refX="-4" viewBox="-13 -5 14 10">
+<use width="100%" height="100%" style="fill:#000000;stroke:#000000" xlink:href="#arrowhead"/>
+</marker>
+<marker id="DotM-2" style="overflow:visible" orient="auto">
+<path transform="matrix(.4 0 0 .4 2.96 .4)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" style="fill-rule:evenodd;stroke-width:1pt;stroke:#000"/>
+</marker>
+<marker id="blackArrow-6" markerHeight="20" markerWidth="10" orient="auto" refX="-4" viewBox="-13 -5 14 10">
+<use width="100%" height="100%" style="fill:#000000;stroke:#000000" xlink:href="#arrowhead"/>
+</marker>
+</defs>
+<g transform="rotate(-90,55,36)">
+<rect x="-60" y="-2" width="90" height="40" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="-17" y="24" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">Dades</text>
+</g>
+<g transform="rotate(-90,195,176)">
+<rect x="-60" y="-2" width="280" height="40" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="80" y="24" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">Variables</text>
+</g>
+<g transform="translate(117,23)">
+<rect x="-60" y="-2" width="180" height="40" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="30" y="24" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">Primitives</text>
+</g>
+<g transform="translate(297,23)">
+<rect x="-60" y="-2" width="420" height="40" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="150" y="24" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">Objectes</text>
+</g>
+<g transform="translate(-63,-99)">
+<g>
+<text x="132" y="183" font-size="18px" style="font-family:sans-serif;font-size:16px">undefined</text>
+<text x="132" y="237" font-size="18px" style="font-family:sans-serif;font-size:16px">123.4</text>
+<text x="234" y="183" font-size="18px" style="font-family:sans-serif;font-size:16px">null</text>
+<text x="234" y="237" font-size="18px" style="font-family:sans-serif;font-size:16px">"Hello"</text>
+<text x="132" y="210" font-size="18px" style="font-family:sans-serif;font-size:16px">true</text>
+<text x="234" y="210" font-size="18px" style="font-family:sans-serif;font-size:16px">false</text>
+<rect x="120" y="160" width="180" height="90" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+</g>
+<g>
+<line x1="332" x2="332" y1="315" y2="265" style="marker-end:url(#blackArrow);marker-start:url(#DotM);stroke-width:2;stroke:#000"/>
+<text x="332.7" y="413" font-size="18px" style="font-family:sans-serif;font-size:16px;text-align:center;text-anchor:middle">var llista = [1,2,3];</text>
+<text x="542.7" y="411" font-size="18px" style="font-family:sans-serif;font-feature-settings:normal;font-size:16px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;text-align:center;text-anchor:middle">var funcio = func() {...};</text>
+<g transform="translate(322,369)">
+<rect x="-60" y="-2" width="140" height="24" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="10" y="16" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">llista</text>
+</g>
+<g transform="translate(-27,41)">
+<text x="352" y="300" font-size="18px" font-weight="bold" style="color-rendering:auto;color:#000000;fill-rule:evenodd;fill:#000000;font-family:sans-serif;font-size:24px;font-weight:bold;image-rendering:auto;isolation:auto;letter-spacing:0px;line-height:100%;mix-blend-mode:normal;opacity:.5;shape-rendering:auto;solid-color:#000000;text-align:center;text-anchor:middle;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-rendering:auto;text-transform:none;white-space:normal;word-spacing:0px" line-height="100%" >
+<tspan x="359.01" y="302.95" style="font-size:24px">ref. obj1</tspan>
+</text>
+<rect x="289" y="266" width="140" height="60" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+<g transform="translate(512,367)">
+<rect x="-60" y="-2" width="180" height="24" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="30" y="16" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">funcio</text>
+</g>
+<g transform="translate(163,39)">
+<text x="372" y="300" font-size="18px" font-weight="bold" style="color-rendering:auto;color:#000000;fill-rule:evenodd;fill:#000000;font-family:sans-serif;font-size:24px;font-weight:bold;image-rendering:auto;isolation:auto;letter-spacing:0px;line-height:100%;mix-blend-mode:normal;opacity:.5;shape-rendering:auto;solid-color:#000000;text-align:center;text-anchor:middle;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-rendering:auto;text-transform:none;white-space:normal;word-spacing:0px" line-height="100%" >
+<tspan x="379.01" y="302.95" style="font-size:24px">ref. obj2</tspan>
+</text>
+<rect x="289" y="266" width="180" height="60" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+<g transform="translate(322,235)">
+<rect x="-60" y="-2" width="140" height="24" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="10" y="16" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">obj1</text>
+</g>
+<g transform="translate(-27,-93)">
+<text x="352" y="300" font-size="18px" font-weight="bold" style="color-rendering:auto;color:#000000;fill-rule:evenodd;fill:#000000;font-family:sans-serif;font-size:24px;font-weight:bold;image-rendering:auto;isolation:auto;letter-spacing:0px;line-height:100%;mix-blend-mode:normal;opacity:.5;shape-rendering:auto;solid-color:#000000;text-align:center;text-anchor:middle;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-rendering:auto;text-transform:none;white-space:normal;word-spacing:0px" line-height="100%" >
+<tspan x="359.01" y="302.95" style="font-size:24px">[1, 2, 3]</tspan>
+</text>
+<rect x="289" y="266" width="140" height="60" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+<g transform="translate(512,233)">
+<rect x="-60" y="-2" width="180" height="24" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="30" y="16" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">obj2</text>
+</g>
+<g transform="translate(163,-95)">
+<text x="373" y="300" font-size="18px" font-weight="bold" style="color-rendering:auto;color:#000000;fill-rule:evenodd;fill:#000000;font-family:sans-serif;font-size:24px;font-weight:bold;image-rendering:auto;isolation:auto;letter-spacing:0px;line-height:100%;mix-blend-mode:normal;opacity:.5;shape-rendering:auto;solid-color:#000000;text-align:center;text-anchor:middle;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-rendering:auto;text-transform:none;white-space:normal;word-spacing:0px" line-height="100%" >
+<tspan x="380.01" y="302.95" style="font-size:24px">func(){...}</tspan>
+</text>
+<rect x="289" y="266" width="180" height="60" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+<line x1="542" x2="542" y1="313" y2="263" style="marker-end:url(#blackArrow-6);marker-start:url(#DotM-2);stroke-width:2;stroke:#000"/>
+<rect x="237" y="151" width="420" height="280" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+<g>
+<text x="302" y="83" font-size="18px" style="font-family:sans-serif;font-size:16px">[1, 2, 3]</text>
+<text x="302" y="138" font-size="18px" style="font-family:sans-serif;font-size:16px">function(x) { return 2 * x; }</text>
+<text x="302" y="110" font-size="18px" style="font-family:sans-serif;font-size:16px">{nom:"Peter", edat:30}</text>
+<rect x="237" y="61" width="420" height="90" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+<g>
+<text x="148.7" y="279" font-size="18px" style="font-family:sans-serif;font-feature-settings:normal;font-size:16px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;opacity:.96;text-align:center;text-anchor:middle">var a = "Hello";</text>
+<text x="148.7" y="413" font-size="18px" style="font-family:sans-serif;font-feature-settings:normal;font-size:16px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;text-align:center;text-anchor:middle">var x = 123.4;</text>
+<g transform="translate(159,235)">
+<rect x="-61" y="-2" width="100" height="24" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="-11" y="16" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">a</text>
+</g>
+<g transform="translate(159,175)" style="fill:none">
+<g>
+<text x="-17" y="35" font-size="18px" font-weight="bold" style="color-rendering:auto;color:#000000;fill-rule:evenodd;fill:#000000;font-family:sans-serif;font-size:24px;font-weight:bold;image-rendering:auto;isolation:auto;letter-spacing:0px;line-height:100%;mix-blend-mode:normal;opacity:.5;shape-rendering:auto;solid-color:#000000;text-align:center;text-anchor:middle;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-rendering:auto;text-transform:none;white-space:normal;word-spacing:0px" line-height="100%" >
+<tspan x="-11.06" y="37.25" style="font-size:24px">"Hello"</tspan>
+</text>
+<rect x="-61" y="-2" width="100" height="60" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+</g>
+<g transform="translate(159,369)">
+<rect x="-61" y="-2" width="100" height="24" style="fill:#dcdcdc;stroke-width:2;stroke:#000"/>
+<text x="-11" y="16" font-size="18px" style="font-family:sans-serif;font-size:16px;font-weight:bold;text-anchor:middle">x</text>
+</g>
+<g transform="translate(159,309)" style="fill:none">
+<g>
+<text x="-18" y="35" font-size="18px" font-weight="bold" style="color-rendering:auto;color:#000000;fill-rule:evenodd;fill:#000000;font-family:sans-serif;font-size:24px;font-weight:bold;image-rendering:auto;isolation:auto;letter-spacing:0px;line-height:100%;mix-blend-mode:normal;opacity:.5;shape-rendering:auto;solid-color:#000000;text-align:center;text-anchor:middle;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-rendering:auto;text-transform:none;white-space:normal;word-spacing:0px" line-height="100%" >
+<tspan x="-12.06" y="37.25" style="font-size:24px">123.4</tspan>
+</text>
+<rect x="-61" y="-2" width="100" height="60" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+</g>
+<rect x="57" y="151" width="180" height="280" style="fill:none;stroke-width:2;stroke:#000"/>
+</g>
+</svg>

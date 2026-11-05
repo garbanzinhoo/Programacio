@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Constants">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Constants</header>
+    <section>
+      <h2>Importància de l'utilització de constants </h2>
+      <p>Quan un comença a programar no acostuma a utilitzar constants.</p>
+      <p>Si es pot utilitzar directament un valor literal...</p>
+      <p class="p_codi">if (nota &gt; <strong>10</strong>) alert("La nota no pot ser superior a <strong>10</strong>");</p>
+      <p>... perquè cal definir una constant?</p>
+      <p class="p_codi">const <strong>NOTA_MAX = 10</strong>;<br>
+        ...<br>
+        if (nota &gt; <strong>NOTA_MAX</strong>) alert("La nota no pot ser superior a " + <strong>NOTA_MAX</strong>);</p>
+      <h3>Avantatges d'utilitzar constants</h3>
+      <ul>
+        <li>Utilitzar un nom en lloc d'un número ens dóna més informació de per a què serveix aquella dada:<br>
+          <span class="c_comanda">NOTA_MAX</span> dóna molta més informació que <span class="c_comanda">10</span>.</li>
+        <li>Si cal canviar el valor, només cal fer-ho en el lloc on està definida la constant:<br>
+          no cal buscar i substituir en tot el document (es poden substituir valors que no toca o deixar-se'n algun).</li>
+        <li>Pot ser més endavant sigui necessari canviar el valor o canviar la constant per una variable.</li>
+      </ul>
+      <h3>Exemples d'utilització</h3>
+      <p>Les constants no serveixen només per substituir valors numèrics.<br>
+        També es poden utilitzar per representar cadenes de caràcters, missatges d'error o, fins i tot, objectes.</p>
+      <h4>Exemple 1</h4>
+      <p>Utilitzar constants per definir missatges d'error:</p>
+      <p class="p_codi">const NUM_DIGITS_DNI = 8;<br>
+        const <strong>ERROR_NUM_DIGITS</strong> = "El nombre de dígits del DNI ha de ser 8.";<br>
+        const <strong>ERROR_LLETRA_DNI</strong> = "La lletra del DNI no és correcta.";<br>
+        ...<br>
+        if (dni.length() != NUM_DIGITS_DNI) alert(<strong>ERROR_NUM_DIGITS</strong>);<br>
+        if (!comprovarLletraDNI(dni, lletra)) alert(<strong>ERROR_LLETRA_DNI</strong>);</p>
+      <h4>Exemple 2</h4>
+      <p>Utilitzar constants amb objectes per associar valors numérics amb text:</p>
+      <p class="p_codi">const SUSPEN = {valor:2, nota:"Suspén"};<br>
+        const MILLORAR = {valor:4, nota:"Necessita millorar"};<br>
+        const PROGRESSA = {valor:6, nota:"Progressa adequadament"};<br>
+        const MOLTBE = {valor:8, nota:"Molt bé!"};<br>
+        ...<br>
+      </p>
+      <h4>Exemple 3</h4>
+      <p>Suposem que en un joc hi ha un conjunt d'objectes disposats en files i columnes, i en diverses parts del programa es necessita saber el nombre de files i columnes.</p>
+      <p>Si després de provar el joc es decideix que el nombre de files i/o columnes és massa gran (o massa petit), només serà necessari canviar el valor en la definició d'aquestes constants.</p>
+      <p>Millor encara: si més endavant es decideix que, al passar a nivells més difícils, és convenient augmentar el nombre de files i/o columnes, només caldrà convertir aquestes constants en variables i modificar-les convenientment cada cop que el jugador passi al següent nivell.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

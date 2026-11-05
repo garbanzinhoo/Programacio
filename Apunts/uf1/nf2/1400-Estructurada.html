@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Programació estructurada">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Programació estructurada</header>
+    <section>
+      <h2>Cicle de vida d'un programa</h2>
+      <p>Quan es decideix que cal fer un programa per resoldre una tasca determinada, s'ha tenir en compte que no es tracta de posar-se a programar immediatament.<br>
+        Cal seguir uns passos per què es pugui dur a terme de manera exitosa:</p>
+      <ol>
+        <li><strong>Definir el problema</strong>: obtenir els requisits del programa, parlar amb el client i els usuaris, proposar diferents solucions i decidir quina és la més adequada...</li>
+        <li><strong>Dissenyar l'algorisme</strong>: pensar quines dades es necessitaran, quins resultats el volen obtenir i quines instruccions cal donar a l'ordinador.</li>
+        <li><strong>Implementar el programa, verificar el funcionament i documentar-lo</strong>: escriure el codi, provar el programa i explicar les característiques i la forma d'utilitzar-lo.</li>
+        <li><strong>Posar-lo en marxa i fer el manteniment</strong> (fase d'explotació): instal·lar-lo en les màquines adequades, comprovar el funcionament <em>in-situ</em>, formar l'usuari, corregir els errors que es detectin durant la seva utilització i implementar els canvis o millores que demani el client.</li>
+      </ol>
+      <p>Només el 3r apartat és feina del programador, però de vegades també li pot tocar fer algun dels altres.</p>
+      <h2>Estructura d'un programa</h2>
+      <p>La majoria de programes estan composats per cinc grans blocs funcionals:</p>
+      <ol>
+        <li>Definició i inicialització de les constants i variables que necessitarà el programa.</li>
+        <li>Introducció de dades (demanar o agafar les dades que necessita i guardar-les en variables).</li>
+        <li>Processament de les dades.</li>
+        <li>Mostrar els resultats (per pantalla, impressora...)</li>
+        <li>Finalitzar el programa (alliberar la memòria que ja no necessita).</li>
+      </ol>
+      <p>No s'ha d'agafar aquesta estructura al peu de la lletra però l'ordre sí que s'ha de respectar: abans de poder processar les dades, s'han d'haver introduït; i abans de poder mostrar un resultat s'han d'haver processat les dades que porten a aquest resultat.</p>
+      <h2>Estructures bàsiques</h2>
+      <p>Al principi, no hi havia un mètode per programar.<br>
+        Cada programador feia els programes com millor li semblava: alguns escrivien codi força ben endreçat i comprensible mentre que altres feien codi difícil d'entendre.</p>
+      <p>El primer mètode proposat per fer el codi més comprensible i fàcil de depurar va ser la <strong>programació estructurada</strong>.</p>
+      <p>Aquest mètode consisteix en un conjunt d'estructures formades per blocs de codi, cada una d'elles amb una funció ben diferenciada. Al fer els programes només es pot triar entre aquestes estructures estàndard:</p>
+      <ul>
+        <li><strong>Estructura seqüencial</strong>: les instruccions del bloc de codi s'executen una darrera de l'altra. És el tipus de codi que hem estat fent fins ara.</li>
+        <li><strong>Estructura condicional</strong>: hi ha diferents blocs de codi i, depenent de certes condicions, es triarà quin d'ells s'executarà.</li>
+        <li><strong>Estructura iterativa (de repetició)</strong>: un bloc de codi que s'executa un nombre determinat de vegades o fins que es compleixi una condició.</li>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

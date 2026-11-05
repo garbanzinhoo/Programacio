@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          let i, j, files, columnes;<br>
+          <br>
+          // Introduir mida<br>
+          let resposta = prompt("Introdueix el nombre de files i de columnes de la matriu: ");<br>
+          let dades = resposta.split(" ");<br>
+          files = parseInt(dades[0]);<br>
+          columnes = parseInt(dades[1]);<br>
+          <br>
+          // Crear i inicialitzar array<br>
+          let array = [];<br>
+          for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp; &nbsp;array[i] = [];<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i][j] = Math.floor((Math.random() * 10));<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array<br>
+          let resultat = "";<br>
+          for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += array[i][j] + " ";<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp; &nbsp;resultat += "\n";<br>
+          }<br>
+          console.log(resultat);<br>
+          <br>
+          // Crear array per guardar la suma de cada fila, fer la suma i guardar<br>
+          let sumaFiles = []<br>
+          let totalFila;<br>
+          for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; totalFila = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; totalFila += array[i][j];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; sumaFiles[i] = totalFila;<br>
+          }<br>
+          <br>
+          // Crear array per guardar la suma de cada columna, fer la suma i guardar<br>
+          let sumaColumnes = [];<br>
+          let totalColumna;<br>
+          for (j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp; totalColumna = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; totalColumna += array[i][j];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; sumaColumnes[j] = totalColumna;<br>
+          }<br>
+          <br>
+          // Sumar el total de les files i de les columnes i comparar<br>
+          let totalFiles = 0;<br>
+          for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; totalFiles += sumaFiles[i];<br>
+          }<br>
+          <br>
+          let totalColumnes = 0;<br>
+          for (i = 0; i &lt; columnes; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; totalColumnes += sumaColumnes[i];<br>
+          }<br>
+          <br>
+          if (totalFiles == totalColumnes) alert("La suma dona el mateix: " + totalFiles);<br>
+          else alert("La suma dona diferent: " + totalFiles + " vs " + totalColumnes);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          const F = 6;<br>
+          const C = 4;<br>
+          <br>
+          let i, j;&nbsp;&nbsp; // Definir-les aquí per no haver-les de crear cada cop que s'utilitzen<br>
+          let total;<br>
+          let notes = [<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [6, 5, 7, 8],<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [5, 4, 7, 7],<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [7, 6, 5, 6],<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [5, 3, 4, 5],<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [4, 6, 5, 6],<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [7, 7, 8, 9]<br>
+          ];<br>
+          let&nbsp; mitjanaAlumnes = [];<br>
+          let&nbsp; mitjanaUFs = [];<br>
+          <br>
+          // Mostrar totes les notes (Alumnes x UFs)<br>
+          let resultat = "";<br>
+          resultat += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UF1&nbsp; UF2&nbsp; UF3&nbsp; UF4\n";<br>
+          for (i = 0; i &lt; F; i++) {<br>
+          &nbsp;&nbsp;&nbsp; resultat += "Alumne " + (i + 1) + "&nbsp;&nbsp;&nbsp;&nbsp; ";<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; C; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += notes[i][j] + "&nbsp;&nbsp;&nbsp; ";<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; resultat += "\n";<br>
+          }<br>
+          <br>
+          // Calcular mitjana alumnes<br>
+          for (i = 0; i &lt; F; i++) {<br>
+          &nbsp;&nbsp;&nbsp; //total = notes[i][0] + notes[i][1] + notes[i][2] + notes[i][3];<br>
+          &nbsp;&nbsp;&nbsp; total = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; C; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total += notes[i][j];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; mitjanaAlumnes[i] = total / C;<br>
+          }<br>
+          <br>
+          // Mostrar mitjanes alumnes<br>
+          resultat += "\nMitjanes alumnes\n";<br>
+          for (i = 0; i &lt; F; i++) {<br>
+          &nbsp;&nbsp;&nbsp; resultat += "Alumne " + (i + 1) + "&nbsp;&nbsp; " + mitjanaAlumnes[i].toFixed(1) + "\n";<br>
+          }<br>
+          <br>
+          // Calcular mitjana UFs<br>
+          for (j = 0; j &lt; C; j++) {<br>
+          &nbsp;&nbsp;&nbsp; total = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; F; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total += notes[i][j];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; mitjanaUFs[j] = total / F;<br>
+          }<br>
+          <br>
+          // Mostrar mitjanes UFs<br>
+          resultat += "\nMitjanes UFs\n";<br>
+          for (i = 0; i &lt; C; i++) {<br>
+          &nbsp;&nbsp;&nbsp; resultat += "UF " + (i + 1) + "&nbsp;&nbsp; " + mitjanaUFs[i].toFixed(1) + "\n";<br>
+          }<br>
+          <br>
+          console.log(resultat);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          const HOBBIES = 4;<br>
+          const MENJARS = 6;<br>
+          const DIES = 5;<br>
+          const APATS = 3;<br>
+          const DIES_SETMANA = [<br>
+          &nbsp;&nbsp;&nbsp; "Dilluns",<br>
+          &nbsp;&nbsp;&nbsp; "Dimarts",<br>
+          &nbsp;&nbsp;&nbsp; "Dimecres",<br>
+          &nbsp;&nbsp;&nbsp; "Dijous",<br>
+          &nbsp;&nbsp;&nbsp; "Divendres"<br>
+          ];<br>
+          <br>
+          let i, j;&nbsp;&nbsp; // Definir-les aquí per no haver-les de crear cada cop que s'utilitzen<br>
+          let menjar;<br>
+          let hobby;<br>
+          let hobbies = [];<br>
+          let menjars = [];<br>
+          let planing = [];<br>
+          <br>
+          // Introduir hobbies<br>
+          for (i = 0; i &lt; HOBBIES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; hobbies[i] = prompt("Introdueix un dels teus hobbies");<br>
+          }<br>
+          <br>
+          // Introduir menjars<br>
+          for (i = 0; i &lt; MENJARS; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; menjars[i] = prompt("Introdueix un dels teus menjars preferits");<br>
+          }<br>
+          <br>
+          // Generar planificació<br>
+          for (i = 0; i &lt; DIES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; planing[i] = [];<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; APATS; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; menjar = menjars[Math.floor(Math.random() * MENJARS)];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hobby = hobbies[Math.floor(Math.random() * HOBBIES)];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; planing[i][j] = menjar + " | " + hobby;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar planificació<br>
+          let resultat = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Esmorzar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dinar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sopar\n";<br>
+          for (i = 0; i &lt; DIES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; resultat += DIES_SETMANA[i].padEnd(12);<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; APATS; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += planing[i][j].padEnd(16);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; resultat += "\n";<br>
+          }<br>
+          <br>
+          console.log(resultat);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          let i, j, t, fc;<br>
+          <br>
+          // Introduir mida<br>
+          fc = parseInt(prompt("Introdueix la mida de la matriu"));<br>
+          <br>
+          // Crear i inicialitzar array<br>
+          let array = [];<br>
+          t = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; array[i] = [];<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i][j] = ++t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array<br>
+          let resultat = "";<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += ("" + array[i][j]).padStart(4);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; resultat += "\n";<br>
+          }<br>
+          resultat += "\n";<br>
+          <br>
+          // Omplir diagonals<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (j = i; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i][j] = ++t;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[j][i] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += array[i][j] + " ";<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; resultat += "\n";<br>
+          }<br>
+          resultat += "\n";<br>
+          <br>
+          // Sumar diagonal major<br>
+          let sumaDM = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; sumaDM += array[i][i];<br>
+          }<br>
+          resultat += "Suma DM: " + sumaDM + "\n";<br>
+          <br>
+          // Sumar diagonal major inversa<br>
+          let sumaDMI = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; sumaDMI += array[i][fc - i - 1];<br>
+          }<br>
+          resultat += "Suma DMI: " + sumaDMI&nbsp; + "\n\n";<br>
+          <br>
+          // Sumar triangle inferior i superior<br>
+          let sumaTS = 0;<br>
+          let sumaTI = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = i + 1; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sumaTS += array[i][j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sumaTI += array[j][i];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          resultat += "Suma triangle superior: " + sumaTS + "\nSuma triangle inferior: " + sumaTI + "\n\n";<br>
+          <br>
+          // Omplir triangle inferior i superior amb 0<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = i + 1; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i][j] = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[j][i] = 0;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += array[i][j] + " ";<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; resultat += "\n";<br>
+          }<br>
+          <br>
+          console.log(resultat);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          let i, j, t, fc, suma;<br>
+          let filesIguals, columnesIguals, diagonalsIguals, numerosTots;<br>
+          <br>
+          // Exemple:<br>
+          fc = 4;<br>
+          let array = [<br>
+          &nbsp;&nbsp;&nbsp; [1, 14, 14, 4],<br>
+          &nbsp;&nbsp;&nbsp; [11, 7, 6, 9],<br>
+          &nbsp;&nbsp;&nbsp; [8, 10, 10, 5],<br>
+          &nbsp;&nbsp;&nbsp; [13, 2, 3, 15]<br>
+          ];<br>
+          <br>
+          // Comprovar files<br>
+          suma = -1;<br>
+          filesIguals = true;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; t += array[i][j];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; if (suma == -1) suma = t;<br>
+          &nbsp;&nbsp;&nbsp; if (suma != t) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; filesIguals = false;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Comprovar columnes<br>
+          suma = -1;<br>
+          columnesIguals = true;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; t += array[j][i];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; if (suma == -1) suma = t;<br>
+          &nbsp;&nbsp;&nbsp; if (suma != t) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; columnesIguals = false;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Comprovar diagonals<br>
+          diagonalsIguals = true;<br>
+          t = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; t += array[i][i];<br>
+          }<br>
+          suma = t;<br>
+          t = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; t += array[i][fc - i - 1];<br>
+          }<br>
+          if (suma != t) {<br>
+          &nbsp;&nbsp;&nbsp; diagonalsIguals = false;<br>
+          }<br>
+          <br>
+          // Comprovar si hi son tots els&nbsp; números<br>
+          numerosTots = true;<br>
+          let numeros = [];<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; t = array[i][j];<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (t &gt;= 1 &amp;&amp; t &lt;= fc * fc) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (numeros[t]) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; numerosTots = false;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; numeros[t] = true;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; numerosTots = false;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; if (!numerosTots) break;<br>
+          }<br>
+          <br>
+          // Mostrar resultat<br>
+          if (filesIguals &amp;&amp; columnesIguals &amp;&amp; diagonalsIguals &amp;&amp; numerosTots) {<br>
+          &nbsp;&nbsp;&nbsp; alert("És un quadrat màgic");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; let m = "No és un quadrat màgic:";<br>
+          &nbsp;&nbsp;&nbsp; if (!filesIguals) m += "\n&nbsp;&nbsp; -No totes les files sumen el mateix";<br>
+          &nbsp;&nbsp;&nbsp; if (!columnesIguals) m += "\n&nbsp;&nbsp; -No totes les columnes sumen el mateix";<br>
+          &nbsp;&nbsp;&nbsp; if (!diagonalsIguals) m += "\n&nbsp;&nbsp; -Les dues diagonals no sumen el mateix";<br>
+          &nbsp;&nbsp;&nbsp; if (!numerosTots) m += "\n&nbsp;&nbsp; -No conté tots els números";<br>
+          &nbsp;&nbsp;&nbsp; alert(m);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          let i, j, k, t, f1, c1, f2, c2;<br>
+          <br>
+          // Primera matriu<br>
+          let a1 = [<br>
+          &nbsp;&nbsp;&nbsp; [1, 2, 3],<br>
+          &nbsp;&nbsp;&nbsp; [4, 5, 6]<br>
+          ];<br>
+          <br>
+          // Mida de la primera matriu<br>
+          f1 = a1.length;<br>
+          c1 = a1[0].length;<br>
+          <br>
+          // Mostrar primera matriu<br>
+          let resultat = "";<br>
+          for (i = 0; i &lt; f1; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c1; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += ("" + a1[i][j]).padStart(3);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; resultat += "\n";<br>
+          }<br>
+          resultat += "X\n";<br>
+          <br>
+          // Segona matriu<br>
+          let a2 = [<br>
+          &nbsp;&nbsp;&nbsp; [1, 2],<br>
+          &nbsp;&nbsp;&nbsp; [3, 4],<br>
+          &nbsp;&nbsp;&nbsp; [5, 6]<br>
+          ];<br>
+          <br>
+          // Mida de la segona matriu<br>
+          f2 = a2.length;<br>
+          c2 = a2[0].length;<br>
+          <br>
+          // Mostrar segona matriu<br>
+          for (i = 0; i &lt; f2; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c2; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += ("" + a2[i][j]).padStart(3);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; resultat += "\n";<br>
+          }<br>
+          resultat += "=\n";<br>
+          <br>
+          // Comprovar que les columnes de la 1ª siguin igual a les files de la 2ª<br>
+          if (c1 != f2) {<br>
+          &nbsp;&nbsp;&nbsp; alert("No es poden multiplicar");<br>
+          &nbsp;&nbsp;&nbsp; stop();<br>
+          }<br>
+          <br>
+          // Crear matriu resultat<br>
+          let a3 = [];<br>
+          <br>
+          // Multiplicar matrius<br>
+          for (i = 0; i &lt; f1; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; a3[i] = [];<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c2; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (k = 0; k &lt; c1; ++k) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t += a1[i][k] * a2[k][j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a3[i][j] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar a3<br>
+          for (i = 0; i &lt; f1; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c2; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += ("" + a3[i][j]).padStart(3);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; resultat += "\n";<br>
+          }<br>
+          <br>
+          console.log(resultat);</p>
+      </div>
+    </section>
+  </body>
+</html>

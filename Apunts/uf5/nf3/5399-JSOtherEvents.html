@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Altres esdeveniments">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Altres esdeveniments</header>
+    <section>
+      <h2>Esdeveniments relacionats amb la finestra</h2>
+      <ul>
+        <li><span class="c_comanda">scroll</span>: quan es desplaça el contingut d'una finestra.</li>
+        <li><span class="c_comanda">resize</span>: quan canvia la mida de la finestra del navegador.</li>
+        <li><span class="c_comanda">fullscreenchange</span>: quan la pàgina passa a mode de pantalla completa.</li>
+        <li><span class="c_comanda">fullscreenerror</span>: si un element no es pot veure en mode de pantalla completa.</li>
+      </ul>
+      <h2>Esdeveniments relacionats amb la càrrega de pàgines i arxius</h2>
+      <ul>
+        <li><span class="c_comanda">load</span>: es dispara quan l'objecte s'ha carregat. S'acostuma a utilitzar amb <span class="c_comanda">body</span>.</li>
+        <li><span class="c_comanda">beforeunload</span>: es dispara quan s'està a punt de descarregar el document.<br>
+          S'utilitza per avisar l'usuari que està apunt de canviar a una altra pàgina.</li>
+        <li><span class="c_comanda">error</span>: es dispara quan es produeix un error al descarregar un arxiu extern.</li>
+      </ul>
+      <h2>Esdeveniments relacionats amb seleccionar, tallar, copiar i enganxar</h2>
+      <ul>
+        <li><span class="c_comanda">select</span>: quan s'ha seleccionat un text.</li>
+        <li><span class="c_comanda">cut</span>: quan es talla un troç de text seleccionat.</li>
+        <li><span class="c_comanda">copy</span>: quan es copia un troç de text seleccionat.</li>
+        <li><span class="c_comanda">paste</span>: quan es copia un troç de text tallat o copiat prèviament.</li>
+      </ul>
+      <h3>Comandes relacionades</h3>
+      <ul>
+        <li><span class="c_comanda">select()</span>: per seleccionar tot el text d'un element de tipus <span class="c_comanda">input</span> o <span class="c_comanda">textarea</span>.</li>
+        <li><span class="c_comanda">window.getSelection().toString()</span>: per obtenir el text seleccionat.</li>
+      </ul>
+      <p class="p_important">També hi ha mètodes per seleccionar trossos de text dins de qualsevol element del document, però poden variar depenent del navegador.</p>
+      <h3>Estils CSS relacionats</h3>
+      <ul>
+        <li><span class="c_comanda">user-select:none</span>: per evitar que se seleccioni el text d'un element o de tot el document.</li>
+      </ul>
+      <h2>Esdeveniments relacionats amb la reproducció de so i vídeo</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/tags/ref_av_dom.asp">Referència àudio i vídeo</a></p>
+      <ul>
+        <li><span class="c_comanda">loadstart</span>: es dispara quan el navegador comença a carregar un àudio o vídeo.</li>
+        <li><span class="c_comanda">progress</span>: es dispara mentre el navegador està descarregant l'àudio o vídeo.</li>
+        <li><span class="c_comanda">abort</span>: es dispara quan s'aborta la càrrega d'un àudio o vídeo.</li>
+        <li><span class="c_comanda">canplay</span>: quan l'àudio o vídeo ja està a punt per reproduir-se.</li>
+        <li><span class="c_comanda">play</span>: quan es comença a reproduir un àudio o vídeo.</li>
+        <li><span class="c_comanda">playing</span>: quan es pot continuar reproduïnt després d'haver-lo posat en pausa.</li>
+        <li><span class="c_comanda">waiting</span>: quan s'atura la reproducció perquè s'estan esperant les següents dades.</li>
+        <li><span class="c_comanda">timeupdate</span>: quan canvia la posició de reproducció.</li>
+        <li><span class="c_comanda">volumechange</span>: quan canvia el volum de reproducció.</li>
+        <li><span class="c_comanda">pause</span>: quan es posa en pausa.</li>
+        <li><span class="c_comanda">ended</span>: quan s'ha acabat la reproducció.</li>
+      </ul>
+      <h2>Esdeveniments relacionats amb les animacions CSS</h2>
+      <ul>
+        <li><span class="c_comanda">animationstart</span>: es dispara quan comença una animació CSS.</li>
+        <li><span class="c_comanda">animationend</span>: es dispara quan acaba una animació CSS.</li>
+        <li><span class="c_comanda">animationiteration</span>: es dispara cada vegada que l'animació es repeteix.<br>
+          Només es dispara en animacions que tenen l'atribut per repetir-se automàticament.<br>
+        </li>
+      </ul>
+      <h2>Esdeveniment relacionat amb les transicions CSS</h2>
+      <p>Quan acaba una transició es dispara l'esdeveniment <span class="c_comanda">transitionend</span>.</p>
+      <h2>Altres esdeveniments</h2>
+      <ul>
+        <li><span class="c_comanda">beforeprint</span>: quan una pàgina està a punt de començar a imprimir-se.</li>
+        <li><span class="c_comanda">afterprint</span>: quan una pàgina ha començat a imprimir-se.</li>
+        <li><span class="c_comanda">online</span>: quan el navegador està a punt de començar a treballar <em>on-line</em> (es pot utilitzar <span class="c_comanda">navigator.onLine</span>).</li>
+        <li><span class="c_comanda">offline</span>: quan el navegador està a punt de començar a treballar <em>off-line</em> (es pot utilitzar <span class="c_comanda">navigator.offLine</span>).</li>
+        <li><span class="c_comanda">pagehide</span>: quan l'usuari surt de la pàgina (al refrescar, fer clic en un <em>link</em>, enviar un formulari, tancar el navegador...).<br>
+          És semblant a <span class="c_comanda">unload</span>.</li>
+        <li><span class="c_comanda">pageshow</span>: quan l'usuari entra en una pàgina.<br>
+          És semblant a <span class="c_comanda">load</span>.</li>
+      </ul>
+      <p class="p_important"><strong>I encara n'hi ha molts més!!!</strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

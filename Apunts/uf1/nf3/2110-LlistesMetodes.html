@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Mètodes de les llistes en JavaScript">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Mètodes de les llistes en JavaScript</header>
+    <section>
+      <h2>Mètodes dels <em>arrays</em></h2>
+      <p class="p_important">Alguns mètodes modifiquen la mateixa llista; altres no la modifiquen però retornen una llista nova; alguns modifiquen la llista i retornen una llista nova.</p>
+      <h3>Mostrar tots els elements de l'<em>array</em></h3>
+      <p>Si és necessari, un <em>array</em> es converteix automàticament a un <em>string</em> separant els elements amb una coma:</p>
+      <p class="p_codi">let cicles = ["SMX", "DAW"];<br>
+        alert(cicles);&nbsp;&nbsp;&nbsp; // Escriu 'SMX,DAW'</p>
+      <p>Si es vol un altre tipus de separador, es pot utilitzar la comanda <span
+class="c_comanda">join()</span>:</p>
+      <p class="p_codi">let cicles = ["SMX", "DAW"];<br>
+        alert(cicles.join(" - "));&nbsp;&nbsp;&nbsp; // Escriu 'SMX - DAW'<br>
+      </p>
+      <h3>Recórrer tots els elements d'un <em>array</em> </h3>
+      <p>Es pot accedir a tots els elements utilitzant bucles (<span class="c_comanda">for</span>, <span
+class="c_comanda">while</span>...).</p>
+      <p>Si es fa així cal saber quants elements té l'array.<br>
+        Aquest valor es troba a la propietat <span class="c_comanda">length</span>:</p>
+      <p class="p_codi">let cicles = ["SMX", "ASX", "DAW"];<br>
+        <br>
+        for (let i = 0; <strong>i &lt; </strong><strong>cicles.length</strong>; i++) {<br>
+        &nbsp; console.log("\n" + cicles[i]);<br>
+        }</p>
+      <h4>for ... of</h4>
+      <p>També es pot utilitzar <span class="c_comanda">for ... of</span> (<strong>no confondre amb</strong> <span
+class="c_comanda">for ... in</span>).</p>
+      <p>Cal utilitzar una variable (en aquest cas <span class="c_comanda">c</span>) a la qual s'assigna un element diferent de la llista (en aquest cas <span
+class="c_comanda">cicles</span>) en cada iteració del bucle:</p>
+      <p class="p_codi">let cicles = ["SMX", "ASX", "DAW"];<br>
+        <br>
+        <strong>for</strong> (let c <strong>of</strong> cicles) {<br>
+        &nbsp; console.log("\n" + c);<br>
+        }</p>
+      <h3>Funcions per buscar elements dins d'un <em>array</em></h3>
+      <p> </p>
+      <ul>
+        <li><span class="c_comanda">includes(v)</span>: retorna <span class="c_comanda">true</span> si existeix el valor <span
+class="c_comanda">v</span> dins de l'<em>array</em>.</li>
+        <li><span class="c_comanda">indexOf(v)</span>: retorna l'index del primer element amb el valor <span
+class="c_comanda">v</span>.<br>
+          Opcionalment es pot indicar a partir de quin índex s'ha de començar a buscar.</li>
+        <li><span class="c_comanda">lastIndexOf(v)</span>: igual que l'anterior, però comença a buscar pel final.</li>
+      </ul>
+      <h3>Ordenar l'<em>array</em></h3>
+      <p>La comanda <span class="c_comanda">sort()</span> ordena l'<em>array</em> <strong>alfabèticament</strong> de més petit a més gran.</p>
+      <p>La comanda <span class="c_comanda">reverse()</span> inverteix la posició de tots els elements: si es vol ordenar un <em>array</em> inversament, primer s'utilitza la comanda <span
+class="c_comanda">sort()</span> i després <span class="c_comanda">reverse()</span>.</p>
+      <p>Si l'<em>array</em> conté números, l'ordre pot ser incorrecte: el número 2 es posaria després del 10.<br>
+        En aquest cas es pot ordenar utilitzant una <strong>funció personalitzada</strong> que indiqui si un element és més gran, més petit o igual que un altre.<br>
+        Aquesta funció ha de retornar:</p>
+      <ul>
+        <li>Un número negatiu (&lt; 0) si el primer element és menor que el segon.</li>
+        <li>Un número positiu (&gt; 0) si el primer element és més gran que el segon.</li>
+        <li>0 (zero) si els dos elements són iguals.</li>
+      </ul>
+      <p class="p_codi">let edats = [35, 9, 18];<br>
+        <br>
+        function ordreXY(x, y) {<br>
+        &nbsp; if (x &lt; y) return -1;<br>
+        &nbsp; else if (x &gt; y) return 1;<br>
+        &nbsp; else return 0;<br>
+        &nbsp; // return x - y;&nbsp;&nbsp;&nbsp; // Opció més simplificada<br>
+        }<br>
+        <br>
+        edats.sort();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // edats = [18, 35, 9];<br>
+        edats.sort(ordreXY);&nbsp;&nbsp; // edats = [9, 18, 35];<br>
+        edats.reverse();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // edats = [35, 18, 9]; </p>
+      <p></p>
+      <h3>Altres funcions</h3>
+      <ul>
+        <li><span class="c_comanda">string.split(separador)</span>: genera un <em>array</em> separant un <em>string</em>. Cal indicar el caràcter o caràcters que es buscaran per fer la separació.</li>
+        <li><span class="c_comanda">slice(ini, fi)</span>: genera una nova llista amb els elements entre <span
+class="c_comanda">ini</span> (inclòs) i <span class="c_comanda">fi</span> (no inclòs).<br>
+          Tots dos paràmetres són opcionals i també poden tenir valors negatius.</li>
+        <li><span class="c_comanda">splice()</span>: permet afegir o eliminar elements a una llista (pot tenir deiferents paràmetres).</li>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Operadors de Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Operadors de Java</header>
+    <section>
+      <h2>Classe <em>Math</em></h2>
+      <p>JavaScript té aquesta classe per ajudar en la realització càlculs matemàtics.</p>
+      <p>Aquesta classe inclou algunes constants matemàtiques útils.<br>
+        Proporciona els següents valors amb molts dígits de precisió:</p>
+      <ul>
+        <li><span class="c_comanda">Math.PI</span>: <strong>nombre pi</strong> = 3.141592...</li>
+        <li><span class="c_comanda">Math.E</span>: <strong>nombre e</strong> = 2.718...</li>
+        <li><span class="c_comanda">Math.SQRT2</span>: <strong>arrel de 2</strong> = 1.414...</li>
+      </ul>
+      <p class="p_codi">let radi = 10;<br>
+        let logitudCircumferencia = 2 * <strong>Math.PI</strong> * radi;</p>
+      <ul>
+      </ul>
+      <p>També inclou moltes funcions matemàtiques.<br>
+        Aquestes funcions necessiten un o dos paràmetres i retornen un resultat:</p>
+      <ul>
+        <li><span class="c_comanda">Math.abs(n)</span>: valor absolut (converteix els números negatius a positius)</li>
+        <li><span class="c_comanda">Math.min(n1, n2)</span>: retorna el valor més petit entre els dos arguments que se li passin.</li>
+        <li><span class="c_comanda">Math.max(n1, n2)</span>: retorna el valor més gran entre els dos arguments que se li passin.</li>
+        <li><span class="c_comanda">Math.ceil(n)</span>: arrodoneix cap a dalt.</li>
+        <li><span class="c_comanda">Math.floor(n)</span>: arrodoneix cap a baix.</li>
+        <li><span class="c_comanda">Math.round(n)</span>: arrodoneix cap al número enter més proper.</li>
+        <li><span class="c_comanda">Math.random()</span>: retorna un número entre 0 i 1 (l'1 no està inclòs: <strong>0 &lt;= n &lt; 1</strong>).</li>
+        <li><span class="c_comanda">Math.pow(x, y)</span>: retorna <span
+class="c_comanda">x</span> elevat a <span class="c_comanda">y</span> (<strong>x<sup>y</sup></strong>). Actualment també es pot fer <span
+class="c_comanda">x ** y</span></li>
+        <li><span class="c_comanda">Math.sqrt(n)</span>: calcula l'arrel quadrada.</li>
+        <li><span class="c_comanda">Math.hypot(n)</span>: calcula la hipotenusa a partir de la base i l'altura d'un triangle rectangle.</li>
+        <li><span class="c_comanda">Math.sin(n)</span>: calcula el sinus (<span
+class="c_comanda">n</span> ha d'estar en radians: <strong>n = graus * Math.PI / 180</strong>).</li>
+        <li><span class="c_comanda">Math.cos(n)</span>: calcula el cosinus (<span
+class="c_comanda">n</span> ha d'estar en radians: <strong>n = graus * Math.PI / 180</strong>).</li>
+        <li><span class="c_comanda">Math.tan(n)</span>: calcula la tangent (<span
+class="c_comanda">n</span> ha d'estar en radians: <strong>n = graus * Math.PI / 180</strong>).</li>
+      </ul>
+      <p class="p_codi">let mesPetit = Math.min(10, 5);&nbsp;&nbsp;&nbsp; // mesPetit = 5<br>
+        let nota = Math.round(5.8);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // nota = 6<br>
+        let cub = Math.pow(10, 3);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // cub = 1000</p>
+      <ul>
+      </ul>
+      <div class="p_important">
+        <p>Generar números aleatoris entre dos valors determinats:</p>
+        <p class="p_codi">// Enter aleatori <strong>entre 'min' i 'max'</strong>, tots dos inclosos<br>
+          let n = Math.floor((Math.random() * (max - min + 1) + min));<br>
+          <br>
+          // Real aleatori <strong>des de 'min' fins a 'max' (aquest últim no inclòs)</strong><br>
+          let d = Math.random() * (max - min) + min;<br>
+          <br>
+          // Generar lletres aleatòries entre la 'A' i la 'Z' (no inclou minúscules, lletres accentuades, Ç ni Ñ<br>
+          let l = <span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCharCode(</span><span
+            class="hljs-title function_"><span class="hljs-title class_">Math</span>.<span
+              class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span
+              class="hljs-title function_">random</span>() * <span class="hljs-number">26</span>) + <span
+              class="hljs-number">65</span>);&nbsp;&nbsp;&nbsp;&nbsp; // 65 és el codi ASCII de la lletra "A"<br>
+          </span></p>
+      </div>
+      <h5>Exemple</h5>
+      <p class="p_codi">// Generar un número aleatori entre <strong>1</strong> i <strong>50</strong><br>
+        let aleatori = Math.floor((Math.<strong>random</strong>() * <strong>50</strong> + <strong>1</strong>));</p>
+      <ul>
+      </ul>
+      <h3>Problemes de precisió i desbordament</h3>
+      <p>Els valors que es poden utilitzar estan limitats.<br>
+        Si no es tenen en compte aquests límits, es poden produir resultats erronis.</p>
+      <p class="p_codi">let val = 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1;&nbsp;&nbsp;&nbsp; // Equivalent a 0.1 * 10<br>
+        alert(val);&nbsp;&nbsp;&nbsp; // <strong>val = 0.9999999999999999 (hauria de ser 1.0)</strong><br>
+        <br>
+        val = 1e-300;<br>
+        val *= 1e-100;<br>
+        alert(val);&nbsp;&nbsp;&nbsp; // <strong>val = 0.0 (hauria de ser 1e-400)</strong><br>
+        <br>
+        val = 1e300;<br>
+        val *= 1e100;<br>
+        alert(val);&nbsp;&nbsp;&nbsp; // <strong>val = Infinity (hauria de ser 1e400)</strong><br>
+        <br>
+        val = 9007199254740991;&nbsp;&nbsp;&nbsp; // Màxim valor enter: 2 ^ 53 - 1<br>
+        ++val;<br>
+        ++val;<br>
+        alert(val);&nbsp;&nbsp;&nbsp; // <strong>val = 9007199254740992 (hauria de ser 9007199254740993)</strong><strong></strong><br>
+        <strong></strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

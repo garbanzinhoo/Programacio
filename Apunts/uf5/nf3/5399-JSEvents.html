@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció als esdeveniments en JavaScript">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció als esdeveniments en JavaScript</header>
+    <section>
+      <h2>Esdeveniments</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_events.asp">Llistat d'esdeveniments</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/Events">Llistat detallat i per categories (MDN)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">Referència detallada (MDN)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/obj_events.asp">Objectes d'esdeveniments</a></p>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_events_examples.asp">Exemples amb esdeveniments</a></p>
+      <p>Actualment, la majoria de sistemes informàtics estan orientats als esdeveniments.</p>
+      <p>Els esdeveniment són situacions o accions que es produeixen i que el sistema notifica als programes perquè aquests puguin donar-hi una resposta adequada.</p>
+      <p>Gràcies als esdeveniments es poden fer webs interactives que responguin a les accions dels usuaris.</p>
+      <p>Alguns exemples d'esdeveniments poden ser:</p>
+      <ul>
+        <li>L'usuari prem una tecla, mou el ratolí o clica sobre un objecte de la pàgina.</li>
+        <li>Finalitza la càrrega de la pàgina o d'un arxiu.</li>
+      </ul>
+      <h3>JavaScript i els esdeveniments</h3>
+      <p>JavaScript és un llenguatge que permet la programació basada en esdeveniments.</p>
+      <p>En aquest sistema de programació es crea una rutina inicial que s'encarrega d'assignar a quins objectes s'han d'enviar determinats esdeveniments i quines funcions s'hauran d'executar quan els rebin.</p>
+      <p>També s'han de crear les funcions encarregades de gestionar (respondre a) cada esdeveniment.<br>
+        Aquestes funcions se'n diuen <em><strong>callbacks</strong></em> o, en aquest cas, <em><strong>event handlers</strong></em>.</p>
+      <p class="p_important">Cal tenir en compte que les funcions <em>callback</em> s'executen en un àmbit diferent d'on han estat definides (no podran accedir a les variables locals de l'àmbit on han estat definides).</p>
+      <h3>Tipus d'esdeveniments en JavaScript</h3>
+      <p>Hi ha molts esdeveniments, alguns estàndard i altres no, però la majoria es poden classificar en els següents tipus:</p>
+      <ul>
+        <li>Esdeveniments activats sobre els objectes del document:</li>
+        <ul>
+          <li>Activats pel ratolí i pantalles tàctils (<em>mouse events</em> i <em>touch events</em>).</li>
+          <li>Activats pel teclat (<em>keyboard events</em>).</li>
+          <li>Activats per formularis.</li>
+          <li>Activats per canvis en el document o en la finestra.</li>
+        </ul>
+        <li>Esdeveniments nous d'HTML5.</li>
+        <li>Esdeveniments relacionats amb els <em>media</em> (audio, vídeo...).</li>
+        <li>Altres esdeveniments acceptats per la majoria de navegadors (Web API).</li>
+      </ul>
+      <h3>Propietats i mètodes dels esdeveniments<br>
+      </h3>
+      <p>Les rutines que gestionen un esdeveniment, habitualment tenen un paràmetre de tipus <span class="c_comanda">Event</span>.<br>
+        Aquest objecte té algunes propietats interessants:</p>
+      <ul>
+        <li><span class="c_comanda">event.type</span>: nom de l'esdeveniment.</li>
+        <li><span class="c_comanda">event.target</span>: sobre quin objecte s'ha llençat l'esdeveniment.<br>
+          Pot servir a un objecte pare que gestiona un esdeveniment per saber sobre quin fill s'ha produït.</li>
+        <li><span class="c_comanda">event.currentTarget</span>: objecte que està tractant ara mateix l'esdeveniment.<br>
+          És útil quan un gestor d'esdeveniments s'ha assignat a diversos objectes.</li>
+        <li><span class="c_comanda">event.relatedTarget</span>: en esdeveniments que tenen un altre esdeveniment relacionat (per exemple, <span class="c_comanda">focus</span> i <span class="c_comanda">blur</span>) permet saber quin és l'altre objecte sobre el què s'ha llençat l'esdeveniment relacionat: si s'està gestionant un esdeveniment per saber quin objecte ha rebut el focus (<span class="c_comanda">target</span>), es pot saber quin objecte ha perdut el focus (<span class="c_comanda">relatedTarget</span>).</li>
+        <li><span class="c_comanda">event.eventPhase</span>: fase en la que es troba la gestió (<strong>1→capturing</strong>, <strong>2→target</strong>, <strong>3→bubbling</strong>).<br>
+          Més endavant s'explica cada una d'aquestes fases.</li>
+      </ul>
+      <p>També es disposa del mètode <span class="c_comanda">event.composedPath()</span>, que retorna un <em>array</em> amb els objectes dels <em>listeners</em> que s'han invocat.</p>
+      <p>En el següent exemple s'han creat dos gestors:</p>
+      <ul>
+        <li>un gestor per detectar quan es posa el focus sobre una casella de la taula: amb <span class="c_comanda">currentTarget</span> i <span class="c_comanda">relatedTarget</span> es detecta quina casella ha agafat el focus i quina l'ha perdut, respectivament.</li>
+        <li>un gestor per detectar quan es fa clic sobre la taula: amb <span class="c_comanda">target</span> es detecta sobre quina casella en concret s'ha fet el clic.<br>
+          Més endavant es veurà que aquest és un mètode anomenat <a target="_blank" rel="noopener" href="3016-EventAdvanced.html#delegacio_esdeveniment">Delegació d'esdeveniment</a>.</li>
+      </ul>
+      <p class="codepen" data-height="265" data-theme-id="default" data-default-tab="js,result" data-user="pere-sanchez" data-slug-hash="mdypMKB" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="eventTarget"> <span>See the Pen <a href="https://codepen.io/pere-sanchez/pen/mdypMKB"> eventTarget</a> by Pere Sánchez (<a href="https://codepen.io/pere-sanchez">@pere-sanchez</a>) on <a href="https://codepen.io">CodePen</a>.</span> </p>
+      <script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+      <p>A més d'aquestes propietats, cada tipus d'esdeveniment pot tenir propietats específiques:</p>
+      <ul>
+        <li><strong>Ratolí</strong>: coordenades de la posició del ratolí, quin botó s'ha premut...</li>
+        <li><strong>Teclat</strong>: quina tecla ha disparat l'esdeveniment, si es tracta d'una repetició de la mateixa tecla...</li>
+      </ul>
+      <p> </p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

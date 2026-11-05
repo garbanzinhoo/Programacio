@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Comunicació entre ordinadors: sockets">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Comunicació entre ordinadors: sockets</header>
+    <section>
+      <h2>Exemple de comunicació síncrona bidireccional</h2>
+      <p>El següent és un exemple molt simplificat de comunicació bidireccional entre un client i un servidor.</p>
+      <p>En aquest cas, el client fa peticions al servidor i el servidor només respon.</p>
+      <h5>Esquema bàsic en el servidor</h5>
+      <ol>
+        <li>Crear un <em>ServerSocket</em> per atendre connexions.</li>
+        <li>Esperar que es connecti el client i crear un <em>Socket</em> per a ell.</li>
+        <li>Crear els canals d'entrada i sortida del <em>Socket</em> per poder enviar i rebre missatges.</li>
+        <li>Repetir fins que el client tanqui la connexió.</li>
+        <ol>
+          <li>Esperar el missatge del client.</li>
+          <li>Processar la petició.</li>
+          <li>Respondre al client.</li>
+        </ol>
+      </ol>
+      <p class="p_codi">package uf4.exemples.sockets1;<br>
+        <br>
+        import java.io.BufferedInputStream;<br>
+        import java.io.IOException;<br>
+        import java.io.ObjectInputStream;<br>
+        import java.io.ObjectOutputStream;<br>
+        import java.net.*;<br>
+        <br>
+        public class Servidor {<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) throws IOException, ClassNotFoundException {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Crear servei per atendre connexion</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ServerSocket ss = new ServerSocket(5000);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Servidor engegat...");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Esperar connexió d'un client i crear socket per a ell</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Socket s = ss.accept();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("S'ha connectat un client...");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Crear els canals de sortida i entrada per enviar i rebre missatges</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(s.getInputStream()));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Canals de comunicació oberts...");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Repetir per sempre</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (true) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Esperar i mostrar missatge</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nEsperant missatge del client...");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Object obj = in.readObject();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Missatge rebut del client: " + obj);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Respondre al client</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.writeObject("He rebut el missatge ---&gt; " + obj);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        }<br>
+      </p>
+      <h5>Esquema bàsic en el client</h5>
+      <ol>
+        <li>Crear un <em>Socket</em> per connectar-se amb el servidor.</li>
+        <li>Crear els canals d'entrada i sortida del <em>Socket</em> per poder enviar i rebre missatges.</li>
+        <li>Repetir fins que l'usuari decideixi finalitzar la connexió.</li>
+        <ol>
+          <li>Preguntar a l'usuari.</li>
+          <li>Enviar la petició al servidor.</li>
+          <li>Esperar la resposta del servidor.</li>
+          <li>Mostrar la resposta.</li>
+        </ol>
+      </ol>
+      <p class="p_codi">package uf4.exemples.sockets1;<br>
+        <br>
+        import java.io.BufferedInputStream;<br>
+        import java.io.IOException;<br>
+        import java.io.ObjectInputStream;<br>
+        import java.io.ObjectOutputStream;<br>
+        import java.net.Socket;<br>
+        import java.util.Scanner;<br>
+        <br>
+        public class Client {<br>
+        &nbsp;&nbsp;&nbsp; static Scanner scan = new Scanner(System.in);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) throws IOException, ClassNotFoundException {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Crear connexió amb el servidor</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Socket s = new Socket("localhost", 5000);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("S'ha connectat amb el servidor...");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Crear els canals de sortida i entrada per enviar i rebre missatges</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(s.getInputStream()));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Canals de comunicació oberts...");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Repetir per sempre</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (true) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Demanar i enviar missatge</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("\nEscriu un misatge per al servidor: ");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String missatge = scan.nextLine();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.writeObject(missatge);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Esperar i mostrar resposta</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Object obj = in.readObject();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Resposta del servidor: " + obj);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <ol>
+        <ol>
+        </ol>
+      </ol>
+      <h2>Exemple de comunicació síncrona amb més d'un client</h2>
+      <p>En aquest cas, és el servidor qui fa les peticions als clients seguint un ordre establert.</p>
+      <p>Els clients han d'esperar que els toqui el torn.</p>
+      <h5>Esquema bàsic en el servidor</h5>
+      <ol>
+        <li>Crear un <em>ServerSocket</em>.</li>
+        <li>Esperar que es connectin els clients i crear un <em>Socket</em> per a cada un.<br>
+          D'alguna forma, <strong>s'ha de conèixer o establir quants clients es connectaran</strong>.</li>
+        <li>Crear els canals d'entrada i sortida de cada <em>Socket</em> per poder enviar i rebre missatges.</li>
+        <li>Repetir fins que el servidor decideixi que s'ha de finalitzar.</li>
+        <ol style="list-style-type: upper-alpha;">
+          <li><strong>Per cada client</strong>...</li>
+          <ol style="list-style-type: decimal;">
+            <li>Enviar la petició al client (pot incloure informació necessària).</li>
+            <li>Esperar la resposta del client.</li>
+            <li>Processar la resposta.</li>
+          </ol>
+        </ol>
+      </ol>
+      <h5>Esquema bàsic en el client</h5>
+      <ol>
+        <li>Crear un <em>Socket</em> per connectar-se amb el servidor.</li>
+        <li>Crear els canals d'entrada i sortida del <em>Socket</em> per poder enviar i rebre missatges.</li>
+        <li>Repetir fins que el servidor decideixi finalitzar la connexió.</li>
+        <ol>
+          <li>Esperar el missatge del servidor.</li>
+          <li>Mostrar la informació, si cal.</li>
+          <li>Demanar les dades a l'usuari.</li>
+          <li>Respondre al servidor.</li>
+        </ol>
+      </ol>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

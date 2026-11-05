@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Programar amb JavaScript">
+    <meta name="keywords" content="JavaScript">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Programar amb Java</header>
+    <section>
+      <h2>Plantilla per introduir dades i mostrar resultats en la pàgina web</h2>
+      <p>Un programa d'ordinador agafa unes dades, les processa i genera un resultat.<br>
+        Les dades poden ser números, text, accions amb el ratolí... i el resultat pot ser un valor numèric, un altre text, una línia...</p>
+      <p>Per començar a practicar amb dades bàsiques i operacions senzilles, es pot utilitzar una plantilla que ens permetrà:</p>
+      <ul>
+        <li>Introduir les dades que es volen processar</li>
+        <li>Executar l'aplicació</li>
+        <li>Mostrar el resultat</li>
+      </ul>
+      <p>A part d'això, també és convenient que crear o buscar un logo, preferiblement en format ICO i amb el nom <span class="c_arxiu">favicon.ico</span>. Aquest arxiu s'ha de guardar dins de la carpeta del projecte.<br>
+        Si es vol utilitzar altres formats o noms, s'ha de canviar el nom de l'arxiu dins de <span class="c_arxiu">plantilla.html</span>.</p>
+      <h4>Document HTML (<span class="c_arxiu">plantilla.html</span>):</h4>
+      <p class="p_codi">&lt;!doctype html&gt;<br>
+        &lt;html lang="ca"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&lt;head&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;title&gt;Plantilla&lt;/title&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;meta charset="UTF-8" /&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;link rel="stylesheet" href="plantilla.css" type="text/css"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;script defer src="plantilla.js"&gt;&lt;/script&gt;<br>
+        &nbsp;&nbsp; &nbsp;&lt;/head&gt;<br>
+        <br>
+        &nbsp;&nbsp; &nbsp;&lt;body&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;div class="inputs"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;label for="nom"&gt;Nom&lt;/label&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;input id="nom" type="text"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;br&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;label for="nom"&gt;Edat&lt;/label&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;input id="edat" type="number"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;button id="exec"&gt;Executar&lt;/button&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;div id="terminal" class="terminal"&gt;&lt;/div&gt;<br>
+        &nbsp;&nbsp; &nbsp;&lt;/body&gt;<br>
+        &lt;/html&gt;</p>
+      <h4>Document CSS (<span class="c_arxiu">plantilla.css</span>):</h4>
+      <p class="p_codi">* {<br>
+        &nbsp;&nbsp; &nbsp;font-family: Arial,Helvetica,sans-serif;<br>
+        &nbsp;&nbsp; &nbsp;font-size: 1rem;<br>
+        &nbsp;&nbsp; &nbsp;box-sizing: border-box;<br>
+        }<br>
+        <br>
+        html {<br>
+        &nbsp;&nbsp; &nbsp;height: 100%;<br>
+        }<br>
+        <br>
+        body {<br>
+        &nbsp;&nbsp; &nbsp;display: flex;<br>
+        &nbsp;&nbsp; &nbsp;flex-direction: column;<br>
+        &nbsp;&nbsp; &nbsp;height: 100%;<br>
+        &nbsp;&nbsp; &nbsp;margin: 0;<br>
+        }<br>
+        <br>
+        button {<br>
+        &nbsp;&nbsp; &nbsp;margin: 1rem;<br>
+        &nbsp;&nbsp; &nbsp;width: 8rem;<br>
+        }<br>
+        <br>
+        .inputs {<br>
+        &nbsp;&nbsp; &nbsp;display: flex;<br>
+        &nbsp;&nbsp; &nbsp;flex: 0;<br>
+        &nbsp;&nbsp; &nbsp;flex-direction: column;<br>
+        &nbsp;&nbsp; &nbsp;padding: 1rem;<br>
+        }<br>
+        <br>
+        .terminal {<br>
+        &nbsp;&nbsp; &nbsp;font-family: "Courier New", Courier, monospace;<br>
+        &nbsp;&nbsp; &nbsp;font-size: 1.2rem;<br>
+        &nbsp;&nbsp; &nbsp;flex: 1;<br>
+        &nbsp;&nbsp; &nbsp;margin: 1rem;<br>
+        &nbsp;&nbsp; &nbsp;padding: .5rem;<br>
+        &nbsp;&nbsp; &nbsp;border: 1px solid gray;<br>
+        &nbsp;&nbsp; &nbsp;background-color: #eee;<br>
+        &nbsp;&nbsp; &nbsp;white-space: nowrap;<br>
+        &nbsp;&nbsp; &nbsp;overflow: auto;<br>
+        }</p>
+      <h4>Document JavaScript (<span class="c_arxiu">plantilla.js</span>):</h4>
+      <p class="p_codi">"use strict";<br>
+        <br>
+        // Inputs per introduir el nom i l'edat<br>
+        const iNom = document.getElementById("nom");<br>
+        const iEdat = document.getElementById("edat");<br>
+        // Botó per executar l'aplicació<br>
+        const bExec = document.getElementById("exec");<br>
+        // Element on mostrar el resultat<br>
+        const terminal = document.getElementById("terminal");<br>
+        <br>
+        // Quan es fa clic en el botó 'exec' es crida la funció 'executar()'<br>
+        bExec.addEventListener("click", executar);<br>
+        <br>
+        // Funció que executa l'aplicació<br>
+        function executar() {<br>
+        &nbsp;&nbsp; &nbsp;// Obtenir els 'inputs' del document i guardar-los en variables<br>
+        &nbsp;&nbsp; &nbsp;let nom = iNom.value;<br>
+        &nbsp;&nbsp; &nbsp;let edat = iEdat.value;<br>
+        <br>
+        &nbsp;&nbsp; &nbsp;// Processar les dades<br>
+        &nbsp;&nbsp; &nbsp;nom = nom.trim().toUpperCase();<br>
+        &nbsp;&nbsp; &nbsp;edat = parseInt(edat);<br>
+        <br>
+        &nbsp;&nbsp; &nbsp;// Mostrar el resultat<br>
+        &nbsp;&nbsp; &nbsp;terminal.innerHTML = "Hola " + nom + " tens " + edat + " anys";<br>
+        }</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

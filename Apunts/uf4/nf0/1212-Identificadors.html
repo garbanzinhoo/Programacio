@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Identificadors">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Identificadors</header>
+    <section>
+      <h2>Identificar constants i variables</h2>
+      <p>Per poder utilitzar una variable o una constant, cal definir-la indicant de quin tipus és i donant-li un nom.<br>
+        Es poden definir més d'una variable del mateix tipus en la mateixa sentència.<br>
+        També se li pot donar un valor (inicialitzar) o posar una expressió en el mateix moment de definir-la.<br>
+        Per assignar un valor s'utilitza el símbol <span class="c_comanda">=</span>.</p>
+      <p> </p>
+      <p class="p_codi">final int NOTA_MAX = 10;<br>
+        char <strong>lletra</strong>;<strong></strong><br>
+        float <strong>mitjana</strong>, <strong>preu</strong> = 18.50f, <strong>iva</strong> = preu * 21 / 100;<strong></strong><strong></strong><br>
+        <strong></strong><strong></strong></p>
+      <p>Si les variables o constants s'inicialitzen en el moment de definir-les i el compilador pot deduir de quin tipus són, es pot posar el tipus genèric <span class="c_comanda">var</span> enlloc del tipus concret:</p>
+      <p class="p_codi">final <strong>var</strong> NOTA_MAX = 10;&nbsp;&nbsp;&nbsp; // Per defecte assigna tipus <strong>int</strong><br>
+        <strong>var</strong> preu = 18.50;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // Per defecte assigna tipus <strong>double</strong></p>
+      <p class="p_important">En Java, les constants i variables s'han de definir i han de tenir un valor abans d'utilitzar-les. Si no es fa així, el compilador donarà un error. és recomanable definir-les al principi del bloc de codi on s'utilitzen.<br>
+        Les variables es poden inicialitzar més endavant, però les constants s'han d'inicialitzar al declarar-les.</p>
+      <p>Els noms de les variables i les constants han de seguir els següents criteris:</p>
+      <ul>
+        <li>Han de començar amb una lletra.</li>
+        <li>Poden contenir lletres, dígits, el símbol <span class="c_comanda">$</span> o el guió baix (<span class="c_comanda">_</span>).</li>
+        <li>No es poden utilitzar <a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_ref_keywords.asp">paraules reservades de Java</a>.</li>
+        <li>Els noms han de ser representatius de les dades que contindran.</li>
+      </ul>
+      <p>Encara que no sigui imprescindible, es recomana posar els noms de les constants en majúscula i, si el nom d'una variable conté més d'una paraula, utilitzar la forma <em><strong>lowerCamelCase</strong></em> (començar amb minúscula i posar en majúscula la primera lletra de les següents paraules).</p>
+      <p>En el cas de les constants, les paraules se separen amb guió baix.</p>
+      <p class="p_codi">char <strong>lletraNif</strong> = 'A';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // estil <strong>lowerCamelCase</strong><strong></strong><br>
+        final int <strong>MAX_NIVELL</strong> = 10;&nbsp;&nbsp; // estil per les <strong>CONSTANTS</strong></p>
+      <ul>
+      </ul>
+      <ul>
+      </ul>
+      <p class="p_important">Java és <em>Case Sensitive</em> (distingeix entre majúscules i minúscules):<br>
+        les variables <span class="c_comanda">nom</span>, <span class="c_comanda">Nom</span> i <span class="c_comanda">NOM</span> són variables diferents.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Gestió dels esdeveniments">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+    <script defer="defer" src="../../animations.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Gestió dels esdeveniments</header>
+    <section>
+      <h2>Gestió dels esdeveniments</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/events/intro.html">Tutorial sobre gestors d'esdeveniments en Java</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/misc/action.html">Gestionar esdeveniments de dos components de la mateixa forma</a></p>
+      <h3>Implementar la gestió d'esdeveniments<br>
+      </h3>
+      <p>Els passos per implementar la gestió d'esdeveniments són els següents:</p>
+      <ol>
+        <li>Crear una classe que implementi un <em>listener</em> o un <em>adapter</em> per gestionar els esdeveniments (opcional).</li>
+        <li>Crear un objecte <em>listener</em> a partir de la interfície o de la classe anterior.</li>
+        <li>Connectar el component al <em>listener</em>.</li>
+      </ol>
+      <h4>Crear la classe per crear <em>listeners</em></h4>
+      <p>Hi ha diverses formes d'implementar aquesta classe.</p>
+      <h5>Crear objectes <em>listener</em> a partir de classes anònimes dins de la Vista</h5>
+      <p>Aquest és el mètode mès ràpid. S'utilitza per comoditat en exemples i codis senzills.<br>
+        <strong>Avantage</strong>: pot accedir directament als atributs de la Vista.<br>
+        <strong>Inconvenient</strong>: no hi separació entre Vista i Controlador, i no es pot escalar fàcilment ni reaprofitar (cal crear un <em>listener</em> per cada objecte, encara que el codi per gestionar l'esdeveniment sigui el mateix o semblant).</p>
+      <p class="p_codi">static int n = 0;<br>
+        <br>
+        // Botons per incrementar/decrementar el comptador<br>
+        JButton iButton = new JButton("Inc");<br>
+        JButton dButton = new JButton("Dec");<br>
+        <br>
+        // Crear i assignar <em>listener</em> a cada botó<br>
+        iButton.<strong>addActionListener</strong>(<strong>new ActionListener()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public void <strong>actionPerformed(ActionEvent e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setText("" + (++n));<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        });<br>
+        <br>
+        dButton.<strong>addActionListener</strong>(<strong>new ActionListener()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public void <strong>actionPerformed(ActionEvent e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setText("" + (--n));<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        });</p>
+      <h5>Crear classes privades dins de la Vista</h5>
+      <p>És similar a l'anterior però, al crear una <strong>classe no anònima</strong>, es pot reutilitzar per crear més d'un <em>listener</em>.</p>
+      <p class="p_codi">// Assignar <em>listener</em> a cada botó<br>
+        iButton.<strong>addActionListener(new ButtonListener())</strong>;<br>
+        dButton.<strong>addActionListener(new ButtonListener())</strong>;<br>
+        <br>
+        // Classe per implementar <em>listeners</em> per botons<br>
+        private static <strong>class ButtonListener implements ActionListener</strong> {<br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public void <strong>actionPerformed(ActionEvent e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton b = (JButton) e.getSource();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (b.getText()) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "Inc" -&gt; ++n;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "Dec" -&gt; --n;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setText("" + n);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <div class="p_important">
+        <p>També es podria crear un objecte <em>listener</em> i assignar-lo a cada botó (per no crear dos objectes iguals):</p>
+        <p class="p_codi">// Assignar listener a cada botó<br>
+          ActionListener <strong>buttonListener = new ButtonListener();</strong><br>
+          iButton.<strong>addActionListener(buttonListener)</strong>;<br>
+          dButton.<strong>addActionListener(buttonListener)</strong>;</p>
+      </div>
+      <h5>Crear classes externes a la Vista</h5>
+      <p>És similar a l'anterior però amb els següents inconvenients:</p>
+      <ul>
+        <li>Cal crear un arxiu per cada classe de <em>listener</em>.</li>
+        <li>No es pot accedir directament als atributs de la Vista (cal crear mètodes auxiliars a la Vista).</li>
+      </ul>
+      <p class="p_codi">public class <strong>ButtonListener implements ActionListener</strong> {<br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public void <strong>actionPerformed(ActionEvent e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton b = (JButton) e.getSource();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch (b.getText()) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "Inc" -&gt; <strong>Vista.incCounter()</strong>;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "Dec" -&gt; <strong>Vista.decCounter()</strong>;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Vista.setCounterText()</strong>;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_codi">public class <strong>Vista</strong> {<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        &nbsp;&nbsp;&nbsp; <strong>public static void incCounter() { ++n; }</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>public </strong><strong><strong>static </strong>void decCounter() { --n; }</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>public </strong><strong><strong>static </strong>void setCounterText() { comptador.setText("" + n); }</strong><br>
+        }</p>
+      <h5>Crear objectes <em>listener</em> amb classes anònimes dins del Controlador</h5>
+      <p>És similar a l'anterior però sense haver de crear classes externes per cada <em>listener</em>.</p>
+      <p>És una foma més adequada per separar Vista i Controlador.</p>
+      <p class="p_codi">public class <strong>Controlador</strong> {<br>
+        &nbsp;&nbsp;&nbsp; public static <strong>final</strong> ActionListener <strong>buttonListener = new ActionListener()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; public void <strong>actionPerformed(ActionEvent e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton b = (JButton) e.getSource();<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; switch (b.getText()) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; case "Inc" -&gt; <strong>Vista.incCounter()</strong>;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; case "Dec" -&gt; <strong>Vista.decCounter()</strong>;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <strong>Vista.setCounterText()</strong>;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; });<br>
+        }</p>
+      <p class="p_codi">public class Vista {<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        &nbsp;&nbsp;&nbsp; iButton.<strong>addActionListener(Control.buttonListener)</strong>;<br>
+        &nbsp;&nbsp;&nbsp; dButton.<strong>addActionListener(</strong><strong><strong>Control.</strong>buttonListener)</strong>;<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        }</p>
+      <p class="p_important">Si en lloc de crear una classe Vista amb mètodes estàtics es crea un objecte <em>JFrame</em> amb mètodes per accedir als seus components, només caldrà passar-li aquest objecte al Controlador.</p>
+      <h3>Funcionament de la gestió d'esdeveniments</h3>
+      <ul>
+        <li>Quan s'engega el programa:</li>
+        <ul>
+          <li>A partir de la classe <em>Listener</em> o <em>Adapter</em> es crea un objecte <em>listener</em>.</li>
+          <li>Es connecte l'objecte de la Vista amb el <em>listener</em>.</li>
+        </ul>
+        <li>Quan l'usuari realitza una acció sobre un component:</li>
+        <ul>
+          <li>Si l'acció NO es correspon a un <em>listener</em> associat al component, <strong>la ignora</strong>.</li>
+          <li>Si es correspon:</li>
+          <ul>
+            <li>Envia un objecte del tipus corresponent (<em>MouseEvent</em>, <em>KeyEvent</em>...) al <em>listener</em> amb informació sobre l'esdeveniment (posició del ratolí, botó premut, tecla premuda...).</li>
+            <li>El <em>listener</em> crida el mètode corresponent (<span class="c_comanda">mouseClicked()</span>...), passant-li l'objecte rebut.</li>
+            <li>El mètode s'encarrega de cridar el Model per modificar les dades i/o la Vista per actualitzar-la.</li>
+          </ul>
+        </ul>
+      </ul>
+      <object onload="initAnimation(this)" data="imatges/Esdeveniments.svg" style="width:46em;">El teu navegador no suporta SVGs!</object>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

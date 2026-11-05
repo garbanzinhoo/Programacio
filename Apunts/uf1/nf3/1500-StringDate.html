@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Tipus de dades compostes: String i Date">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Tipus de dades compostes: String i Date</header>
+    <section>
+      <h2>String (cadena de caràcters)</h2>
+      <p>Els objectes creats amb la classe <strong>String</strong> són immutables.<br>
+        Això vol dir que, un cop creats, no es poden modificar directament.</p>
+      <p>Alguns mètodes d'aquesta classe serveixen per fer modificacions però retornen un nou objecte que es pot guardar en una variable diferent o en la mateixa variable:</p>
+      <p class="p_codi">String hola = "HOLA";<br>
+        hola.replace('A', 'I');&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>NO FA CAP CANVI A LA VARIABLE hola!</strong><br>
+        hola = hola.replace('A', 'I');&nbsp;&nbsp; // <strong>ARA SÍ</strong></p>
+      <p>També es pot utilitzar l'operador <span class="c_comanda">+</span> per concatenar diferents <em>strings</em>, però el resultat, si no es mostra immediatament, també s'ha de guardar en algun lloc.</p>
+      <p class="p_codi">String hola = "Hello";<br>
+        String mon = "World";<br>
+        hola = hola + " " + mon;<strong></strong></p>
+      <div class="p_important">
+        <p>Per comparar dues <em>strings</em> no es poden utilitzar els comparadors <span class="c_comanda">==</span>, <span class="c_comanda">!=</span>, <span class="c_comanda">&lt;</span>, <span class="c_comanda">&gt;</span>, <span class="c_comanda">&lt;=</span> o <span class="c_comanda">&gt;=</span>.<br>
+          S'han d'utilitzar els mètodes <span class="c_comanda">equals()</span>, <span class="c_comanda">equalsIgnoreCase()</span>, <span class="c_comanda">compareTo()</span>, o <span class="c_comanda">compareToIgnoreCase()</span> de la classe <strong>String</strong>:</p>
+        <p class="p_codi">String s1 = "ABC";<br>
+          String s2 = "abc";<br>
+          if (s1 <strong>==</strong> s2.toUpperCase()) ... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>ERROR! (dirà que no són iguals)</strong><br>
+          if (s1.<strong>equals</strong>(s2.toUpperCase())) ...&nbsp;&nbsp; // <strong>OK<br>
+          </strong></p>
+      </div>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_strings.asp">Referència "String"</a></p>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_ref_string.asp">Mètodes "String"<br>
+        </a></p>
+      <h3>Propietats i mètodes dels "strings"</h3>
+      <p>Els mètodes més importants són:</p>
+      <ul>
+        <li><span class="c_comanda">length()</span>: retorna el nombre de caràcters que conté la cadena.</li>
+        <li><span class="c_comanda">charAt(n)</span>: retorna el caràcter en la posició n-èsima.</li>
+        <li><span class="c_comanda">equals(String)</span>: retorna <span class="c_comanda">true</span> si les dues cadenes contenen els mateixos caràcters.</li>
+        <li><span class="c_comanda">equalsIgnoreCase(String)</span>: retorna <span class="c_comanda">true</span> si les dues cadenes contenen els mateixos caràcters, sense distingir entre majúscules i minúscules.</li>
+        <li><span class="c_comanda">compareTo(String)</span>: compara dues cadenes lexicogràficament. Retorna un valor negatiu si la primera cadena és menor que la segona, 0 si són iguals, i un valor positiu si la primera és la més gran.</li>
+        <li><span class="c_comanda">compareToIgnoreCase(String)</span>: igual que l'anterior però sense distingir majúscules i minúscules.</li>
+        <li><span class="c_comanda">toLowerCase()</span>: retorna la cadena convertida a minúscules.</li>
+        <li><span class="c_comanda">toUpperCase()</span>: retorna la cadena convertida a majúscules.</li>
+        <li><span class="c_comanda">trim()</span>: retorna una cadena eliminant els espais del principi i del final.</li>
+        <li><span class="c_comanda">contains(String)</span>: comprova si una cadena conté una altra cadena.</li>
+        <li><span class="c_comanda">indexOf(String|char[, n])</span>: retorna la primera posició de la cadena o caràcter buscats, o -1 si no la troba. El paràmetre opcional <span class="c_comanda">n</span> permet començar la cerca a partir d'una posició determinada.</li>
+        <li><span class="c_comanda">substring(start[, end])</span>: retorna la subcadena entre els índexs <span class="c_comanda">start</span> i <span class="c_comanda">end</span> (o fins al final). El caràcter en la posició <span class="c_comanda">end</span> no s'inclou.</li>
+        <li><span class="c_comanda">replace(c1, c2)</span>: retorna la cadena després de substituir <span class="c_comanda">c1</span> per <span class="c_comanda">c2</span>.</li>
+        <li><span class="c_comanda">repeat(n)</span>: retorna la cadena repetida <span class="c_comanda">n</span> vegades.</li>
+        <li><span class="c_comanda">startsWith(String)</span>: comprova si la cadena comença amb la subcadena especificada.</li>
+        <li><span class="c_comanda">endsWith(String)</span>: comprova si la cadena acaba amb la subcadena especificada.</li>
+        <li><span class="c_comanda">split(String)</span>: retorna un <em>array</em> de <em>String</em> que és el resultat de separar la cadena utilitzant una altra cadena com a separador.</li>
+      </ul>
+      <p>Aquests mètodes sempre s'han d'utilitzar amb un <em>String</em>: pot ser un literal (un text entre cometes) o una variable de tipus <em>String</em>.</p>
+      <p>La majoria de mètodes&nbsp;retornen un nou <em>String</em>. Altres poden retornar un número enter, un booleà o fins i tot un <em>array</em> de <em>Strings</em>.</p>
+      <p class="p_codi">int l = "Hello World".length();&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // <strong>11</strong><br>
+        char c = "Hello World".charAt(6);&nbsp;&nbsp;&nbsp; &nbsp; // <strong>'W</strong>'<br>
+        <br>
+        String hola = "Hello World";<br>
+        boolean inclou = hola.contains("World");&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>true</strong><br>
+        int ndx = hola.indexOf(" ");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>5</strong><br>
+        String s1 = hola.substring(0, ndx).toUpperCase();&nbsp;&nbsp; // <strong>"HELLO"</strong><br>
+        String s2 = hola.substring(ndx+1).toLowerCase();&nbsp; &nbsp; // <strong>"world"</strong></p>
+      <div class="p_important">
+        <p><strong>ATENCIÓ:</strong> la primera lletra d'un <em>string</em> és la <span class="c_comanda">0</span> (zero), i l'última és <span class="c_comanda">length() - 1</span>!</p>
+        <p class="p_codi">String s = "Hola";<br>
+          int mida = <strong>s.length()</strong>;&nbsp;&nbsp;&nbsp; // mida = 4<br>
+          char c = <strong>s.charAt(0)</strong>;&nbsp;&nbsp;&nbsp;&nbsp; // c = 'H'<br>
+          c = <strong>s.charAt(mida - 1)</strong>;&nbsp;&nbsp; // c = 'a'<br>
+          c = <strong>s.charAt(mida)</strong>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>ERROR!</strong></p>
+        <p>Si s'intenta accedir a una posició negativa o superior o igual a la seva mida, es produirà una excepció!</p>
+      </div>
+      <h3>Convertir <em>strings</em> a números i números a <em>strings</em></h3>
+      <p class="p_codi">int n = <strong>Integer.parseInt</strong>("1234");&nbsp;&nbsp;&nbsp; // 1234<br>
+        n = <strong>Integer.valueOf</strong>("1234");&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // 1234<br>
+        float f = <strong>Float.parseFloat</strong>("1234");&nbsp; // 1234.0<br>
+        f = <strong>Float.valueOf</strong>("1234");&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // 1234.0</p>
+      <p class="p_codi">String s = <strong>"" + </strong>1234;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // "1234"<br>
+        s = <strong>Integer.toString</strong>(1234);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // "1234"<br>
+        s = <strong>String.valueOf</strong>(1234);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // "1234"<br>
+        s = <strong>Float.toString</strong>(1234);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // "1234.0"</p>
+      <h2>Data i hora</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_date.asp">Referència data i hora</a></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

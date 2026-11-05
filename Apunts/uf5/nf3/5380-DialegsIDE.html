@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Disseny de diàlegs amb l'IDE">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Disseny de diàlegs amb l'IDE</header>
+    <section>
+      <h2>Disseny de diàlegs amb l'IDE</h2>
+      <p>Els diàlegs simples que s'han vist anteriorment tenen les seves limitacions: si s'han d'introduir moltes dades o permetre que l'usuari pugui triar entre diferents opcions, no serveixen.</p>
+      <p>La classe <strong><em>JDialog</em></strong> pot servir per crear-los manualment, però distribuir els elements pot ser complicat.<br>
+        Normalment, la millor opció és utilitzar el dissenyador de l'IDE (també serveixen per dissenyar finestres).</p>
+      <h3>Disseny bàsic<br>
+      </h3>
+      <p>Per dissenyar un diàleg amb <strong>IntelliJ</strong>, cal clicar el botó secundari a sobre d'un <em>package</em> i seleccionar <strong>New → Swing UI Designer → Create Dialog Class</strong>.<br>
+        Demanarà el nom de la classe i crearà un arxiu <strong>.java</strong> i un <strong>.form</strong>.<br>
+        En el primer apareixerà el codi del diàleg i en el segon un formulari gràfic.</p>
+      <p>Es poden afegir elements arrossegant-los dins de l'esquema del diàleg o dins de mateix diàleg.<br>
+      </p>
+      <p>Seleccionant qualsevol component, es poden modificar els seus atributs:</p>
+      <ul>
+        <li>Nom</li>
+        <li>Mides</li>
+        <li>Marges</li>
+        <li>Habilitat o deshabilitat</li>
+        <li>Seleccionat o no (si és un botó seleccionable)</li>
+        <li>Layout (si és un contenidor)</li>
+        <li>...</li>
+      </ul>
+      <p>També es poden veur més propietats marcant la casella <em>Show expert properties</em>.<br>
+        De totes formes, algunes propietats s'hauran de configurar modificant el codi.<br>
+      </p>
+      <p><img alt="" src="./imatges/DialegIDE1.png" style="width:48em"></p>
+      <p>Els dissenyadors dels IDEs solen tenir una opció (<em>Preview</em>) per veure com quedaria.<br>
+      </p>
+      <p><img alt="" src="./imatges/DialegIDE2.png" style="width:29em"></p>
+      <h3>Altres coses que es poden configurar</h3>
+      <h5>Agrupar botons de ràdio</h5>
+      <p>Serveix per fer que només un dels botons del grup pugui estar premut.</p>
+      <ol>
+        <li>Seleccionar els botons que han de formar part del grup.</li>
+        <li>En el menú contextual, seleccionar <em>Group Buttons</em> i donar nom al grup.</li>
+      </ol>
+      <h5>Afegir <em>listener</em> a un element</h5>
+      <p>Es pot fer editant el codi però també des de l'editor.</p>
+      <ol>
+        <li>En el menú contextual de l'element, seleccionar <em>Create listener</em>.</li>
+        <li>Triar quin tipus de listener (<em>ActionListener</em>, <em>MouseListener</em>...).</li>
+      </ol>
+      <h3>Modificar el codi de la classe del diàleg</h3>
+      <p>A la vegada que es van realitzant accions en el dissenyador gràfic, es va modificant el codi de la classe.</p>
+      <p>Un cop acabat el disseny gràfic, sempre caldrà fer algunses modificacions i afegits al codi, però s'ha de vigilar de no canviar els noms dels atributs: aquests sempre s'han de modificar en el dissenyador.</p>
+      <p>En el codi de la classe hi&nbsp; haurà:</p>
+      <ul>
+        <li>els objectes (atributs) corresponents als elements;</li>
+        <li>el constructor, que inclou:</li>
+        <ul>
+          <li>algunes configuracions generals del diàleg;</li>
+          <li>els <em>listeners</em> dels botons OK i Cancel que criden als mètodes corresponents;</li>
+          <li>altres <em>listeners</em> que s'hagin afegit a altres elements (també sense codi);</li>
+        </ul>
+        <li>els mètodes <span class="c_comanda">onOK()</span> i <span class="c_comanda">onCancel()</span> (cal afegir el codi necessari).</li>
+      </ul>
+      <h5>Afegir algunes configuracions generals</h5>
+      <ul>
+        <li>Posar el títol del diàleg.</li>
+        <li>Evitar que es pugui redimensionar.</li>
+      </ul>
+      <p class="p_codi">setTitle("Colors IDE");<br>
+        setResizable(false);</p>
+      <h5>Afegir el codi dels <em>listeners</em></h5>
+      <p class="p_codi">transparent.addActionListener(new ActionListener() {<br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public void actionPerformed(ActionEvent e) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean enabled = !((JCheckBox)e.getSource()).isSelected();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Activar o desactivar els botons de ràdio<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vermell.setEnabled(enabled);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; verd.setEnabled(enabled);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blau.setEnabled(enabled);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        });</p>
+      <p class="p_codi">private void onOK() {<br>
+        &nbsp;&nbsp;&nbsp; // Guardar el valor seleccionat<br>
+        &nbsp;&nbsp;&nbsp; if (transparent.isSelected()) resposta = "Transparent";<br>
+        &nbsp;&nbsp;&nbsp; else if (vermell.isSelected()) resposta = "Vermell";<br>
+        &nbsp;&nbsp;&nbsp; else if (verd.isSelected())&nbsp; resposta = "Verd";<br>
+        &nbsp;&nbsp;&nbsp; else resposta = "Blau";<br>
+        &nbsp;&nbsp;&nbsp; dispose();<br>
+        }</p>
+      <p class="p_codi">private void onCancel() {<br>
+        &nbsp;&nbsp;&nbsp; resposta = null;<br>
+        &nbsp;&nbsp;&nbsp; dispose();<br>
+        }<br>
+      </p>
+      <h5>Afegir un mètode per obtenir les dades del diàleg</h5>
+      <p class="p_codi">public String getResposta() {<br>
+        &nbsp;&nbsp;&nbsp; return resposta;<br>
+        }<br>
+      </p>
+      <p>En un diàleg més complicat es poden crear mètodes per cada valor o un objecte que els contigui tots.</p>
+      <p>També es pot afegir un mètode per inicialitzar les dades del diàleg abans de mostrar-lo.</p>
+      <h5>Mètode main()</h5>
+      <p>També es crea automàticament aquesta funció per fer proves amb el funcionament del diàleg.</p>
+      <h3>Obrir el diàleg des de l'aplicació</h3>
+      <p>Per no haver de crear el diàleg cada vegada, es pot utilitzar un atribut global.</p>
+      <p class="p_codi">Config triarColors = new Config();</p>
+      <p>Després, quan s'hagi de mostrar:</p>
+      <p class="p_codi">triarColors.setVisible(true);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Mostra el diàleg i espera<br>
+        String resposta = triarColors.getResposta();&nbsp; // Obté la resposta<br>
+        if (resposta != null) System.out.println(resposta);<br>
+        else System.out.println("No s'ha seleccionat res!");</p>
+      <h4>Resultat</h4>
+      <p><img alt="" src="./imatges/DialegIDE3.png" style="width:12em" class="noborder"></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

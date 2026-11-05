@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String codi, escut;<br>
+          boolean codiValid;<br>
+          <br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; codiValid = true;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // MENU<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("ESCUTS STAR TREK");<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("F1 - Ferengi");<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("K2 - Klingon");<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("R1 - Romulans");<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("V3 - Vulcanians");<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("ZZZ000 - Finalitzar programa");<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Escriu el codi de l’escut que vols: ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; codi = scan.nextLine();<br>
+          &nbsp;&nbsp;&nbsp; codi = codi.toUpperCase();<br>
+          &nbsp;&nbsp;&nbsp; switch (codi) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "F1":<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; escut = "Ferengi";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "K2":<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; escut = "Klingon";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "R1":<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; escut = "Romulans";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "V3":<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; escut = "Vulcanians";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case "ZZZ000":<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Fi del programa");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Has triat un codi que no existeix.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codiValid = false;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          } while(!codiValid);<br>
+          <br>
+          System.out.println("Codi seleccionat correctament.");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int cares = 0;<br>
+          int creus = 0;<br>
+          int moneda;<br>
+          <br>
+          for (int i = 0; i &lt; 1000; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; moneda = (int)(Math.random() * 2);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (moneda == 0) ++cares;<br>
+          &nbsp;&nbsp;&nbsp; else ++creus;<br>
+          }<br>
+          <br>
+          System.out.println("Cares: " + cares);<br>
+          System.out.println("Creus: " + creus);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int cara2 = 0;<br>
+          int creu2 = 0;<br>
+          int caraCreu = 0;<br>
+          int moneda1, moneda2;<br>
+          <br>
+          for (int i = 0; i &lt; 1000000; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; moneda1 = (int)(Math.random() * 2);<br>
+          &nbsp;&nbsp;&nbsp; moneda2 = (int)(Math.random() * 2);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (moneda1 == 0 &amp;&amp; moneda2 == 0) ++cara2;<br>
+          &nbsp;&nbsp;&nbsp; else if (moneda1 == 1 &amp;&amp; moneda2 == 1) ++creu2;<br>
+          &nbsp;&nbsp;&nbsp; else ++caraCreu;<br>
+          }<br>
+          <br>
+          System.out.printf("Cares: %.2f %%\n", ((float)cara2 / 100000));<br>
+          System.out.printf("Creus: %.2f %%\n", ((float)creu2 / 100000));<br>
+          System.out.printf("Cara i Creu: %.2f %%\n", ((float)caraCreu / 100000));</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0; // Possibles resultats<br>
+          int dau;<br>
+          <br>
+          for (int i = 0; i &lt; 1000000; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; dau = (int)(Math.random() * 6);<br>
+          &nbsp;&nbsp;&nbsp; switch(dau) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 0: ++r1; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 1: ++r2; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 2: ++r3; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 3: ++r4; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 4: ++r5; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 5: ++r6; break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          System.out.printf("%.2f %%\n", (float)r1 / 10000);<br>
+          System.out.printf("%.2f %%\n", (float)r2 / 10000);<br>
+          System.out.printf("%.2f %%\n", (float)r3 / 10000);<br>
+          System.out.printf("%.2f %%\n", (float)r4 / 10000);<br>
+          System.out.printf("%.2f %%\n", (float)r5 / 10000);<br>
+          System.out.printf("%.2f %%\n", (float)r6 / 10000);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int n = 1234567890;<br>
+          <br>
+          System.out.print("L'invers de " + n + " és ");<br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(n % 10);<br>
+          &nbsp;&nbsp;&nbsp; n /= 10;<br>
+          } while(n &gt; 0);<br>
+          System.out.println();<br>
+          <br>
+          // <strong>Opcional</strong><br>
+          String r = "";<br>
+          n = 1234567890;<br>
+          System.out.print("L'invers de " + n + " és ");<br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; r += (n % 10);<br>
+          &nbsp;&nbsp;&nbsp; n /= 10;<br>
+          } while(n &gt; 0);<br>
+          n = Integer.parseInt(r);<br>
+          System.out.println(n);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int n = 1234567890;<br>
+          String resultat = "";<br>
+          <br>
+          System.out.print("Els dígits de " + n + " són ");<br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; resultat = (n % 10) + " " + resultat;<br>
+          &nbsp;&nbsp;&nbsp; n /= 10;<br>
+          } while(n &gt; 0);<br>
+          System.out.println(resultat);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int n = 123456;<br>
+          String s = "" + n;<br>
+          int j = s.length();<br>
+          char d = ' ';<br>
+          <br>
+          for (int i = 0; i &lt; s.length(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp; --j;<br>
+          &nbsp;&nbsp;&nbsp; d = s.charAt(j);<br>
+          &nbsp;&nbsp;&nbsp; switch(i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 0: System.out.println("Unitats de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 1: System.out.println("Desenes de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 2: System.out.println("Centenes de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 3: System.out.println("Milers de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 4: System.out.println("Unitats de miler de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 5: System.out.println("Centenes de miler de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String s = "-123.456";<br>
+          boolean esNegatiu = false;<br>
+          boolean esReal = false;<br>
+          boolean esZero = false;<br>
+          char c;<br>
+          int i = 0;<br>
+          int ndx = -1;<br>
+          int punts = 0;<br>
+          int l = s.length();<br>
+          <br>
+          // Comprovar si té signe, i si és negatiu<br>
+          c = s.charAt(i);<br>
+          if (c == '-') {<br>
+          &nbsp;&nbsp;&nbsp; esNegatiu = true;<br>
+          &nbsp;&nbsp;&nbsp; ++i;<br>
+          } else if(c == '+') {<br>
+          &nbsp;&nbsp;&nbsp; ++i;<br>
+          }<br>
+          <br>
+          // Comprovar si té algun caràcter que no sigui 0-9 i que no tingui més d'un punt<br>
+          // També comprova si és real (si té punt i algun dels dígits no és 0)<br>
+          for ( ; i &lt; l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; c = s.charAt(i);<br>
+          &nbsp;&nbsp;&nbsp; if (c == '.') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ndx = i;&nbsp;&nbsp;&nbsp; // Guarda la posició del punt<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++punts;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (punts &gt; 1) return;<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (c &lt; '0' || c &gt; '9') return;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (c != '0' &amp;&amp; ndx &gt;= 0) esReal = true;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Si no és real, comprova si tot a l'esquerra del punt són 0s<br>
+          if (!esReal) {<br>
+          &nbsp;&nbsp;&nbsp; esZero = true;<br>
+          &nbsp;&nbsp;&nbsp; if (ndx &gt;= 0) i = ndx;<br>
+          &nbsp;&nbsp;&nbsp; else i = l;<br>
+          &nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --i;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = s.charAt(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (c != '0' &amp;&amp; c != '+' &amp;&amp; c != '-') esZero = false;<br>
+          &nbsp;&nbsp;&nbsp; } while (i &gt; 0);<br>
+          }<br>
+          <br>
+          // Separar i mostrar part entera i decimals<br>
+          System.out.print("Part entera: ");<br>
+          if (!esReal) ndx = l;<br>
+          for (i = 0; i &lt; ndx; ++i) System.out.print(s.charAt(i));<br>
+          System.out.println();<br>
+          if (esReal) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Part decimal: ");<br>
+          &nbsp;&nbsp;&nbsp; for (i = ndx + 1; i &lt; l; ++i) System.out.print(s.charAt(i));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          <br>
+          System.out.println(s + " és un número " + (esReal ? "real" : "enter"));<br>
+          if (esZero) System.out.println(s + " té el valor 0");<br>
+          else System.out.println(s + " és " + (esNegatiu ? "negatiu" : "positiu"));</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int n;<br>
+          for (int i = 1; i &lt;= 9; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; n = (i*100 + i*10 + i) / (i + i + i);<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Dígit " + i +": " + n);<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

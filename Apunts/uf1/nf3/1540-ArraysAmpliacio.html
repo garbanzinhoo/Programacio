@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Arrays bidimensionals">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Arrays bidimensionals</header>
+    <section>
+      <h2><em>Arrays</em> bidimensionals</h2>
+      <p>Podem imaginar una <em>array</em> bidimensional com una taula de F x C caselles (files x columnes).</p>
+      <h4>Definir i inicialitzar <em>arrays</em> bidimensionals<br>
+      </h4>
+      <p class="p_codi">// Inicialitzar amb valors coneguts<br>
+        int[][] a = {<br>
+        &nbsp; {00, 01, 02, 03},<br>
+        &nbsp; {10, 11, 12, 13},<br>
+        &nbsp; {20, 21, 22, 23}<br>
+        };<br>
+        <br>
+        // Inicialitzar amb valors per defecte<br>
+        int[][] b = new int[3][4];</p>
+      <p class="p_important">El nombre de files es pot obtenir amb la sentència <span class="c_comanda">int files = array.length;</span><br>
+        El nombre de columnes es pot obtenir amb la sentència <span class="c_comanda">int columnes = array[0].length;</span></p>
+      <h4>Modificar o obtenir valors individuals</h4>
+      <p class="p_codi">// Modificar la casella de la fila 1, columna 2<br>
+        a[1][2] = 333;<br>
+        <br>
+        // Obtenir el valor de la casella de la fila 1, columna 2<br>
+        int v = a[1][2];</p>
+      <h4>Modificar o obtenir tots els valors de l'<em>array</em></h4>
+      <p>Per inicialitzar proceduralment un array bidimensional o per recórrer tots els seus elements s'han d'utilitzar bucles niuats:</p>
+      <p class="p_codi">final int F = 3;&nbsp;&nbsp;&nbsp; // Nombre de files<br>
+        final int C = 4;&nbsp;&nbsp;&nbsp; // Nombre de columnes<br>
+        int[][] a = new int[F][C];<br>
+        <br>
+        // Inicialitzar totes les cel·les<br>
+        for (int i = 0; i &lt; F; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; C; ++j) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a[i][j] = i * j;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+        <br>
+        // Mostrar el valor de totes les cel·les<br>
+        for (int i = 0; i &lt; F; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; C; ++j) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(a[i][j]);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; System.out.println();<br>
+        }<br>
+      </p>
+      <div class="p_important">
+        <p>Els algorismes anteriors recorren la taula igual que llegim un text: d'esquerra a dreta i de dalt a baix.<br>
+          Si es vol llegir de dalt a baix i d'esquerra a dreta només cal canviar l'ordre dels bucles:</p>
+        <p class="p_codi">for (int j = 0; j &lt; C; ++j) {<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; F; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(a[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }</p>
+      </div>
+      <h2><em>Arrays</em> de més de dues dimensions<br>
+      </h2>
+      <p>De forma similar, es poden tenir arrays de 3, 4... N dimensions.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

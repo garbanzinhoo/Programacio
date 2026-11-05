@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Arxius orientats a caràcters">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Arxius orientats a caràcters</header>
+    <section>
+      <h2>Arxius orientats a caràcters</h2>
+      <p>La informació que contenen aquest tipus d'arxius està en format text.</p>
+      <p>Exemples d'aquests tipus de fitxers:</p>
+      <ul>
+        <li>Arxius de text: <strong>.txt</strong> generats amb un editor de text pla (Bloc de notes, gEdit...).</li>
+        <li>Arxius de codi: <strong>.java</strong> (llenguatge Java), <strong>.py</strong> (llenguatge Python), <strong>.c</strong>, <strong>.php</strong>, <strong>.js</strong>.</li>
+        <li>Arxius per pàgines Web: <strong>.html</strong>, <strong>.css</strong>.</li>
+        <li>Arxius de dades: <strong>.csv</strong> (dades d'un full de càlcul), <strong>.dwg</strong> (dibuix tècnic).</li>
+        <li>Arxius de configuració: <strong>.sys</strong>, <strong>.cfg</strong>.</li>
+      </ul>
+      <h3>Llegir un arxiu de text</h3>
+      <p>Un arxiu de text es llegeix de forma molt similar a com es llegeixen les dades que introdueix un usuari amb el teclat: utilitzant un objecte de tipus <strong>Scanner</strong> i les seves funcions.</p>
+      <p>Però en lloc de llegir les dades de <span class="c_configura">System.in</span>, s'han d'agafar d'un arxiu identificat amb un objecte <strong>File</strong>:</p>
+      <p class="p_codi">try {<br>
+        &nbsp;&nbsp;&nbsp; <strong>File f = new File("Proves/arxiu1.txt");</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>Scanner reader = new Scanner(f);</strong><br>
+        &nbsp;&nbsp;&nbsp; String s;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; while (reader.hasNext()) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = reader.next();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(s);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>reader.close();</strong><br>
+        } catch (Exception e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <p class="p_important">És recomanable comprovar si existeix la ruta abans de crear l'objecte <strong>Scanner</strong>.<br>
+        Un cop s'ha llegit un tros de l'arxiu no es pot tornar enrere: s'ha de tancar i obrir per tornar a començar.<br>
+        <strong>S'ha de tancar l'arxiu quan s'acabin les operacions de lectura!</strong></p>
+      <h4>Determinar quantes dades s'han de llegir</h4>
+      <p>Normalment es poden llegir línies senceres (<span class="c_comanda">nextLine()</span>) o elements separats per espais, tabuladors o salts de línia (<span class="c_comanda">next()</span>, <span class="c_comanda">nextInt()</span>, <span class="c_comanda">nextFloat()</span>...).</p>
+      <p>En qualsevol cas, es poden utilitzar les següents tècniques:</p>
+      <ul>
+        <li>Si es coneix el nombre de dades a llegir, es poden llegir una a una o utilitzar un bucle.</li>
+        <li>Posar el nombre d'elements que hi ha al principi de l'arxiu.</li>
+        <li>Posar un valor especial com a l'últim element de l'arxiu.</li>
+        <li>Llegir fins que no quedin més elements (es pot comprovar amb <span class="c_comanda">hasNext()</span>).<br>
+          Sempre s'ha de comprovar que no queden més dades per evitar una excepció.</li>
+      </ul>
+      <h4>Processar les dades</h4>
+      <p>Bàsicament hi ha dues estratègies:</p>
+      <ul>
+        <li>Tractar les dades a mida que es van llegint.</li>
+        <li>Emmagatzemar-les (per exemple, en un <em>array</em>) i processar-les després.<br>
+          Cal vigilar si la quantitat de dades és molt gran.</li>
+      </ul>
+      <h3>Escriure en un arxiu de text</h3>
+      <p>També es pot fer de forma similar a com s'escriu en pantalla: utilitzant un objecte de tipus <strong>PrintStream</strong> i les seves funcions.</p>
+      <p>Peró en lloc d'escriure les dades en <span class="c_configura">System.out</span>, s'han d'enviar a un objecte <strong>File</strong>:</p>
+      <p class="p_codi">try {<br>
+        &nbsp;&nbsp;&nbsp; <strong>File f = new File("Proves/arxiu2.txt");</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>PrintStream writer = new PrintStream(f);</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp; writer.print(0);<br>
+        &nbsp;&nbsp;&nbsp; for (int i = 1; i &lt; 10; i++) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(" " + i);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>writer.close();</strong><br>
+        } catch (Exception e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <p class="p_important">És recomanable comprovar si existeix la carpeta pare de l'arxiu abans de crear l'objecte <strong>PrintStream</strong>.<br>
+        Si l'arxiu no existeix, es crea. Si existeix, s'esborra el seu contingut (no es pot afegir)!<br>
+        Un cop s'ha escrit un tros, no es pot tornar enrere per canviar les dades anteriors.<br>
+        <strong>S'ha de tancar l'arxiu quan s'acabin les operacions d'escriptura!</strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

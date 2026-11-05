@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">double n1, n2;<br>
+          char op;<br>
+          <br>
+          // Introduir operació: valor1 operació valor2<br>
+          System.out.print("Escriu la operació que vols fer (Ex: 2 + 2): ");<br>
+          n1 = scan.nextDouble();<br>
+          op = scan.next().charAt(0);<br>
+          n2 = scan.nextDouble();<br>
+          scan.nextLine();<br>
+          <br>
+          // Calcular i mostrar resultat<br>
+          switch (op) {<br>
+          &nbsp;&nbsp;&nbsp; case '+':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Resultat: " + (n1 + n2));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case '-':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Resultat: " + (n1 - n2));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case '*':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Resultat: " + (n1 * n2));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case '/':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Resultat: " + (n1 / n2));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("No reconec l'operació " + op);<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String mes;<br>
+          int any;<br>
+          <br>
+          // Introduir nom del mes i convertir a majúscules<br>
+          System.out.print("Introdueix el nom d'un mes: ");<br>
+          mes = scan.nextLine();<br>
+          mes = mes.toUpperCase();<br>
+          <br>
+          // Mostrar dies del mes (si és febrer, preguntar any)<br>
+          switch (mes) {<br>
+          &nbsp;&nbsp;&nbsp; case "GENER":<br>
+          &nbsp;&nbsp;&nbsp; case "MARÇ":<br>
+          &nbsp;&nbsp;&nbsp; case "MAIG":<br>
+          &nbsp;&nbsp;&nbsp; case "JULIOL":<br>
+          &nbsp;&nbsp;&nbsp; case "AGOST":<br>
+          &nbsp;&nbsp;&nbsp; case "OCTUBRE":<br>
+          &nbsp;&nbsp;&nbsp; case "DESEMBRE":<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Mesos de 31 dies<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nombre de dies: 31");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; case "ABRIL":<br>
+          &nbsp;&nbsp;&nbsp; case "JUNY":<br>
+          &nbsp;&nbsp;&nbsp; case "SETEMBRE":<br>
+          &nbsp;&nbsp;&nbsp; case "NOVEMBRE":<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Mesos de 30 dies<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nombre de dies: 30");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; case "FEBRER":<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Preguntar any<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Febrer pot tenir 28 o 29 dies depenent de l'any");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("Per a quin any ho vols saber? ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Calcular si és any de traspàs<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; any = Integer.parseInt(scan.nextLine());<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Mostrar 28 o 29 dies<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (any % 400 == 0 || (any % 4 == 0 &amp;&amp; any % 100 != 0))<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nombre de dies: 29");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nombre de dies: 28");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Error sino reconeix el nom<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("No reconec el mes " + mes);<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">char nota;<br>
+          <br>
+          // Introduir qualificació i convertir a majúscula<br>
+          System.out.print("Escriu la nota (A, B, C, D): ");<br>
+          nota = scan.nextLine().charAt(0);<br>
+          nota = Character.toUpperCase(nota);<br>
+          <br>
+          // Seleccionar missatge en funció de la qualificació<br>
+          switch (nota) {<br>
+          &nbsp;&nbsp;&nbsp; case 'A':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nota: Excel·lent (9-10)");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'B':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nota: Notable (7-8)");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'C':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nota: Aprovat (5-6)");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'D':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nota: Suspès (1-4)");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("No reconec la nota " + nota);<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int nota;<br>
+          <br>
+          // Introduir la nota<br>
+          System.out.print("Escriu la nota (1 a 10): ");<br>
+          nota = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          // Mostrar lletra equivalent o error<br>
+          switch (nota) {<br>
+          &nbsp;&nbsp;&nbsp; case 9:<br>
+          &nbsp;&nbsp;&nbsp; case 10:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nota: A");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 7:<br>
+          &nbsp;&nbsp;&nbsp; case 8:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nota: B");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 5:<br>
+          &nbsp;&nbsp;&nbsp; case 6:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nota: C");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 1:<br>
+          &nbsp;&nbsp;&nbsp; case 2:<br>
+          &nbsp;&nbsp;&nbsp; case 3:<br>
+          &nbsp;&nbsp;&nbsp; case 4:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nota: D");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (nota &lt; 1) System.out.println("La nota no pot ser inferior a 1");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (nota &gt; 10) System.out.println("La nota no pot ser superior a 10");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int temperatura;<br>
+          String tos;<br>
+          int presio;<br>
+          char categoria;<br>
+          <br>
+          // Introducció de dades en una línia<br>
+          System.out.print("Introdueix la temperatura (25-45),\n" +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "el tipus de tos (No, Seca o Expectorant)\n" +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "i la presió (80-180): ");<br>
+          temperatura = scan.nextInt();<br>
+          tos = scan.next();<br>
+          presio = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          // Verificació de dades<br>
+          if (temperatura &lt; 25 || temperatura &gt; 45) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Temperatura incorrecta: " + temperatura);<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("La temperatura ha d'estar entre 25 i 45");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          tos = tos.toUpperCase();<br>
+          //if (!(tos.equals("NO") || tos.equals("SECA") || tos.equals("EXPECTORANT"))) {<br>
+          if (!tos.equals("NO") &amp;&amp; !tos.equals("SECA") &amp;&amp; !tos.equals("EXPECTORANT")) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Tipus de tos incorrecte: " + tos);<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("El tipus de tos pot ser No, Seca o Expectorant");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          if (presio &lt; 80 || presio &gt; 180) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Presio incorrecta: " + presio);<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("La presió ha d'estar entre 80 i 180");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          // Assignar categoria<br>
+          if (temperatura &lt; 32 || temperatura &gt; 42 || presio &lt; 100) {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'M';<br>
+          } else if (temperatura &gt;= 35 &amp;&amp; temperatura &lt;= 38 &amp;&amp;<br>
+          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tos.equals("NO") &amp;&amp; presio &gt;= 120 &amp;&amp; presio &lt;= 140) {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'E';<br>
+          } else if (temperatura &gt; 38 &amp;&amp; tos.equals("EXPECTORANT")) {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'D';<br>
+          } else if (temperatura &gt; 38 &amp;&amp; tos.equals("SECA")) {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'C';<br>
+          } else if (temperatura &gt;= 35 &amp;&amp; temperatura &lt;= 38 &amp;&amp;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; tos.equals("NO") &amp;&amp; (presio &lt; 120 || presio &gt; 140)) {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'B';<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'A';<br>
+          }<br>
+          <br>
+          // Acció que cal prendre<br>
+          switch (categoria) {<br>
+          &nbsp;&nbsp;&nbsp; case 'M':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("No hi ha res a fer.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // NO POSAR break; !!!<br>
+          &nbsp;&nbsp;&nbsp; case 'E':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Que esperi sentat... o estirat.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'D':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("L'ha de visitar el neumòleg d'urgències.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'C':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Envia'l a la planta COVID.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'B':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Ràpid! Que vingui un cardiòleg!");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'A':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Fes-lo esperar una mica i li passes al Dr House, el de 'casos especials'.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;&nbsp; // No imprescindible però convenient<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&nbsp; per si més endavant s'afegeixen casos o default<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// Acció que cal prendre (amb IF)<br>
+          if (categoria == 'M' || categoria == 'E') {<br>
+          &nbsp;&nbsp;&nbsp; if (categoria == 'M') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("No hi ha res a fer.");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Que esperi sentat... o estirat.");<br>
+          } else if (categoria == 'D') {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("L'ha de visitar el neumòleg d'urgències.");<br>
+          } else if (categoria == 'C') {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Envia'l a la planta COVID.");<br>
+          } else if (categoria == 'B') {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Ràpid! Que vingui un cardiòleg!");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Fes-lo esperar una mica i li passes al Dr House, el de 'casos especials'.");<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

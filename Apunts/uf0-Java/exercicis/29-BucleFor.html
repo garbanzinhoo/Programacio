@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Bucle <em>For</em></h1>
+      <div class="enun">
+        <h3>Múltiples de 5 entre 25 i 100</h3>
+        <p>Utilitza un bucle <em>for</em> per generar els múltiples de 5 entre 25 i 100.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100</p>
+      </div>
+      <div class="enun">
+        <h3>Múltiples de 2, 3 i 5</h3>
+        <p>Utilitza un bucle for per trobar els números que son múltiples de 2, de 3 o de 5 entre 1 i 100.<br>
+          Per cada resultat, ha d'indicar de quin(s) número(s) és multiple.</p>
+        <p>Repeteix el mateix però per trobar els números que siguin múltiples de 2, de 3 i de 5 a la vegada.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">2 és múltiple de 2<br>
+          3 és múltiple de 3<br>
+          4 és múltiple de 2<br>
+          5 és múltiple de 5<br>
+          6 és múltiple de 2<br>
+          6 és múltiple de 3<br>
+          8 és múltiple de 2<br>
+          9 és múltiple de 3</p>
+        <p class="p_consola">30 és múltiple de 2, 3 i 5<br>
+          60 és múltiple de 2, 3 i 5<br>
+          90 és múltiple de 2, 3 i 5</p>
+      </div>
+      <div class="enun">
+        <h3>Compte enrere</h3>
+        <p>Utilitza un bucle for per generar un compte enrere començant en 10 i acabant en 0.</p>
+        <p>Per fer que el programa esperi 1 segon entre cada iteració, pots utilitzar la comanda <span class="c_comanda">Thread.sleep(1000)</span>.</p>
+        <p>Per poder utilitzar l'anterior comanda sense haver de gestionar possibles excepcions cal afegir <span class="c_comanda">throws Exception</span> al final de la definició de la funció <span class="c_comanda">main()</span>:</p>
+        <p class="p_codi">public static void main(String[] args) <strong>throws Exception</strong> {</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p>Cada número ha de trigar un segon en aparèixer.</p>
+        <p class="p_consola">10 9 8 7 6 5 4 3 2 1 0</p>
+      </div>
+      <div class="enun">
+        <h3>Taula de multiplicar</h3>
+        <p>Fes un programa que generi la taula de multiplicar del número que digui l'usuari.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix un número enter positiu: <strong>4</strong><br>
+          4 x&nbsp; 1 =&nbsp;&nbsp; 4<br>
+          4 x&nbsp; 2 =&nbsp;&nbsp; 8<br>
+          4 x&nbsp; 3 =&nbsp; 12<br>
+          4 x&nbsp; 4 =&nbsp; 16<br>
+          4 x&nbsp; 5 =&nbsp; 20<br>
+          4 x&nbsp; 6 =&nbsp; 24<br>
+          4 x&nbsp; 7 =&nbsp; 28<br>
+          4 x&nbsp; 8 =&nbsp; 32<br>
+          4 x&nbsp; 9 =&nbsp; 36<br>
+          4 x 10 =&nbsp; 40</p>
+      </div>
+      <div class="enun">
+        <h3>Millorar el joc d'endevinar números</h3>
+        <p>Millora el joc d'endevinar números amb les següents opcions:</p>
+        <ul>
+          <li>El programa ha de preguntar entre quins números pot estar el número a encertar.</li>
+          <li>També ha de preguntar el màxim d'intents que pot fer l'usuari.</li>
+          <li>Quan l'encerti o s'acabin els intents, ha de preguntar si ho vol tornar a intentar.</li>
+        </ul>
+        <p>Utilitza el bucle <em>for</em> per limitar el nombre d'intents.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Entre quins números he de pensar? <strong>1 100</strong><br>
+          En quants intents ho vols fer? <strong>4</strong><br>
+          Introdueix un número entre 1 i 100: <strong>30</strong><br>
+          És més petit<br>
+          Introdueix un número entre 1 i 100: <strong>15</strong><br>
+          És més petit<br>
+          Introdueix un número entre 1 i 100: <strong>7</strong><br>
+          És més gran<br>
+          Introdueix un número entre 1 i 100: <strong>11</strong><br>
+          Has encertat en 4 intents</p>
+        <p class="p_consola">Entre quins números he de pensar? <strong>1 100</strong><br>
+          En quants intents ho vols fer? <strong>4</strong><br>
+          Introdueix un número entre 1 i 100: <strong>32</strong><br>
+          És més gran<br>
+          Introdueix un número entre 1 i 100: <strong>64</strong><br>
+          És més petit<br>
+          Introdueix un número entre 1 i 100: <strong>48</strong><br>
+          És més gran<br>
+          Introdueix un número entre 1 i 100: <strong>56</strong><br>
+          És més gran<br>
+          Se t'han acabat els intents<br>
+          Era el 59</p>
+      </div>
+      <div class="enun">
+        <h3>Línies amb asteriscos</h3>
+        <p>Fes un programa que, introduïnt un número N entre entre 1 i 80, escrigui una línia amb N asteriscos.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Quants asteriscos vols? <strong>50</strong><br>
+          **************************************************</p>
+      </div>
+      <div class="enun">
+        <h3>Línies amb asteriscos (2)</h3>
+        <p>Fes un programa com l'anterior però que escrigui una línia amb 1 asterisc, una amb 2 asteriscos... fins arribar a una línia amb N asteriscos.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Quants asteriscos vols? <strong>5</strong><br>
+          *<br>
+          **<br>
+          ***<br>
+          ****<br>
+          *****</p>
+      </div>
+      <div class="enun">
+        <h3>Coordenades gràfiques</h3>
+        <p>Calcula les coordenades entre <strong>-5</strong> i <strong>+5</strong> de la gràfica de la funció <strong>Y = ((X - 2 ) / 5)<sup>2</sup> + 4</strong></p>
+        <p> Els resultats s'han de mostrar amb un decimal i separats amb el caràcter <span class="c_comanda">|</span>:</p>
+        <p class="p_consola">(-5,0|6,0) (-4,0|5,4) (-3,0|5,0) (-2,0|4,6) (-1,0|4,4) (0,0|4,2) (1,0|4,0) (2,0|4,0) (3,0|4,0) (4,0|4,2) (5,0|4,4)</p>
+        <p>Modifica el programa perquè generi la coordenada horitzontal en increments de <strong>0,5</strong>:</p>
+        <p class="p_consola">(-5,0|6,0) (-4,5|5,7) (-4,0|5,4) (-3,5|5,2) (-3,0|5,0) (-2,5|4,8) (-2,0|4,6) (-1,5|4,5) (-1,0|4,4) (-0,5|4,3) (0,0|4,2) (0,5|4,1) (1,0|4,0) (1,5|4,0) (2,0|4,0) (2,5|4,0) (3,0|4,0) (3,5|4,1) (4,0|4,2) (4,5|4,3) (5,0|4,4)</p>
+      </div>
+      <div class="enun">
+        <h3>Gràfics de barres</h3>
+        <p>Utilitza bucles for per dibuixar amb diferents símbols un gràfic de barres amb 3 valors.</p>
+        <p>El gràfic s'ha de dibuixar en horitzontal i les barres han de tenir amplada 2.</p>
+        <p>Opcional: intenta fer el gràfic en vertical i amb una amplada de 5 per cada barra.<br>
+          Primer pots provar a fer-ho invertit (les barres cap avall) i després amb les barres cap amunt.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Valors: 8, 12 i 5<br>
+          ########<br>
+          ########<br>
+          OOOOOOOOOOOO<br>
+          OOOOOOOOOOOO<br>
+          XXXXX<br>
+          XXXXX</p>
+        <p class="p_consola">Valors: 8, 12 i 5<br>
+          ##### OOOOO XXXXX <br>
+          ##### OOOOO XXXXX <br>
+          ##### OOOOO XXXXX <br>
+          ##### OOOOO XXXXX <br>
+          ##### OOOOO XXXXX <br>
+          ##### OOOOO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+          ##### OOOOO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+          ##### OOOOO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OOOOO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OOOOO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OOOOO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OOOOO</p>
+        <p class="p_consola">Valors: 8, 12 i 5<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OOOOO&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <br>
+          &nbsp;&nbsp; &nbsp;&nbsp; OOOOO&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <br>
+          &nbsp; &nbsp; &nbsp; OOOOO&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <br>
+          &nbsp;&nbsp; &nbsp;&nbsp; OOOOO&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <br>
+          ##### OOOOO&nbsp;&nbsp; &nbsp; &nbsp; <br>
+          ##### OOOOO&nbsp;&nbsp; &nbsp; &nbsp; <br>
+          ##### OOOOO&nbsp;&nbsp; &nbsp; &nbsp; <br>
+          ##### OOOOO XXXXX <br>
+          ##### OOOOO XXXXX <br>
+          ##### OOOOO XXXXX <br>
+          ##### OOOOO XXXXX <br>
+          ##### OOOOO XXXXX</p>
+      </div>
+      <div class="enun">
+        <h3>Taules de multiplicar de l'1 al 10</h3>
+        <p>Utilitza bucles <em>for</em> niuats per mostrar les taules de multiplicar en el següent format:</p>
+        <p class="p_consola">&nbsp;1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5&nbsp;&nbsp; 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10<br>
+          &nbsp;2&nbsp;&nbsp; 4&nbsp;&nbsp; 6&nbsp;&nbsp; 8&nbsp; 10&nbsp; 12&nbsp; 14&nbsp; 16&nbsp; 18&nbsp; 20<br>
+          &nbsp;3&nbsp;&nbsp; 6&nbsp;&nbsp; 9&nbsp; 12&nbsp; 15&nbsp; 18&nbsp; 21&nbsp; 24&nbsp; 27&nbsp; 30<br>
+          &nbsp;4&nbsp;&nbsp; 8&nbsp; 12&nbsp; 16&nbsp; 20&nbsp; 24&nbsp; 28&nbsp; 32&nbsp; 36&nbsp; 40<br>
+          &nbsp;5&nbsp; 10&nbsp; 15&nbsp; 20&nbsp; 25&nbsp; 30&nbsp; 35&nbsp; 40&nbsp; 45&nbsp; 50<br>
+          &nbsp;6&nbsp; 12&nbsp; 18&nbsp; 24&nbsp; 30&nbsp; 36&nbsp; 42&nbsp; 48&nbsp; 54&nbsp; 60<br>
+          &nbsp;7&nbsp; 14&nbsp; 21&nbsp; 28&nbsp; 35&nbsp; 42&nbsp; 49&nbsp; 56&nbsp; 63&nbsp; 70<br>
+          &nbsp;8&nbsp; 16&nbsp; 24&nbsp; 32&nbsp; 40&nbsp; 48&nbsp; 56&nbsp; 64&nbsp; 72&nbsp; 80<br>
+          &nbsp;9&nbsp; 18&nbsp; 27&nbsp; 36&nbsp; 45&nbsp; 54&nbsp; 63&nbsp; 72&nbsp; 81&nbsp; 90<br>
+          10&nbsp; 20&nbsp; 30&nbsp; 40&nbsp; 50&nbsp; 60&nbsp; 70&nbsp; 80&nbsp; 90 100</p>
+      </div>
+      <div class="enun">
+        <h3>Calcular el valor de PI llençant dards a una diana</h3>
+        <p>El conegut matemàtic català Pere Pi ha inventat un nou mètode per calcular el número <strong>PI</strong>: ha agafat una fusta quadrada de 4m<sup>2</sup> (2m x 2m), ha pintat a dins un cercle de radi 1m i ha començat a llençar dards.</p>
+        <p>Si bé amb les mates és prou bo, la seva punteria és bastant aleatòria.<br>
+          Després de llençar 400 dards, només <strong>314</strong> s'han clavat dins de la diana, com es veu a la imatge:</p>
+        <p><img alt="PI" src="imatges/pi.png" style="width:25em;"></p>
+        <p>El problema és que, repetint l'experiment, els valors són similars però no idèntics: 317, 310...</p>
+        <p>Està convençut que llençant molts més dards (40.000 o 4.000.00) podria obtenir un resultat més precís, però no sembla possible fer-ho físicament, així que ha pensat en fer una simulació per ordinador.</p>
+        <p>El programa hauria de fer els següents passos:</p>
+        <ol type="1">
+          <li>Inicialitzar un comptador a 0 per anar comptant els dards que entren dins de la diana.</li>
+          <li>Repetir 400 vegades (pots provar també amb 40.000 i 4.000.000).</li>
+          <ol style="list-style-type:decimal">
+            <li>Generar dos números aleatoris entre <strong>-1</strong> i <strong>+1</strong> (suposem 0.6 i -0.4).</li>
+            <li>Calcular la hipotenusa d'un triangle rectangle que tingui aquests valors com a base i altura (amb els valors anteriors, el resultat seria 0,72111).</li>
+            <li>Si el resultat és inferior o igual a 1, incrementar el comptador.</li>
+          </ol>
+          <li>Mostrar el valor del comptador.</li>
+        </ol>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Resultat amb 4000000 dards: 3141633</p>
+      </div>
+      <div class="enun">
+        <h3>Calcular el valor de PI aproximant l'àrea per quadrats</h3>
+        <p>El problema del mètode anterior és que cada vegada que s'executa el programa pot donar un valor lleugerament diferent, i aixó, als matemàtics, no els agrada gens.</p>
+        <p>Per evitar això, en lloc de números aleatoris, utilitzarem bucles <em>for</em> niuats:</p>
+        <ul>
+          <li>El bucle intern utilitzarà la varable <strong>X</strong> com a variable de control, i la variable <strong>Y</strong> en el bucle extern.</li>
+          <li>Totes dues variables aniran des de <strong>-1</strong> fins a <strong>+1</strong> en increments de <strong>0,1</strong>.</li>
+          <li>Igual que en el cas anterior, es calcularà la hipotenusa a partir d'aquests dos valors i s'incrementarà el comptador si el resultat és inferior o igual a 1.</li>
+        </ul>
+        <p>Per augmentar la precisió, pots provar amb increments de 0,01 i de 0,001.</p>
+        <p>Aquest mètode és similar a dibuixar una graella de 20 x 20 (o de 200 x 200, o de 2.000 x 2000) i comptar quants quadrats estan dins del cercle.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Resultat amb precisió 0,001: 3141529</p>
+      </div>
+    </section>
+  </body>
+</html>

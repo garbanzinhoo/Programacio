@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Excepcions en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Excepcions en Java</header>
+    <section>
+      <h2>Errors i excepcions</h2>
+      <p>Durant l'execució d'un programa es poden produir errors deguts a una mala programació, dades d'entrada incorrectes o, senzillament, a situacions inesperades o impredictibles.</p>
+      <p>Java distingeix entre <strong>errors irrecuperables</strong> (provoquen la finalització bruca del programa) i excepcions.<br>
+        Aquestes últimes sí que es poden preveure, detectar i gestionar per evitar que el programa s'aturi.</p>
+      <p>Quan es produeix una excepció, s'envia un objecte d'alguna classe derivada de <span class="c_comanda">Exception</span>.<br>
+        En Java hi ha dos grans tipus (subclasses) d'excepcions:</p>
+      <ul>
+        <li><span class="c_comanda">RunTimeException</span>: no és obligatori tractar-les (per exemple, <strong>IndexOutOfBoundsException</strong>, <strong>NullPointerException</strong> o <strong>ArithmeticException</strong>).</li>
+        <li>Totes les altres s'han de tractar. Si no es fa, el compilador donarà error i no compilarà el programa.</li>
+      </ul>
+      <h2>Estructura per gestionar les excepcions</h2>
+      <p>Per ajudar-nos en aquesta tasca, Java i molts altres llenguatges proporcionen la següent estructura:</p>
+      <p class="p_codi"> <strong>try</strong> {<br>
+        &nbsp; ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Bloc amb codi que pot generar excepcions<br>
+        } <strong>catch</strong> (exc) {<br>
+        &nbsp; ...&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Bloc amb el codi que tracta l'excepció<br>
+        } <strong>finally</strong> {<br>
+        &nbsp; ...&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Bloc amb codi que s'executarà sempre<br>
+        }</p>
+      <p class="p_important">Pot haver-hi més d'un bloc <span class="c_comanda">catch</span> (un per cada tipus d'excepció que es vulgui tractar).<br>
+        El bloc <span class="c_comanda">finally</span> no és obligatori, però és recomanable per tancar recursos.</p>
+      <ul>
+        <li>Bloc <span class="c_comanda">try</span>: conté el codi que pot provocar excepcions que facin aturar el programa.<br>
+          Si no es produeix cap error, s'ignora el bloc <span class="c_comanda">catch</span>.<br>
+          En el moment que es produeix un error, ignora el codi restant de dins del bloc <span class="c_comanda">try</span>, es passa la informació de l'error a un bloc <span class="c_comanda">catch</span> que pugui tractar l'excepció i executa el seu codi.<br>
+          Finalment, si existeix un bloc <span class="c_comanda">finally</span>, executa el seu codi.</li>
+        <li>Blocs <span class="c_comanda">catch</span>: contenen el codi que s'executarà si es produeix un error dins del bloc <span class="c_comanda">try</span>.<br>
+          Serveixen per tractar l'excepció (intentar solventar el problema evitant que el programa finalitzi degut a l'error).<br>
+          Se li passa un objecte de la classe <span class="c_comanda">Exception</span> o derivada amb informació sobre l'excepció.<br>
+          L'execució continuarà amb el bloc <span class="c_comanda">finally</span> (si existeix).</li>
+        <li>Bloc <span class="c_comanda">finally</span>: conté el codi que s'executarà tant si es produeix un error com si no.<br>
+          <strong>Fins i tot s'executa si en el bloc <span class="c_comanda">try</span> o en el bloc <span class="c_comanda">catch</span> hi ha un <span class="c_comanda">return</span>!!!</strong><br>
+          L'única forma d'evitar que s'executi el bloc <span class="c_comanda">finally</span> és cridar el mètode <span class="c_comanda">System.exit()</span>.<br>
+          La principal utilitat és tancar el programa de la forma més correcta possible en cas que no es pugui solventar l'error.<br>
+          I si no s'ha produït cap error o s'ha pogut solucionar, per realitzar tasques que s'han de realitzar tant si hi ha errors com si no (inicialitzar variables, tancar arxius oberts, alliberar recursos...).<br>
+          També pot servir per saber fins on ha arribat l'execució del bloc <span class="c_comanda">try</span>. Per exemple, si en el <span class="c_comanda">try</span> hi ha un bucle, es pot enviar a la consola el valor de la variable de control en el moment de l'error.<br>
+          Després d'executar el seu codi, si l'excepció ha estat capturada i no es produeix cap error, el programa continua normalment. Si no s'ha capturat l'excepció, aquesta es propaga al mètode superior.</li>
+      </ul>
+      <p></p>
+      <h2>Capturar i gestionar les excepcions</h2>
+      <p>En Java, quan es produeix una excepció dins d'un bloc <span class="c_comanda">try</span>, s'envia un objecte d'alguna classe derivada de <span class="c_comanda">Exception</span>. Aquest objecte és el paràmetre que arriba al bloc <span class="c_comanda">catch</span> encarregat de gestionar l'excepció.</p>
+      <p>Aquests objectes tenen mètodes que poden ser útils per esbrinar el motiu i el lloc on s'ha produït l'excepció:</p>
+      <ul>
+        <li><span class="c_comanda">toString()</span></li>
+        <li><span class="c_comanda">getMessage()</span></li>
+        <li><span class="c_comanda">printStackTrace()</span>: mostra en la terminal d'error informació detallada.</li>
+      </ul>
+      <h2>Delegar la gestió de les excepcions</h2>
+      <p>Si un mètode no vol tractar les excepcions que es poden produir en el seu codi i deixar que les tracti un mètode superior, pot indicar-ho en la seva definició amb la paraula <span class="c_comanda">throws</span> seguida de les excepcions de les quals vol delegar el seu tractament:</p>
+      <p class="p_codi">static void llegirArxiu() <strong>throws FileNotFoundException, IOException</strong> {<br>
+        &nbsp;&nbsp;&nbsp; File f = new File("./arxiu.bin");<br>
+        &nbsp;&nbsp;&nbsp; RandomAccessFile raf = new RandomAccessFile(f, "r");<br>
+        &nbsp;&nbsp;&nbsp; raf.readInt()<br>
+        &nbsp;&nbsp;&nbsp; raf.close();<br>
+        }</p>
+      <p></p>
+      <h2>Llançar una excepció</h2>
+      <p>Es pot fer que el programa, quan detecti un error, llanci una excepció per indicar una situació anòmala.</p>
+      <p>Per llançar una excepció s'utilitza la paraula reservada <span class="c_comanda">throw</span> seguida d'un objecte de tipus <span class="c_comanda">Exception</span> o derivada d'aquesta.<br>
+        Un dels constructors de la classe <span class="c_comanda">Exception</span> i derivades accepta un <em>String</em> com a paràmetre:</p>
+      <p class="p_codi"><strong>throw</strong> new Exception("Error indeterminat");<br>
+        <strong>throw</strong> new IllegalArgumentException("Error en un dels arguments");</p>
+      <p class="p_important">El mètode dins del qual es llança una excepció haurà de tractar-la o delegar el seu tractament.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Estructura de selecció múltiple">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Estructura de selecció múltiple</header>
+    <section>
+      <h2> Estructura de selecció múltiple</h2>
+      <p><img alt="" src="./imatges/Switch.svg" style="width:30em" class="noborder"></p>
+      <p>Aquesta estructura té un funcionament similar a <span class="c_comanda">if ... else if ... else ...</span> però amb algunes diferències importants:</p>
+      <ul>
+        <li>La comparació sempre es fa entre una única variable i diversos valors constants o literals.</li>
+        <li>Només permet comparar si la variable és igual a uns valors determinats.</li>
+      </ul>
+      <p>S'ha d'utilitzar quan se sap que la variable només pot prendre uns quants valors concrets.<br>
+        Aquests valors se'n diuen "casos".</p>
+      <p>L'avantatge respecte <span class="c_comanda">if ... else if ... else ...</span> és que el codi és més simple i entenedor.</p>
+      <p>L'estructura general és:</p>
+      <p class="p_codi"><strong>switch (variable)</strong> {<br>
+        &nbsp; <strong>case valor1:</strong><br>
+        &nbsp;&nbsp;&nbsp; // Sentències que s'executaran si <strong>variable</strong> és igual a <strong>valor1</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>break;</strong><br>
+        &nbsp; <strong>case </strong><strong><strong>valor</strong>2:</strong><br>
+        &nbsp;&nbsp;&nbsp; // Sentències que s'executaran si <strong>variable</strong> és igual a <strong>valor</strong><strong>2</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>break;</strong><br>
+        &nbsp; <strong>default:</strong><br>
+        &nbsp;&nbsp;&nbsp; // Sentències que s'executaran si <strong>variable</strong> no és igual a cap dels valors anteriors (casos)<br>
+        }</p>
+      <p>La variable que es posa dins de <span class="c_comanda">switch()</span> ha de ser de tipus enter, caràcter o text.<br>
+        En cada <span class="c_comanda">case ...:</span> s'ha de posar una constant o literal del mateix tipus que la variable del <span class="c_comanda">switch</span>.</p>
+      <p>La variable del <span class="c_comanda">switch()</span> es compararà amb els diferents casos i executarà el codi del cas que sigui igual.<br>
+        El codi situat en el cas <span class="c_comanda">default:</span> s'executarà si la variable no coïcideix amb cap dels casos anteriors.</p>
+      <p>El cas <span class="c_comanda">default:</span> és opcional, però és recomanable posar-ho per preveure valors inesperats.<br>
+        Si es posa, ha d'anar al final i no pot portar la instrucció <span class="c_comanda">break</span>.<br>
+        Pot servir per notificar un error indicant que el valor introduït no és cap dels casos permesos.</p>
+      <p>La instrucció <span class="c_comanda">break</span> fa que el programa salti al final del <span class="c_comanda">switch()</span>, per això es posa al final de cada cas.<br>
+        Si no es posa, el programa seguirà executant les comandes del següent cas.</p>
+      <p>El codi anterior convertit a <span class="c_comanda">if ... else if ... else ...</span> seria:</p>
+      <p class="p_codi">if (<strong>variable == valor1</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; // Sentències que s'executaran si <strong>variable</strong> és igual a <strong>valor1</strong><br>
+        } else if (<strong>variable == valor2</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; // Sentències que s'executaran si <strong>variable</strong> és igual a <strong>valor2</strong><br>
+        } else {<br>
+        &nbsp;&nbsp;&nbsp; // Sentències que s'executaran si <strong>variable</strong> no és igual a cap dels valors (casos)<br>
+        }</p>
+      <h5>Exemple</h5>
+      <p class="p_codi">switch (<strong>estat</strong>) {<br>
+        &nbsp; case <strong>"on"</strong>:<br>
+        &nbsp;&nbsp;&nbsp; alert("La màquina està engegada");<br>
+        &nbsp;&nbsp;&nbsp; break;<br>
+        &nbsp; case <strong>"off"</strong>:<br>
+        &nbsp;&nbsp;&nbsp; alert("La màquina està aturada");<br>
+        &nbsp;&nbsp;&nbsp; break;<br>
+        &nbsp; default:<br>
+        &nbsp;&nbsp;&nbsp; alert("ERROR: no s'ha pogut determinar l'estat de la màquina");<br>
+        }</p>
+      <p>Una altra forma d'aquesta estructura que ens permet simplificar el codi és la possibilitat d'executar el mateix bloc de codi per més d'un cas:</p>
+      <p class="p_codi">switch (<strong>fruita</strong>) {<br>
+        <strong>&nbsp;&nbsp;&nbsp; case "poma":<br>
+          &nbsp;&nbsp;&nbsp; case "cirera":<br>
+          &nbsp;&nbsp;&nbsp; case "banana":<br>
+        </strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; alert("És una fruita dolça");<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+        <strong>&nbsp;&nbsp;&nbsp; case "llimona":<br>
+          &nbsp;&nbsp;&nbsp; case "pinya":<br>
+        </strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; alert("És una fruita àcida");<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+        <strong></strong>&nbsp;&nbsp;&nbsp; default:<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; alert("No sé quin tipus de fruita és");<br>
+        }</p>
+      <p>El codi equivalen amb <span class="c_comanda">if ... else if ... else ...</span> seria:</p>
+      <p class="p_codi">if (<strong>fruita == "poma" || fruita == "cirera" || fruita == "banana"</strong>)<br>
+        &nbsp;&nbsp;&nbsp; alert("És una fruita dolça");<br>
+        else if (<strong>fruita == "llimona" || fruita == "pinya"</strong>)<br>
+        &nbsp;&nbsp;&nbsp; alert("És una fruita àcida");<br>
+        else<br>
+        &nbsp;&nbsp;&nbsp; alert("No sé quin tipus de fruita és"); </p>
+      <div class="p_important">
+        <p>En general, s'ha de posar la paraula <span class="c_comanda">break</span> al final de cada cas, però hi ha casos en què no.</p>
+        <p>En el següent exemple, si la variable <span class="c_configura">event</span> pren el valor <span class="c_configura">"stop"</span>, executa tant el codi de <span class="c_configura">stop</span> com el de <span class="c_comanda c_configura">pause</span>, però si no es posa el <span class="c_comanda">break</span> del segon cas, també s'executarà el <span class="c_comanda">default</span>:</p>
+        <p class="p_codi">switch (event) {<br>
+          &nbsp; case "stop":<br>
+          &nbsp;&nbsp;&nbsp; principi = true;<br>
+          &nbsp; case "pause":<br>
+          &nbsp;&nbsp;&nbsp; aturat = true;<br>
+          &nbsp;&nbsp;&nbsp; <strong>break</strong>;<br>
+          &nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp; alert("ERROR: la comanda ha de ser 'stop' o 'pause'");<br>
+          }</p>
+        <p>En aquest cas, el codi equivalent amb <span class="c_comanda">if ... else if ... else ...</span> seria:</p>
+        <p class="p_codi">if (event == "stop" || event == "pause") {<br>
+          &nbsp;&nbsp;&nbsp; if (event == "stop") {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; principi = true;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; aturat = true;<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("ERROR: la comanda ha de ser 'stop' o 'pause'");<br>
+          }<br>
+        </p>
+      </div>
+      <ul>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Diàlegs simples">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Diàlegs simples</header>
+    <section>
+      <h2>Diàlegs simples</h2>
+      <p>Els diàlegs són finestres associades a l'aplicació però que apareixen temporalment per mostrar algun missatge o demanar dades a l'usuari.</p>
+      <p>Un diàleg és similar a una finestra però cal tenir en compte algunes diferències importants: </p>
+      <ul>
+        <li>S'utilitzen principalment per mostrar informació a l'usuari o per introduir dades.</li>
+        <li>No tenen els botons de minimitzar, maximitzar.</li>
+        <li>Els diàlegs no tenen un <em>BorderLayout</em> en el panell principal.</li>
+        <li>Normalment van associats a la finestra principal de l'aplicació i no permeten que es treballi en la finestra principal mentre el diàleg està obert (<em>modal dialog</em>).</li>
+      </ul>
+      <p>La llibreria gràfica <strong>Swing</strong> de Java proporciona algunes classes que serveixen per mostrar o demanar informació a l'usuari de forma senzilla.</p>
+      <p>Aquestes classes es poden utilitzar encara que no sigui una aplicació d'escriptori.<br>
+        Naturalment, caldrà que el sistema operatiu on s'executi, tingui entorn gràfic.</p>
+      <h3>JOptionPane</h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JOptionPane.html">JOptionPane ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html">Tutorial JOptionPane</a></p>
+      <p>La classe JOptionPane conté mètodes per mostrar diàlegs senzills per mostrar diferents tipus de missatges i demanar dades a l'usuari.</p>
+      <div class="p_important">
+        <p>Es pot canviar el text dels botons afegint el següent codi al principi del programa:</p>
+        <p class="p_codi">UIManager.put("OptionPane.cancelButtonText", "Cancel·lar");<br>
+          UIManager.put("OptionPane.okButtonText", "Acceptar");<br>
+          UIManager.put("OptionPane.yesButtonText", "Sí");<br>
+          UIManager.put("OptionPane.noButtonText", "No");</p>
+      </div>
+      <h4>showMessageDialog</h4>
+      <p><span class="c_comanda">JOptionPane.showMessageDialog()</span> serveix per mostrar un missatge.</p>
+      <p>Centrarà el diàleg en la finestra indicada en el primer paràmetre. Si es posa <span class="c_comanda">null</span>, el centrarà a la pantalla.<br>
+        Per posar salts de línia en el missatge cal utilitzar <span class="c_comanda">\n</span>.<br>
+        Les icones que es poden posar són:</p>
+      <ul>
+        <li><em>JOptionPane.<strong>PLAIN_MESSAGE</strong></em> (sense icona)</li>
+        <li><em>JOptionPane.<strong>INFORMATION_MESSAGE</strong></em></li>
+        <li><em>JOptionPane.<strong>WARNING_MESSAGE</strong></em></li>
+        <li><em>JOptionPane.<strong>ERROR_MESSAGE</strong></em></li>
+        <li><em>JOptionPane.<strong>QUESTION_MESSAGE</strong></em></li>
+      </ul>
+      <p class="p_codi">JOptionPane.showMessageDialog(<br>
+        &nbsp;&nbsp;&nbsp; null,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Finestra pare<br>
+        &nbsp;&nbsp;&nbsp; "Benvingut !!!",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Missatge<br>
+        &nbsp;&nbsp;&nbsp; "Benvinguda",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Títol de la finestra del diàleg<br>
+        &nbsp;&nbsp;&nbsp; JOptionPane.INFORMATION_MESSAGE&nbsp; // Tipus de missatge (icona informació)<br>
+        );</p>
+      <p><img alt="" src="./imatges/DialegsSimples/DialegMissatge.png" style="width:16em" class="noborder"></p>
+      <h4>showConfirmDialog</h4>
+      <p><span class="c_comanda">JOptionPane.showConfirmDialog()</span> serveix demanar confirmació d'una acció a l'usuari.</p>
+      <p>Té els mateixos paràmetres que l'anterior però afegeix un per triar els botons que apareixeran:</p>
+      <ul>
+        <li><em>JOptionPane.<strong>DEFAULT_OPTION</strong></em> (botó per defecte, normalment OK)</li>
+        <li><em>JOptionPane.<strong>YES_NO_OPTION</strong></em></li>
+        <li><em>JOptionPane.<strong>YES_NO_CANCEL_OPTION</strong></em></li>
+        <li><em>JOptionPane.<strong>OK_CANCEL_OPTION</strong></em></li>
+      </ul>
+      <p>Retorna un valor que indica el botó que s'ha premut (<strong>0</strong> és el primer botó; <strong>-1</strong> cap botó).</p>
+      <ul>
+      </ul>
+      <p class="p_codi">int seleccio = JOptionPane.showConfirmDialog(<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Vols continuar?",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Continuar",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JOptionPane.YES_NO_OPTION,&nbsp;&nbsp;&nbsp; // Botons YES / NO<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JOptionPane.QUESTION_MESSAGE&nbsp; // Tipus de missatge (interrogant)<br>
+        );<br>
+        if (seleccio != 0) return;</p>
+      <p><img alt="" src="./imatges/DialegsSimples/DialegConfirm.png" style="width:16em" class="noborder"></p>
+      <h4>showInputDialog</h4>
+      <p><span class="c_comanda">JOptionPane.showInputDialog()</span> serveix per demanar a l'usuari que escrigui una dada.</p>
+      <p>Té els mateixos paràmetres que <span class="c_comanda">showMessageDialog</span> però mostra dos botons (<strong>OK</strong> i <strong>Cancel</strong>).</p>
+      <p>Si es prem <strong>OK</strong>, retorna el text indtroduït per l'usuari.<br>
+        Si es prem <strong>Cancel</strong> o es tanca la finestra, retorna <span class="c_comanda">null</span>.<br>
+      </p>
+      <p class="p_codi">String nom = JOptionPane.showInputDialog(<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; null,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Com et dius?",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Nom",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JOptionPane.PLAIN_MESSAGE<br>
+        );<br>
+        System.out.println("Nom: " + nom);</p>
+      <p><img alt="" src="./imatges/DialegsSimples/DialegInput.png" style="width:16em" class="noborder"></p>
+      <h3>JFileChooser</h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JFileChooser.html">JFileChooser ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html">Tutorial JFileChooser</a></p>
+      <p class="p_important">En realitat, aquests diàlegs no obren ni guarden cap arxiu, simplement retornen una ruta!</p>
+      <div class="p_important">
+        <p>Es pot canviar el text de les etiquetes i dels botons afegint el següent codi al principi del programa:</p>
+        <p class="p_codi">UIManager.put("FileChooser.fileNameLabelText", "Nom de l'arxiu");<br>
+          UIManager.put("FileChooser.filesOfTypeLabelText", "Tipus d'arxiu");<br>
+          UIManager.put("FileChooser.lookInLabelText", "Directori");<br>
+          UIManager.put("FileChooser.saveInLabelText", "Directori");<br>
+          UIManager.put("FileChooser.openButtonText", "Obrir");<br>
+          UIManager.put("FileChooser.saveButtonText", "Guardar");<br>
+          UIManager.put("FileChooser.cancelButtonText", "Cancel·lar");</p>
+      </div>
+      <p>Per mostrar un diàleg per obrir o guardar arxius, primer cal crear un objecte de la classe <em>JFileChooser</em>.<br>
+        En el paràmetre es pot posar <span class="c_comanda">null</span> o indicar un directori de treball.</p>
+      <p>Després es pot configurar (per exemple, afegint un filtre) i finalment es mostra amb el mètode <span class="c_comanda">showOpenDialog()</span> o <span class="c_comanda">showSaveDialog()</span>.<br>
+        Aquests mètodes retornen el valor <em><span>JFileChooser.<strong>APPROVE_OPTION</strong></span></em> si l'usuari ha premut <em>Open</em> o <em>Save</em>.</p>
+      <p>Per obtenir la ruta cap a l'arxiu, s'utilitza el mètode <span class="c_comanda">getSelectedFile()</span>, que retorna un objecte <em>File</em>.</p>
+      <p class="p_codi">final JFileChooser fc = new JFileChooser(new File("."));&nbsp; // Directori de treball<br>
+        int opcio = fc.showOpenDialog(null);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Mostrar diàleg<br>
+        if (opcio == JFileChooser.APPROVE_OPTION) {<br>
+        &nbsp;&nbsp;&nbsp; File file = fc.getSelectedFile();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Obtenir arxiu seleccionat<br>
+        &nbsp;&nbsp;&nbsp; System.out.println(file.getAbsolutePath());<br>
+        }<br>
+      </p>
+      <p>Es pot afegir un filtre perquè només mostri uns determinats tipus d'arxius:</p>
+      <p class="p_codi">final JFileChooser fc = new JFileChooser(new File("."));<br>
+        <strong>FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG Images", "jpg");<br>
+          fc.setFileFilter(filter);</strong><br>
+        ...</p>
+      <p><img alt="" src="./imatges/DialegsSimples/DialegFile.png" style="width:32em" class="noborder"></p>
+      <h3>JColorChooser</h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JColorChooser.html">JColorChooser ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/colorchooser.html">Tutorial JColorChooser</a></p>
+      <p>Aquest diàleg retorna un objecte de la classe <em>Color</em> si l'usuari ha seleccionat un.<br>
+        En cas contrari, retorna <span class="c_comanda">null</span>.</p>
+      <p>El tercer paràmetre permet que, inicialment, hi hagi un color seleccionat.<br>
+      </p>
+      <p class="p_codi">Color color = JColorChooser.showDialog(null, "Selecciona un color", null);<br>
+        if (color != null) System.out.println(color);<br>
+      </p>
+      <p><img alt="" src="./imatges/DialegsSimples/DialegColor.png" style="width:36em" class="noborder"></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Guardar i recuperar informació">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Guardar i recuperar informació</header>
+    <section>
+      <h2>Arxius de configuració</h2>
+      <p>És habitual utilitzar arxius per guardar configuracions de programes.<br>
+        Aquests arxius consisteixen en un conjunt d'elements format per una clau i un valor en format text.</p>
+      <p>Java proporciona la classe <strong>Properties</strong> per gestionar un conjunt de propietats:</p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html">Properties ref. (Java SE 17)</a></p>
+      <h5>Crear un objecte <em>Properties</em> i gestionar propietats<br>
+      </h5>
+      <p class="p_codi"><strong>Properties config = new Properties();</strong><br>
+        <strong>config.setProperty("clau1", "valor1");</strong><br>
+        config.setProperty("clau2", "valor2");<br>
+        config.setProperty("clau2", "valor modificat de la clau 2");<br>
+        System.out.println("clau1 = " + <strong>config.getProperty("clau1")</strong>);<br>
+        System.out.println("clau2 = " + config.getProperty("clau2"));<br>
+      </p>
+      <h5>Guardar les propietats en un arxiu<br>
+      </h5>
+      <p class="p_codi"><strong>FileOutputStream fos;</strong><br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; <strong>fos = new FileOutputStream("src/uf5/exemples/config/config.cfg");</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>config.store(fos, "Informacio sobre l'arxiu");</strong><br>
+        } catch (FileNotFoundException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        } catch (IOException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <h5>Recuperar les propietats guardades en un arxiu</h5>
+      <p class="p_codi"><strong>FileInputStream fis;</strong><br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; <strong>fis = new FileInputStream("src/uf5/exemples/config/config.cfg");</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>config.load(fis);</strong><br>
+        } catch (FileNotFoundException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        } catch (IOException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <p class="p_important">Les línies en blanc o que comencen amb <span class="c_comanda">#</span>, s'ignoren completament.<br>
+        <strong>Encara que es pugui fer, no és aconsellable editar manualment els arxius de configuració!</strong></p>
+      <h3>Guardar i llegir la configuració en arxius XML</h3>
+      <p>Els següents mètodes serveixen per guardar i recuperar la configuració en format XML:</p>
+      <ul>
+        <li><span class="c_comanda">storeToXML()</span></li>
+        <li><span class="c_comanda">loadFromXML()</span></li>
+      </ul>
+      <h2>Guardar i recuperar dades comprimides</h2>
+      <p>Es fa igual que per guardar o recuperar dades binàries en un arxiu però utilitzant les classes <span class="c_comanda">GZIPOutputStream</span> i <span class="c_comanda">GZIPInputStream</span>.</p>
+      <p class="p_codi">FileInputStream fis = null;<br>
+        FileOutputStream fos = null;<br>
+        GZIPInputStream gzipin;<br>
+        GZIPOutputStream gzipout;<br>
+        <br>
+        <strong>// Comprimir</strong><br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; fis = new FileInputStream("src/uf5/exemples/zip/arxiu.xml");<br>
+        &nbsp;&nbsp;&nbsp; fos = new FileOutputStream("src/uf5/exemples/zip/arxiu.xml.gz");<br>
+        &nbsp;&nbsp;&nbsp; gzipout = new GZIPOutputStream(fos);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; byte[] dades = new byte[1024];<br>
+        &nbsp;&nbsp;&nbsp; int llegits = 0;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Llegir de l'arxiu comprimit i guardar descomprimit<br>
+        &nbsp;&nbsp;&nbsp; while ((llegits = fis.read(dades)) != -1) gzipout.write(dades,0,llegits);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; gzipout.close();<br>
+        &nbsp;&nbsp;&nbsp; fis.close();<br>
+        } catch (FileNotFoundException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        } catch (IOException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }<br>
+        <br>
+        <strong>// Descomprimir</strong><br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; fis = new FileInputStream("src/uf5/exemples/zip/arxiu.xml.gz");<br>
+        &nbsp;&nbsp;&nbsp; fos = new FileOutputStream("src/uf5/exemples/zip/arxiu.xml");<br>
+        &nbsp;&nbsp;&nbsp; gzipin = new GZIPInputStream(fis);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; byte[] dades = new byte[1024];<br>
+        &nbsp;&nbsp;&nbsp; int llegits = 0;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Llegir de l'arxiu comprimit i guardar descomprimit<br>
+        &nbsp;&nbsp;&nbsp; while ((llegits = gzipin.read(dades)) != -1) fos.write(dades,0,llegits);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; gzipin.close();<br>
+        &nbsp;&nbsp;&nbsp; fos.close();<br>
+        } catch (FileNotFoundException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        } catch (IOException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <h2>Guardar i recuperar objectes</h2>
+      <p>Una altra forma de guardar informació és enviar els atributs d'un objecte a un arxiu.<br>
+        Per poder-ho fer, cal convertir les dades de l'objecte a una sèrie de bytes (<em>serialitzar</em>).</p>
+      <p>Es fa de forma similar a com s'envia un objecte a través de la xarxa, <em>serialitzant</em> les dades que conté:</p>
+      <ul>
+        <li><strong>Els atributs estàtics no es guarden.</strong></li>
+        <li>Cal que l'objecte i tots els objectes que conté implementin la interfície <span class="c_comanda">Serializable</span>.</li>
+        <li>Crear una ruta (<span class="c_comanda">File</span>) cap a l'arxiu on es vol guardar l'objecte.</li>
+        <li>Crear un objecte de tipus <span class="c_comanda">FileOutputStream</span> amb la ruta cap a l'arxiu.</li>
+        <li>Crear un objecte de tipus <span class="c_comanda">ObjectOutputStream</span> amb l'objecte <span class="c_comanda">FileOutputStream</span>.</li>
+        <li>Escriure l'objecte amb la comanda <span class="c_comanda">writeObject(objecte)</span>.</li>
+      </ul>
+      <p>Per recuperar-lo es fa de forma similar però substituïnt <span class="c_comanda">Output</span> per <span class="c_comanda">Input</span> i <span class="c_comanda">write</span> per <span class="c_comanda">read</span>.<br>
+        <strong> Al llegir l'objecte cal transformar-lo a la classe adequada (s'ha de fer un <em>cast</em>).</strong></p>
+      <h5>Exemple</h5>
+      <p class="p_codi">public class ObjecteSerial <strong>implements Serializable</strong> {<br>
+        &nbsp;&nbsp;&nbsp; String text;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public ObjecteSerial(String t) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text = t;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public String toString() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return text;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) throws IOException {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ObjecteSerial os = new ObjecteSerial("Text de prova");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File f = new File("src/uf5/exemples/serial/objecte.ser");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Guardar objecte</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FileOutputStream fos;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ObjectOutputStream out = null;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fos = new FileOutputStream(f);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out = new ObjectOutputStream(fos);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.writeObject(os);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; out.close();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Recuperar objecte</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FileInputStream fis;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ObjectInputStream in = null;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fis = new FileInputStream(f);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in = new ObjectInputStream(fis);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os = <strong>(ObjecteSerial)</strong>in.readObject();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Mostrar l'objecte</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(os);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (ClassNotFoundException e) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; in.close();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_important">Els atributs estàtics NO se serialitzen, per tant no es guarden.<br>
+        Cal que l'objecte i tots els objectes que conté implementin la interfície <span class="c_comanda">Serializable</span>.<br>
+        Si s'ha guardat més d'un objecte, s'han de recuperar en el mateix ordre.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

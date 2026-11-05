@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let n1, n2;<br>
+          let op;<br>
+          <br>
+          <br>
+          n1 = parseFloat(prompt("Escriu el primer valor").replace(",", "."));<br>
+          n2 = parseFloat(prompt("Escriu el segon valor".replace(",", "."));<br>
+          op = prompt("Escriu la operació que vols fer (+ - * o /)").charAt(0);<br>
+          <br>
+          if (isNaN(n1) || isNaN(n2)) alert("Algun dels valors introduïts no és vàlid");<br>
+          <br>
+          switch (op) {<br>
+          &nbsp;&nbsp;&nbsp; case '+':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Resultat: " + (n1 + n2));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case '-':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Resultat: " + (n1 - n2));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case '*':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Resultat: " + (n1 * n2));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case '/':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Resultat: " + (n1 / n2));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("No reconec l'operació " + op);<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let mes;<br>
+          let any;<br>
+          <br>
+          // Introduir nom del mes, elimiar espais inicials i finals, i convertir a majúscules<br>
+          mes = prompt("Introdueix el nom d'un mes").trim().toUpperCase();<br>
+          <br>
+          // Mostrar dies del mes (si és febrer, preguntar any)<br>
+          switch (mes) {<br>
+          &nbsp;&nbsp;&nbsp; case "GENER":<br>
+          &nbsp;&nbsp;&nbsp; case "MARÇ":<br>
+          &nbsp;&nbsp;&nbsp; case "MAIG":<br>
+          &nbsp;&nbsp;&nbsp; case "JULIOL":<br>
+          &nbsp;&nbsp;&nbsp; case "AGOST":<br>
+          &nbsp;&nbsp;&nbsp; case "OCTUBRE":<br>
+          &nbsp;&nbsp;&nbsp; case "DESEMBRE":<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Mesos de 31 dies<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nombre de dies: 31");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; case "ABRIL":<br>
+          &nbsp;&nbsp;&nbsp; case "JUNY":<br>
+          &nbsp;&nbsp;&nbsp; case "SETEMBRE":<br>
+          &nbsp;&nbsp;&nbsp; case "NOVEMBRE":<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Mesos de 30 dies<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nombre de dies: 30");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; case "FEBRER":<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Preguntar any<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; any = parseInt(prompt("Febrer pot tenir 28 o 29 dies depenent de l'any\nPer a quin any ho vols saber? ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Mostrar 29 o 28 dies en funció de si és any de traspàs o no<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (any % 400 == 0 || (any % 4 == 0 &amp;&amp; any % 100 != 0))<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nombre de dies: 29");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nombre de dies: 28");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Error sino reconeix el nom<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("No reconec el mes " + mes);<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let nota;<br>
+          <br>
+          // Introduir qualificació<br>
+          nota = prompt("Escriu la nota (A, B, C, D)").trim().charAt(0).toUpperCase(nota);<br>
+          <br>
+          // Seleccionar missatge en funció de la qualificació<br>
+          switch (nota) {<br>
+          &nbsp;&nbsp;&nbsp; case 'A':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nota: Excel·lent (9-10)");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'B':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nota: Notable (7-8)");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'C':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nota: Aprovat (5-6)");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'D':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nota: Suspès (1-4)");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("No reconec la nota " + nota);<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let nota;<br>
+          <br>
+          // Introduir la nota<br>
+          nota = parseInt(prompt("Escriu la nota (1 a 10)"));<br>
+          <br>
+          if (isNaN(nota)) alert("La nota introduïda no és un valor numnèric");<br>
+          <br>
+          // Mostrar lletra equivalent o error<br>
+          switch (nota) {<br>
+          &nbsp;&nbsp;&nbsp; case 9:<br>
+          &nbsp;&nbsp;&nbsp; case 10:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nota: A");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 7:<br>
+          &nbsp;&nbsp;&nbsp; case 8:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nota: B");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 5:<br>
+          &nbsp;&nbsp;&nbsp; case 6:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nota: C");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 1:<br>
+          &nbsp;&nbsp;&nbsp; case 2:<br>
+          &nbsp;&nbsp;&nbsp; case 3:<br>
+          &nbsp;&nbsp;&nbsp; case 4:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Nota: D");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (nota &lt; 1) alert("La nota no pot ser inferior a 1");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (nota &gt; 10) alert("La nota no pot ser superior a 10");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let temperatura;<br>
+          let tos;<br>
+          let presio;<br>
+          let categoria;<br>
+          <br>
+          // Introducció de dades<br>
+          temperatura = parseFloat(prompt("Introdueix la temperatura (25-45)").replace(",","."));<br>
+          tos = prompt("Introdueix el tipus de tos (No, Seca o Expectorant)").trim().toUpperCase();<br>
+          presio = parseInt(prompt("Introdueix la presió (80-180)"));<br>
+          <br>
+          if (isNaN(temperatura) || isNaN(presio)) {<br>
+          &nbsp;&nbsp;&nbsp; alert("La temperatura o la presió no són valors numèrics");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          // Verificació de dades<br>
+          if (temperatura &lt; 25 || temperatura &gt; 45) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Temperatura incorrecta: " + temperatura + "\nLa temperatura ha d'estar entre 25 i 45");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          tos = tos.toUpperCase();<br>
+          //if (!(tos == "NO" || tos == "SECA" || tos == "EXPECTORANT")) {<br>
+          if (tos != "NO" &amp;&amp; tos != "SECA" &amp;&amp; tos != "EXPECTORANT") {<br>
+          &nbsp;&nbsp;&nbsp; alert("Tipus de tos incorrecte: " + tos + "\nEl tipus de tos pot ser No, Seca o Expectorant");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          if (presio &lt; 80 || presio &gt; 180) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Presio incorrecta: " + presio + "\nLa presió ha d'estar entre 80 i 180");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          // Assignar categoria<br>
+          if (temperatura &lt; 32 || temperatura &gt; 42 || presio &lt; 100) {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'M';<br>
+          } else if (temperatura &gt;= 35 &amp;&amp; temperatura &lt;= 38 &amp;&amp;<br>
+          &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tos == "NO" &amp;&amp; presio &gt;= 120 &amp;&amp; presio &lt;= 140) {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'E';<br>
+          } else if (temperatura &gt; 38 &amp;&amp; tos == "EXPECTORANT") {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'D';<br>
+          } else if (temperatura &gt; 38 &amp;&amp; tos == "SECA") {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'C';<br>
+          } else if (temperatura &gt;= 35 &amp;&amp; temperatura &lt;= 38 &amp;&amp;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; tos == "NO" &amp;&amp; (presio &lt; 120 || presio &gt; 140)) {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'B';<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; categoria = 'A';<br>
+          }<br>
+          <br>
+          // Acció que cal prendre<br>
+          switch (categoria) {<br>
+          &nbsp;&nbsp;&nbsp; case 'M':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("No hi ha res a fer.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // NO POSAR break; !!!<br>
+          &nbsp;&nbsp;&nbsp; case 'E':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Que esperi sentat... o estirat.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'D':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("L'ha de visitar el neumòleg d'urgències.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'C':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Envia'l a la planta COVID.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'B':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Ràpid! Que vingui un cardiòleg!");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; case 'A':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Fes-lo esperar una mica i li passes al Dr House, el de 'casos especials'.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;&nbsp; // No imprescindible però convenient<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //&nbsp; per si més endavant s'afegeixen casos o default<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// Acció que cal prendre (amb IF)<br>
+          if (categoria == 'M' || categoria == 'E') {<br>
+          &nbsp;&nbsp;&nbsp; if (categoria == 'M') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("No hi ha res a fer.");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; alert("Que esperi sentat... o estirat.");<br>
+          } else if (categoria == 'D') {<br>
+          &nbsp;&nbsp;&nbsp; alert("L'ha de visitar el neumòleg d'urgències.");<br>
+          } else if (categoria == 'C') {<br>
+          &nbsp;&nbsp;&nbsp; alert("Envia'l a la planta COVID.");<br>
+          } else if (categoria == 'B') {<br>
+          &nbsp;&nbsp;&nbsp; alert("Ràpid! Que vingui un cardiòleg!");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("Fes-lo esperar una mica i li passes al Dr House, el de 'casos especials'.");<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

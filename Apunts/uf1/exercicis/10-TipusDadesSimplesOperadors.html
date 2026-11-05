@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Tipus de dades simples i operadors</h1>
+      <div class="enun">
+        <h3>Literal, constant o variable?</h3>
+        <p>En el següent codi, identifica quins elements són literals, quins són constants i quins són variables:</p>
+        <p class="p_codi">const LLETRES = "TRWAGMYFPDXBNJZSQVHLCKE";<br>
+          const DNI = 12345678;<br>
+          let residu = DNI % 23;<br>
+          let lletra = LLETRES.charAt(residu);<br>
+          alert("La lletra del DNI " + DNI + " és " + lletra);</p>
+      </div>
+      <div class="enun">
+        <h3>Càlculs senzills</h3>
+        <p>Calcula el resultat de les següents operacions i comprova-ho utilitzant la comanda <span class="c_comanda">alert()</span>.</p>
+        <p class="p_codi">9 - 3<br>
+          10 * 2.5<br>
+          9 / 2<br>
+          9 / -2.0<br>
+          9 % 2<br>
+          -9 % 2<br>
+          3 + 4 * 5<br>
+          (3 + 4) * 5<br>
+          -(5 + 3) / (3 - 1)<br>
+          (-5 + 3) / (3 - 1)</p>
+      </div>
+      <div class="enun">
+        <h3>Més càlculs</h3>
+        <p>Calcula quin valor tindran les variables <strong>a</strong>, <strong>b</strong> i <strong>c</strong> quan es mostrin per pantalla.<br>
+          Comprova-ho executant el programa.<br>
+          Si el resultat no és el mateix, executa el programa pas a pas (mode depuració) i comprova si el valor que pren cada variable en cada pas és el què tu havies calculat.</p>
+        <p class="p_codi">let a = 5;<br>
+          let b = 7;<br>
+          let c;<br>
+          <br>
+          ++b;<br>
+          b = (b * 3) / 8;<br>
+          a += 3;<br>
+          a = a + 4 / 2;<br>
+          c = a / 5 + b;<br>
+          <br>
+          alert("a = " + a + "\nb = "+ b + "\nc = "+ c);<br>
+          <br>
+          a = 5;<br>
+          b = 8;<br>
+          <br>
+          ++a;<br>
+          a += 4;<br>
+          b -= a / 2;<br>
+          c = ++a + b;<br>
+          c += a - b++;<br>
+          <br>
+          alert("a = " + a + "\nb = "+ b + "\nc = "+ c);</p>
+      </div>
+      <div class="enun">
+        <h3>Calcular el preu final (PVP)</h3>
+        <p>Fes un programa que, a partir del preu d'un article, calculi el preu final aplicant un descompte d'un 15% i un IVA del 21%.</p>
+        <p>Posa el preu inicial de l'article en una variable.<br>
+          Pel valor del descompte, utilitza un literal.<br>
+          Pel valor de l'IVA utilitza una constant.</p>
+        <p class="p_important"><strong>ATENCIÓ:</strong> el preu amb IVA es calcula a partir del preu amb el descompte ja fet.<br>
+          Si el preu inicial és <strong>1000</strong>, el resultat hauria de ser <strong>1028.5</strong></p>
+      </div>
+      <div class="enun">
+        <h3>Calculs matemàtics</h3>
+        <p>Fes un programa que calculi la hipotenusa d'un triangle rectangle i l'area d'un cercle utilitzant constants i mètodes de la classe <strong>Math</strong>.</p>
+        <p>Els valors de la base, l'altura i el radi han de ser variables.</p>
+      </div>
+    </section>
+  </body>
+</html>

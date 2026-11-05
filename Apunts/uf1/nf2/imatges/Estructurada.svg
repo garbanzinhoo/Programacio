@@ -1,0 +1,32 @@
+<svg width="224" height="352" version="1.1" viewBox="0 0 224 352" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="TriangleOutS" style="overflow:visible" orient="auto">
+   <path transform="scale(.2)" d="m6 0-9 5v-10l9 5z" style="fill-rule:evenodd;stroke-width:1pt;stroke:#000"/>
+  </marker>
+  <marker id="TriangleOutS-3" style="overflow:visible" orient="auto">
+   <path transform="scale(.2)" d="m6 0-9 5v-10z" style="fill-rule:evenodd;stroke-width:1pt;stroke:#000"/>
+  </marker>
+ </defs>
+ <circle x="592" y="64" cx="66" cy="20" r="12" style="fill:#80e080;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000"/>
+ <text x="72.77" y="25.07" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px"><tspan x="65.97" y="25.07" style="font-size:13px;text-align:center;text-anchor:middle">Ini</tspan></text>
+ <path d="m16 97 20-40h80l-20 40z" style="fill:#c0a0e0;stroke-width:2;stroke:#000"/>
+ <text x="72.75" y="82" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px"><tspan x="65.95" y="82" style="font-size:13px;text-align:center;text-anchor:middle">Entrada</tspan></text>
+ <path d="m16 142 50-20 50 20-50 20z" style="fill:#f0c080;stroke-width:2;stroke:#000"/>
+ <text x="72.79" y="147.2" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px"><tspan x="65.99" y="147.2" style="font-size:13px;text-align:center;text-anchor:middle">Condició</tspan></text>
+ <rect x="115" y="167" width="90" height="50" style="fill:#a0c0e0;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000"/>
+ <text x="167.8" y="197" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px"><tspan x="161" y="197" style="font-size:13px;text-align:center;text-anchor:middle">Bloc de codi</tspan></text>
+ <path d="m16 295 20-40h80l-20 40z" style="fill:#c0a0e0;stroke-width:2;stroke:#000"/>
+ <text x="72.97" y="280" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px"><tspan x="66.17" y="280" style="font-size:13px;text-align:center;text-anchor:middle">Sortida</tspan></text>
+ <path d="m66 32v19" style="fill:none;marker-end:url(#TriangleOutS);stroke-width:3;stroke:#000"/>
+ <path d="m66 97v19" style="fill:none;marker-end:url(#TriangleOutS);stroke-width:3;stroke:#000"/>
+ <path d="m66 162v64" style="fill:none;marker-end:url(#TriangleOutS);stroke-width:3;stroke:#000"/>
+ <path d="m66 295v19" style="fill:none;marker-end:url(#TriangleOutS);stroke-width:3;stroke:#000"/>
+ <path d="m115 142h45v19" style="fill:none;marker-end:url(#TriangleOutS);stroke-width:3;stroke:#000"/>
+ <path d="m160 218v18h-84" style="fill:none;marker-end:url(#TriangleOutS);stroke-width:3;stroke:#000"/>
+ <text x="104.8" y="137.4" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;word-spacing:0px"><tspan x="113.3" y="137.4" style="fill:#c00000;font-family:sans-serif;font-size:13px;font-weight:bold">true</tspan></text>
+ <text x="86.84" y="170.6" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:end;text-anchor:end;word-spacing:0px"><tspan x="62.32" y="170.6" style="fill:#c00000;font-family:sans-serif;font-size:13px;font-weight:bold;text-align:end;text-anchor:end">false</tspan></text>
+ <circle x="592" y="64" cx="66" cy="332" r="12" style="fill:#80e080;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000"/>
+ <text x="69.87" y="337.1" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px"><tspan x="65.97" y="337.1" style="font-size:13px;text-align:center;text-anchor:middle">Fi</tspan></text>
+ <circle x="" y="" cx="66" cy="236" r="5"/>
+ <path d="m66 240v9" style="fill:none;marker-end:url(#TriangleOutS-3);stroke-width:3;stroke:#000"/>
+</svg>

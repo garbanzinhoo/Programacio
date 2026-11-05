@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Strings (textos)">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Tipus de dades compostes: String i Date</header>
+    <section>
+      <h2>Classe <em>String</em></h2>
+      <p>Els textos (cadenes de caràcters o <em>strings</em>) són immutables.<br>
+        Això vol dir que, un cop creats, no es poden modificar directament.</p>
+      <p>Els mètodes dels <em>strings</em> s'utilitzen cridant-los amb el nom de la variable que conté el text, però també es poden cridar utilitzant un literal de text:</p>
+      <p class="p_codi">let nom = "Peter";<br>
+        let nomMajuscules = <strong>nom.toUpperCase()</strong>;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // nomMajuscules = "PETER"<br>
+        let nomMinuscules = <strong>"Mary".toLowerCase()</strong>;&nbsp;&nbsp;&nbsp; // nomMinuscules = "mary"</p>
+      <h3>Propietats i mètodes dels "strings"</h3>
+      <p>Els mètodes més importants són:</p>
+      <ul>
+        <li><span class="c_comanda">length</span>: <strong>és una variable</strong> que conté el nombre de caràcters que té la cadena.</li>
+        <li><span class="c_comanda">charAt(n)</span>: retorna el caràcter en la posició n-èsima.</li>
+        <li><span class="c_comanda">toLowerCase()</span> i <span class="c_comanda">toUpperCase()</span>: retorna la cadena convertida a minúscules o majúscules, respectivament.</li>
+        <li><span class="c_comanda">trim()</span>: retorna una cadena eliminant els espais del principi i del final. També hi ha <span class="c_comanda">trimStart()</span> i <span class="c_comanda">trimEnd()</span> que només eliminan els del principi o els del final, respectivament.</li>
+        <li><span class="c_comanda">includes(text[, posicio])</span>: comprova si una cadena conté una altra cadena (retorna <span class="c_comanda">true</span> o <span class="c_comanda">false</span>).<br>El paràmetre opcional <span class="c_comanda">posicio</span> serveix per començar a buscar a partir d'un caràcter en lloc de començar des del principi del text. El primer caràcter d'un text és el 0.</li>
+        <li><span class="c_comanda">indexOf(text[, posicio])</span>: retorna la primera posició on es troba el text buscat, o -1 si no el troba.<br>El paràmetre opcional <span class="c_comanda">posicio</span> permet començar la cerca a partir d'una posició determinada.</li>
+        <li><span class="c_comanda">lastIndexOf(text[, posicio])</span>: igual que l'anterior però començant pel final del text.</li>
+        <li><span class="c_comanda">substring(inici[, final])</span>: retorna la subcadena entre els índexs <span class="c_comanda">inici</span> i <span class="c_comanda">final</span> (o fins al final).<br>El caràcter en la posició <span class="c_comanda">final</span> no s'inclou.</li>
+        <li><span class="c_comanda">replace(t1, t2)</span> i <span class="c_comanda">replaceAll(t1, t2)</span>: retorna la cadena després de substituir <span class="c_comanda">t1</span> per <span class="c_comanda">t2</span>.<br>Substitueix la primera aparició o totes, respectivament.</li>
+        <li><span class="c_comanda">repeat(n)</span>: retorna la cadena repetida <span class="c_comanda">n</span> vegades.</li>
+        <li><span class="c_comanda">padStart(n, text)</span> i <span class="c_comanda">padEnd(n, text)</span>: enganxa <span class="c_comanda">text</span> a l'<em>string </em>tantes vegades com sigui necessari fins que tingui la ongitud indicada en <span class="c_comanda">n</span>.<br>Ho enganxa al principi o al final de l'<em>string</em>, respectivament.</li>
+        <li><span class="c_comanda">startsWith(text)</span> o <span class="c_comanda">endsWith(text)</span>: comprova si la cadena comença o acaba amb la subcadena especificada, respectivament.</li>
+        <li><span class="c_comanda">split(text)</span>: retorna un <em>array</em> de <em>String</em> que és el resultat de separar la cadena utilitzant una altra cadena com a separador.</li>
+      </ul>
+      <p>Alguns mètodes d'aquesta classe serveixen per fer modificar textos: es poden utilitzar sense paràmetres, amb un o amb més paràmetres, i retornen un <em>string</em> que es pot guardar en una variable diferent o en la mateixa variable:</p>
+      <p class="p_codi">let hola = "HOLA";<br>
+        hola.replace('A', 'I');&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>NO FA CAP CANVI A LA VARIABLE hola!</strong><br>
+        hola = hola.replace('A', 'I');&nbsp;&nbsp; // <strong>ARA SÍ: hola = "HOLI"</strong></p>
+      <p>La majoria de mètodes&nbsp;retornen un nou text.<br>
+        Altres poden retornar un número enter, un booleà o fins i tot un <em>array</em> de <em>Strings</em> (més endavant es veuran els <em>arrays</em>).</p>
+      <p class="p_codi">let l = "Hello World".length;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>l = 11</strong><br>
+        let c = "Hello World".charAt(6);&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>c = 'W</strong>'<br>
+        let repetit = "Hola".repeat(3);&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>repetit = "HolaHolaHola"</strong><br>
+        let ambZeros = "123".padStart(5, '0');&nbsp;&nbsp;&nbsp; // <strong>ambZeros = "00123"</strong><br>
+        <br>
+        let hola = "Hello World";<br>
+        let inclou = hola.includes("World");&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>inclou = true</strong><br>
+        let ndx = hola.indexOf(" ");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>ndx = 5</strong><br>
+        let s1 = hola.substring(0, ndx).toUpperCase();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>s1 = "HELLO"</strong><br>
+        let s2 = hola.substring(ndx + 1).toLowerCase();&nbsp; &nbsp;&nbsp; // <strong>s2 = "world"</strong></p>
+      <div class="p_important">
+        <p><strong>ATENCIÓ:</strong> la primera lletra d'un <em>string</em> és la <span class="c_comanda">0</span> (zero), i l'última és <span class="c_comanda">length - 1</span></p>
+        <p class="p_codi">let s = "Hola";<br>
+          let mida = <strong>s.length</strong>;&nbsp; &nbsp; &nbsp; // mida = 4<br>
+          let c = <strong>s.charAt(0)</strong>;&nbsp;&nbsp;&nbsp; &nbsp; // c = 'H'<br>
+          c = <strong>s.charAt(mida - 1)</strong>;&nbsp;&nbsp; // c = 'a'<br>
+          c = <strong>s.charAt(mida)</strong>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>c = ''</strong></p>
+        <p>Si s'intenta accedir a una posició negativa o superior o igual a la seva mida, retorna un text buit.</p>
+      </div>
+      <h3>Caràcters especials</h3>
+      <p>Hi ha uns caràcters especials que representen accions en lloc de símbols.<br>
+        Aquests caràcters s'anomenen codis d'escapament (<em>escape codes</em>).</p>
+      <ul>
+        <li><span class="c_comanda">'\n'</span>: salt de línia.</li>
+        <li><span class="c_comanda">'\\'</span>: barra invertida.</li>
+        <li><span class="c_comanda">'\''</span>: cometa simple.</li>
+        <li><span class="c_comanda">'\"'</span>: cometa doble.</li>
+      </ul>
+      <p class="p_codi">let missatge = "Primera línia";<br>
+        missatge += "\nSegona línia";<br>
+        alert(missatge);&nbsp;&nbsp;&nbsp; // Mostra el missatge amb dues línies</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

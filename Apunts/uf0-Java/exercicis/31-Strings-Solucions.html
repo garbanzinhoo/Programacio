@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String s = "Hello World!";<br>
+          int i, l = s.length() - 1;&nbsp;&nbsp;&nbsp; // Les variables 'i' i 'l' s'utilitzen diverses vegades<br>
+          <br>
+          // Llegir la frase al revés<br>
+          for (i = l; i &gt;= 0; i--) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(s.charAt(i));<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Crear un nou string amb les lletres al revés<br>
+          String s2 = "";<br>
+          for (i = l; i &gt;= 0; i--) {<br>
+          &nbsp;&nbsp;&nbsp; s2 += s.charAt(i);<br>
+          }<br>
+          System.out.println(s2);<br>
+          <br>
+          // Utilitzant la classe StringBuilder<br>
+          System.out.println(<strong>new StringBuilder(s).reverse()</strong>);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String s = "Hi havia una vegada...";<br>
+          int l = s.length();<br>
+          &nbsp;<br>
+          for (int i = 0; i &lt; l; i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (s.charAt(i) == ' ')<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(i + " ");<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució 1</h6>
+        <p class="p_codi">String s = "Administració sistemes informàtics xarxa";<br>
+          char cActual, cAnterior;<br>
+          <br>
+          // Eliminar possibles espais inicials i/o finals i convertir a majúscules<br>
+          s = s.trim().toUpperCase();<br>
+          // Escriure la primera lletra<br>
+          System.out.print(s.charAt(0));<br>
+          // A partir del segon caràcter...<br>
+          for (int i = 1; i &lt; s.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp; cActual = s.charAt(i);<br>
+          &nbsp;&nbsp;&nbsp; cAnterior = s.charAt(i - 1);<br>
+          &nbsp;&nbsp;&nbsp; // ... escriure'l si no és un espai i l'anterior sí<br>
+          &nbsp;&nbsp;&nbsp; // Aquest mètode funciona encara que hi hagi més d'un espai entre les paraules<br>
+          &nbsp;&nbsp;&nbsp; if (cActual != ' ' &amp;&amp; cAnterior == ' ') System.out.print(cActual);<br>
+          }<br>
+          System.out.println();</p>
+        <h6>Solució 2</h6>
+        <p class="p_codi">String s = "&nbsp;&nbsp; Administració&nbsp;&nbsp; de&nbsp;&nbsp; sistemes&nbsp;&nbsp; informàtics&nbsp;&nbsp; en&nbsp;&nbsp; xarxa&nbsp;&nbsp; ";<br>
+          char cActual, cAnterior;<br>
+          <br>
+          // Eliminar possibles espais inicials i/o finals i convertir a majúscules<br>
+          // Afegeix un espai al final per simplificar les següents comprovacions<br>
+          s = s.trim().toUpperCase() + " ";<br>
+          // Escriure la primera lletra si la paraula té més de 3 lletres<br>
+          if (s.indexOf(" ") &gt; 3) System.out.print(s.charAt(0));<br>
+          // A partir del segon caràcter...<br>
+          for (int i = 1; i &lt; s.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp; cActual = s.charAt(i);<br>
+          &nbsp;&nbsp;&nbsp; cAnterior = s.charAt(i - 1);<br>
+          &nbsp;&nbsp;&nbsp; // ... escriure'l si no és un espai i l'anterior sí...<br>
+          &nbsp;&nbsp;&nbsp; // Aquest mètode funciona encara que hi hagi més d'un espai entre les paraules<br>
+          &nbsp;&nbsp;&nbsp; if (cActual != ' ' &amp;&amp; cAnterior == ' ') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ... i si el següent espai està almenys 4 posicions més lluny<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (s.indexOf(" ", i) &gt; (i + 3)) System.out.print(cActual);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució substituir espais</h6>
+        <p class="p_codi">String s = "Hi havia una vegada...";<br>
+          String s2 = "";<br>
+          <br>
+          // Substituïnt manualment<br>
+          for (int i = 0; i &lt; s.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (s.charAt(i) == ' ')<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s2 += '|';<br>
+          &nbsp;&nbsp;&nbsp; else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s2 += s.charAt(i);<br>
+          }<br>
+          <br>
+          System.out.println(s2);<br>
+          <br>
+          // Utilitzant el mètode replace()<br>
+          System.out.println(<strong>s.replace(' ', '|')</strong>);</p>
+        <h6>Solució substituir múltiples espais</h6>
+        <p class="p_codi">String s = "&nbsp;&nbsp; Hi&nbsp;&nbsp; havia&nbsp;&nbsp; una&nbsp;&nbsp; vegada...&nbsp;&nbsp; ";<br>
+          String s2 = "";<br>
+          <br>
+          s = s.trim();<br>
+          for (int i = 0; i &lt; s.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (s.charAt(i) == ' ') {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Avança 'i' mentre segueixi trobant espais<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++i;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } while (s.charAt(i) == ' ');<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s2 += '|';<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; s2 += s.charAt(i);<br>
+          }<br>
+          <br>
+          System.out.println(s2);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String s = "Prov@";<br>
+          //String s = "Prov#";<br>
+          //String s = "Prov€";<br>
+          //String s = "Prova";<br>
+          <br>
+          // Primera opció<br>
+          if (<strong>s.contains("@")</strong> || <strong>s.contains("#")</strong> || <strong>s.contains("€")</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s + " conté algun dels caràcters especials");<br>
+          } else<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s + " no conté cap dels caràcters especials");<br>
+          <br>
+          // OPCIONAL<br>
+          boolean conteEspecial = false;<br>
+          <br>
+          if (<strong>s.contains("@")</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; conteEspecial = true;<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Conté @");<br>
+          }<br>
+          if (<strong>s.contains("#")</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; conteEspecial = true;<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Conté #");<br>
+          }<br>
+          if (<strong>s.contains("€")</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; conteEspecial = true;<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Conté €");<br>
+          }<br>
+          <br>
+          if (!conteEspecial)<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s + " no conté cap dels caràcters especials");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">//String s1 = "abc";<br>
+          //String s2 = "DEF";<br>
+          String s1 = "ALUMNE";<br>
+          String s2 = "alumnes";<br>
+          <br>
+          // Comparar quina paraula va abans en el diccionari<br>
+          int comp = <strong>s1.compareToIgnoreCase(s2);</strong><br>
+          <br>
+          if (comp &lt; 0) System.out.println(s1 + " va abans que " + s2);<br>
+          else if (comp &gt; 0) System.out.println(s2 + " va abans que " + s1);<br>
+          else System.out.println("Son iguals");<br>
+          <br>
+          // Comparar quina paraula té més lletres<br>
+          int l1 = s1.length();<br>
+          int l2 = s2.length();<br>
+          <br>
+          if (l1 &lt; l2) System.out.println(s1 + " és més curta que " + s2);<br>
+          else if (l1 &gt; l2) System.out.println(s1 + " és més llarga que " + s2);<br>
+          else System.out.println("Tenen la mateixa llargada");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String s = "&nbsp;&nbsp; Administració&nbsp;&nbsp; de&nbsp;&nbsp; sistemes&nbsp;&nbsp; informàtics&nbsp;&nbsp; en&nbsp;&nbsp; xarxa&nbsp;&nbsp; ";<br>
+          String p1;<br>
+          int ndx;<br>
+          <br>
+          s = s.trim();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Elimina espais al principi i al final<br>
+          ndx = <strong>s.indexOf(" ");</strong>&nbsp;&nbsp;&nbsp; // Busca la posició del primer espai<br>
+          while (ndx &gt;= 0) {<br>
+          &nbsp;&nbsp;&nbsp; // Agafa la primera paraula i l'escriu<br>
+          &nbsp;&nbsp;&nbsp; p1 = <strong>s.substring(0, ndx);</strong><br>
+          &nbsp;&nbsp;&nbsp; System.out.println(p1);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Agafa la resta de la frase i elimina espais al principi<br>
+          &nbsp;&nbsp;&nbsp; s = <strong>s.substring(ndx)</strong>.trim();<br>
+          &nbsp;&nbsp;&nbsp; ndx = <strong>s.indexOf(" ");</strong><br>
+          }<br>
+          System.out.println(s);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String nom;<br>
+          String cognom;<br>
+          int ndx;<br>
+          boolean error;<br>
+          <br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; error = false;<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Escriu el teu nom i primer cognom: ");<br>
+          &nbsp;&nbsp;&nbsp; nom = scan.next();<br>
+          &nbsp;&nbsp;&nbsp; cognom = scan.nextLine();<br>
+          &nbsp;&nbsp;&nbsp; cognom = cognom.trim();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Comprovar que hagi posat el cognom<br>
+          &nbsp;&nbsp;&nbsp; if (cognom.length() == 0) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; error = true;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.println("Només has posat el nom");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          } while (error);<br>
+          <br>
+          // Agafa només la primera paraula del cognom<br>
+          ndx = cognom.indexOf(" ");<br>
+          if (ndx &gt; 0) cognom = cognom.substring(0, ndx);<br>
+          <br>
+          // Genera adreça: inicial del nom en minúscules, punt i cognom en minúscules<br>
+          System.out.println(nom.toLowerCase().charAt(0) + "." + cognom.toLowerCase() + "@sapalomera.cat");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">//String s = "MuRcIeLaGo";<br>
+          //String s = "EsTaDiO";<br>
+          String s = "CoChE";<br>
+          <br>
+          s = s.toUpperCase();&nbsp;&nbsp;&nbsp; // Per poder comparar només majúscules<br>
+          <strong>boolean a = s.contains("A");<br>
+            boolean e = s.contains("E");<br>
+            boolean i = s.contains("I");<br>
+            boolean o = s.contains("O");<br>
+            boolean u = s.contains("U");</strong><br>
+          <br>
+          if (a &amp;&amp; e &amp;&amp; i &amp;&amp; o &amp;&amp; u) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s + ": conté totes les vocals");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; //System.out.println(s + ": NO conté totes les vocals");<br>
+          &nbsp;&nbsp;&nbsp; // OPCIONAL<br>
+          &nbsp;&nbsp;&nbsp; <strong>String falten = "";</strong>&nbsp;&nbsp;&nbsp; // Per anar guardant les lletres que falten<br>
+          &nbsp;&nbsp;&nbsp; if (!a) falten += "A";<br>
+          &nbsp;&nbsp;&nbsp; if (!e) falten += "E";<br>
+          &nbsp;&nbsp;&nbsp; if (!i) falten += "I";<br>
+          &nbsp;&nbsp;&nbsp; if (!o) falten += "O";<br>
+          &nbsp;&nbsp;&nbsp; if (!u) falten += "U";<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s + ": li falten les vocals " + falten);<br>
+          }</p>
+        <p class="p_important">Al crear les variables booleanes <span class="c_comanda">a</span>, <span class="c_comanda">e</span>, <span class="c_comanda">i</span>, <span class="c_comanda">o</span> i <span class="c_comanda">u</span> s'evita haver de comprovar dues vegades si la paraula conté la lletra.</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">//String s = "MURCIELAGO";<br>
+          //String s = "murcielago";<br>
+          String s = "MuRcIeLaGo";<br>
+          <br>
+          if (s.toUpperCase().equals(s)) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s + ": totes majúscules");<br>
+          } else if (s.toLowerCase().equals(s)) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s + ": totes minúscules");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s + ": barrejades");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String s = "MuRcIeLaGo";<br>
+          String s2 = "";<br>
+          char c;<br>
+          int ndx;<br>
+          <br>
+          System.out.println(s);<br>
+          <br>
+          // Mentre quedin lletres al paraula<br>
+          while (s.length() &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; // De moment, la més petita és la primera<br>
+          &nbsp;&nbsp;&nbsp; c = s.charAt(0);<br>
+          &nbsp;&nbsp;&nbsp; ndx = 0;<br>
+          &nbsp;&nbsp;&nbsp; // Comparar la més petita amb les altres...<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 1; i &lt; s.length(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ... si troba una més petita, la guarda i indica la posició<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (s.charAt(i) &lt; c) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = s.charAt(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ndx = i;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; s2 += c;&nbsp;&nbsp;&nbsp; // Afegeix la més petita a la llista de lletres ordenades<br>
+          &nbsp;&nbsp;&nbsp; // Elimina la lletra de la paraula original:<br>
+          &nbsp;&nbsp;&nbsp; //&nbsp; concatena les que hi ha abans amb les que hi ha després<br>
+          &nbsp;&nbsp;&nbsp; s = s.substring(0, ndx) + s.substring(ndx + 1);<br>
+          }<br>
+          <br>
+          System.out.println(s2);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// CAPICUA<br>
+          //long n = 1234567890;<br>
+          long n = 123454321;<br>
+          String s = "" + n;&nbsp;&nbsp;&nbsp; // Converteix el número en String<br>
+          <br>
+          // Inverteix i comprova si són iguals<br>
+          String sInversa = <strong>new StringBuilder(s).reverse().toString();</strong><br>
+          if (s.equals(sInversa)) System.out.println(s + " és capicua");<br>
+          else System.out.println(s + " no és capicua");<br>
+          <br>
+          // PALÍNDROM<br>
+          //s = "A ti no, bonita";<br>
+          s = "A ti no, bonito";<br>
+          s = s.trim().toUpperCase();<br>
+          String s2 = "";<br>
+          <br>
+          // Agafa només les lletres<br>
+          for (int i = 0; i &lt; s.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (s.charAt(i) &gt;= 'A' &amp;&amp; s.charAt(i) &lt;= 'Z') s2 += s.charAt(i);<br>
+          }<br>
+          <br>
+          // Inverteix i comprova si són iguals<br>
+          sInversa = <strong>new StringBuilder(s2).reverse().toString();</strong><br>
+          if (s2.equals(sInversa)) System.out.println(s + " és palíndrom");<br>
+          else System.out.println(s + " no és palíndrom");</p>
+        <p class="p_important">També es podria fer un bucle comparant el primer i l'últim caràcter, el segon i el penúltim...</p>
+      </div>
+    </section>
+  </body>
+</html>

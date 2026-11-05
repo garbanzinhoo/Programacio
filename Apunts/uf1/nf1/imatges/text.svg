@@ -1,0 +1,14 @@
+<svg width="320" height="56" version="1.1" viewBox="0 0 320 56" xmlns="http://www.w3.org/2000/svg">
+ <rect x="5" y="11" width="60" height="40" style="fill:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;stroke:#000"/>
+ <path d="m5 11 10-5h60v40l-10 5" style="fill:none;stroke-width:2;stroke:#000"/>
+ <path d="m65 11 10-5" style="fill:none;stroke-width:2;stroke:#000"/>
+ <path d="m5 36h60l10-5" style="fill:none;stroke-width:1px;stroke:#000"/>
+ <text x="34.34" y="46.78" style="fill:#000000;font-family:sans-serif;font-size:11px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="34.34" y="46.78">char c</tspan></text>
+ <text x="34.21" y="28.77" style="fill:#000000;font-family:sans-serif;font-size:13px;font-weight:bold;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="34.21" y="28.77">'A'</tspan></text>
+ <rect x="90" y="11" width="215" height="40" style="fill:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;stroke:#000"/>
+ <path d="m90 11 10-5h215v40l-10 5" style="fill:none;stroke-width:2;stroke:#000"/>
+ <path d="m305 11 10-5" style="fill:none;stroke-width:2;stroke:#000"/>
+ <path d="m90 36h215l10-5" style="fill:none;stroke-width:1px;stroke:#000"/>
+ <text x="197.6" y="46.78" style="fill:#000000;font-family:sans-serif;font-size:11px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="197.6" y="46.78">String nom</tspan></text>
+ <text x="197.5" y="28.77" style="fill:#000000;font-family:sans-serif;font-size:13px;font-weight:bold;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="197.5" y="28.77">"Mary A. Johnson"</tspan></text>
+</svg>

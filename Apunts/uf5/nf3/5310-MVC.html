@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="MVC">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>MVC</header>
+    <section>
+      <h2>Patró de disseny Model-Vista-Controlador (MVC)</h2>
+      <p>En la versió més simple:</p>
+      <ul>
+        <li>el <strong>controlador</strong> recull les accions de l'usuari i envia les peticions al <strong>model</strong>,</li>
+        <li>el <strong>model</strong> gestiona les peticions, modificant si cal les dades que conté i ho notifica a la <strong>vista</strong>,</li>
+        <li>la <strong>vista</strong> mostra les dades del <strong>model</strong>.</li>
+      </ul>
+      <p>Per exemple, en un joc <em>on-line</em>, el <strong>controlador</strong> informa al model de les accions que ha fet l'usuari amb el teclat i/o el ratolí, el <strong>model</strong> actualitza les dades del joc i les enviaria a tots als usuaris per actualitzar la <strong>vista</strong>.</p>
+      <p>Si el joc utilitza un temporitzador per animar la pantalla, el <strong>controlador</strong> notifica quan cal redibuixar la pantalla al <strong>model</strong> i aquest envia les dades necessària la <strong>vista</strong>.</p>
+      <p><img alt="" src="./imatges/MVC.svg" style="width:16em" class="noborder"></p>
+      <p>Una versió que pot ser més adequada en determinats escenaris és la següent:</p>
+      <ul>
+        <li>l'<strong>usuari</strong> realitza accions sobre els elements de la <strong>vista</strong>,</li>
+        <li>la <strong>vista</strong> envia aquestes accions al <strong>controlador</strong>,</li>
+        <li>el <strong>controlador</strong> envia les peticions al <strong>model</strong> i rep les seves respostes,</li>
+        <li>el <strong>controlador</strong> envia la informació a la <strong>vista</strong> per actualitzar les dades que ha de mostrar.</li>
+      </ul>
+      <p>En aquest cas, el <strong>controlador</strong> fa de pont entre la <strong>vista</strong> i el <strong>model</strong>.<br>
+        D'aquesta forma, el <strong>model</strong> pot ser més independent de la <strong>vista</strong>.</p>
+      <h2>MVC per Java en mode gràfic</h2>
+      <p>En un entorn gràfic, les finestres i els seus components són objectes que poden reaccionar a les accions que els usuaris poden fer en qualsevol moment.</p>
+      <p>Per gestionar aquestes accions es creen altres objectes (<em>listeners</em>) que reben les accions i les comuniquen al model, que pot notificar directament els canvis a la vista (segons el primer model), o respondre al controlador que serà qui indiqui a la vista que s'ha d'actualitzar (segons el segon esquema).</p>
+      <h4>Exemple: comunicació directa del model amb la vista</h4>
+      <h6>Controlador</h6>
+      <p class="p_codi">public <strong>class Controlador implements ActionListener</strong> {<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; // Acció quan es clica el botó<br>
+        &nbsp;&nbsp;&nbsp; public void actionPerformed(ActionEvent e) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Modificar el comptador<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Model.incrementar();</strong><br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <h6>Model</h6>
+      <p class="p_codi">public <strong>class Model</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Valor del comptador<br>
+        &nbsp;&nbsp;&nbsp; private static int comptador = 0;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Incrementar el valor del comptador i mostrar-lo<br>
+        &nbsp;&nbsp;&nbsp; public <strong>static void incrementar()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++comptador;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Vista.setComptador("" + comptador);</strong><br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <h6>Vista</h6>
+      <p class="p_codi"><strong>public class Vista extends JFrame</strong> {<br>
+        &nbsp;&nbsp;&nbsp; private <strong>static JLabel comptador</strong>;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Constructor de la finestra<br>
+        &nbsp;&nbsp;&nbsp; public Vista() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Container panell = getContentPane();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Etiqueta on escriure el valor del comptador<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador = new JLabel();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setPreferredSize(new Dimension(100, 30));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setHorizontalAlignment(SwingConstants.CENTER);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Botó per incrementar el comptador i controlador<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton iButton = new JButton("Incrementar");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Controlador ctrl = new Controlador();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iButton.addActionListener(ctrl);</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Afegir l'etiqueta i el botó a la finestra<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; panell.add(comptador, BorderLayout.PAGE_START);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; panell.add(iButton, BorderLayout.PAGE_END);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pack();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setVisible(true);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setDefaultCloseOperation(EXIT_ON_CLOSE);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Actualitzar el comptador<br>
+        &nbsp;&nbsp;&nbsp; public <strong>static void setComptador(String c)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setText(c);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Vista();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vista.setComptador("0");<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <p class="p_important">Si hi ha més d'una vista, per exemple en un programa que mostra una vista 2D i una vista 3D del mateix objecte, és preferible que el model pugui accedir a les dues vistes o utilitzar la comunicació a través del controlador, en comptes d'accedir a la vista a través de mètodes estàtics.</p>
+      <h4>Exemple: comunicació a través del controlador</h4>
+      <p>En aquest exemple, la comunicació del controlador cap a la vista es fa utilitzant l'objecte <strong>finestra</strong> i un mètode no estàtic (com que només hi ha una vista, es podria haver fet utilitzant un mètode estàtic).</p>
+      <p>En el constructor del <strong>Controlador</strong> cal passar-li un objecte de la classe <strong>Vista</strong>.</p>
+      <h6>Controlador</h6>
+      <p class="p_codi">public <strong>class Controlador implements ActionListener</strong> {<br>
+        &nbsp;&nbsp;&nbsp; private final <strong>Vista finestra</strong>;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Constructor del controlador<br>
+        &nbsp;&nbsp;&nbsp; public <strong>Controlador(Vista f)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; finestra = f;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; // Acció quan es clica el botó<br>
+        &nbsp;&nbsp;&nbsp; public void actionPerformed(ActionEvent e) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Obtenir el nou valor<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int valor = <strong>Model.incrementar()</strong>;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Mostrar el nou valor<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>finestra.setComptador("" + valor);</strong><br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <h6>Model</h6>
+      <p class="p_codi">public <strong>class Model</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Valor del comptador<br>
+        &nbsp;&nbsp;&nbsp; private static int comptador = 0;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Incrementar el valor del comptador i retornar-lo<br>
+        &nbsp;&nbsp;&nbsp; public <strong>static int incrementar()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ++comptador;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <h6>Vista</h6>
+      <p class="p_codi">public <strong>class Vista extends JFrame</strong> {<br>
+        &nbsp;&nbsp;&nbsp; private final <strong>JLabel comptador</strong>;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Constructor de la finestra<br>
+        &nbsp;&nbsp;&nbsp; public Vista() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Container panell = getContentPane();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Etiqueta on escriure el valor del comptador<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador = new JLabel();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setPreferredSize(new Dimension(100, 30));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setHorizontalAlignment(SwingConstants.CENTER);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Botó per incrementar el comptador i controlador<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton iButton = new JButton("Incrementar");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Controlador ctrl = new Controlador(this);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iButton.addActionListener(ctrl);</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Afegir l'etiqueta i el botó a la finestra<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; panell.add(comptador, BorderLayout.PAGE_START);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; panell.add(iButton, BorderLayout.PAGE_END);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pack();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setVisible(true);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setDefaultCloseOperation(EXIT_ON_CLOSE);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Actualitzar el comptador<br>
+        &nbsp;&nbsp;&nbsp; public <strong>void setComptador(String c)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setText(c);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vista finestra = new Vista();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; finestra.setComptador("0");<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <p class="p_important">De vegades, la classe <strong>Model</strong> es dissenya sense mètodes ni atributs estàtics (s'ha de crear com a objecte).<br>
+        En aquest cas, al constructor del controlador se li ha de passar l'objecte model a més de l'objecte vista.<br>
+      </p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

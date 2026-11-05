@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p style="background-color: white;"><span style="background-color:#33ff33">Literal</span> <span style="background-color:#ffcc00">Constant</span> <span style="background-color:#33ccff">Variable</span></p>
+        <p class="p_codi" style="background-color: #e0e0e0;">const <span style="background-color:#ffcc00">LLETRES</span> = "<span style="background-color:#33ff33">TRWAGMYFPDXBNJZSQVHLCKE</span>";<br>
+          const <span style="background-color:#ffcc00">DNI</span> = <span style="background-color:#33ff33">12345678</span>;<br>
+          let <span style="background-color:#33ccff">residu</span> = <span style="background-color:#ffcc00">DNI</span> % <span style="background-color:#33ff33">23</span>;<br>
+          let <span style="background-color:#33ccff">lletra</span> = <span style="background-color:#ffcc00">LLETRES</span>.charAt(<span style="background-color:#33ccff">residu</span>);<br>
+          alert("<span style="background-color:#33ff33">La lletra del DNI </span>" + <span style="background-color:#ffcc00">DNI</span> + "<span style="background-color:#33ff33"> és </span>" + <span style="background-color:#33ccff">lletra</span>);<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">alert(9 - 3);<br>
+          alert(10 * 2.5);<br>
+          alert(9 / 2);<br>
+          alert(9 / -2.0);<br>
+          alert(9 % 2);<br>
+          alert(-9 % 2);<br>
+          alert(3 + 4 * 5);<br>
+          alert((3 + 4) * 5);<br>
+          alert(-(5 + 3) / (3 - 1));<br>
+          alert((-5 + 3) / (3 - 1));</p>
+        <p class="p_consola">6<br>
+          25.0<br>
+          4<br>
+          -4.5<br>
+          1<br>
+          -1<br>
+          23<br>
+          35<br>
+          -4<br>
+          -1<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_consola">a = 10<br>
+          b = 3<br>
+          c = 5<br>
+          a = 11<br>
+          b = 4<br>
+          c = 22</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">const IVA = 21;<br>
+          let preu = 123.45;<br>
+          let preuDTE = preu - preu * <strong>15</strong> / 100;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // DTE (15) és un literal<br>
+          let preuIVA = preuDTE + preuDTE * <strong>IVA</strong> / 100;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // IVA és una constant<br>
+          alert(preu);<br>
+          alert(preuDTE);<br>
+          alert(preuIVA);</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">let base = 15;<br>
+          let altura = 21;<br>
+          let radi = 10;<br>
+          alert("Hipotenusa: " + Math.sqrt(base * base + altura * altura));<br>
+          alert("Àrea cercle: " + Math.PI * Math.pow(radi, 2));</p>
+      </div>
+    </section>
+  </body>
+</html>

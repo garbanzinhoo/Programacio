@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació orientada a objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació orientada a objectes</header>
+    <section>
+      <h2>Objectes compostos</h2>
+      <p>Sovint, en el mon real, hi ha objectes que estan formats per altres objectes.<br>
+        Per exemple, un cotxe està format pel motor, l'habitacle...</p>
+      <p>La POO també permet crear classes (i objectes) que estiguin formats per altres objectes.<br>
+        En la classe composta cal incloure un o més atributs que siguin objectes d'altres classes.<br>
+        Al constructor se li passaran els objectes de les classes que el componen.</p>
+      <p class="p_codi">public class Motor {<br>
+        &nbsp;&nbsp;&nbsp; int nCilindres;<br>
+        &nbsp;&nbsp;&nbsp; int cilindrada;<br>
+        &nbsp;&nbsp;&nbsp; float potència;<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        }</p>
+      <p class="p_codi">public class Habitacle {<br>
+        &nbsp;&nbsp;&nbsp; int nPlaces;<br>
+        &nbsp;&nbsp;&nbsp; boolean aireCondicionat;<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        }</p>
+      <p class="p_codi"><strong>// Classe composta</strong><br>
+        public class Cotxe {<br>
+        &nbsp;&nbsp;&nbsp; float preu;<br>
+        &nbsp;&nbsp;&nbsp; <strong>Motor motor;</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>Habitacle habitacle;</strong><br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        &nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; // Constructor<br>
+        &nbsp;&nbsp;&nbsp; <strong>public Cotxe(Motor m, Habitacle h, float p)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; motor = m;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; habitacle h;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; preu = p;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <h3>Crear objectes compostos</h3>
+      <p>Per crear un cotxe, abans s'hauran de crear uns quants objectes dels tipus que el componen:</p>
+      <p class="p_codi">public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp; <strong>// Crear diferents components</strong><br>
+        &nbsp;&nbsp;&nbsp; Motor m1 = new Motor(8, 1600, 120);<br>
+        &nbsp;&nbsp;&nbsp; Motor m2 = new Motor(8, 1200, 85);<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        &nbsp;&nbsp;&nbsp; Habitacle h1 = new Habitacle(3, false);<br>
+        &nbsp;&nbsp;&nbsp; Habitacle h2 = new Habitacle(5, true);<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>// Crear cotxes combinant components</strong><br>
+        &nbsp;&nbsp;&nbsp; Cotxe c1 = new Cotxe(m1, h1, 25000);<br>
+        &nbsp;&nbsp;&nbsp; Cotxe c2 = new Cotxe(m1, h2, 30000);<br>
+        &nbsp;&nbsp;&nbsp; Cotxe c3 = new Cotxe(m2, h2, 35000);<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        }</p>
+      <h2>Conjunts d'objectes</h2>
+      <p>També es poden trobar objectes formats per un o més conjunts d'objectes del mateix tipus.<br>
+        Per exemple, un institut està format per un conjunt de professors i un conjunt d'alumnes.</p>
+      <p>Aquests casos es resolen creant un <em>array</em> (o qualsevol conjunt de dades) amb elements del mateix tipus.<br>
+        Aquests <em>arrays</em> es poden inicialitzar de forma global o passant paràmetres en el constructor.<br>
+        També acostumen a tenir mètodes per guardar objectes del tipus corresponent en els <em>arrays</em>.</p>
+      <p class="p_codi">public Alumne {<br>
+        &nbsp;&nbsp;&nbsp; String idAlu;<br>
+        &nbsp;&nbsp;&nbsp; String nom;<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        }</p>
+      <p class="p_codi">public Professor {<br>
+        &nbsp;&nbsp;&nbsp; String nom;<br>
+        &nbsp;&nbsp;&nbsp; String departament;<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        }</p>
+      <p class="p_codi"><strong>// Classe composta amb atributs que són conjunts de dades</strong><br>
+        public class Institut {<br>
+        &nbsp;&nbsp;&nbsp; String nom;<br>
+        &nbsp;&nbsp;&nbsp; <strong>Alumne[] alumnes;</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>Professor[] professors;</strong><br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Constructor<br>
+        &nbsp;&nbsp;&nbsp; <strong>public Institut(String n, int nAlumnes, int nProfessors)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; nom = n;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; alumnes = new Alumne[nAlumnes];<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; professors = new Professor[nProfessors];<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Mètodes<br>
+        &nbsp;&nbsp;&nbsp; public void <strong>afegirAlumne(Alumne a, int ndx)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; alumnes[ndx] = a;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public void <strong>afegirProfessor(Professor p, int ndx)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; professors[ndx] = p;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p>En el següent exemple, es crea un institut per 800 alumnes i 85 professors, i s'afegeixen alumnes i&nbsp; profes:</p>
+      <p class="p_codi">public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp; <strong>Institut sapa = new Institut("Ins. Sa Palomera", 800, 85);<br>
+        </strong><strong>&nbsp;&nbsp;&nbsp; sapa.afegirAlumne(new Alumne("1234", "Joanet de Culestret"), 0);</strong><br>
+        <strong></strong><strong>&nbsp;&nbsp;&nbsp; sapa.afegirProfessor(new Professor("Perico Chico", "Cicles d'informàtica"), 0);</strong><br>
+        }</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

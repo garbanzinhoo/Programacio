@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String frase;<br>
+          String[] paraules;<br>
+          <br>
+          System.out.print("Escriu una frase: ");<br>
+          frase = scan.nextLine();<br>
+          paraules = frase.trim().split(", +");&nbsp;&nbsp;&nbsp; // El + fa que consideri un o més espais<br>
+          for (int i = paraules.length - 1; i &gt;= 0; i--) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(paraules[i] + " ");<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final char MIN = 'A', MAX = 'Z';<br>
+          String frase;<br>
+          int offset;<br>
+          <br>
+          System.out.print("Escriu una frase: ");<br>
+          frase = scan.nextLine();<br>
+          System.out.print("Quin desplaçament vols? ");<br>
+          offset = scan.nextInt();<br>
+          <br>
+          // trim(): elimina espais inicials i finals<br>
+          // toUpperCase():&nbsp; converteix a majúscules<br>
+          // toCharArray(): crea un array de caràcters amb les lletres del String<br>
+          char[] xifrat = frase.trim().toUpperCase().toCharArray();<br>
+          <br>
+          // Encriptar<br>
+          for (int i = 0; i &lt; xifrat.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; // Només si és una lletra entre 'A' i 'Z'<br>
+          &nbsp;&nbsp;&nbsp; if (xifrat[i] &gt;= MIN &amp;&amp; xifrat[i] &lt;= MAX) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xifrat[i] += offset;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Si el resultat és més gran que 'Z' agafa una a partir de 'A'<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (xifrat[i] &gt; MAX) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xifrat[i] -= MAX - MIN + 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array encriptat lletra a lletra<br>
+          System.out.print("Frase encriptada: ");<br>
+          for (int i = 0; i &lt; xifrat.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(xifrat[i]);<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Mostrar array encriptat convertint l'array de caràcters a String<br>
+          String f = new String(xifrat);<br>
+          System.out.println("Frase encriptada: " + f);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// <a target="_blank" rel="noopener" href="https://www.sapalomera.cat/moodlecf/apunts/daw/prog/index.html?ref=1512">Apunts <em>arrays</em> ordenats</a></p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final int MIDA = 10;<br>
+          String paraula;<br>
+          String[] paraules = new String[MIDA];<br>
+          <br>
+          // Introduir paraules<br>
+          for (int i = 0; i &lt; MIDA; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Paraula: ");<br>
+          &nbsp;&nbsp;&nbsp; paraules[i] = scan.nextLine();<br>
+          }<br>
+          <br>
+          // Ordenar<br>
+          for (int i = 0; i &lt; MIDA - 1; i++) {<br>
+          &nbsp;&nbsp;&nbsp; for (int j = i + 1; j &lt; MIDA; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (paraules[i].compareToIgnoreCase(paraules[j]) &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraula = paraules[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraules[i] = paraules[j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraules[j] = paraula;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar paraules ordenades<br>
+          System.out.println("\nParaules ordenades");<br>
+          for (int i = 0; i &lt; MIDA; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(paraules[i]);<br>
+          }<br>
+          <br>
+          // Buscar paraules fins que la parauls sigui FI<br>
+          System.out.println();<br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; // Demanar paraula<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Paraula: ");<br>
+          &nbsp;&nbsp;&nbsp; paraula = scan.nextLine();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Buscar paraula<br>
+          &nbsp;&nbsp;&nbsp; int min = 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Primera posició de la llista<br>
+          &nbsp;&nbsp;&nbsp; int max = MIDA - 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Última posició de la llista<br>
+          &nbsp;&nbsp;&nbsp; int mid = 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Posició central (inicialitzar per evitar error)<br>
+          &nbsp;&nbsp;&nbsp; int comparacions = 0;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (min &lt;= max) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Calcular la posició central del tram entre min i max<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mid = (min + max) / 2;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++comparacions;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (paraules[mid].compareToIgnoreCase(paraula) &lt; 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min = mid + 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Agafar la meitat superior<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (paraules[mid].compareToIgnoreCase(paraula) &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max = mid - 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Agafar la meitat inferior<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Valor trobat<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Indicar posició i quantes comparacions ha hagut de fer<br>
+          &nbsp;&nbsp;&nbsp; if (MIDA &gt; 0 &amp;&amp; paraules[mid].equalsIgnoreCase(paraula)) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("S'ha trobat la paraula en la posició " + mid +<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; " fent " + comparacions + " comparacions");<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("NO s'ha trobat la paraula en la llista" + <br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; " fent " + comparacions + " comparacions");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          } while (!paraula.equalsIgnoreCase("FI"));</p>
+      </div>
+    </section>
+  </body>
+</html>

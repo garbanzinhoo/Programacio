@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció als esdeveniments">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció als esdeveniments</header>
+    <section>
+      <h2>Introducció als esdeveniments (<em>events</em>)</h2>
+      <p>Les aplicacions d'escriptori no funcionen de forma lineal (síncrona), com les aplicacions de consola.<br>
+        En canvi, reaccionen a les diferents accions de l'usuari i a altres esdeveniments en el moment en què es produeixen (forma asíncrona).</p>
+      <p>Les principals accions de l'usuari són amb el ratolí i amb el teclat.<br>
+        Altres esdeveniments es poden produir quan s'ha acabat de carregar un arxiu, per un temporitzador...</p>
+      <p>Aquesta forma de funcionar implica tres tipus d'objectes:</p>
+      <ul>
+        <li>Els que generen els esdeveniments (botons, menús, llistes...).</li>
+        <li>Els que reben els esdeveniments (<em>listeners</em>).</li>
+        <li>Els esdeveniments (objectes que contenen informació sobre l'esdeveniment).<br>
+          Son emesos pels generadors (<em>sources</em>) i son rebuts en els mètodes dels <em>listeners</em>.</li>
+      </ul>
+      <p>En la programació orientada a esdeveniments, cal assignar un o més <em>listeners</em> a cada component que pugui generar esdeveniments<em></em>.</p>
+      <h3>Tipus d'esdeveniments</h3>
+      <p>Els objectes de tipus esdeveniment hereten de la classe <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/AWTEvent.html">AWTEvent</a>.</p>
+      <p>Un mètode comú a tots és <span class="c_comanda">getSource()</span>, que retorna el component que ha generat l'esdeveniment.</p>
+      <p>Els tipus d'esdeveniments què s'utilitzen habitualment són:</p>
+      <ul>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/ActionEvent.html">ActionEvent</a>: és l'esdeveniment típic que es pot generar en un component.<br>
+          Per exemple, en un botó, l'acció de clicar-lo.</li>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/MouseEvent.html">MouseEvent</a>: es genera amb qualsevol acció feta amb el ratolí sobre un component (fer clic amb qualsevol botó, moure el ratolí...).</li>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/MouseWheelEvent.html">MouseWheelEvent</a>: es genera quan es gira la rodeta del ratolí.</li>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/KeyEvent.html">KeyEvent</a>: es genera al prémer qualsevol tecla quan el component té el focus.<br>
+          Només un component de l'aplicació pot tenir el focus en un&nbsp; moment determinat.<br>
+          Només poden generar aquest esdeveniment els components que poden agafar el focus (botons, camps de text, àrees de text, finestres...).</li>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/TextEvent.html">TextEvent</a>: es produeix en un component on es pugui editar el text.<br>
+          Es generen quan es modifica el contingut (afegir o esborrar caràcters).</li>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/ItemEvent.html">ItemEvent</a>: es produeix en els components que tenen elements seleccionables, com per exemple una llista, quan se selecciona o deselecciona un dels seus elements.</li>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/FocusEvent.html">FocusEvent</a>: es genera quan un component rep o perd el focus.</li>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/WindowEvent.html">WindowEvent</a>: es produeix al realitzar qualsevol acció sobre la finestra (canviar la mida, tancar-la...).</li>
+      </ul>
+      <h3><em>Listeners</em></h3>
+      <p>Són <strong>interfícies</strong> que hereten de&nbsp;<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/AWTEvent.html">EventListener</a>.</p>
+      <p>Hi ha almenys un <em>listener</em> per cada tipus d'esdeveniment, i cada <em>listener</em> conté un mètode per cada acció.<br>
+        Degut a què els <em>listeners</em> són interfícies i els seus mètodes són abstractes, <strong>cal implementar-los tots</strong>.</p>
+      <p>Com que alguns esdeveniments poden ser generats per moltes accions diferents, alguns <em>listeners</em> s'han subdividit per tractar només accions relacionades entre elles.</p>
+      <p>Per exemple, els esdeveniments <strong>MouseEvent</strong> els pot capturar:</p>
+      <ul>
+        <li><em></em><strong>MouseListener</strong>: detecta quan prem o es deixa anar un botó, quan es clica (prémer i deixar anar) o quan el ratolí entra o surt del component.</li>
+        <li><strong>MouseMotionListener</strong>: detecta quan es mou o quan s'arrossega el ratolí per sobre del component.</li>
+      </ul>
+      <p>Però també es pot utilitzar <strong>MouseInputListener</strong> que combina els dos anteriors.</p>
+      <p>Els <em>listeners</em> més habituals són:</p>
+      <ul>
+        <li>ActionListener: cal implementar el mètode <span class="c_comanda">actionPerformed(ActionEvent e)</span>.</li>
+        <li>MouseListener</li>
+        <li>MouseMotionListener</li>
+        <li>MouseInputListener</li>
+        <li>MouseWheelListener</li>
+        <li>KeyListener</li>
+        <li>TextListener: cal implementar el mètode <span class="c_comanda">textValueChanged(TextEvent e)</span>.</li>
+        <li>ItemListener: cal implementar el mètode <span class="c_comanda">itemStateChanged(ItemEvent e)</span>.</li>
+        <li>FocusListener</li>
+        <li>WindowListener</li>
+        <li>WindowFocusListener</li>
+        <li>WindowStateListener</li>
+        <li>TopLevelWindowListener</li>
+      </ul>
+      <h3>Adaptadors</h3>
+      <p>Com ja s'ha comentat abans, el problema dels <em>listeners</em> és que cal implementar tots els seus mètodes, encara que alguns no s'utilitzin.</p>
+      <p>Els <strong>adaptadors</strong> són classes que implementen la interfície corresponent amb mètodes buits.<br>
+        Llavors, només cal crear una subclasse d'un adaptador que re-implementi només els mètodes necessaris.</p>
+      <p class="p_important">Els <em>listener</em> que només tenen un mètode, no tenen el corresponent adaptador, per exemple, <strong>ItemListener</strong>, <strong>TextListener</strong> o <strong>ActionListener</strong>. En aquests casos, cal crear classes que els implementin.</p>
+      <p>Alguns adaptadors amb els mètodes mès habituals son:</p>
+      <ul>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/MouseAdapter.html">MouseAdapter</a>: implementa <strong>MouseListener</strong>, <strong>MouseMotionListener</strong> i <strong>MouseWheelListener</strong>.</li>
+        <ul>
+          <li>mousePressed(MouseEvent e)</li>
+          <li>mouseReleased(MouseEvent e)</li>
+          <li>mouseClicked(MouseEvent e)</li>
+          <li>mouseMoved(MouseEvent e)</li>
+          <li>mouseEntered(MouseEvent e)</li>
+          <li>mouseExited(MouseEvent e)</li>
+          <li>mouseDragged(MouseEvent e)</li>
+          <li>mouseWheelMoved(MouseWheelEvent e)</li>
+        </ul>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/KeyAdapter.html">KeyAdapter</a>: implementa <strong>KeyListener</strong>.</li>
+        <ul>
+          <li>keyPressed(KeyEvent e)</li>
+          <li>keyReleased(KeyEvent e)</li>
+          <li>keyTyped(KeyEvent e)</li>
+        </ul>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/FocusAdapter.html">FocusAdapter</a>: implementa <strong>FocusListener</strong>.</li>
+        <ul>
+          <li>focusGained(FocusEvent e)</li>
+          <li>focusLost(FocusEvent e)</li>
+        </ul>
+        <li><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/java/awt/event/WindowAdapter.html">WindowAdapter</a>: implementa <strong>WindowListener</strong>, <strong>WindowStateListener</strong> i <strong>WindowFocusListener</strong>.</li>
+        <ul>
+          <li>windowActivated(WindowEvent e)</li>
+          <li>windowDeactivated(WindowEvent e)</li>
+          <li>windowOpened(WindowEvent e)</li>
+          <li>windowClosing(WindowEvent e)</li>
+          <li>windowClosed(WindowEvent e)</li>
+          <li>windowIconified(WindowEvent e)</li>
+          <li>windowDeiconified(WindowEvent e)</li>
+          <li>windowStateChanged(WindowEvent e)</li>
+          <li>windowGainedFocus(WindowEvent e)</li>
+          <li>windowLostFocus(WindowEvent e)</li>
+        </ul>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

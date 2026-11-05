@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Operadors de Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Operadors de Java</header>
+    <section>
+      <h2>Operacions amb caràcters<br>
+      </h2>
+      <p>Els caràcters són similars als enters curts (<em>short</em>) perquè també ocupen 2 bytes a la memòria i es poden realitzar les mateixes operacions que amb aquest tipus de números.</p>
+      <p>Però cal tenir en compte algunes característiques importants:</p>
+      <ul>
+        <li>Els primers 256 caràcters i els seus valors equivalents es poden trobar en la <a target="_blank" rel="noopener" href="https://www.utf8-chartable.de/">taula de caràcters UTF-8</a>.</li>
+        <li>Cada caràcter equival a un número entre 0 i 65535 (els <em>short</em> van de -32768 i 32767).</li>
+        <li>Les operacions matemàtiques poden donar resultats "inesperats" si no s'entén el funcionament.</li>
+      </ul>
+      <p>Tenint en compte que els caràcters <span class="c_comanda">'A'</span>, <span class="c_comanda">'a'</span> i <span class="c_comanda">'0'</span> (dígit zero) tenen els valors <strong>65</strong>, <strong>97</strong> i <strong>48</strong>:</p>
+      <p class="p_codi">char lletra = '0';<br>
+        char lletra2 = 0;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>lletra</strong> i <strong>lletra2</strong> NO contenen el mateix caràcter<br>
+        lletra = 'A';<br>
+        lletra2 = 65;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // <strong>lletra</strong> i <strong>lletra2</strong> contenen el mateix caràcter<br>
+        ++lletra;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; // Ara <strong>lletra</strong> conté el caràcter 'B'<br>
+        lletra = '0' + '1';&nbsp;&nbsp; // Ara <strong>lletra</strong> conté el caràcter 'a'</p>
+      <p>Per fer comparacions entre caràcters s'agafa el valor <em>Unicode</em> de cada caràcter.</p>
+      <p class="p_codi">System.out.println('0' &lt; 'a');&nbsp;&nbsp;&nbsp; // mostrarà <strong>true</strong>: '0' (48) és més petit que 'a' (97)<br>
+        System.out.println('a' &lt; 'A');&nbsp;&nbsp;&nbsp; // mostrarà <strong>false</strong>: 'a' (97) és més gran que 'A' (65)</p>
+      <p>Hi ha uns caràcters especials que representen accions en lloc de símbols.<br>
+        Aquests caràcters s'anomenen codis d'escapament (<em>escape codes</em>).<br>
+        S'entendrà millor la seva utilitat quan es vegin les cadenes de text.</p>
+      <ul>
+        <li><span class="c_comanda">'\n'</span>: salt de línia.</li>
+        <li><span class="c_comanda">'\t'</span>: tabulador.</li>
+        <li><span class="c_comanda">'\r'</span>: principi de línia.</li>
+        <li><span class="c_comanda">'\\'</span>: barra invertida.</li>
+        <li><span class="c_comanda">'\''</span>: cometa simple.</li>
+        <li><span class="c_comanda">'\"'</span>: cometa doble.<br>
+        </li>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

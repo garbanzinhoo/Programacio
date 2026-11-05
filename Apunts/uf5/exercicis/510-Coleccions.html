@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Piles i cues</h1>
+      <div class="enun">
+        <h3>Implementació amb conjunts de dades</h3>
+        <p>Fes el disseny UML d'una aplicació amb 2 o 3 classes.<br>
+          Detalla els atributs i funcions amb paràmetres i valor de retorn, incloent el tipus de cada un.</p>
+        <p> Implementa les classes incloent almenys una classes per testar-les.</p>
+        <p>Implementa l'aplicació utilitzant un conjunt de dades, per exemple un <em><strong>HashMap</strong></em>.</p>
+      </div>
+      <div class="enun">
+        <h3>Una pila i una cua</h3>
+        <p>Fes un programa que afegeixi els mateixos elements a una pila i a una cua.</p>
+        <p>Mostra quin és el primer element de la pila i de la cua.</p>
+        <p>Mostra els elements de la pila traient-los d'un en un.<br>
+          Mostra els elements de la cua traient-los d'un en un.</p>
+      </div>
+      <div class="enun">
+        <h3>La frase al revés</h3>
+        <p>Utilitzant una pila, fes un programa que demani paraules a l'usuari fins que aquest introdueixi un punt.</p>
+        <p>Després, escriu les paraules introduïdes per l'usuari en ordre invers.</p>
+      </div>
+      <div class="enun">
+        <h3>Compte enrere</h3>
+        <p>Tenim un <em>array</em> amb els números en format text: "Zero", "Un", "Dos", "Tres", "Quatre", ..., "Deu"</p>
+        <p>Fes una funció que, passant-li un número entre 1 i 10, posi els N primers números de l'<em>array</em> en una pila.</p>
+        <p>Fes una altra funció que, passant-li la pila, tregui cada segon un número de la pila i el mostri.</p>
+        <p>En la funció <em>main()</em>, crea una pila i fes diverses proves cridant alternativament a les dues funcions, passant diferents valors a la primera d'elles.</p>
+      </div>
+      <div class="enun">
+        <h3>Una pila de lletres</h3>
+        <p>Fes un programa que demani repetidament una lletra a l'usuari.</p>
+        <p>Si escriu qualsevol caràcter que no sigui <span class="c_comanda">-</span> ni <span class="c_comanda">*</span>, l'ha d'afegir a la pila.<br>
+          Si escriu <span class="c_comanda">-</span>, ha de treure el primer caràcter de la pila.<br>
+          Si escriu <span class="c_comanda">*</span>, ha de treure i mostrar un a un tots els caràcters de la pila.</p>
+      </div>
+      <div class="enun">
+        <h3>Barrejar les cartes</h3>
+        <p>Posa en un <em>ArrayList</em> totes les cartes d'una baralla de poker.</p>
+        <p>Ves traien cartes aleatòriament fins que no en quedi cap i afegeix-les a una cua.</p>
+        <p>Ves traient i mostrant les cartes de la cua una a una.</p>
+      </div>
+      <div class="enun">
+        <h3>Les caixes del supermercat</h3>
+        <p>Un supermercat té tres caixes (A, B i C).</p>
+        <p>Els clients que van a pagar sempre es posen en la que hi ha menys cua, però no totes les cues avancen igual de ràpid: algunes caixeres són més lentes, alguns clients no troben la targeta per pagar...</p>
+        <p>Fes un programa que simuli el funcionament de les cues:</p>
+        <ol>
+          <li>Un client va pagar (s'ha de posar a la cua més curta).</li>
+          <li>El client d'una de les cues ja ha pagat.</li>
+          <li>Mostra quants clients hi ha en cada cua.</li>
+        </ol>
+      </div>
+      <div class="enun">
+        <h3>Una sola cua per les caixes del supermercat</h3>
+        <p>Un supermercat té tres caixes (A, B i C).</p>
+        <p>Per evitar els típics problemes a l'hora de triar caixa, s'ha decidit que només es faci una cua.</p>
+        <p>Tots els clients que vagin a pagar s'hauran d'esperar en la mateixa cua.<br>
+          El programa, quan una caixa quedi lliure, enviarà al client a aquesta caixa.</p>
+        <p>Fes un programa que simuli el funcionament de la cua en aquest cas:</p>
+        <ol>
+          <li>Un client va pagar (s'ha de posar a la cua).<br>
+            Si hi ha una caixa lliure, s'envia el client a la caixa corresponent.</li>
+          <li>El client d'una de les cues ja ha pagat.<br>
+            Si hi ha clients en la cua, s'envia el primer client a la caixa lliure.</li>
+          <li>Mostra quants clients hi ha en la cua i quines caixes estan ocupades.</li>
+        </ol>
+      </div>
+      <div class="enun">
+        <h3>Cua amb prioritat</h3>
+        <p>Com ja sabeu, si ets client <em>Prime</em> d'una coneguda botiga <em>on-line</em>, l'enviament de les teves compres passa al davant dels enviaments dels clients que no ho son.</p>
+        <p>Implementa una cua prioritària utilitzant la classe <em>PriorityQueue</em> de forma que l'enviament de les comandes es faci tenint en compte si el client és <em>Prime</em> i la data i hora en què s'ha fet la compra.</p>
+        <p>Crea una classe <em>Compra</em> per guardar la informació dels objectes que es guardaran a la cua.<br>
+          Aquesta classe ha de contenir, com a mínim, el nom i l'adreça del client, si és un client <em>Prime</em> i la data i hora de la compra (no cal que incloguis els articles que ha comprat).</p>
+        <p>El menú del programa ha de contenir les següents opcions:</p>
+        <ol>
+          <li>Introduir compra (ha de demanar les dades de la compra i afegir-la a la cua)</li>
+          <li>Enviar (ha d'enviar la primera compra de la cua).</li>
+          <li>Tancar el programa (ha de mostrar els enviaments pendents).</li>
+        </ol>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">const CONTRASENYA = "4321";<br>
+          let resposta;<br>
+          let intents = 3;<br>
+          <br>
+          resposta = prompt("Introdueix la contrasenya");<br>
+          --intents;<br>
+          <br>
+          while (resposta != CONTRASENYA &amp;&amp; intents &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Contrasenya incorrecta. Et queden " + intents + " intents.");<br>
+          &nbsp;&nbsp;&nbsp; resposta = prompt("Introdueix la contrasenya");<br>
+          &nbsp;&nbsp;&nbsp; --intents;<br>
+          }<br>
+          <br>
+          if (resposta == CONTRASENYA) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Contrasenya correcta!");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("Contrasenya incorrecta. No et queden més intents.");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let resposta;<br>
+          let estat = 1;<br>
+          <br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; // Indicar de quin color està el semàfor<br>
+          &nbsp;&nbsp;&nbsp; switch (estat) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 1:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Semàfor en verd");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 2:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Semàfor en groc");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 3:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("Semàfor en vermell");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Demanar acció i canviar l'estat o marcar per finalitzar<br>
+          &nbsp;&nbsp;&nbsp; resposta = prompt("Acció semàfor").trim().toUpperCase();<br>
+          &nbsp;&nbsp;&nbsp; if (resposta == "CANVI") {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++estat;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (estat &gt; 3) estat = 1;<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; estat = -1;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          } while (estat != -1);<br>
+          <br>
+          // Fi del programa<br>
+          alert("Programa semàfor finalitzat");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let resposta, mesGran, mesPetit;<br>
+          <br>
+          resposta = parseInt(prompt("Introdueix un número positiu (0 per acabar)"));<br>
+          mesGran = resposta;<br>
+          mesPetit = resposta;<br>
+          <br>
+          while(resposta != 0) {<br>
+          &nbsp;&nbsp;&nbsp; resposta = parseInt(prompt("Introdueix un número positiu (0 per acabar)"));<br>
+          &nbsp;&nbsp;&nbsp; if (resposta != 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (resposta &gt; mesGran) mesGran = resposta;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (resposta &lt; mesPetit) mesPetit = resposta;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          if (mesGran == 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("No has introduït cap número");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("El número més gran és " + mesGran);<br>
+          &nbsp;&nbsp;&nbsp; alert("El número més petit és " + mesPetit);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let num, factorial;<br>
+          <br>
+          num = parseInt(prompt("Introdueix un número enter més gran que 0"));<br>
+          <br>
+          factorial = num;<br>
+          <br>
+          while (num &gt; 1) {<br>
+          &nbsp;&nbsp;&nbsp; --num;<br>
+          &nbsp;&nbsp;&nbsp; factorial *= num;<br>
+          }<br>
+          <br>
+          alert("El factorial és " + factorial);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let num, resposta, intents = 0;<br>
+          <br>
+          num = (int)(Math.random() * 100 + 1);<br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; resposta = parseInt(prompt("Introdueix un número entre 1 i 100"));<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; ++intents;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (num &gt; resposta) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("És més gran");<br>
+          &nbsp;&nbsp;&nbsp; } else if (num &lt; resposta) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("És més petit");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          } while (resposta != num);<br>
+          <br>
+          alert("Has encertat en " + intents + " intents");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let num, iteracions = 0;<br>
+          <br>
+          num = parseInt(prompt("Introdueix un número entre 1 i 100"));<br>
+          <br>
+          while (num != 1) {<br>
+          &nbsp;&nbsp;&nbsp; if (num % 2 == 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num /= 2;<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; num = num * 3 + 1;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; alert(num);<br>
+          &nbsp;&nbsp;&nbsp; ++iteracions;<br>
+          }<br>
+          <br>
+          alert("Iteracions: " + iteracions);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let nota, suspensos = 0, total = 0, numNotes = 0;<br>
+          <br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; nota = parseInt(prompt("Introdueix una nota entre 1 i 10 (0 per acabar)"));<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (nota &gt; 0 &amp;&amp; nota &lt;= 10) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total += nota;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++numNotes;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (nota &lt; 5) ++suspensos;<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (nota != 0) alert("La nota és incorrecta");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          } while (nota != 0);<br>
+          <br>
+          if (numNotes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Suspensos: " + suspensos);<br>
+          &nbsp;&nbsp;&nbsp; alert("Mitjana: " + total / numNotes);<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert("No has introduït cap nota");<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

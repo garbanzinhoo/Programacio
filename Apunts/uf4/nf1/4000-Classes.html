@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació orientada a objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació orientada a objectes</header>
+    <section>
+      <h2>Classes amb mètodes i atributs estàtics</h2>
+      <p>En programació estructurada i disseny modular, les classes s'utilitzen simplement per agrupar funcions.</p>
+      <p>En aquest cas, les <strong>funcions</strong> i <strong>variables globals</strong> es poden declarar com:</p>
+      <ul>
+        <li><span class="c_comanda">static</span> (estàtiques) si només es volen utilitzar des d'altres funcions de la mateixa classe.</li>
+        <li><span class="c_comanda">public static</span> (públiques i estàtiques) si es volen utilitzar des d'altres classes.</li>
+      </ul>
+      <p class="p_codi">package uf4.exemples;<br>
+        <br>
+        public class Estils {<br>
+        &nbsp;&nbsp;&nbsp; // <strong>Atributs de la classes (estàtics)</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>static</strong> final String <strong>DEFAULT</strong> = "\u001b[0m";<br>
+        &nbsp;&nbsp;&nbsp; <strong>static</strong> final String <strong>RED</strong> = "\u001b[31m";<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>Mètode privat de la classe (estàtic)</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>static</strong> String <strong>errorColor()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return <strong>RED</strong>;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>Mètode públic de la classe (públic i estàtic)</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>public static</strong> void printError(String missatge) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(<strong>errorColor()</strong> + missatge + DEFAULT);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p>Per cridar una funció des d'una altre classe (ha de ser pública i estàtica), cal importar la classe i afegir al davant el nom de la classe que la conté:</p>
+      <p class="p_codi">package uf4;<br>
+        <br>
+        <strong>import uf4.exemples.Estils;</strong><br>
+        <br>
+        public class Main {<br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Estils.printError("ERROR!");</strong><br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p>En la llibreria Java, un exemple de classe que només conté mètodes i atributs estàtics és la classe <strong>Math</strong>:</p>
+      <ul>
+        <li><span class="c_comanda">Math.PI</span> és un atribut estàtic i públic</li>
+        <li><span class="c_comanda">Math.pow()</span> és un mètode estàtic i públic</li>
+      </ul>
+      <p class="p_codi">double areaCercleRadi10 = <strong>Math.PI</strong> * <strong>Math.pow</strong>(10, 2);</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

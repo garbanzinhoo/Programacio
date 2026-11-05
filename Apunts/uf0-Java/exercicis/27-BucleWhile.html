@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Bucle <em>While</em></h1>
+      <p class="p_important">Pensa en cada exercici si és millor utilitzar <span class="c_comanda">while</span> o <span class="c_comanda">do...while</span>.</p>
+      <div class="enun">
+        <h3>Mostrar lletres minúscules</h3>
+        <p>Fes un bucle que mostri les lletres minúscules de la <span class="c_comanda">a</span> a la <span class="c_comanda">z</span>.</p>
+        <p>Repeteix-lo fent que les mostri en ordre invers.</p>
+      </div>
+      <div class="enun">
+        <h3>Validar contrasenya</h3>
+        <p>Fes un programa que pregunti repetidament la contrasenya fins que l'usuari posi la correcta o fins que ho hagi intentat 3 vegades.<br>
+          Finalment ha de mostrar un missatge indicant si l'ha encertat o si s'han acabat els intents.</p>
+        <p>Utilitza una constant per guardar la contrasenya correcta.</p>
+        <p>Opcionalment pots indicar quants intents queden.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix la contrasenya: <strong>1234</strong><br>
+          Contrasenya incorrecta. Et queden 2 intents.<br>
+          Introdueix la contrasenya: <strong>1234</strong><br>
+          Contrasenya incorrecta. Et queden 1 intents.<br>
+          Introdueix la contrasenya: <strong>4321</strong><br>
+          Contrasenya correcta!</p>
+        <p class="p_consola">Introdueix la contrasenya: <strong>1234</strong><br>
+          Contrasenya incorrecta. Et queden 2 intents.<br>
+          Introdueix la contrasenya: <strong>1234</strong><br>
+          Contrasenya incorrecta. Et queden 1 intents.<br>
+          Introdueix la contrasenya: <strong>1234</strong><br>
+          Contrasenya incorrecta. No et queden més intents.<br>
+        </p>
+      </div>
+      <div class="enun">
+        <h3>Semàfor manual</h3>
+        <p>Fes un programa que permeti a l'usuari anar canviant l'estat d'un semàfor.</p>
+        <p>Inicialment, el semàfor estarà de color verd.<br>
+          Cada cop que l'usuari introdueixi la paraula <strong>CANVI</strong>, el semàfor ha d'avançar al següent estat (de verd a groc, de groc a vermell o de vermell a verd).</p>
+        <p>El programa finalitzarà si l'usuari escriu qualsevol cosa que no sigui la paraula <strong>CANVI</strong>.</p>
+      </div>
+      <div class="enun">
+        <h3>Quin és el valor més gran? I el més petit?</h3>
+        <p>Fes un programa per trobar el número més gran de tots els què introdueixi l'usuari.<br>
+          Els números han de ser enters i més grans que 0.</p>
+        <p>Quan l'usuari introdueixi el 0, s'ha de finalitzar el bucle i mostrar el valor més gran.</p>
+        <p>Modifica el programa perquè indiqui també el valor més petit.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix un número positiu (0 per acabar): <strong>2</strong><br>
+          Introdueix un número positiu (0 per acabar): <strong>4</strong><br>
+          Introdueix un número positiu (0 per acabar): <strong>1</strong><br>
+          Introdueix un número positiu (0 per acabar): <strong>3</strong><br>
+          Introdueix un número positiu (0 per acabar): <strong>0</strong><br>
+          <br>
+          El número més gran és 4<br>
+          El número més petit és 1</p>
+      </div>
+      <div class="enun">
+        <h3>Calcular el factorial</h3>
+        <p>Fes un programa que calculi el factorial d'un número enter entre 1 i 20 introduït per l'usuari.</p>
+        <p>El factorial de N és N*(N-1)*(N-2)*....*2*1<br>
+          Per exemple, el factorial de 5 és 120: 5*4*3*2*1</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix un número enter més gran que 0: <strong>5</strong><br>
+          <br>
+          El factorial és 120</p>
+      </div>
+      <div class="enun">
+        <h3>Endevina el número que he pensat</h3>
+        <p>L'ordinador ha de pensar un número entre 1 i 100 (tots dos inclosos) i ha de preguntar repetidament a l'usuari quin número és fins que aquest l'endevini.</p>
+        <p>Si l'usuari no l'encerta, el programa ha d'indicar si el número és més gran o més petit.<br>
+          Quan l'encerti, el programa ha de dir en quants intents ho ha aconseguit.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix un número entre 1 i 100: <strong>50</strong><br>
+          És més petit<br>
+          Introdueix un número entre 1 i 100: <strong>25</strong><br>
+          És més petit<br>
+          Introdueix un número entre 1 i 100: <strong>12</strong><br>
+          És més petit<br>
+          Introdueix un número entre 1 i 100: <strong>6</strong><br>
+          És més gran<br>
+          Introdueix un número entre 1 i 100: <strong>9</strong><br>
+          És més gran<br>
+          Introdueix un número entre 1 i 100: <strong>11</strong><br>
+          <br>
+          Has encertat en 6 intents</p>
+      </div>
+      <div class="enun">
+        <h3>Un càlcul curiós</h3>
+        <p>Escriu un programa que, a partir d'un número enter més gran que 0, faci les següents operacions fins que el resultat sigui 1:</p>
+        <ul>
+          <li>Si el número és parell, dividir-lo entre 2.</li>
+          <li>Si el número és imparell, multiplicar-lo per 3 i sumar-li 1.</li>
+        </ul>
+        <p>Al final, el programa ha de mostrar quantes iteracions ha hagut de fer.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix un número entre 1 i 100: <strong>10</strong><br>
+          5<br>
+          16<br>
+          8<br>
+          4<br>
+          2<br>
+          1<br>
+          <br>
+          Iteracions: 6</p>
+      </div>
+      <div class="enun">
+        <h3>Calcula la mitjana i el nombre de suspensos</h3>
+        <p>Fes un programa que vagi demanant notes dels alumnes entre 1 i 10.</p>
+        <p>Quan l'usuari introdueixi el 0, ha de finalitzar el bucle i mostrar quants han suspès i calcular la mitjana amb un decimal.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix una nota entre 1 i 10 (0 per acabar): <strong>6</strong><br>
+          Introdueix una nota entre 1 i 10 (0 per acabar): <strong>7</strong><br>
+          Introdueix una nota entre 1 i 10 (0 per acabar): <strong>4</strong><br>
+          Introdueix una nota entre 1 i 10 (0 per acabar): <strong>6</strong><br>
+          Introdueix una nota entre 1 i 10 (0 per acabar): <strong>8</strong><br>
+          Introdueix una nota entre 1 i 10 (0 per acabar): <strong>0</strong><br>
+          <br>
+          Suspensos: 1<br>
+          Mitjana: 6,2</p>
+      </div>
+    </section>
+  </body>
+</html>

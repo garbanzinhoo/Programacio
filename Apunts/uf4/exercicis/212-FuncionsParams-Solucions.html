@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <p>Per provar les funcions de les solucions, es pot utilitzar el següent codi en la funció <span class="c_comanda">main()</span>:</p>
+      <p class="p_desplegable p_codi">int[] iArray = {1, 2, 3, 4, 5};<br>
+        int[][] array2 = {{1, 2, 3}, {4, 5, 6}};<br>
+        String[] sArray = {"Hola", "què", "tal", "estas", "avui"};<br>
+        <br>
+        System.out.println("Caràcter aleatori entre A i Z: " + randomChar('A', 'Z'));<br>
+        int[] array = initArrayInt(5, 2);<br>
+        <br>
+        printArrayInt(array, false, "");<br>
+        printArrayInt(iArray, true, ", ");<br>
+        printArrayString(sArray, true, "");<br>
+        printArrayIntBi(array2, " | ");<br>
+        <br>
+        System.out.print("Introdueix una opció (abcABC): ");<br>
+        char c = introChar(scan, "abcABC");<br>
+        System.out.println("El caràcter introduït és: " + c);<br>
+        <br>
+        System.out.print("Introdueix un número entre 0 i 10: ");<br>
+        int n = introIntMinMax(scan, 0, 10);<br>
+        System.out.println("El número introduït és: " + n);<br>
+        <br>
+        System.out.println("Introdueix 3 números fent Intro després de cada un");<br>
+        int[] introArray = introArrayInt(scan, 3);<br>
+        printArrayInt(introArray, true, ", ");<br>
+        <br>
+        invertInt(iArray);<br>
+        printArrayInt(iArray, true, ", ");<br>
+        rotateLeftInt(iArray);<br>
+        printArrayInt(iArray, true, ", ");<br>
+        rotateRightInt(iArray);<br>
+        printArrayInt(iArray, true, ", ");<br>
+        rotateIntN(iArray, 'L', 2);<br>
+        printArrayInt(iArray, true, ", ");<br>
+        rotateIntN(iArray, 'R', 2);<br>
+        printArrayInt(iArray, true, ", ");<br>
+        <br>
+        mixInt(iArray);<br>
+        printArrayInt(iArray, true, ", ");<br>
+        <br>
+        sortInt(iArray);<br>
+        printArrayInt(iArray, true, ", ");<br>
+        System.out.println("El número 3 està en la posició " + indexOf(iArray, 3));<br>
+        System.out.println("El número 6 està en la posició " + indexOf(iArray, 6));</p>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// Generar lletres entre startChar i endChar, totes dues incloses<br>
+          static char randomChar(char startChar, char endChar) {<br>
+          &nbsp;&nbsp;&nbsp; return (char)(Math.random() * (endChar - startChar + 1) + startChar);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// Crear array d'enters inicialitzat<br>
+          static int[] initArrayInt(int nElem, int value) {<br>
+          &nbsp;&nbsp;&nbsp; int[] array = new int[nElem];<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; nElem; ++i) array[i] = value;<br>
+          &nbsp;&nbsp;&nbsp; return array;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució amb enters</h6>
+        <p class="p_codi">// Mostrar array enters<br>
+          static void printArrayInt(int[] array, boolean sameLine, String separator) {<br>
+          &nbsp;&nbsp;&nbsp; int l = array.length - 1;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (sameLine) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (separator.length() == 0) separator = " ";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(array[i] + separator);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else System.out.println(array[i]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(array[l]);<br>
+          }</p>
+        <h6>Solució amb <em>Strings</em></h6>
+        <p class="p_codi">// Mostrar array Strings<br>
+          static void printArrayString(String[] array, boolean sameLine, String separator) {<br>
+          &nbsp;&nbsp;&nbsp; int l = array.length - 1;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (sameLine) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (separator.length() == 0) separator = " ";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(array[i] + separator);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else System.out.println(array[i]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(array[l]);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// Mostrar array enters bidimensional<br>
+          static void printArrayIntBi(int[][] array, String separator) {<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; array.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printArrayInt(array[i], true, separator);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució amb <em>String</em></h6>
+        <p class="p_codi">// Introduir un caràcter verificant que sigui un caràcter d'un String<br>
+          static char introChar2(Scanner scan, String s) {<br>
+          &nbsp;&nbsp;&nbsp; char c = ' ';<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = scan.nextLine().charAt(0);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (s.indexOf(c) &gt;= 0) break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("El caràcter introduït no està en la llista.");<br>
+          &nbsp;&nbsp;&nbsp; } while (true);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return c;<br>
+          }</p>
+        <h6>Solució amb llista</h6>
+        <p class="p_codi">// Introduir un verificant que sigui un caràcter d'una llista<br>
+          static char introChar(Scanner scan, char[] array) {<br>
+          &nbsp;&nbsp;&nbsp; char c;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = scan.nextLine().charAt(0);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; array.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (array[i] == c) return c;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("El caràcter introduït no està en la llista.");<br>
+          &nbsp;&nbsp;&nbsp; } while (true);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució enter</h6>
+        <p class="p_codi">// Introduir un número enter<br>
+          static int introInt(Scanner scan) {<br>
+          &nbsp;&nbsp;&nbsp; int valor;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (!scan.hasNextInt()) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; scan.nextLine();<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.println("Error: has d'introduir un número enter");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; valor = scan.nextInt();<br>
+          &nbsp;&nbsp;&nbsp; scan.nextLine();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return valor;<br>
+          }</p>
+        <h6>Solució enter entre dos valors</h6>
+        <p class="p_codi">// Introduir un número enter entre dos valors<br>
+          static int introIntMinMax(Scanner scan, int min, int max) {<br>
+          &nbsp;&nbsp;&nbsp; int valor;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (min &gt; max) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; int t = min;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; min = max;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; max = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; valor = introInt(scan);<br>
+          &nbsp;&nbsp;&nbsp; while (valor &lt; min || valor &gt; max) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.println("Error: has d'introduir un número entre " + min + " i " + max);<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; valor = introInt(scan);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return valor;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució amb enters</h6>
+        <p class="p_codi">// Crear array amb enters introduïts per l'usuari<br>
+          static int[] introArrayInt(Scanner scan, int nElem) {<br>
+          &nbsp;&nbsp;&nbsp; int[] array = new int[nElem];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; nElem; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i] = introInt(scan);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return array;<br>
+          }</p>
+        <h6>Solució amb <em>Strings</em></h6>
+        <p class="p_codi">// Crear array amb Strings introduïts per l'usuari<br>
+          static String[] introArrayString(Scanner scan, int nElem) {<br>
+          &nbsp;&nbsp;&nbsp; String[] array = new String[nElem];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; nElem; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i] = scan.nextLine();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return array;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució amb enters</h6>
+        <p class="p_codi">// Invertir elements array enters<br>
+          static void invertInt(int[] array) {<br>
+          &nbsp;&nbsp;&nbsp; int l = array.length - 1;<br>
+          &nbsp;&nbsp;&nbsp; int l2 = array.length / 2;<br>
+          &nbsp;&nbsp;&nbsp; int t;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l2; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; t = array[i];<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; array[i] = array[l - i];<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; array[l - i] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h6>Solució amb <em>Strings</em></h6>
+        <p class="p_codi">// Invertir elements array Strings<br>
+          static void invertString(String[] array) {<br>
+          &nbsp;&nbsp;&nbsp; int l = array.length - 1;<br>
+          &nbsp;&nbsp;&nbsp; int l2 = array.length / 2;<br>
+          &nbsp;&nbsp;&nbsp; String t;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l2; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; t = array[i];<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; array[i] = array[l - i];<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; array[l - i] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució desplaçar esquerra</h6>
+        <p class="p_codi">// Desplaçar elements array a l'esquerra<br>
+          static void rotateLeftInt(int[] array) {<br>
+          &nbsp;&nbsp;&nbsp; int l = array.length - 1;<br>
+          &nbsp;&nbsp;&nbsp; int t = array[0];<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l; ++i) array[i] = array[i+1];<br>
+          &nbsp;&nbsp;&nbsp; array[l] = t;<br>
+          }</p>
+        <h6>Solució desplaçar dreta</h6>
+        <p class="p_codi">// Desplaçar elements array a la dreta<br>
+          static void rotateRightInt(int[] array) {<br>
+          &nbsp;&nbsp;&nbsp; int l = array.length - 1;<br>
+          &nbsp;&nbsp;&nbsp; int t = array[l];<br>
+          &nbsp;&nbsp;&nbsp; for (int i = l; i &gt; 0; --i) array[i] = array[i-1];<br>
+          &nbsp;&nbsp;&nbsp; array[0] = t;<br>
+          }</p>
+        <h6>Solució desplaçar dreta o esquerra</h6>
+        <p class="p_codi">// Desplaçar dreta o esquerra<br>
+          static void rotateInt(int[] array, char leftRight) {<br>
+          &nbsp;&nbsp;&nbsp; if (Character.toUpperCase(leftRight) == 'L') rotateLeftInt(array);<br>
+          &nbsp;&nbsp;&nbsp; else rotateRightInt(array);<br>
+          }</p>
+        <h6>Solució desplaçar dreta o esquerra N posicions</h6>
+        <p class="p_codi">// Desplaçar dreta o esquerra N posicions<br>
+          static void rotateIntN(int[] array, char leftRight, int nPos) {<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; nPos; ++i) rotateInt(array, leftRight);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució barrejar enters</h6>
+        <p class="p_codi">// Barrejar elements<br>
+          static void mixInt(int[] array) {<br>
+          &nbsp;&nbsp;&nbsp; int l = array.length;<br>
+          &nbsp;&nbsp;&nbsp; int t, r;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = (int)(Math.random() * l);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = array[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i] = array[r];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[r] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h6>Solució barrejar <em>Strings</em></h6>
+        <p class="p_codi">// Barrejar elements<br>
+          static void mixString(String[] array) {<br>
+          &nbsp;&nbsp;&nbsp; int l = array.length;<br>
+          &nbsp;&nbsp;&nbsp; String t;<br>
+          &nbsp;&nbsp;&nbsp; int r;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = (int)(Math.random() * l);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = array[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i] = array[r];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[r] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució ordenar enters</h6>
+        <p class="p_codi">// Ordenar array d'enters<br>
+          static void sortInt(int[] array) {<br>
+          &nbsp;&nbsp;&nbsp; int t;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; array.length - 1; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int j = i + 1; j &lt; array.length; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (array[i] &gt; array[j]) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = array[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i] = array[j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[j] = t;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h6>Solució ordenar <em>Strings</em></h6>
+        <p class="p_codi">// Ordenar array d'Strings<br>
+          static void sortString(String[] array) {<br>
+          &nbsp;&nbsp;&nbsp; String t;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; array.length - 1; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int j = i + 1; j &lt; array.length; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (array[i].compareToIgnoreCase(array[j]) &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = array[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i] = array[j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[j] = t;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució buscar enter</h6>
+        <p class="p_codi">// Buscar la posició d'un valor enter dins l'array<br>
+          static int indexOf(int[] array, int value) {<br>
+          &nbsp;&nbsp;&nbsp; int min = 0;<br>
+          &nbsp;&nbsp;&nbsp; int max = array.length - 1;<br>
+          &nbsp;&nbsp;&nbsp; int mid = 0;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (min &lt;= max) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mid = (min + max) / 2;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (array[mid] &lt; value) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min = mid + 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (array[mid] &gt; value) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max = mid - 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (array.length &gt; 0 &amp;&amp; array[mid] == value) return mid;<br>
+          &nbsp;&nbsp;&nbsp; else return -1;<br>
+          }</p>
+        <h6>Solució buscar <em>String</em></h6>
+        <p class="p_codi">// Buscar la posició d'un String dins l'array<br>
+          static int indexOf(String[] array, String value) {<br>
+          &nbsp;&nbsp;&nbsp; int min = 0;<br>
+          &nbsp;&nbsp;&nbsp; int max = array.length - 1;<br>
+          &nbsp;&nbsp;&nbsp; int mid = 0;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (min &lt;= max) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mid = (min + max) / 2;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (array[mid].compareToIgnoreCase(value) &lt; 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min = mid + 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (array[mid].compareToIgnoreCase(value) &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max = mid - 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (array.length &gt; 0 &amp;&amp; array[mid].equalsIgnoreCase(value)) return mid;<br>
+          &nbsp;&nbsp;&nbsp; else return -1;<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

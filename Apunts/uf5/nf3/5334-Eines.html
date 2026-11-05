@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Finestres">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Finestres</header>
+    <section>
+      <h2>Barres d'eines </h2>
+      <p>Les aplicacions d'escriptori acostumen a tenir una (o més) barres d'eines.</p>
+      <p>Per afegir aquests components, s'utilitza la classe <strong><em>JToolBar</em></strong>.</p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JToolBar.html">JToolBar ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/toolbar.html">Exemples de barra d'eines</a></p>
+      <h3>Afegir una barra d'eines</h3>
+      <p>Les barres d'eines s'afegeixen igual que qualsevol component: afegint-les dins d'un altre component.<br>
+        Normalment s'afegeixen a la secció superior del panell principal, si està organitzat com un <em>BorderLayout</em>.</p>
+      <p>Però abans, cal crear la barra i afegir-hi els botons.</p>
+      <p>Per defecte, les barres d'eines es poden moure a qualsevol costat de la finestra, però també es poden deixar flotant o fixar-les a la posició inicial amb el mètode <span class="c_comanda">setFloatable(true/false)</span>.</p>
+      <p>Per gestionar els esdeveniments sobre el botons de la barra, es farà igual que sobre qualsevol botó o menú.</p>
+      <p>Per afegir un separador entre elements s'utilitza el mètode <span class="c_comanda">addSeparator()</span>.<br>
+        Si es vol deixar més espai, es pot cridar el mateix mètode indicant la separació com a paràmetre.</p>
+      <h4>Exemple</h4>
+      <p class="p_codi">private static void <strong>crearToolBar()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Crear la barra d'eines<br>
+        &nbsp;&nbsp;&nbsp; <strong>JToolBar toolBar = new JToolBar();</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Afegir botons a la barra d'eines<br>
+        &nbsp;&nbsp;&nbsp; <strong>toolBar.add</strong>(crearBoto("Opció 1", "Primera opció", "op1"));<br>
+        &nbsp;&nbsp;&nbsp; <strong>toolBar.add</strong>(crearBoto("Opció 2", "Segona opció", "op2"));<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Afegir la barra d'eines a la part superior del panell principal de la finestra<br>
+        &nbsp;&nbsp;&nbsp; <strong>f.getContentPane().add(toolBar, BorderLayout.PAGE_START);</strong><br>
+        }<br>
+        <br>
+        private static JButton <strong>crearBoto</strong>(String text, String toolTip, String action) {<br>
+        &nbsp;&nbsp;&nbsp; JButton b = new JButton(text);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; b.<strong>setToolTipText</strong>(toolTip);<br>
+        &nbsp;&nbsp;&nbsp; // TODO: configurar acció i afegir controlador<br>
+        &nbsp;&nbsp;&nbsp; // b.<strong>setActionCommand</strong>(action);<br>
+        &nbsp;&nbsp;&nbsp; // b.<strong>addActionListener</strong>(optionControl);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; return b;<br>
+        }</p>
+      <h4>Resultat</h4>
+      <p><img alt="" src="./imatges/Eines.png" style="width:25em" class="noborder"></p>
+      <h4>Mètodes per configurar els botons de la barra d'eines</h4>
+      <ul>
+        <li><span class="c_comanda">setToolTipText(String t)</span>: fa que aparegui el text t quan es passa posa el ratolí a sobre.</li>
+        <li><span class="c_comanda">setActionCommand(String accio)</span>: el paràmetre <span class="c_comanda">accio</span> es pot obtenir en el gestor d'esdeveniments per distingir les diferents opcions.</li>
+        <li><span class="c_comanda">addActionListener(ActionListener al)</span>: el paràmetre <span class="c_comanda">al</span> ha de ser un objecte que rebri i tracti les accions realitzades sobre els botons. Més endavant es veurà com fer-ho.</li>
+      </ul>
+      <p> </p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

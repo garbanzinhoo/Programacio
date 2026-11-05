@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introduir dades">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introduir dades</header>
+    <section>
+      <h2>Llegir diferents tipus de dades</h2>
+      <p>Quan es treballa amb el terminal, cal que l'usuari pugui introduir dades escrivint-les pel teclat.</p>
+      <p>Per fer que el programa s'aturi i esperi que l'usuari introdueixi les dades cal:</p>
+      <ul>
+        <li>Importar una llibreria: <span class="c_comanda">import java.util.Scanner</span>.</li>
+        <li>Crear un objecte d'aquesta classe: <span class="c_comanda">static Scanner scan = new Scanner(System.in)</span>.</li>
+        <li>Utilitzar algunes de les seves funcions i guardar el resultat en una variable: <span class="c_comanda">s = scan.nextLine()</span>.</li>
+      </ul>
+      <h5>Exemple</h5>
+      <p class="p_codi"> <strong>import java.util.Scanner;<br>
+        </strong><br>
+        public class Main {<br>
+        &nbsp;&nbsp;&nbsp; <strong>static Scanner scan = new Scanner(System.in);</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(final String[] args) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Codi del programa<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; String nom;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.print("Com et dius? ");<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>nom = scan.nextLine();</strong><br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.println("Hola " + nom);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        } </p>
+      <h3>Tractar les dades introduïdes</h3>
+      <p>De vegades, els usuaris escriuen espais al principi o al final de la resposta que no s'han de tenir en compte.<br>
+        O cal que la resposta sigui en majúscules però l'escriuen en minúscules o barrejant majúscules i minúscules.</p>
+      <p>Per aquests casos hi ha dos mètodes que es poden aplicar a les respostes per evitar errors en el processament posterior:</p>
+      <ul>
+        <li><span class="c_comanda">toUpperCase()</span> (o <span class="c_comanda">toLowerCase()</span>): converteix tot a majúscules (o a minúscules).</li>
+        <li><span class="c_comanda">trim()</span>: elimina els espais que pugui haver al principi i al final del text.</li>
+      </ul>
+      <h5>Exemple</h5>
+      <p class="p_codi">String capital;<br>
+        System.out.print("Quina és la capital de Portugal? ");<br>
+        capital = scan.nextLine();<br>
+        capital = <strong>capital.trim()</strong>;<br>
+        capital = <strong>capital.toUpperCase()</strong>;<br>
+        if (capital.equals("LISBOA")) System.out.println("Correcte!");</p>
+      <p>També es podria haver fet amb menys instruccions:</p>
+      <p class="p_codi">capital = scan.nextLine().<strong>trim()</strong>.<strong>toUpperCase()</strong>;</p>
+      <h3>Mètodes per llegir diferents tipus de dades<br>
+      </h3>
+      <p>L'objecte creat (<span class="c_comanda c_configura">scan</span>) inclou mètodes per poder llegir les dades introduïdes de diferents formes.</p>
+      <h4>Llegir tot el què ha escrit l'usuari</h4>
+      <p>El mètode <span class="c_comanda">scan.nextLine()</span> llegeix tot el text introduït amb el teclat, incloent l'<kbd>INTRO</kbd> que s'ha de prémer al final, i retorna un text que s'ha de guardar en una variable de tipus <span class="c_comanda">String</span>:</p>
+      <p class="p_codi">String nomCognoms;<br>
+        ...<br>
+        <strong>nomCognoms = scan.nextLine();</strong></p>
+      <p>Quan el programa arribi a aquesta línia, esperarà fins que rebi un salt de línia (INTRO), i guardarà el text en la variable <span class="c_configura">nomCognoms</span>.</p>
+      <p>També es pot utilitzar per llegir un valor numèric, però s'ha de convertir després de llegir-lo:</p>
+      <p class="p_codi">int edat = <strong>Integer.parseInt(</strong>scan.nextLine()<strong>);</strong></p>
+      <p class="p_important">Si el què ha escrit l'usuari no és un número, es generarà una excepció i es tancarà el programa.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

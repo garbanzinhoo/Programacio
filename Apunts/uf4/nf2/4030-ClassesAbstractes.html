@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació orientada a objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació orientada a objectes</header>
+    <section>
+      <h2>Classes abstractes</h2>
+      <p>De vegades, cal que totes les subclasses defineixin el comportament d'un mètode i que no hi hagi cap comportament per defecte.<br>
+        En aquest cas, cal definir la superclasse i el mètode com abstractes, i no escriure-hi cap codi en el mètode:</p>
+      <p class="p_codi">public <strong>abstract</strong> class Animal {<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        &nbsp;&nbsp;&nbsp; // <strong>S'ha de crear en totes les subclasses</strong><br>
+        &nbsp;&nbsp;&nbsp; public <strong>abstract</strong> void <strong>moure()</strong>;<br>
+        }</p>
+      <p class="p_codi">public class Mamifer <strong>extends Animal</strong> {<br>
+        &nbsp;&nbsp;&nbsp; String moviment;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public Mamifer(String nom, String moviment) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(nom);<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; this.moviment = moviment;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Mètode sobreescrit<br>
+        &nbsp;&nbsp;&nbsp; public void <strong>moure()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(moviment);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_codi">public class TestAnimal {<br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animal cabra = new Mamifer("Cabra", "Estic saltant");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animal lleo = new Mamifer("Lleó", "Estic corrent");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animal sardina = new Peix("Sardina", 100);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>cabra.moure()</strong>;&nbsp;&nbsp; // Escriu <strong>Estic saltant</strong> (crida el mètode de la subclasse Mamifer)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>lleo.moure()</strong>;&nbsp;&nbsp;&nbsp; // Escriu <strong>Estic corrent</strong> (crida el mètode de la subclasse Mamifer)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>sardina.moure()</strong>; // Escriu <strong>Estic nedant</strong> (crida el mètode de la subclasse Peix)<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ...<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <p class="p_important">No es poden instanciar objectes d'una classe abstracta.</p>
+      <p> </p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

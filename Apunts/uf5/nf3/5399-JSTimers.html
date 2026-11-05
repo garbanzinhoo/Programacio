@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Temporitzadors a JavaScript">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Temporitzadors a JavaScript</header>
+    <section>
+      <h2>Temporitzadors</h2>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Timeouts_and_intervals">Referència temporitzadors (MDN)</a></p>
+      <p class="p_important">En les pestanyes inactives, els temporitzadors no es disparen més d'una vegada per segon.</p>
+      <h3>Executar codi passat un temps</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/met_win_settimeout.asp">Referència setTimeout()</a></p>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/met_win_cleartimeout.asp">Referència clearTimeout()</a></p>
+      <p>Serveix per executar una sentència, un bloc de codi o un mètode al cap d'un temps.</p>
+      <p>La comanda <span class="c_comanda">setTimeout()</span> utilitza dos paràmetres:</p>
+      <ul>
+        <li>Comanda o funció que serà cridada quan passi un temps determinat.</li>
+        <li>Mil·lisegons que han de passar abans d'executar la comanda o funció anterior.</li>
+      </ul>
+      <p>Si es vol cancel·lar l'execució abans que s'acabi el temps, es pot cridar la funció <span class="c_comanda">clearTimeout()</span>.<br>
+        Aquesta funció necessita l'identificador del temporitzador, que és un valor que retorna la comanda <span class="c_comanda">setTimeout()</span>.</p>
+      <p>En el següent exemple, un segon després de que s'executi <span class="c_comanda">setTimeout()</span>, es cridarà la funció <span class="c_comanda">missatge()</span>, si no s'ha cridat abans <span class="c_comanda">clearTimeout()</span>:</p>
+      <p class="p_codi">function missatge() {<br>
+        &nbsp;&nbsp;&nbsp; console.log("Hola");<br>
+        }<br>
+        var <strong>idTimeout</strong> = setTimeout(<strong>missatge</strong>, <strong>1000</strong>);<br>
+        ...<br>
+        clearTimeout(<strong>idTimeout</strong>);</p>
+      <p class="p_important">Si en el retard es posa 0 mil·lisegons, el codi s'executarà tan aviat com es pugui, però sempre després que finalitzi el bloc de codi on està la comanda <span class="c_comanda">setTimeout()</span>.</p>
+      <h4>Paràmetres en la funció de <em>callback</em></h4>
+      <p>A més de la funció a executar i el temps de retard, també es poden afegir altres arguments.<br>
+        Tots els arguments extra, es passaran a la funció de <em>callback</em>:</p>
+      <p class="p_codi">function hora(<strong>data</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; console.log("Son les " + data.getHours() + ":" + data.getMinutes());<br>
+        }<br>
+        setTimeout(hora, 60000, <strong>new Date()</strong>);<br>
+      </p>
+      <h3>Executar codi cada cert temps</h3>
+      <h4>setInterval()</h4>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/met_win_setinterval.asp">Referència setInterval()</a></p>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/met_win_clearinterval.asp">Referència clearInterval()</a></p>
+      <p>Serveix per executar una sentència, un bloc de codi o un mètode a intervals regulars.</p>
+      <p>La comanda <span class="c_comanda">setInterval()</span> utilitza dos paràmetres:</p>
+      <ul>
+        <li>Comanda o funció que serà cridada cada cert temps.</li>
+        <li>Mil·lisegons que han de passar entre una execució i la següent.</li>
+      </ul>
+      <p>Si es vol cancel·lar l'execució abans que s'acabi el temps, es pot cridar la funció <span class="c_comanda">clearInterval()</span>.<br>
+        Aquesta funció necessita l'identificador del temporitzador, que és un valor que retorna la comanda <span class="c_comanda">setInterval()</span>.</p>
+      <p>En el següent exemple, un segon després de que s'executi <span class="c_comanda">setInterval()</span>, es cridarà la funció <span class="c_comanda">missatge()</span>, i es continuarà repetint cada segon fins que es cride a <span class="c_comanda">clearInterval()</span>:<br>
+      </p>
+      <p class="p_codi">function missatge() {<br>
+        &nbsp;&nbsp;&nbsp; console.log("Hola");<br>
+        }<br>
+        var <strong>idInterval</strong> = setInterval(<strong>missatge</strong>, <strong>1000</strong>);<br>
+        ...<br>
+        clearInterval(<strong>idInterval</strong>);<br>
+      </p>
+      <h5>Paràmetres en la funció de <em>callback</em></h5>
+      <p>També s'accepten paràmetres extra en la funció <span class="c_comanda">setInterval()</span>:</p>
+      <p class="p_codi">function hora(<strong>data</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; console.log("Son les " + data.getHours() + ":" + data.getMinutes());<br>
+        }<br>
+        setInterval(hora, 60000, <strong>new Date()</strong>);</p>
+      <h4>requestAnimationFrame()</h4>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">Referència requestAnimationFrame()</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelAnimationFrame">Referència cancelAnimationFrame()</a></p>
+      <p>La principal diferència d'aquest mètode amb <span class="c_comanda">setInterval()</span> és que el mètode <em>callback</em> es crida just abans de redibuixar la finesta del navegador.<br>
+        A més, a la funció de <em>callback</em> se li passa un paràmetre que permet saber quant de temps ha passat des de l'última crida a aquesta funció.<br>
+        Per això s'utilitza principalment per realitzar animacions que depenguin de l'intèrval entre una imatge de l'animació i la següent.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Expressions regulars</h1>
+      <div class="enun">
+        <h3>Expressions regulars simples</h3>
+        <p>Posa exemples de textos que compleixin les següents expressions regulars:</p>
+        <ul>
+          <li>.</li>
+          <li>.?</li>
+          <li>.+</li>
+          <li>.*</li>
+          <li>\.</li>
+          <li>.{3,5}</li>
+          <li>[A-Za-z]{3}</li>
+          <li>\(\)</li>
+          <li>\d{4}</li>
+          <li>\d\d?\\\d{4}</li>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Webs amb exercicis d'expressions regulars</h3>
+        <a target="_blank" rel="noopener" href="https://regexone.com/">
+          <p>Regex One</p>
+        </a> <a target="_blank" rel="noopener" href="https://regex.sketchengine.eu/">
+          <p>Sketch Engine: Regex</p>
+        </a>
+        <p>Pensa que la majoria poden tenir més d'una solució: prova'n algunes.</p>
+      </div>
+      <div class="enun">
+        <h3>Exercicis diversos</h3>
+        <ul>
+          <li>NIF de persones:</li>
+          <ul>
+            <li>Senzill: 8 dígits i una lletra majúscula</li>
+            <li>K, L, M, X, Y o Z, 7 dígits i una lletra majúscula que no sigui I, O o U</li>
+          </ul>
+          <li>Matrícula d'un cotxe:</li>
+          <ul>
+            <li>Senzill: 4 dígits, un guió i 3 lletres majúscules</li>
+            <li>(1 o 2 lletres majúscules, un guió, 4 dígits, un guió i 1 o 2 lletres majúscules) o (el format actual)</li>
+          </ul>
+          <li>Adreça de correu electrònic:</li>
+          <ul>
+            <li>Del SaPa: els dels profes consten d'una paraula amb lletres minúscules i poden incloure números al final; els dels alumnes, a més, porten una lletra minúscula i un punt al principi</li>
+            <li>Un qualsevol</li>
+          </ul>
+          <li>Número:</li>
+          <ul>
+            <li>Senzill: enter positiu o negatiu</li>
+            <li>Positiu o negatiu, amb o sense decimals</li>
+          </ul>
+          <li>Data:</li>
+          <ul>
+            <li>Senzill: un o dos dígits pel dia (el primer ha de ser 0, 1, 2 o 3), guió, un o dos pel mes (el primer ha de ser 0 o 1), guió i dos o quatre dígits per l'any</li>
+            <li>Igual que l'anterior però separant dia, mes i any amb \</li>
+            <li>Paraula pel dia de la setmana, una coma i un espai, un o dos dígits pel dia, la paraula " de ", una paraula pel mes, la paraula " de " i 4 dígits per l'any.<br>
+              Pots provar a fer que comprovi que el nom del dia de la setmana i el nom del mes siguin correctes</li>
+          </ul>
+          <li>Expressió d'un bucle (els punts suspensius indiquen qualsevol text; pot haver-hi espais o no):</li>
+          <ul>
+            <li>for ( ... ; ... ; ... ) { ... }</li>
+          </ul>
+          <li>Definició d'un array de números enters, reals o text (el nom de la variable ha de començar amb una lletra o _, i pot contenir lletres, dígits i/o _):</li>
+          <ul>
+            <li>Exemple: int[] nom_variable = new int[10];</li>
+          </ul>
+          <li>Text:</li>
+          <ul>
+            <li>que comenci amb ABC i acabi amb 789</li>
+            <li>que comenci amb A, B o C i acabi amb 7, 8 o 9</li>
+          </ul>
+          <li>Graduació escalada: en el món de l'escalada es fa servir dos tipus de graduació diferent, la francesa i la estatunidenca. A casa nostra es fa servir la francesa, però ens demanen un programa que validi si la graduació entrada per pantalla és correcta o no, sigui quina sigui</li>
+        </ul>
+        <p class="p_codi">FRANÇA: 4,4+,5a,5b,5c,6a,6a+,6b,6b+,6c,6c+,7a,7a+,7b,7b+,7c,7c+,8a,8a+,8b,8b+,8c,8c+,9a,9a+,9b,9b+,9c,9c+<br>
+          USA: 5.9,5.10a,5.10b,5.10c,5.10d,5.11a,5.11b,5.11c,5.11d,5.12a,5.12b,5.12c,5.12d,5.13a,5.13b,5.13c,5.14a,5.14b,5.14c,5.14d,5.15a,5.15b,5.15c,5.15d</p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Gestió del sistema de fitxers</h1>
+      <p class="p_important">Per fer proves amb els exercicis, crea una estructura de carpetes i arxius utilitzant el mateix IDE o l'explorador d'arxius.</p>
+      <div class="enun">
+        <h3>Obtenir informació sobre arxius i carpetes</h3>
+        <p>Fes una funció que mostri la informació detallada d'un arxiu o carpeta passant-li un objecte de tipus <strong>File</strong>.<br>
+          Aquesta funció no ha de comprovar si l'arxiu o carpeta existeix (se suposarà que sí).</p>
+        <p>Aprofitant la funció anterior, fes una funció que mostri la informació d'un arxiu o carpeta passant-li la ruta en un <strong>String</strong>.<br>
+          Aquesta funció, abans de cridar l'anterior, ha de comprovar que la carpeta o l'arxiu existeixi.</p>
+        <p>Fes una funció que, passant-li un objecte de tipus <strong>File</strong>, retorni en un <em>String</em> els atributs d'un arxiu o carpeta: <strong>D</strong>irectory, <strong>H</strong>idden, <strong>R</strong>ead, <strong>W</strong>rite i e<strong>X</strong>ecute. Si no té algun d'ells, s'ha de posar un guió (<strong>-</strong>).<br>
+          Per exemple, una carpeta amagada: <span class="c_configura">DHRWX</span>; un arxiu executable: <span class="c_configura">--R-X</span>.</p>
+        <p>Fes una funció que, passant-li un objecte de tipus <strong>File</strong>, retorni en un <em>String</em> tabulat la data (i hora) de l'última modificació (<strong>DD/MM/AAAA</strong> <strong>HH:MM</strong>) i la mida en bytes (<strong>12 caràcters d'amplada</strong>) d'un arxiu o carpeta.</p>
+        <p>Aprofitant les dues funcions anteriors, crea una funció que retorni un <em>String</em> amb els atributs, data, mida i nom d'un objecte de tipus <strong>File</strong>.<br>
+          Aprofitant la funció anterior, crea una altra que faci el mateix però a partir d'un <em>String</em> amb una ruta.<br>
+          En aquest cas, s'ha de comprovar que la ruta existeixi.</p>
+      </div>
+      <div class="enun">
+        <h3>Obtenir informació sobre una ruta</h3>
+        <p>Fes una funció que mostri la informació sobre una ruta passant-li un objecte de tipus <strong>File</strong>.<br>
+          Aquesta funció no ha de comprovar si la ruta existeix (se suposarà que sí).</p>
+        <p>Aprofitant la funció anterior, fes una funció que mostri la informació sobre una ruta passant-li la ruta en un <strong>String</strong>.<br>
+          Aquesta funció, abans de cridar l'anterior, ha de comprovar que la ruta existeixi.</p>
+      </div>
+      <div class="enun">
+        <h3>Obtenir informació sobre els sistemes de fitxers</h3>
+        <p>Fes una funció que mostri els sistemes de fitxers de la màquina i la mida i l'espai utilitzable del sistema de fitxers de la carpeta de treball.</p>
+        <p>Fes una funció que mostri el nom de l'usuari, el seu directori personal i el directori de treball de l'aplicació (i la versió i el directori de la llibreria Java, el nom i la versió del SO...).</p>
+        <p>Fes una funció que retorni un <em>array</em> amb els sistemes de fitxers de la màquina.<br>
+          Aprofitant aquesta funció, crea'n una altra que els mostri.</p>
+        <p>Fes una funció que retorni un <em>array</em> amb la mida i l'espai utilitzable d'un dels sistemes d'arxius.<br>
+          Com a paràmetre se li ha de passar el nom del sistema de fitxers, per exemple <span class="c_arxiu">C:\</span><br>
+          Aprofitant aquesta funció, crea'n una altra que mostri aquestes dades.</p>
+      </div>
+      <div class="enun">
+        <h3>Llistar, crear, moure/renombrar i esborrar arxius i carpetes</h3>
+        <p>Aprofitant la funció que mostra informació resumida (en una línia) d'un arxiu o carpeta passant-li un objecte de tipus <strong>File</strong>, fes una funció que mostri el contingut d'una carpeta passant-li la ruta en un <em>String</em>.<br>
+          Cal comprovar que la ruta és una carpeta i que existeixi.<br>
+          Al final del llistat, ha de mostrar quants arxius i quantes carpetes conté.</p>
+        <p>Elimina l'estructura d'arxius i carpetes que havies creat manualment i fes una funció que la torni a crear.<br>
+          En la mateixa funció, afegeix alguna capeta i arxiu més, canvia'ls de lloc, canvia el nom i esborra'ls.</p>
+      </div>
+      <div class="enun">
+        <h3>Treballar des d'un directori diferent</h3>
+        <p>Crea una variable global de tipus <em>String</em> anomenada <strong>directoriBase</strong>.<br>
+          Posa-hi la ruta absoluta cap al teu escriptori (millor si ho fas partint del <strong>directori de l'usuari actual</strong>).</p>
+        <p>Crea l'estructura de proves utilitzant com a base el <strong>directoriBase</strong>.</p>
+      </div>
+      <div class="enun">
+        <h3>Utilitzar funcions amb un nombre variable d'arguments</h3>
+        <p>Crea una funció que permeti crear una carpeta passant-li un paràmetre de tipus <strong>File</strong>.<br>
+          Si les carpetes pare no existeixen, s'han de crear automàticament.<br>
+          S'ha de detectar i avisar si la carpeta que no s'ha pogut crear.<br>
+          Aprofitant la funció anterior, crea una funció amb un paràmetre de tipus <em>varargs</em> que permeti crear de cop diverses carpetes passant com a arguments les rutes en format text.</p>
+        <p>Crea una funció que permeti crear un arxiu passant-li un paràmetres de tipus <strong>File</strong>.<br>
+          S'ha de detectar i avisar si l'arxiu no s'ha pogut crear.<br>
+          Aprofitant la funció anterior, crea una funció amb un paràmetre de tipus <em>varargs</em> que permeti crear de cop diversos arxius passant com a arguments les rutes en format text.</p>
+        <div class="p_important">
+          <p>Per avisar si no s'ha pogut crear una carpeta o un arxiu es pot fer de diferents formes:</p>
+          <ul>
+            <li>Mostrant directament un missatge per consola (no recomanable).</li>
+            <li>Retornant un valor booleà (<em>true</em> si s'ha pogut fer; <em>false</em> en cas contrari).</li>
+            <li>Llençant una excepció <span class="c_comanda">throw</span> que es tractarà en la funció pare utilitzant <span class="c_comanda">try ... catch</span>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="enun">
+        <h3>Utilitzar llibreries externes</h3>
+        <p>Utilitza la llibreria <strong>Apache Commons IO</strong> per copiar tota l'estructura que has creat a un altre lloc.<br>
+          Comprova que al crear i executar el JAR des de l'IDE, també funciona.<br>
+          Comprova què passa si executes el JAR des de la línia de comandes.</p>
+      </div>
+    </section>
+  </body>
+</html>

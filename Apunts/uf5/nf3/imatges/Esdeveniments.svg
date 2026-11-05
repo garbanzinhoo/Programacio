@@ -1,0 +1,134 @@
+<svg width="736" height="288" version="1.1" viewBox="0 0 736 288" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <motionconfig fps="50"/>
+  <motion stop="#objectfi" />
+  <motion stop="#connectfi" />
+  <motion stop="#event1fi" />
+  <motion href="#info">
+   <shift op0="0" />
+   <shift span="0.1" op1="1" txt="Crear listener a partir de la classe" />
+   <shift id="info1fi" />
+   <shift span="#objectfi" />
+   <shift span="0.1" op1="0"/>
+   <shift span="0.1" op1="1" txt="Connectar component amb el listener" />
+   <shift id="info2fi" />
+   <shift span="#connectfi" />
+   <shift span="0.1" op1="0"/>
+   <shift span="0.1" op1="1" txt="Al clicar el botó, s'envia un MouseEvent al listener" />
+   <shift span="#event1fi" />
+   <shift span="0.1" op1="0"/>
+   <shift span="0.1" op1="1" txt="Al deixar anar el botó, s'envia un MouseEvent al listener" />
+  </motion>
+  <motion href="#object">
+   <shift op0="0" />
+   <shift span="0.3" />
+   <shift span="0.3" op1="1" />
+   <shift id="objectfi" />
+  </motion>
+  <motion href="#connect">
+   <shift op0="0" />
+   <shift span="#objectfi" />
+   <shift span="0.3" />
+   <shift span="0.3" op1="1" />
+   <shift id="connectfi" />
+  </motion>
+  <motion href="#mouse">
+   <shift op0="0" />
+   <shift span="#connectfi" />
+   <shift span="0.1" op1="1" />
+   <shift span="0.4" xi="-30" yi="-40" />
+   <shift span="0.2" />
+   <shift id="mousemovefi" />
+   <shift span="0.1" xi="-2" yi="-2" />
+   <shift id="mousepressfi" />
+   <shift span="#event1hide" />
+   <shift span="0.1" xi="2" yi="2" />
+   <shift id="mousereleasedfi" />
+  </motion>
+  <motion href="#clic">
+   <shift op0="0" />
+   <shift span="#mousemovefi" />
+   <shift span="0.1" op1="1" xi="-2" yi="-2" />
+   <shift span="#event1hide" />
+   <shift span="0.1" op1="0" xi="2" yi="2" />
+  </motion>
+  <motion href="#buttonclic">
+   <shift op0="0" />
+   <shift span="#mousemovefi" />
+   <shift span="0.1" op1="1" />
+   <shift span="#event1hide" />
+   <shift span="0.1" op1="0" />
+  </motion>
+  <motion href="#event">
+   <shift op0="0" xi="-35" />
+   <shift span="#mousepressfi" />
+   <shift span="0.1" op1="1" />
+   <shift span="0.8" xi="215" />
+   <shift span="0.8" xi="180" yi="-20" />
+   <shift id="event1fi" />
+   <shift span="0.1" op1="0" />
+   <shift span="0.1" xi="-395" yi="20" />
+   <shift id="event1hide" />
+   <shift span="#mousereleasedfi" />
+   <shift span="0.1" op1="1" />
+   <shift span="0.8" xi="225" />
+   <shift span="0.8" xi="180" yi="60" />
+  </motion>
+
+  <marker id="DotM" style="overflow:visible" orient="auto">
+   <path transform="scale(.4) translate(7.4 1)" d="m-2.5-1c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z" style="fill-rule:evenodd;stroke-width:1pt;stroke:#404040"/>
+  </marker>
+  <marker id="Arrow1Mend" style="overflow:visible" orient="auto">
+   <path transform="scale(.4) rotate(180) translate(10)" d="m0 0 5-5-17.5 5 17.5 5-5-5z" style="fill-rule:evenodd;stroke-width:1pt;stroke:#404040"/>
+  </marker>
+  <linearGradient id="linearGradient1242" x1="435" x2="435" y1="263" y2="188" gradientTransform="translate(-350,-42)" gradientUnits="userSpaceOnUse">
+   <stop style="stop-color:#b8cfe5" offset="0"/>
+   <stop style="stop-color:#b8cfe5;stop-opacity:0" offset=".7"/>
+   <stop style="stop-color:#b8cfe5;stop-opacity:.565" offset="1"/>
+  </linearGradient>
+  <filter id="filter1270" x="-.145" y="-.102" width="1.29" style="color-interpolation-filters:sRGB">
+   <feGaussianBlur stdDeviation="1.558"/>
+  </filter>
+ </defs>
+ <text x="340.2" y="31" style="fill:#000000;font-family:sans-serif;font-size:16px;font-weight:bold;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan id="info" x="340.2" y="31"></tspan></text>
+ <g id="button">
+  <rect x="20" y="148" width="144" height="72" style="fill:url(#linearGradient1242);opacity:.96;stroke-dashoffset:9.2;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;stroke:#7a8a99"/>
+  <text transform="scale(.951 1.05)" x="58.6" y="181.1" style="fill:#473852;font-family:sans-serif;font-size:17.7px;font-weight:bold;letter-spacing:0px;line-height:1.25em;stroke-width:.947;word-spacing:0px" xml:space="preserve"><tspan id="tspan22" x="58.6" y="181.1" style="fill:#473852;font-family:sans-serif;font-size:17.7px;font-weight:bold;stroke-width:.947">Activar</tspan></text>
+ </g>
+ <g id="buttonclic">
+  <rect x="20" y="148" width="144" height="72" style="fill:#b8cfe5;opacity:.96;stroke-dashoffset:9.2;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;stroke:#7a8a99"/>
+  <text transform="scale(.951 1.05)" x="56.6" y="179.1" style="fill:#473852;font-family:sans-serif;font-size:17.7px;font-weight:bold;letter-spacing:0px;line-height:1.25em;stroke-width:.947;word-spacing:0px" xml:space="preserve"><tspan id="tspan30" x="56.6" y="179.1" style="fill:#473852;font-family:sans-serif;font-size:17.7px;font-weight:bold;stroke-width:.947">Activar</tspan></text>
+ </g>
+ <path id="connect" d="m152 186h213" style="marker-end:url(#Arrow1Mend);marker-start:url(#DotM);stroke-dasharray:8, 8;stroke-linecap:round;stroke-width:2;stroke:#404040"/>
+ <g id="class" style="stroke-width:2;stroke-dasharray:8,4">
+  <g transform="translate(496,-12)">
+   <path d="m-122 85v180c0 10 5 15 15 15h312c10 0 15-5 15-15v-150l-45-45h-282c-10 0-15 5-15 15z" style="fill:none;stroke-width:2;stroke:#000"/>
+   <path d="m175 70v30c0 10 5 15 15 15h30" style="fill:none;stroke-width:2;stroke:#000"/>
+  </g>
+  <rect x="405" y="192" width="300" height="65" style="fill:#e0e0e0;opacity:.96;stroke-dashoffset:9.2;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;stroke:#404040"/>
+  <rect x="405" y="112" width="300" height="65" style="fill:#e0e0e0;opacity:.96;stroke-dashoffset:9.2;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;stroke:#404040"/>
+  <text x="385.5" y="89.1" style="fill:#000000;font-family:sans-serif;font-size:16px;font-weight:bold;letter-spacing:0px;line-height:1.25em;word-spacing:0px" xml:space="preserve"><tspan id="tspan56" x="385.5" y="89.1" style="font-family:sans-serif;font-weight:bold">class BAdapter ext. MouseAdapter</tspan></text>
+ </g>
+ <g id="object">
+  <g transform="translate(496,-12)" style="stroke-width:2">
+   <path d="m-122 85v180c0 10 5 15 15 15h312c10 0 15-5 15-15v-150l-45-45h-282c-10 0-15 5-15 15z" style="fill:#fea;stroke-width:2;stroke:#000"/>
+   <path d="m175 70v30c0 10 5 15 15 15h30" style="fill:none;stroke-width:2;stroke:#000"/>
+  </g>
+  <rect x="405" y="192" width="300" height="65" style="fill:#90b0ff;opacity:.96;stroke-dashoffset:9.2;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;stroke:#404040"/>
+  <rect x="405" y="112" width="300" height="65" style="fill:#90b0ff;opacity:.96;stroke-dashoffset:9.2;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;stroke:#404040"/>
+  <text x="385.5" y="89.1" style="fill:#000000;font-family:sans-serif;font-size:16px;font-weight:bold;letter-spacing:0px;line-height:1.25em;word-spacing:0px" xml:space="preserve"><tspan id="tspan56" x="385.5" y="89.1" style="font-family:sans-serif;font-weight:bold">buttonListener</tspan></text>
+ </g>
+ <text x="412.1" y="209.3" style="fill:#000000;font-family:sans-serif;font-size:16px;letter-spacing:0px;line-height:1.25em;word-spacing:0px" xml:space="preserve"><tspan id="tspan64" x="412.1" y="209.3">mouseReleased(MouseEvent e)  {</tspan><tspan id="tspan66" x="412.1" y="229.3">    ...</tspan><tspan id="tspan68" x="412.1" y="249.3">}</tspan></text>
+ <text x="412.1" y="129.3" style="fill:#000000;font-family:sans-serif;font-size:16px;letter-spacing:0px;line-height:1.25em;word-spacing:0px" xml:space="preserve"><tspan id="tspan76" x="412.1" y="129.3">mousePressed(MouseEvent e)  {</tspan><tspan id="tspan78" x="412.1" y="149.3">    ...</tspan><tspan id="tspan80" x="412.1" y="169.3">}</tspan></text>
+ <g id="mouse">
+  <path d="m168 242 .4 35.1 7.8-8 4.4 9.4 7.3-3.4-4.4-9.4 10.3-.8z" style="fill:#c0c0c0;filter:url(#filter1270);stroke-width:.8"/>
+  <path d="m170 243 .4 32.9 7.3-7.5 4.1 8.9 6.8-3.2-4.1-8.8 9.7-.8z" style="fill:#404040;stroke-linejoin:round;stroke-width:.75;stroke:#fff"/>
+ </g>
+ <path id="clic" d="m140 194v7.9m10.5 2.6h-7.9m-13.1 0h7.8m10.5-7.8-5.2 5.2m-5.3 5.3-5.2 5.2m5.2-10.5-5.2-5.2" style="fill:none;stroke-linecap:round;stroke-width:1.31;stroke:#808080"/>
+ <g id="event" transform="matrix(.4 0 0 .4 171 152)">
+  <rect x="2" y="2" width="92" height="60" rx="4" ry="4" style="fill:#ff0;stroke-linejoin:round;stroke-width:4;stroke:#000"/>
+  <path d="m2 62 32-28" style="fill:none;stroke-width:3;stroke:#000"/>
+  <path d="m94 62-32-28" style="fill:none;stroke-width:3;stroke:#000"/>
+  <path d="m2 6.5 32 28q14 12 28 0l32-28" style="fill:none;stroke-width:4;stroke:#000"/>
+ </g>
+</svg>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">float preu;<br>
+          <br>
+          System.out.print("Introdueix el preu: ");<br>
+          preu = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          // Aplicar descompte<br>
+          if (preu &gt;= 500) {<br>
+          &nbsp;&nbsp;&nbsp; preu -= preu * 10 / 100;<br>
+          }<br>
+          <br>
+          // Afegir transport<br>
+          if (preu &lt; 20) {<br>
+          &nbsp;&nbsp;&nbsp; preu += 5;<br>
+          }<br>
+          <br>
+          System.out.println("El preu final és " + preu);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// <strong>Contrasenya numèrica</strong><br>
+          final int CONTRASENYA = 1234;<br>
+          int contrasenya;<br>
+          <br>
+          System.out.print("Introdueix la contrasenya: ");<br>
+          contrasenya = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          if (<strong>contrasenya == CONTRASENYA</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("OK");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("ERROR");<br>
+          }<br>
+          <br>
+          // <strong>Contrasenya alfanumèrica</strong><br>
+          final String CONTRASENYA2 = "1234";<br>
+          String contrasenya2;<br>
+          <br>
+          System.out.print("Introdueix la contrasenya: ");<br>
+          contrasenya2 = scan.nextLine();<br>
+          <br>
+          if (<strong>contrasenya2.equals(CONTRASENYA2)</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("OK");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("ERROR");<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int n1, n2;<br>
+          &nbsp;<br>
+          System.out.print("Introdueix dos números enters separats per espais: ");<br>
+          n1 = scan.nextInt();<br>
+          n2 = scan.nextInt();<br>
+          scan.nextLine();<br>
+          &nbsp;<br>
+          if (n1 % n2 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(n1 + " és múltiple de " + n2);<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(n1 + " NO és múltiple de " + n2);<br>
+          }<br>
+          <br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int numero;<br>
+          <br>
+          System.out.print("Introdueix un número enter: ");<br>
+          numero = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          if (numero &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("És positiu");<br>
+          } else if (numero &lt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("És negatiu");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("És 0");<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int edat;<br>
+          <br>
+          System.out.print("Quants anys tens? ");<br>
+          edat = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          if (edat &gt;= 18 &amp;&amp; edat &lt; 80) System.out.println("Pots conduir cotxe");<br>
+          if(!(edat &gt;= 16 &amp;&amp; edat &lt;= 65)) System.out.println("No estàs en edat de treballar");<br>
+          if(edat &lt; 3) System.out.println("Has d'anar a la guarderia");<br>
+          if(edat &gt;= 18 &amp;&amp; edat &lt;= 24) System.out.println("Pots estudiar un CFGM");<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// <strong>Solució amb 2 números</strong><br>
+          float n1, n2;<br>
+          <br>
+          System.out.print("Introdueix dos números reals separats per espais: ");<br>
+          n1 = scan.nextFloat();<br>
+          n2 = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          if (n1 &gt; n2) {&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // Comprovar si n1 és més gran que n2<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(n1 + " és el més gran");<br>
+          } else if (n2 &gt; n1) {&nbsp;&nbsp; // Comprovar si n2 és més gran que n1<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(n2 + " és el més gran");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Tots dos són iguals");<br>
+          }<br>
+          <br>
+          // <strong>Solució amb 3 números</strong><br>
+          float n3;<br>
+          <br>
+          System.out.print("Introdueix tres números reals separats per espais: ");<br>
+          n1 = scan.nextFloat();<br>
+          n2 = scan.nextFloat();<br>
+          n3 = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          if (n1 &gt; n2 &amp;&amp; n1 &gt; n3) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Comprovar si n1 és més gan que els altres dos<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(n1 + " és el més gran");<br>
+          } else if (n2 &gt; n1 &amp;&amp; n2 &gt; n3) {&nbsp;&nbsp; // Comprovar si n2 és més gan que els altres dos<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(n2 + " és el més gran");<br>
+          } else if (n3 &gt; n1 &amp;&amp; n3 &gt; n2) {&nbsp;&nbsp; // Comprovar si n3 és més gan que els altres dos<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(n3 + " és el més gran");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Tots tres són iguals");<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">float preu, diners, canvi;<br>
+          int monedes, canviCentims;<br>
+          <br>
+          System.out.print("Introdueix import a pagar: ");<br>
+          preu = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          System.out.print("Diners introduïts: ");<br>
+          diners = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          canvi = diners - preu;<br>
+          System.out.printf("El canvi seran %.2f €:\n", canvi);<br>
+          <br>
+          // Cal canviar a cèntims i arrodonir per evitar<br>
+          //&nbsp; problemes al convertir a int (truncar)<br>
+          canviCentims = Math.round(canvi * 100);<br>
+          <br>
+          monedes = canviCentims / 200;<br>
+          canviCentims %= 200;<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) System.out.println("1 moneda de 2 euros");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.printf("%d monedes de 2 euros\n", monedes);<br>
+          }<br>
+          <br>
+          monedes = canviCentims / 100;<br>
+          canviCentims %= 100;<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) System.out.println("1 moneda de 1 euro");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.printf("%d monedes de 1 euro\n", monedes);<br>
+          }<br>
+          <br>
+          monedes = canviCentims / 50;<br>
+          canviCentims %= 50;<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) System.out.println("1 moneda de 50 cent");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.printf("%d monedes de 50 cent\n", monedes);<br>
+          }<br>
+          <br>
+          monedes = canviCentims / 20;<br>
+          canviCentims %= 20;<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) System.out.println("1 moneda de 20 cent");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.printf("%d monedes de 20 cent\n", monedes);<br>
+          }<br>
+          <br>
+          monedes = canviCentims / 10;<br>
+          //canviCentims %= 10; // No és necessari si no cal 5, 2 i 1 ctm<br>
+          if (monedes &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (monedes == 1) System.out.println("1 moneda de 10 cent");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.printf("%d monedes de 10 cent\n", monedes);<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int any;<br>
+          <br>
+          System.out.print("Introdueix un any: ");<br>
+          any = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          // <strong>Solució 1</strong><br>
+          if (any % 400 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("SÍ és any de traspàs");<br>
+          } else if (any % 100 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("NO és any de traspàs");<br>
+          } else if (any % 4 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("SÍ és any de traspàs");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("NO és any de traspàs");<br>
+          }<br>
+          <br>
+          // <strong>Solució 2</strong><br>
+          if (any % 400 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("SÍ és any de traspàs");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; if (any % 100 == 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("NO és any de traspàs");<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (any % 4 == 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("SÍ és any de traspàs");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("NO és any de traspàs");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // <strong>Solució 3</strong><br>
+          if (any % 400 == 0 || (any % 4 == 0 &amp;&amp; any % 100 != 0)) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("SÍ és any de traspàs");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("NO és any de traspàs");<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">double n1;<br>
+          double n2;<br>
+          char operacio;<br>
+          &nbsp;<br>
+          System.out.print("Introdueix el primer valor: ");<br>
+          n1 = scan.nextDouble();<br>
+          scan.nextLine();<br>
+          System.out.print("Introdueix el segon valor: ");<br>
+          n2 = scan.nextDouble();<br>
+          scan.nextLine();<br>
+          System.out.print("Quina operació vols fer (+, -, * o /)? ");<br>
+          operacio = scan.nextLine().charAt(0);<br>
+          &nbsp;<br>
+          if (operacio == '+') System.out.println("El resultat és " + (n1 + n2));<br>
+          else if (operacio == '-') System.out.println("El resultat és " + (n1 - n2));<br>
+          else if (operacio == '*') System.out.println("El resultat és " + (n1 * n2));<br>
+          else if (operacio == '/') System.out.println("El resultat és " + (n1 / n2));<br>
+          else System.out.println("Error: operació no reconeguda");<br>
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Bucle For">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Bucle <em>for</em></header>
+    <section>
+      <h2>Bucle <em>for</em></h2>
+      <p><img alt="" src="./imatges/For.svg" style="width:10em" class="noborder"></p>
+      <p>Aquesta estructura és similar al <span class="c_comanda">while</span>. De fet, qualsevol bucle <span class="c_comanda">for</span> es pot substituir per un bucle <span class="c_comanda">while</span>.</p>
+      <p>Lavors, en quins casos s'ha d'utilitzar <span class="c_comanda">for</span> i en quins casos <span class="c_comanda">while</span>?</p>
+      <ul>
+        <li>S'utilitzarà <span class="c_comanda">for</span> quan el codi s'hagi de repetir un número conegut de vegades.<br>
+          El nombre de vegades vindrà determinat per un literal, una constant o una variable.</li>
+        <li>S'utilitzarà <span class="c_comanda">while</span> quan no se sàpiga quantes vegades s'ha d'executar el codi.<br>
+          El bucle es repetirà mentre es compleixi una condició.</li>
+      </ul>
+      <p>La sintaxi general és:</p>
+      <p class="p_codi"><strong>for (inicialitzacio; condicio_repeticio; post_codi)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Codi que s'executarà repetidament<br>
+        }</p>
+      <p>Dins del <span class="c_comanda">for</span> s'han de posar 3 expresions separades per <span class="c_comanda">;</span>:</p>
+      <ul>
+        <li>La primera s'utilitza per inicialitzar la variable que s'encarrega del control del bucle.<br>
+          Aquesta part només s'executa una vegada, abans de començar el bucle.</li>
+        <li>La segona conté la condició de repetició del bucle comparant la variable amb un valor determinat.<br>
+          Aquesta part s'executa cada vegada abans d'executar el codi del bucle per comprovar si s'ha d'executar o si s'ha de finalitzar el bucle (és equivalent al <span class="c_comanda">while</span>).</li>
+        <li>La tercera s'utilitza per modificar la variable de control, incrementant o decrementant el seu valor.<br>
+          Aquesta part s'executa al final del codi de dins del bucle, abans de tornar al principi i comprovar la condició de repetició del bucle.</li>
+      </ul>
+      <p class="p_important">Encara que aquestes expressions poden ser més complexes o fins i tot estar buides, tenint en compte la utilitat dels bucles <span class="c_comanda">for</span> (repetir un codi N vegades) i per facilitar la comprensió del programa, cal limitar-se als casos anteriors.</p>
+      <p>La sintaxi equivalent d'un bucle <span class="c_comanda">for</span> fet amb <span class="c_comanda">while</span> seria:</p>
+      <p class="p_codi"><strong>inicialitzacio;</strong><br>
+        <strong>while (condicio_repeticio)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Codi que s'executarà repetidament<br>
+        &nbsp;&nbsp;&nbsp; <strong>post_codi;</strong><br>
+        }</p>
+      <h5>Exemples<br>
+      </h5>
+      <p class="p_codi">// Escriu <strong>Hello world!</strong> 10 vegades<strong><br>
+          for (let i = 0; i &lt; 10; i++)</strong> {<br>
+        &nbsp; alert("Hello world!");<br>
+        }<br>
+        <br>
+        // Calcular els valors de la funció y = 3x + 8 entre -10 i +10<br>
+        let y;<br>
+        <strong>for (let x = -10; x &lt;= 10; x += 2.5)</strong> {<br>
+        &nbsp; y = 3 * x + 8;<br>
+        &nbsp; alert("y(" + x + ") = " + y);<br>
+        }</p>
+      <p>És habitual posar noms com <span class="c_comanda">i</span>, <span class="c_comanda">j</span> o <span class="c_comanda">k</span> a la variable que controla el bucle excepte quan aquesta s'utilitza en el codi de dins del bucle per a un propòsit específic.</p>
+      <p class="p_important">Més endavant es veurà com utilitzar bucles <span class="c_comanda">for</span> per realitzar iteracions amb elements d'una llista.</p>
+      <div class="p_important">
+        <p><strong>ATENCIÓ</strong>: Un error difícil de detectar és la utilització de la variable de control dins del bucle per fer càlculs:</p>
+        <p class="p_codi">for (<strong>let x</strong> = -10; <strong>x</strong> &lt;= 10; <strong>x</strong> += 2) {<br>
+          &nbsp; <strong>x</strong> = 3 * x + 8;<br>
+          }</p>
+        <p>En aquest cas, el bucle no acabarà mai!<br>
+          En altres casos, podria ser que acabés abans d'hora o que donés resultats incorrectes.</p>
+      </div>
+      <h3>Bucles niuats</h3>
+      <p>També es poden posar bucles dins d'altres bucles, però cal utilitzar una variable de control diferent.<br>
+        Per cada vegada que s'executi el bucle exterior, el bucle interior s'executarà N vegades.</p>
+      <p class="p_codi">for (<strong>let i = 0</strong>; i &lt; 10; i++) {<br>
+        &nbsp; for (<strong>let j = 0</strong>; j &lt; 10; j++) {<br>
+        &nbsp;&nbsp;&nbsp; alert(i + "," + j + " ");<br>
+        &nbsp; }<br>
+        }</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

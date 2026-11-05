@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Estructures de repetició en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Estructures de repetició en Java</header>
+    <section>
+      <h2>Introduir dades dins d'un bucle</h2>
+      <h3>Introduir una dada fins que sigui correcta</h3>
+      <p class="p_codi">let num;<br>
+        <br>
+        do {<br>
+        &nbsp;&nbsp;&nbsp; num = prompt("Introdueix un número entre 0 i 10");<br>
+        } while (<strong>num &lt; 0 || num &gt; 10</strong>);</p>
+      <p>De vegades és més fàcil pensar quina és la condició per sortir del bucle i posar-la invertida:</p>
+      <p class="p_codi">while (<strong>!(num &gt;= 0 &amp;&amp; num &lt;= 10)</strong>);</p>
+      <h3>Introduir dades fins que s'introdueixi un valor determinat</h3>
+      <p class="p_codi">let nom;<br>
+        let edat;<br>
+        let altura;<br>
+        <strong><br>
+          nom = </strong><strong>prompt("Com et dius?");</strong><br>
+        while (<strong>nom.toUpperCase() != "FI"</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; edat = prompt("Quina edat tens?");<br>
+        &nbsp;&nbsp;&nbsp; altura = prompt("Quant medeixes?");<br>
+        &nbsp;&nbsp;&nbsp; // Processar o guardar les dades<br>
+        &nbsp;&nbsp;&nbsp; // ...<br>
+        <strong>&nbsp;&nbsp;&nbsp; nom = </strong><strong></strong><strong>prompt("Com et dius?");</strong><br>
+        }</p>
+      <p>En el següent exemple s'utilitza un bucle que, en principi, sembla que no acabarà mai, perquè la condició per repetir el bucle és sempre certa.<br>
+        En aquests casos cal posar dins del bucle alguna condició que permeti sortir del bucle.</p>
+      <p class="p_important">No és recomanable utilitzar bucles infinits exceptuant aquells casos en què les condicions de sortida del bucle siguin moltes i complexes. <strong>En el següent exemple, no està justificat utilitzar-lo.</strong></p>
+      <p class="p_codi">let nom;<br>
+        let edat;<br>
+        let altura;<br>
+        <br>
+        while (<strong>true</strong>) {<br>
+        <strong>&nbsp;&nbsp;&nbsp; nom = </strong><strong></strong><strong></strong><strong>prompt("Com et dius?");</strong><br>
+        &nbsp;&nbsp;&nbsp; if (<strong>nom.toUpperCase() == "FI"</strong>) break;<br>
+        &nbsp;&nbsp;&nbsp; edat = prompt("Quina edat tens?");<br>
+        &nbsp;&nbsp;&nbsp; altura = prompt("Quant medeixes?");<br>
+        &nbsp;&nbsp;&nbsp; // Processar o guardar les dades<br>
+        &nbsp;&nbsp;&nbsp; // ...<br>
+        }</p>
+      <h2>Invertir la condició per sortir del bucle</h2>
+      <p>En els bucles <em>while</em> i <em>do ... while</em>, la condició que s'ha de posar és la que farà que es repeteixi el bucle.<br>
+        Però, en general, resulta més fàcil pensar en la condició per sortir del bucle.</p>
+      <p>Per això, una forma fàcil per crear la condició sense equivocar-se és pensar la condició de sortida i després invertir-la, sigui negant tota l'expressió o invertint tots els operadors relacionals i lògics.</p>
+      <p>Per exemple, si no s'ha de sortir del bucle fins que l'edat introduïda estigui entre 18 i 65 anys, s'ha de posar aquesta condició i invertir-la:</p>
+      <p><strong>edat &gt;= 18 &amp;&amp; edat &lt;= 65</strong> (condició per sortir del bucle)</p>
+      <p><strong>while (!(edat &gt;= 18 &amp;&amp; edat &lt;= 65))</strong> o <strong>while (edat &lt; 18 || edat &gt; 65)</strong> (condició per repetir el bucle)</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

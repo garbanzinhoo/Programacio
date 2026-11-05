@@ -1,0 +1,8 @@
+<svg width="64" height="56" version="1.1" viewBox="0 0 64 56" xmlns="http://www.w3.org/2000/svg">
+ <rect x="5" y="11" width="45" height="40" style="fill:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;stroke:#000"/>
+ <path d="m5 11 10-5h45v40l-10 5" style="fill:none;stroke-width:2;stroke:#000"/>
+ <path d="m50 11 10-5" style="fill:none;stroke-width:2;stroke:#000"/>
+ <path d="m5 36h45l10-5" style="fill:none;stroke-width:1px;stroke:#000"/>
+ <text x="27.31" y="46.78" style="fill:#000000;font-family:sans-serif;font-size:11px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="27.31" y="46.78">bool tf</tspan></text>
+ <text x="27.45" y="28.77" style="fill:#000000;font-family:sans-serif;font-size:13px;font-weight:bold;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="27.45" y="28.77">true</tspan></text>
+</svg>

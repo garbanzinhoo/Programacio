@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <p>Per provar les funcions de les solucions, es pot utilitzar el següent codi en la funció <span class="c_comanda">main()</span>:</p>
+      <p class="p_desplegable p_codi"><br>
+        const terminal = document.getElementById("terminal");<br>
+        <br>
+        let iArray = [1, 2, 3, 4, 5];<br>
+        let array2 = [[1, 2, 3], [4, 5, 6]];<br>
+        let sArray = ["Hola", "què", "tal", "estas", "avui"];<br>
+        <br>
+        console.log("Caràcter aleatori entre A i Z: " + randomChar('A', 'Z'));<br>
+        console.log("Caràcter aleatori entre A-Z i a-z: " + randomChar2());<br>
+        let array = initArrayInt(5, 2);<br>
+        <br>
+        console.log(arrayToString(array));<br>
+        console.log(arrayToString(iArray, "", "\n"));<br>
+        terminal.innerHTML = arrayBiToString(array2, " | ", "&lt;br&gt;");<br>
+        <br>
+        let c = introChar("Introdueix una opció (a, b, c, A, B o C)", "abcABC");<br>
+        console.log("El caràcter introduït és: " + c);<br>
+        let opc = introChar2("Introdueix una opció (sumar, restar, multiplicar o dividir)", ["sumar", "restar", "multiplicar", "dividir"]);<br>
+        console.log("La opció seleccionada és: " + opc);<br>
+        <br>
+        let n = introIntMinMax("Introdueix un número entre 0 i 10", 0, 10);<br>
+        console.log("El número introduït és: " + n);<br>
+        <br>
+        const MIN = 1;<br>
+        const MAX = 10;<br>
+        let notes = introArrayIntMinMax("Introdueix una nota entre 1 i 10", 5, MIN, MAX);<br>
+        console.log("Notes: ", arrayToString(notes, ", "));<br>
+        <br>
+        console.log(arrayInvert2(iArray));<br>
+        <br>
+        arrayToLeft(iArray);<br>
+        arrayRotateN(iArray, 1, false);<br>
+        arrayMix(iArray);<br>
+        console.log(iArray);</p>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">/**<br>
+          &nbsp;* Genera un caràcter aleatori entre 'charIni' i 'charFin', tots dos inclosos<br>
+          &nbsp;* @param {*} charIni Primer caràcter<br>
+          &nbsp;* @param {*} charFin Últim caràcter<br>
+          &nbsp;* @returns Un caràcter aleatori entre 'charIni' i 'charFin'<br>
+          &nbsp;*/<br>
+          function randomChar(charIni, charFin) {<br>
+          &nbsp;&nbsp;&nbsp; // Genera número aleatori entre 65 (A) i 90 (Z)<br>
+          &nbsp;&nbsp;&nbsp; let r = Math.floor(Math.random() * (charFin.charCodeAt(0) - charIni.charCodeAt(0) + 1) + charIni.charCodeAt(0));<br>
+          &nbsp;&nbsp;&nbsp; // Converteix el número a lletra i la restorna<br>
+          &nbsp;&nbsp;&nbsp; return String.fromCharCode(r);<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Genera un caràcter aleatori triat entre els d'un string<br>
+          &nbsp;* Es podria millorar passant el string amb els possibles caràcters<br>
+          &nbsp;* @returns Un caràcter aleatori<br>
+          &nbsp;*/<br>
+          function randomChar2() {<br>
+          &nbsp;&nbsp;&nbsp; const LLETRES = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";<br>
+          &nbsp;&nbsp;&nbsp; return LLETRES.charAt(Math.floor(Math.random() * LLETRES.length));<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">/**<br>
+          &nbsp;* Crea un array i l'inicialitza amb 'n' elements amb el valor 'v'<br>
+          &nbsp;* @param {*} n Nombre d'elements de l'array<br>
+          &nbsp;* @param {*} v Valor de cada element<br>
+          &nbsp;* @returns Array amb 'n' elements amb el valor 'v'<br>
+          &nbsp;*/<br>
+          function initArrayInt(n, v) {<br>
+          &nbsp;&nbsp;&nbsp; let a = [];<br>
+          &nbsp;&nbsp;&nbsp; for (let i = 0; i &lt; n; ++i) a.push(v);<br>
+          &nbsp;&nbsp;&nbsp; return a;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">/**<br>
+          &nbsp;* Converteix l'array a text afegint separadors i/o salts de línia<br>
+          &nbsp;* @param {*} a Array<br>
+          &nbsp;* @param {*} sep Separador (pcional: per defecte "")<br>
+          &nbsp;* @param {*} salt Salt de línia (pcional: per defecte "")<br>
+          &nbsp;* @returns Array convertit a text<br>
+          &nbsp;*/<br>
+          function arrayToString(a, sep = "", salt = "") {<br>
+          &nbsp;&nbsp;&nbsp; return a.join(sep + salt);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">/**<br>
+          &nbsp;* Converteix un array bidimensional a text afegint separadors i/o salts de línia<br>
+          &nbsp;* @param {*} a Array<br>
+          &nbsp;* @param {*} sep Separador<br>
+          &nbsp;* @param {*} salt Salt de línia<br>
+          &nbsp;* @returns Array convertit a text<br>
+          &nbsp;*/<br>
+          function arrayBiToString(a, sep = "", salt = "") {<br>
+          &nbsp;&nbsp;&nbsp; let r = "";<br>
+          &nbsp;&nbsp;&nbsp; for (let fila of a) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r += arrayToString(fila, sep) + salt;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; return r;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">/**<br>
+          &nbsp;* Demana un caràcter (opció) a l'usuari i el retorna.<br>
+          &nbsp;* Si el caràcter no està entre les opcions, el torna a demanar<br>
+          &nbsp;* @param {*} pregunta Pregunta que se li farà a l'usuari<br>
+          &nbsp;* @param {*} opcions String amb les possibles opcions<br>
+          &nbsp;* @returns El caràcter (opció) triada<br>
+          &nbsp;*/<br>
+          function introChar(pregunta, opcions) {<br>
+          &nbsp;&nbsp;&nbsp; let r = prompt(pregunta);<br>
+          &nbsp;&nbsp;&nbsp; if (r) r = r.trim();<br>
+          &nbsp;&nbsp;&nbsp; while (!r || r.length != 1 || !opcions.includes(r)) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("No és cap d'aquestes opcions: " + opcions);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = prompt(pregunta);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r) r = r.trim();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; return r;<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Demana una opció a l'usuari i la retorna.<br>
+          &nbsp;* Si l'opció no està entre les opcions possibles, la torna a demanar<br>
+          &nbsp;* @param {*} pregunta Pregunta que se li farà a l'usuari<br>
+          &nbsp;* @param {*} opcions Array de strings amb les possibles opcions<br>
+          &nbsp;* @returns Opció triada<br>
+          &nbsp;*/<br>
+          function introChar2(pregunta, opcions) {<br>
+          &nbsp;&nbsp;&nbsp; let r = prompt(pregunta);<br>
+          &nbsp;&nbsp;&nbsp; if (r) r = r.trim();<br>
+          &nbsp;&nbsp;&nbsp; while (!r || !opcions.includes(r)) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = prompt(pregunta);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r) r = r.trim();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; return r;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">/**<br>
+          &nbsp;* Demana un número fins que sigui correcte<br>
+          &nbsp;* @param {*} pregunta Pregunta que se li farà a l'usuari<br>
+          &nbsp;* @returns Valor introduït<br>
+          &nbsp;*/<br>
+          function introInt(pregunta) {<br>
+          &nbsp;&nbsp;&nbsp; let r = parseInt(prompt(pregunta));<br>
+          &nbsp;&nbsp;&nbsp; while (isNaN(r)) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("No has introduït cap número")<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = parseInt(prompt(pregunta));<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; return r;<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Demana un número entre 'min' i 'max' fins que sigui correcte<br>
+          &nbsp;* @param {*} pregunta Pregunta que se li farà a l'usuari<br>
+          &nbsp;* @param {*} min Valor mínim<br>
+          &nbsp;* @param {*} max Valor màxim<br>
+          &nbsp;* @returns Valor introduït<br>
+          &nbsp;*/<br>
+          function introIntMinMax(pregunta, min, max) {<br>
+          &nbsp;&nbsp;&nbsp; let r = introInt(pregunta);<br>
+          &nbsp;&nbsp;&nbsp; while (r &lt; min || r &gt; max) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert(`El valor ha d'estar entre ${min} i ${max}`);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = introInt(pregunta);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; return r;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">/**<br>
+          &nbsp;* Demana 'n' valors entre 'min' i 'max' i els guarda en un array<br>
+          &nbsp;* @param {*} pregunta Pregunta que se li farà a l'usuari<br>
+          &nbsp;* @param {*} n Nombre de valors que s'han d'introduir<br>
+          &nbsp;* @param {*} min Valor mínim<br>
+          &nbsp;* @param {*} max Valor màxim<br>
+          &nbsp;* @returns Array amb els valors introduïts<br>
+          &nbsp;*/<br>
+          function introArrayIntMinMax(pregunta, n, min, max) {<br>
+          &nbsp;&nbsp;&nbsp; let a = [];<br>
+          &nbsp;&nbsp;&nbsp; for (let i = 0; i &lt; n; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a.push(introIntMinMax(pregunta, min, max));<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; return a;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">/**<br>
+          &nbsp;* Inverteix les posicions dels elements de l'array 'a'<br>
+          &nbsp;* @param {*} a Array que s'ha d'invertir<br>
+          &nbsp;* @returns El mateix array (però amb els elements invetits)<br>
+          &nbsp;*/<br>
+          function arrayInvert(a) {<br>
+          &nbsp;&nbsp;&nbsp; return a.reverse();<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Inverteix les posicions dels elements de l'array 'a' utilitzat bucle i intercanvi de variables<br>
+          &nbsp;* @param {*} a Array que s'ha d'invertir<br>
+          &nbsp;* @returns El mateix array (però amb els elements invetits)<br>
+          &nbsp;*/<br>
+          function arrayInvert2(a) {<br>
+          &nbsp;&nbsp;&nbsp; let t, l = a.length<br>
+          &nbsp;&nbsp;&nbsp; for (let i = 0; i &lt; Math.floor(l / 2); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = a[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a[i] = a[l - i - 1];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a[l - i - 1] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; return a;&nbsp;&nbsp; // No necessari<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució desplaçar esquerra amb bucle</h6>
+        <p class="p_codi">/**<br>
+          &nbsp;* Desplaça els elements d'un array cap a l'esquerra (el primer al final, el segon al primer...)<br>
+          &nbsp;* @param {*} a Array<br>
+          &nbsp;*/<br>
+          function arrayToLeft(a) {<br>
+          &nbsp;&nbsp;&nbsp; let t = a[0];<br>
+          &nbsp;&nbsp;&nbsp; for (let i = 0; i &lt; a.length - 1; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a[i] = a[i + 1];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; a[a.length - 1] = t;<br>
+          }</p>
+        <h6>Solució desplaçar dreta amb <em>pop</em> i <em>unshift</em></h6>
+        <p class="p_codi">/**<br>
+          &nbsp;* Desplaça els elements d'un array cap a la dreta (l'últim al primer, el primer al segon...)<br>
+          &nbsp;* @param {*} a Array<br>
+          &nbsp;*/<br>
+          function arrayToRight(a) {<br>
+          &nbsp;&nbsp;&nbsp; a.unshift(a.pop());<br>
+          }</p>
+        <h6>Solució desplaçar dreta o esquerra</h6>
+        <p class="p_codi">/**<br>
+          &nbsp;* Desplaça els elements d'un array cap a la dreta o esquerra depenent del paràmetre 'toLeft'<br>
+          &nbsp;* @param {*} a Array<br>
+          &nbsp;* @param {*} toLeft Si és 'true' desplaça els elements de l'array cap a l'esquerra<br>
+          &nbsp;*/<br>
+          function arrayRotate(a, toLeft) {<br>
+          &nbsp;&nbsp;&nbsp; if (toLeft) arrayToLeft(a);<br>
+          &nbsp;&nbsp;&nbsp; else arrayToRight(a);<br>
+          }</p>
+        <h6>Solució desplaçar dreta o esquerra N posicions</h6>
+        <p class="p_codi">/**<br>
+          &nbsp;* Desplaça els elements d'un array 'n' posicions cap a la dreta o esquerra depenent del paràmetre 'toLeft'<br>
+          &nbsp;* @param {*} a Array<br>
+          &nbsp;* @param {*} n Nombre de posicions que s'han de desplaçar els elements<br>
+          &nbsp;* @param {*} toLeft Si és 'true' desplaça els elements de l'array cap a l'esquerra<br>
+          &nbsp;*/<br>
+          function arrayRotateN(a, n, toLeft) {<br>
+          &nbsp;&nbsp;&nbsp; for (let i = 0; i &lt; n; ++i) arrayRotate(a, toLeft);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">/**<br>
+          &nbsp;* Barrejar els elements d'un array<br>
+          &nbsp;* @param {*} a L'array que s'ha de barrejar<br>
+          &nbsp;*/<br>
+          function arrayMix(a) {<br>
+          &nbsp;&nbsp;&nbsp; let ndx, t;<br>
+          &nbsp;&nbsp;&nbsp; for (let i = 0; i &lt; a.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ndx = Math.floor(Math.random() * a.length);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = a[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a[i] = a[ndx];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a[ndx] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi"><br></p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi"><br></p>
+      </div>
+    </section>
+  </body>
+</html>

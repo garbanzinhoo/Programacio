@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Funcions (exercicis extra)</h1>
+      <div class="enun">
+        <h3>Multiplicació de matrius bidimensionals</h3>
+        <p>Simplifica el següent codi creant funcions amb els blocs de codi redundants:</p>
+        <p class="p_desplegable p_codi">"use strict";<br>
+          <br>
+          const terminal = document.getElementById("terminal");<br>
+          <br>
+          let a1 = [<br>
+          &nbsp;&nbsp; &nbsp;[1, 2, 3],<br>
+          &nbsp;&nbsp; &nbsp;[4, 5, 6]<br>
+          ]<br>
+          <br>
+          let a2 = [<br>
+          &nbsp;&nbsp; &nbsp;[1, 2],<br>
+          &nbsp;&nbsp; &nbsp;[3, 4],<br>
+          &nbsp;&nbsp; &nbsp;[5, 6]<br>
+          ]<br>
+          <br>
+          // Esborrar terminal<br>
+          terminal.innerHTML = "";<br>
+          <br>
+          // Mostrar matrius i símbols<br>
+          let resultat = "";<br>
+          for (let i = 0; i &lt; a1.length; i++) {<br>
+          &nbsp;&nbsp; &nbsp;for (let j = 0; j &lt; a1[i].length; j++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;resultat += ("" + a1[i][j]).padStart(3, "\xa0");<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;resultat += "&lt;br&gt;";<br>
+          }<br>
+          terminal.innerHTML += resultat;<br>
+          terminal.innerHTML += "X&lt;br&gt;";<br>
+          resultat = "";<br>
+          for (let i = 0; i &lt; a2.length; i++) {<br>
+          &nbsp;&nbsp; &nbsp;for (let j = 0; j &lt; a2[i].length; j++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;resultat += ("" + a2[i][j]).padStart(3, "\xa0");<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;resultat += "&lt;br&gt;";<br>
+          }<br>
+          terminal.innerHTML += resultat;<br>
+          terminal.innerHTML += "=&lt;br&gt;";<br>
+          <br>
+          // Multiplicar matrius i mostrar resultat<br>
+          let a3 = [];<br>
+          <br>
+          // Obtenir les files i columnes de cada matriu<br>
+          let f1 = a1.length;<br>
+          let c1 = a1[0].length;<br>
+          let f2 = a2.length;<br>
+          let c2 = a2[0].length;<br>
+          <br>
+          // Comprovar que les columnes de la 1ª siguin igual a les files de la 2ª<br>
+          if (c1 != f2) a3 = null;<br>
+          else {<br>
+          &nbsp;&nbsp; &nbsp;let i, j, k, t;<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Multiplicar matrius<br>
+          &nbsp;&nbsp; &nbsp;for (i = 0; i &lt; f1; ++i) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;a3[i] = [];<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (j = 0; j &lt; c2; ++j) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;t = 0;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (k = 0; k &lt; c1; ++k) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;t += a1[i][k] * a2[k][j];<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;a3[i][j] = t;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          }<br>
+          <br>
+          if (a3 != null) {<br>
+          &nbsp;&nbsp; &nbsp;resultat = "";<br>
+          &nbsp;&nbsp; &nbsp;for (let i = 0; i &lt; a3.length; i++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (let j = 0; j &lt; a3[i].length; j++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;resultat += ("" + a3[i][j]).padStart(3, "\xa0");<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;resultat += "&lt;br&gt;";<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;terminal.innerHTML += resultat;<br>
+          } else {<br>
+          &nbsp;&nbsp; &nbsp;alert("No es poden multiplicar");<br>
+          }</p>
+        <p>Es poden utilitzar els següents <em>arrays</em>:</p>
+        <p class="p_codi">let a1 = [[1, 2, 3], [4, 5, 6]];<br>
+          let a2 = [[1, 2], [3, 4], [5, 6]];</p>
+        <p>Amb les dades anteriors, el resultat hauria de ser:</p>
+        <p class="p_codi p_consola">&nbsp; 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3<br>
+          &nbsp; 4&nbsp;&nbsp; 5&nbsp;&nbsp; 6<br>
+          X<br>
+          &nbsp; 1&nbsp;&nbsp; 2<br>
+          &nbsp; 3&nbsp;&nbsp; 4<br>
+          &nbsp; 5&nbsp;&nbsp; 6<br>
+          =<br>
+          &nbsp;22&nbsp; 28<br>
+          &nbsp;49&nbsp; 64</p>
+      </div>
+      <div class="enun">
+        <h3>L'atzarosa vida dels bacteris</h3>
+        <p>Fes un programa que simuli com es reprodueixen els bacteris.</p>
+        <p>Les regles són:</p>
+        <ul>
+          <li>Per les posicions on hi ha un bacteri, el bacteri morirà si hi ha menys de 2 bacteris al voltant (morirà d'avorriment) o si n’hi ha més de 3 (morirà d'inanició).</li>
+          <li>En les posicions on no hi ha cap bacteri, apareix un bacteri si hi ha exactament 3 bacteris al voltant (per crear un nou bacteri es necessiten 3).</li>
+          <li>En qualsevol altre cas, l'estat de la posició no canvia.</li>
+        </ul>
+        <p>El mètode principal ha d'inicialitzar una taula bidimensional de la mida que es vulgui i amb els primers bacteris distribuïts de forma aleatòria.</p>
+        <p>Un exemple podria ser (cada 1 representa un bacteri; els 0 representen una posició buida):</p>
+        <p class="p_codi">let actual = [<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 0, 1, 1, 0, 0, 0, 0, 0],<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 0, 1, 1, 0, 0, 0, 0, 0],<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 1, 1, 0, 0, 0, 0, 0, 0],<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],<br>
+          &nbsp;&nbsp;&nbsp; [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]<br>
+          ];</p>
+        <p>El mètode principal ha de fer un bucle infinit per anar generant les següents generacions de bacteris.<br>
+          Les funcions que cal crear (i cridar des del mètode principal) són:</p>
+        <ol>
+          <li>Dibuixar la situació actual.<br>
+            Cal passar-li la taula que es vol dibuixar.</li>
+          <li>Calcular la següent generació en una altra taula amb les mateixes mides.<br>
+            Cal passar-li la taula actual i la de la següent generació.</li>
+          <li>Copiar la següent generació en la taula actual.<br>
+            Cal passar-li la taula actual i la de la següent generació.</li>
+        </ol>
+        <p>Per comptar quants bacteris hi ha al voltant d'una posició (imaginem la posició <span class="c_configura">[i][j]</span>), cal mirar si en les posicions <span class="c_configura">[i-1][j-1]</span>, <span class="c_configura">[i-1][j]</span>, <span class="c_configura">[i-1][j+1]</span>, <span class="c_configura">[i][j-1]</span>, <span class="c_configura">[i][j+1]</span>... hi ha un bacteri.</p>
+        <p>En aquest tipus de problemes o jocs es poden fer dos plantejaments:</p>
+        <ol type="A">
+          <li>Suposar que les caselles del voltant del tauler (primera i última fila, i primera i última columna) no formen part de l'espai de joc. Això es fa per no&nbsp; haver de tenir en compte casos especials.<br>
+            En aquest cas, en tots els mètodes, només cal recórrer des de la fila 1 fins a la fila N-1 no inclosa, i el mateix per les columnes.</li>
+          <li>Suposar que totes les files i columnes són útils.<br>
+            En aquest cas, normalment serà necessari crear una funció per comprovar si una fila i casella són correctes (estan dintre del tauler).<br>
+            Per exemple, si es vol comprovar quants bacteris hi ha al voltant de la posició <span class="c_configura">[0][0]</span>, s'hauria d'evitar comprovar algunes posicions que no existeixen: <span class="c_configura">[-1][-1]</span>, <span class="c_configura">[-1][0]</span>, <span class="c_configura">[-1][1]</span>, <span class="c_configura">[0][-1]</span>...</li>
+        </ol>
+        <p>Amb les dades de la taula anterior, el resultat serà el següent (a partir de la generació 29 només quedaran 2 grups de bacteris que van alterant la seva disposició de forma cíclica):</p>
+        <p class="p_consola"><strong>Generació 0</strong><br>
+          ·&nbsp; ·&nbsp; B&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; B&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; B&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          <br>
+          <strong>Generació 1</strong><br>
+          ·&nbsp; ·&nbsp; B&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; B&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; B&nbsp; B&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; B&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; B&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          <br>
+          <strong>Generació 30</strong><br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          B&nbsp; B&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·<br>
+          ·&nbsp; ·&nbsp; ·&nbsp; ·&nbsp; B&nbsp; ·&nbsp; ·&nbsp; ·</p>
+        <ol type="A">
+        </ol>
+      </div>
+      <div class="enun">
+        <h3>El penjat (joc d'endevinar paraules)</h3>
+        <p>Crea un <em>array</em> constant amb paraules (quantes més i més llargues, millor).</p>
+        <p>Fes que l'ordinador triï una aleatòriament.</p>
+        <p>Mostra amb símbols de guió baix quantes lletres té.</p>
+        <p>Pregunta repetidament una lletra al jugador.</p>
+        <p>Si la lletra existeix, omplir totes les posicions on es troba aquesta lletra.<br>
+          Si no, restar un als intents que li queden.</p>
+        <p>Es pot fer que vagi dibuixant el ninot penjat (cada caràcter representa un error):</p>
+        <p class="p_codi">&nbsp;|<br>
+          _O_<br>
+          &nbsp;|<br>
+          / \</p>
+        <p>Quan s'acabin els intents o encerti totes les lletres, mostrar el missatge corresponent.</p>
+      </div>
+      <div class="enun">
+        <h3>El 7½ (joc de cartes)</h3>
+        <p>Tenim un <em>array</em> amb els pals de la baralla espanyola (Ors, Copes, Espases i Bastos) i un <em>array</em> amb les possibles figures (1, 2, 3, 4, 5, 6, 7, Sota, Cavall i Rei). Els tres últims valen ½ punt.</p>
+        <p>S'ha de crear un <em>array</em> combinant tots els pals amb tots els valors i barrejar aquest <em>array</em>.</p>
+        <p>Ha de preguntar al jugador si vol treure carta o si es planta.</p>
+        <p>Si vol carta, ha treure la primera carta, sumar el valor a les cartes que té el jugador i mostrar-lo.</p>
+        <p>Si el jugador es passa, perd.</p>
+        <p>Si el jugador es planta, la banca ha d'anar traient cartes fins a millorar la puntuació del jugador, igualar-la si el jugador ha fet 7½ o fins que es passi.</p>
+        <p>Si la banca empata, guanya.</p>
+        <p>Al final ha de mostrar un missatge indicant qui ha guanyat.</p>
+      </div>
+    </section>
+  </body>
+</html>

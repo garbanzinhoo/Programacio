@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Expressions regulars en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Expressions regulars en Java</header>
+    <section>
+      <h2>Expressions regulars (<em>RegEx</em>)</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/jsref_obj_regexp.asp">Referència RegExp</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">Referència RegExp detallada (MDN)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Guia d'expressions regulars (MDN)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://regex101.com/">"Calculadora" d'expressions regulars</a></p>
+      <p>Les expressions regulars són una forma de crear un plantilla que pot servir per:</p>
+      <ul>
+        <li>Comprovar si un text compleix un format determinat:</li>
+        <ul>
+          <li>el NIF ha de tenir 8 dígits i una lletra.</li>
+          <li>una matrícula de cotxe ha de tenir 4 dígits i 3 lletres.</li>
+          <li>un número de telèfon ha de tenir 3 dígits, un punt, 3 dígits, un punt i 3 dígits.</li>
+        </ul>
+        <li>Buscar si existeix una subcadena (amb un format determinat) dins d'un text.</li>
+        <li>Buscar i canviar una subcadena per una altra dins d'un text, només una vegada o totes les que aparegui.</li>
+      </ul>
+      <div class="p_important">
+        <p>Per fer proves es pot utilitzar el següent codi:</p>
+        <p class="p_codi">let pattern = <strong>/^[AEIOUaeiou]$/</strong>;&nbsp;&nbsp;&nbsp; // Posar aquí el patró a comprovar<br>
+          let s = prompt("Introdueix un text");<br>
+          while (s &amp;&amp; s.toUpperCase() !== "FI") {<br>
+          &nbsp;&nbsp; &nbsp;if (<strong>pattern.test(s)</strong>) alert(s + " COINCIDEIX amb " + pattern);<br>
+          &nbsp;&nbsp; &nbsp;else alert(s + " NO coincideix amb " + pattern);<br>
+          &nbsp;&nbsp; &nbsp;s = prompt("Introdueix un text");<br>
+          }</p>
+      </div>
+      <h2>Patrons</h2>
+      <p>En JavaScript, els patrons es tanquen entre <span class="c_comanda">/</span> i <span class="c_comanda">/</span></p>
+      <p>Després de la segona barra (la de tancament) es pot posar un dels següents modificadors:</p>
+      <ul>
+        <li><span class="c_comanda">g</span>: coïncidència global (totes les vegades que aparegui el patró)</li>
+        <li><span class="c_comanda">i</span>: coïncidència insensitiva (sense diferenciar majúscules i minúscules)</li>
+        <li><span class="c_comanda">m</span>: cerca multilínia (no ve limitada pels salts de linia)</li>
+      </ul>
+      <p></p>
+      <h2>Caràcters especials</h2>
+      <p>Els següents caràcters tenen un significat especial.</p>
+      <p></p>
+      <p class="p_codi"><strong><strong>[ ] </strong>( ) { } \ ^ $ | ? * + .</strong></p>
+      <p class="p_important">Si es volen utilitzar com a caràcters a detectar, cal posar <span class="c_comanda">\</span> al davant (<span class="c_comanda">\*</span>&nbsp;&nbsp; <span class="c_comanda">\.</span>&nbsp;&nbsp; <span class="c_comanda">\+</span> &nbsp; <span class="c_comanda">\(</span> &nbsp; <span class="c_comanda">\\</span>...).</p>
+      <ul>
+        <li><span class="c_comanda">[ ]</span>: per especificar un <strong>conjunt</strong> de caràcters.</li>
+        <li><span class="c_comanda">( )</span>: per <strong>agrupar</strong>.</li>
+        <li><span class="c_comanda">{ }</span>: per indicar un nombre de repeticions.</li>
+        <li><span class="c_comanda">\</span>: per poder utilitzar caràcters especials, per representar caràcters especials o per conjunts de caràcters.</li>
+        <li><span class="c_comanda">^</span>: té dos possibles significats:</li>
+        <ul>
+          <li>indicar que la coincidència ha d'estar al principi de la línia.</li>
+          <li>si es posa com a primer caràcter dins de <span class="c_comanda">[ ]</span>, implica negació (<span class="c_comanda">[^AEIOUaeiou]</span> detectarà qualsevol caràcter que no sigui una vocal).</li>
+        </ul>
+        <li><span class="c_comanda">$</span>: indica que la coincidència ha d'estar al final de la línia.</li>
+        <li><span class="c_comanda">|</span>: per triar entre diferents possibilitats.</li>
+        <li><span class="c_comanda">?</span>: indica que el caràcter o grup anterior pot aparèixer una o cap vegada.</li>
+        <li><span class="c_comanda">+</span>: indica que el caràcter o grup anterior ha d'aparèixer una o més vegades.</li>
+        <li><span class="c_comanda">*</span>: indica que el caràcter o grup anterior pot aparèixer zero, una o més vegades.</li>
+        <li><span class="c_comanda">.</span>: equival a qualsevol caràcter.</li>
+      </ul>
+      <p>Les següents expressions tenen un significat especial (caràcters especials o conjunt de caràcters).</p>
+      <p class="p_codi"><strong>\t&nbsp;&nbsp; \n&nbsp;&nbsp; \s&nbsp;&nbsp; \S&nbsp;&nbsp; \d&nbsp;&nbsp; \D&nbsp;&nbsp; \w&nbsp;&nbsp; \W</strong></p>
+      <ul>
+        <li><span class="c_comanda">\t</span>: representa un tabulador.</li>
+        <li><span class="c_comanda">\n</span>: representa un salt de línia.</li>
+        <li><span class="c_comanda">\s</span>: representa qualsevol caràcter que sigui un separador. És equivalent a <span class="c_comanda">[ \t\n\x0B\f\r]</span>.</li>
+        <li><span class="c_comanda">\S</span>: representa qualsevol caràcter que no sigui un separador. És equivalent a <span class="c_comanda">[^\s]</span>.</li>
+        <li><span class="c_comanda">\d</span>: representa qualsevol caràcter que sigui un dígit. És equivalent a <span class="c_comanda">[0-9]</span>.</li>
+        <li><span class="c_comanda">\D</span>: representa qualsevol caràcter que no sigui un dígit. És equivalent a <span class="c_comanda">[^0-9]</span>.</li>
+        <li><span class="c_comanda">\w</span>: representa qualsevol caràcter que pot formar una paraula. És equivalent a <span class="c_comanda">[a-zA-Z_0-9]</span>.</li>
+        <li><span class="c_comanda">\W</span>: representa qualsevol caràcter que no formi part d'una paraula. És equivalent a <span class="c_comanda">[^\w]</span>.</li>
+      </ul>
+      <h2>Expressions regulars bàsiques</h2>
+      <h3>Coïncidència exacta dins del text, tot el text, al principi o al final</h3>
+      <p>Cal posar el text directament entre <span class="c_comanda">/</span> i <span class="c_comanda">/</span>.</p>
+      <p>El patró <span class="c_comanda">/hola/</span> detectarà si el text conté la paraula <span class="c_comanda">hola</span> tal qual està escrita.<br>
+        <span class="c_comanda">/hola/.test(text)</span> seria equivalent a <span class="c_comanda">text.includes("hola")</span>.</p>
+      <p>Si es vol que comprovi que tot el text sigui igual a <span class="c_comanda">hola</span> cal posar el patró <span class="c_comanda">/^hola$/</span>.<br>
+        <span class="c_comanda">/^hola$/.test(text)</span> seria equivalent a <span class="c_comanda">text === "hola"</span>.</p>
+      <p>Per comprovar si un text comença o acaba amb uns caràcters concrets:<br>
+        <span class="c_comanda">/^hola/.test(text)</span> o <span class="c_comanda">/hola$/.test(text)</span> respectivament.<br>
+        Seria equivalent a <span class="c_comanda">text.startsWith("hola")</span> o <span class="c_comanda">text.endsWith("hola")</span>.</p>
+      <h4></h4>
+      <h3>Comprovar si un caràcter pertany a un conjunt de caràcters</h3>
+      <p>S'han de posar els caràcters que es volen detectar entre <span class="c_comanda">[</span> i <span class="c_comanda">]</span>.<br>
+        El patró <span class="c_comanda">/[AEIOUaeiou]/</span> detectarà si el text conté una vocal majúscula o minúscula.<br>
+        Exemple: <span class="c_comanda">/[PB]ala/</span> detectarà <strong>Pala</strong> o <strong>Bala</strong>, però no <strong>Mala</strong>.</p>
+      <p>També es poden utilitzar rangs de caràcters: <span class="c_comanda">/[A-Za-z0-9]/</span>.</p>
+      <p>Si el primer caràcter és <span class="c_comanda">^</span>, l'efecte és el contrari:<br>
+        El patró <span class="c_comanda">/[^AEIOUaeiou]/</span> detectarà qualsevol caràcter que no sigui una vocal.<br>
+        Exemple: <span class="c_comanda">/[^PB]ala/</span> detectarà <strong>Mala</strong>, <strong>Cala</strong>, <strong>Gala</strong>... però no <strong>Pala</strong> ni <strong>Bala</strong>.</p>
+      <h4>Comprovar rang de caràcters</h4>
+      <p>Exemple: <span class="c_comanda">/[A-Z]ala/</span> detectarà si conté <strong>Cala</strong>, <strong>Gala</strong>, <strong>Mala</strong>, <strong>Sala</strong>, <strong>Pala</strong>, <strong>Bala</strong>...</p>
+      <h4>Comprovar rang de caràcters excloent alguns (avançat)<br>
+      </h4>
+      <p>Exemple: <span class="c_comanda">/^[A-Z&amp;&amp;[^PB]]ala$/</span> detectarà <strong>Cala</strong>, <strong>Gala</strong>, <strong>Mala</strong>, <strong>Sala</strong>, ...,&nbsp; però no <strong>Pala</strong> ni <strong>Bala</strong>.</p>
+      <p></p>
+      <h3>Comprovar si un caràcter, conjunt de caràcters o grup es repeteix</h3>
+      <p>S'ha de posar <span class="c_comanda">?</span>, <span class="c_comanda">+</span> o <span class="c_comanda">*</span> just a continuació:</p>
+      <ul>
+        <li><span class="c_comanda">?</span>: Comprovar si apareix una o cap vegada.</li>
+        <li><span class="c_comanda">+</span>: Comprovar si apareix una o més vegades.</li>
+        <li><span class="c_comanda">*</span>: Comprovar si apareix zero, una o més vegades.</li>
+      </ul>
+      <p>També es pot posar just a continuació <span class="c_comanda">{N}</span> o <span class="c_comanda">{N,M}</span> (N i M han de ser números enters):</p>
+      <ul>
+        <li><span class="c_comanda">{5}</span>: El què hi ha al davant s'ha de repetir <strong>5</strong> vegades.</li>
+        <li><span class="c_comanda">{2,4}</span>: El què hi ha al davant s'ha de repetir <strong>2</strong>, <strong>3</strong> o <strong>4</strong> vegades.</li>
+        <li><span class="c_comanda">{3,}</span>: El què hi ha al davant s'ha de repetir <strong>3</strong> o més<strong></strong> vegades.</li>
+      </ul>
+      <h2>Agrupaments i alternança</h2>
+      <p>Per indicar que es vol detectar una expressió o una altra, s'han d'agrupar les expressions posant-les entre parèntesis i posar el símbol <span class="c_comanda">|</span> entre elles:</p>
+      <p>L'expressió <span class="c_comanda">/([Hh]ola|[Aa]deu)</span> pot detectar les paraules <span class="c_comanda">Hola</span>, <span class="c_comanda">hola</span>, <span class="c_comanda">Adeu</span> o <span class="c_comanda">adeu</span>:</p>
+      <p class="p_codi">let pattern = <strong>/^([Hh]ola|[Aa]deu)$/</strong>;<br>
+        let s = "hola";<br>
+        console.log(pattern.test(s));&nbsp;&nbsp;&nbsp; // true<br>
+        s = "Adeu";<br>
+        console.log(pattern.test(s));&nbsp;&nbsp;&nbsp; // true<br>
+        s = "HolaAdeu";<br>
+        console.log(pattern.test(s));&nbsp;&nbsp;&nbsp; // false<strong></strong><br>
+      </p>
+      <h2></h2>
+      <h2>Comandes de la classe <em>String</em> que utilitzen expressions regulars</h2>
+      <ul>
+        <li><span class="c_comanda">string.match(regex)</span>: retorna un <em>array</em> amb les coïnciències que ha trobat.</li>
+        <li><span class="c_comanda">string.split(regex)</span>: divideix el text creant un <em>array</em> de <em>strings</em> utilitzant com a separador l'expressió regular.</li>
+        <li><span class="c_comanda">regex.test(string)</span>: retorna <em>true</em> si troba l'expressió regular dins del <em>string</em>.</li>
+      </ul>
+      <p class="p_important">Normalment s'utilitza <span class="c_comanda">split</span> amb l'espai, coma, punt i coma... com a separadors.<br>
+        Però, com s'hauria de posar si es vol utilitzar el punt o el signe més com a separador???</p>
+      <ul>
+      </ul>
+      <h2>Buscar i substituir dins d'un <em>String</em></h2>
+      <ul>
+        <li><span class="c_comanda">replace(regex, text)</span>: substitueix la primera vegada que apareix <span class="c_comanda">regex</span> per <span class="c_comanda">text</span>.</li>
+        <li><span class="c_comanda">replaceAll(regex, text)</span>: substitueix totes les vegades que apareix <span class="c_comanda">regex</span> per <span class="c_comanda">text</span>.</li>
+      </ul>
+      <h3>Utilitzar els agrupaments en les substitucions (avançat)</h3>
+      <p>En el text de substitució es poden incloure els grups d'expressions detectades.</p>
+      <p>A cada agrupació <span class="c_comanda">(...)</span> se li assigna un número de 1 a N segons l'ordre en què es troba.<br>
+        Llavors, en el text de substitució es pot incloure <span class="c_comanda">$1</span>, <span class="c_comanda">$2</span>... per incloure el grup detectat:</p>
+      <p class="p_codi">let s = "<strong>Hola i adeu</strong>";<br>
+        console.log(s.replace(<strong>/([Hh]ola)(.*)([Aa]deu)/</strong>, "<strong>$3$2$1</strong>"));&nbsp; // <strong>adeu i Hola</strong></p>
+      <h3>Mode <em>non-greedy</em> (no avariciós) (avançat)</h3>
+      <p>Per defecte, les expressions regulars intenten trobar la cadena més llarga que compleixi el patró.<br>
+        Això pot provocar que es detectin coïncidències no desitjades.</p>
+      <p>El patró <span class="c_comanda">/if *\(.*\)/</span> en el text <span class="c_comanda">if (i % 2 == 0) i = (i + 1) * 2;</span> detectarà <span class="c_comanda">if (i % 2 == 0) i = (i + 1)</span>, quan segurament només es volia detectar <span class="c_comanda">if (i % 2 == 0)</span>.</p>
+      <p>Una forma de solucionar-ho seria utilitzar el patró <span class="c_comanda">/if *\([^)]*\)/</span>.</p>
+      <p>O es pot utilitzar el mode <em>non-greedy</em> que consisteix en afegir un interrogant després de l'indicador de repetició: <span class="c_comanda">/if *\(.*?\)/</span> .</p>
+      <ul>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

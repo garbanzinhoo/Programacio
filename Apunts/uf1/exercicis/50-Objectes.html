@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Objectes</h1>
+      <div class="enun">
+        <h3>Clients</h3>
+        <p>Pensa quins atributs es poden necessitar per guardar les dades dels clients d'una botiga <em>on-line</em>.</p>
+        <p>Crea 3 objectes amb les dades de 3 clients i guarda'ls en un <em>array</em>.</p>
+        <p>Mostra en la pàgina web les dades dels clients que tens a l'<em>array</em>.</p>
+        <p><strong>Exemple de sortida</strong></p>
+        <p class="p_consola">Client 1<br>
+          DNI: 12345678Z<br>
+          Nom: Peter Smith<br>
+          Telèfon: 678678678<br>
+          E-mail: psmith@sapalomera.cat<br>
+          <br>
+          Client 2<br>
+          DNI: 44444444A<br>
+          Nom: Mary Johnson<br>
+          Telèfon: 678123123<br>
+          E-mail: mjohnson@sapalomera.cat<br>
+          <br>
+          Client 3<br>
+          ...</p>
+      </div>
+      <div class="enun">
+        <h3>Supermercat</h3>
+        <p>Crea diversos objectes amb les dades dels articles d'un supermercat i guarda'ls en un <em>array</em> (articles).<br>
+          Tots els articles han de tenir com a mínim un codi, una descripció i un preu.</p>
+        <p>Fes una web amb un camp per introduir el codi de l'article i un botó per llegir-lo.<br>
+          Cada cop que es premi aquest botó, s'ha de buscar el codi en ta taula i, si el troba, el guardarà en un altre <em>array</em> (cistella).<br>
+          Si no el troba, mostrarà una alerta indicant que el codi introduït no existeix.</p>
+        <p>També ha de tenir un botó per finalitzar la compra.<br>
+          Quan es premi aquest botó, s'ha de mostrar tots els articles que ha comprat (els de la cistella) i el total.</p>
+        <p>OPCIONALMENT: afegeix un botó per eliminar un dels articles de la cistella a partir del seu codi.<br>
+          Si el codi no es troba en la cistella, ha de mostrar un avís.<br>
+          Pots utilitzar la funció <span class="c_comanda">array.splice(ndx, 1)</span> per esborrar un element d'un <em>array</em>.</p>
+        <p><strong>Exemple de sortida</strong></p>
+        <p class="p_consola">Fregidora d'aire.............. 123,00 €<br>
+          Pantalla OLED 50"............. 456,00 €<br>
+          PC Gaming..................... 789,00 €<br>
+          TOTAL: 1368,00 €</p>
+      </div>
+      <div class="enun">
+        <h3>Expedients d'alumnes<em></em></h3>
+        <p>Crea 6 objectes per guardar les dades de 6 alumnes.</p>
+        <p>Cada objecte ha de contenir els següents atributs:</p>
+        <ul>
+          <li>nom</li>
+          <li>cognoms</li>
+          <li>curs</li>
+          <li>notes (<em>array</em> amb una nota per cada mòdul)</li>
+        </ul>
+        <ul>
+          <ul>
+          </ul>
+        </ul>
+        <p>Crea un <em>array</em> i guarda a dins els 6 alumnes.</p>
+        <p>Fes un mètode que calculi la mitjana de les notes i la guardi en un altre atribut dins de cada objecte.</p>
+        <p>Mostra les dades en una taula similar a la següent:</p>
+        <table>
+          <tbody>
+            <tr>
+              <th>Alumne</th>
+              <th>Curs</th>
+              <th>M01</th>
+              <th>M02</th>
+              <th>M03</th>
+              <th>M04</th>
+              <th>Final</th>
+            </tr>
+            <tr>
+              <td>Man, Bat</td>
+              <td style="text-align: center;">2</td>
+              <td style="text-align: center;">9</td>
+              <td style="text-align: center;">7</td>
+              <td style="text-align: center;">5</td>
+              <td style="text-align: center;">7</td>
+              <td style="text-align: center;"><strong>7,0</strong><br>
+              </td>
+            </tr>
+            <tr>
+              <td>Man, Iron</td>
+              <td style="text-align: center;">1</td>
+              <td style="text-align: center;">&nbsp;5</td>
+              <td style="text-align: center;">8</td>
+              <td style="text-align: center;">7 </td>
+              <td style="text-align: center;">6 </td>
+              <td style="text-align: center;"><strong>6,5</strong><br>
+              </td>
+            </tr>
+            <tr>
+              <td>Man, Spider</td>
+              <td style="text-align: center;">2</td>
+              <td style="text-align: center;">6</td>
+              <td style="text-align: center;">4 </td>
+              <td style="text-align: center;">8</td>
+              <td style="text-align: center;">9 </td>
+              <td style="text-align: center;"><strong>6,8</strong><br>
+              </td>
+            </tr>
+            <tr>
+              <td>Woman, Cat</td>
+              <td style="text-align: center;">1</td>
+              <td style="text-align: center;">9</td>
+              <td style="text-align: center;">8</td>
+              <td style="text-align: center;">5 </td>
+              <td style="text-align: center;">6 </td>
+              <td style="text-align: center;"><strong>7,0</strong><br>
+              </td>
+            </tr>
+            <tr>
+              <td>Woman, Super</td>
+              <td style="text-align: center;">2</td>
+              <td style="text-align: center;">3 </td>
+              <td style="text-align: center;">7</td>
+              <td style="text-align: center;">5</td>
+              <td style="text-align: center;">7 </td>
+              <td style="text-align: center;"><strong>5,5</strong><br>
+              </td>
+            </tr>
+            <tr>
+              <td>Woman, Wonder</td>
+              <td style="text-align: center;">2</td>
+              <td style="text-align: center;">8</td>
+              <td style="text-align: center;">6</td>
+              <td style="text-align: center;">7</td>
+              <td style="text-align: center;">9 </td>
+              <td style="text-align: center;"><strong>7,5</strong><br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="enun">
+        <h3>Biblioteca</h3>
+        <p>Fes una aplicació web que permeti guardar les dades dels llibres d'una biblioteca (ISBN, títol, autor, temàtica, resum...) i mostrar els llibres que hi ha actualment.</p>
+        <p>Ha de tenir els camps necessaris per introduir les dades d'un llibre, un botó per afegir el llibre a la biblioteca (<em>array</em>) i un botó per mostrar les dades de tots els llibres.</p>
+        <p>Abans d'afegir un llibre, s'ha de comprovar que no existeix (cal buscar l'ISBN a l'<em>array</em>).<br>
+          Si existeix, es mostrarà un avís i no s'afegirà.</p>
+        <p>OPCIONALMENT: afegeix un botó per mostrar els llibres de la temàtica seleccionada.</p>
+      </div>
+    </section>
+  </body>
+</html>

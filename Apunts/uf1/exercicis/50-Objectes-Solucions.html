@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          const c1 = {<br>
+          &nbsp;&nbsp; &nbsp;dni: "12345678Z",<br>
+          &nbsp;&nbsp; &nbsp;nom: "Peter Smith",<br>
+          &nbsp;&nbsp; &nbsp;telefon: "678678678",<br>
+          &nbsp;&nbsp; &nbsp;email: "psmith@sapalomera.cat"<br>
+          };<br>
+          <br>
+          const c2 = {<br>
+          &nbsp;&nbsp; &nbsp;dni: "44444444A",<br>
+          &nbsp;&nbsp; &nbsp;nom: "Mary Johnson",<br>
+          &nbsp;&nbsp; &nbsp;telefon: "678123123",<br>
+          &nbsp;&nbsp; &nbsp;email: "mjohnson@sapalomera.cat"<br>
+          };<br>
+          <br>
+          const c3 = {<br>
+          &nbsp;&nbsp; &nbsp;dni: "11111111H",<br>
+          &nbsp;&nbsp; &nbsp;nom: "Dr Frankenstein",<br>
+          &nbsp;&nbsp; &nbsp;telefon: "666666666",<br>
+          &nbsp;&nbsp; &nbsp;email: "dfranky@gmail.com"<br>
+          };<br>
+          <br>
+          const clients = [c1, c2, c3];<br>
+          <br>
+          //console.log(c1);<br>
+          //console.log(clients);<br>
+          <br>
+          let html = "";<br>
+          for (let i = 0; i &lt; clients.length; i++) {<br>
+          &nbsp;&nbsp; &nbsp;html += "Client " + (i + 1) + "&lt;br&gt;";<br>
+          &nbsp;&nbsp; &nbsp;html += "DNI: " + clients[i].dni + "&lt;br&gt;";<br>
+          &nbsp;&nbsp; &nbsp;html += "Nom: " + clients[i].nom + "&lt;br&gt;";<br>
+          &nbsp;&nbsp; &nbsp;html += "Telèfon: " + clients[i].telefon + "&lt;br&gt;";<br>
+          &nbsp;&nbsp; &nbsp;html += "E-mail: " + clients[i].email + "&lt;br&gt;&lt;br&gt;";<br>
+          &nbsp;&nbsp; &nbsp;//html += `Client ${i + 1}&lt;br&gt;DNI: ${clients[i].dni}&lt;br&gt;Nom: ${clients[i].nom}&lt;br&gt;Telèfon: ${clients[i].telefon}&lt;br&gt;E-mail: ${clients[i].email}&lt;br&gt;&lt;br&gt;`;<br>
+          }<br>
+          document.getElementById("terminal").innerHTML = html;</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          const articles = [<br>
+          &nbsp;&nbsp; &nbsp;{<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;codi: "123",<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;descripcio: "Fregidora d'aire",<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;preu: 123<br>
+          &nbsp;&nbsp; &nbsp;},<br>
+          &nbsp;&nbsp; &nbsp;{<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;codi: "456",<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;descripcio: "Pantalla OLED 50\"",<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;preu: 456<br>
+          &nbsp;&nbsp; &nbsp;},<br>
+          &nbsp;&nbsp; &nbsp;{<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;codi: "789",<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;descripcio: "PC Gaming",<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;preu: 789<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          ];<br>
+          <br>
+          let cistella = [];<br>
+          <br>
+          const iCodi = document.getElementById("codi");<br>
+          const bAFegir = document.getElementById("afegir");<br>
+          const bTreure = document.getElementById("treure");<br>
+          const bPagar = document.getElementById("pagar");<br>
+          const terminal = document.getElementById("terminal");<br>
+          <br>
+          bAFegir.addEventListener("click", afegirArticle);<br>
+          bTreure.addEventListener("click", treureArticle);<br>
+          bPagar.addEventListener("click", pagarCompra);<br>
+          <br>
+          function afegirArticle() {<br>
+          &nbsp;&nbsp; &nbsp;// Agafar el codi<br>
+          &nbsp;&nbsp; &nbsp;const codi = iCodi.value.trim();<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Buscar el codi en l'array d'articles<br>
+          &nbsp;&nbsp; &nbsp;let ndx = -1;<br>
+          &nbsp;&nbsp; &nbsp;for (let i = 0; i &lt; articles.length; i++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if (articles[i].codi === codi) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;ndx = i;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;break;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Si no l'ha trobat, error i sortir<br>
+          &nbsp;&nbsp; &nbsp;if (ndx === -1) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;alert("Codi inexistent");<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return;<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Afegir l'article a la cistella<br>
+          &nbsp;&nbsp; &nbsp;cistella.push(articles[ndx]);<br>
+          }<br>
+          <br>
+          function treureArticle() {<br>
+          &nbsp;&nbsp; &nbsp;// Agafar el codi<br>
+          &nbsp;&nbsp; &nbsp;const codi = iCodi.value.trim();<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Buscar el codi en la cistella<br>
+          &nbsp;&nbsp; &nbsp;let ndx = -1;<br>
+          &nbsp;&nbsp; &nbsp;for (let i = 0; i &lt; cistella.length; i++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if (cistella[i].codi === codi) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;ndx = i;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;break;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Si no l'ha trobat, error i sortir<br>
+          &nbsp;&nbsp; &nbsp;if (ndx === -1) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;alert("Codi inexistent");<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;return;<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Treure l'article de la cistella<br>
+          &nbsp;&nbsp; &nbsp;cistella.splice(ndx, 1);<br>
+          }<br>
+          <br>
+          function pagarCompra() {<br>
+          &nbsp;&nbsp; &nbsp;let html = "";<br>
+          &nbsp;&nbsp; &nbsp;let total = 0;<br>
+          &nbsp;&nbsp; &nbsp;for (const a of cistella) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;html += `${a.descripcio.padEnd(30, ".")} ${a.preu.toFixed(2).replace(".", ",").padStart(10)} €&lt;br&gt;`;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;total += a.preu;<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;html += `TOTAL: ${total.toFixed(2).replace(".", ",")} €`;<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Mostrar resultat<br>
+          &nbsp;&nbsp; &nbsp;terminal.innerHTML = html;<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Buidar cistella<br>
+          &nbsp;&nbsp; &nbsp;cistella = [];<br>
+          &nbsp;&nbsp; &nbsp;//cistella.length = 0;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          const expedients = [<br>
+          &nbsp;&nbsp; &nbsp;{ nom:"Bat", cognoms:"Man", curs:2, notes:[9, 7, 5, 7] },<br>
+          &nbsp;&nbsp; &nbsp;{ nom:"Iron", cognoms:"Man", curs:1, notes:[5, 8, 7, 6] },<br>
+          &nbsp;&nbsp; &nbsp;{ nom:"Spider", cognoms:"Man", curs:2, notes:[6, 4, 8, 9] },<br>
+          &nbsp;&nbsp; &nbsp;{ nom:"Cat", cognoms:"Woman", curs:1, notes:[9, 8, 5, 6] },<br>
+          &nbsp;&nbsp; &nbsp;{ nom:"Super", cognoms:"Woman", curs:2, notes:[3, 7, 5, 7] },<br>
+          &nbsp;&nbsp; &nbsp;{ nom:"Wonder", cognoms:"Woman", curs:2, notes:[8, 6, 7, 9] }<br>
+          ];<br>
+          <br>
+          const terminal = document.getElementById("terminal");<br>
+          <br>
+          for (let e of expedients) {<br>
+          &nbsp;&nbsp; &nbsp;let total = 0;<br>
+          &nbsp;&nbsp; &nbsp;for (let n of e.notes) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;total += n;<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;e.mitjana = total / e.notes.length;<br>
+          }<br>
+          <br>
+          let html = "&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Alumne&lt;/th&gt;&lt;th&gt;Curs&lt;/th&gt;&lt;th&gt;M1&lt;/th&gt;&lt;th&gt;M2&lt;/th&gt;&lt;th&gt;M3&lt;/th&gt;&lt;th&gt;M4&lt;/th&gt;&lt;th&gt;Final&lt;/th&gt;&lt;/tr&gt;";<br>
+          for (let e of expedients) {<br>
+          &nbsp;&nbsp; &nbsp;html += "&lt;tr&gt;";<br>
+          &nbsp;&nbsp; &nbsp;html += `&lt;td&gt;${e.cognoms}, ${e.nom}&lt;/td&gt;`;<br>
+          &nbsp;&nbsp; &nbsp;html += `&lt;td class="center"&gt;${e.curs}&lt;/td&gt;`;<br>
+          &nbsp;&nbsp; &nbsp;html += `&lt;td class="right"&gt;${e.notes[0]}&lt;/td&gt;`;<br>
+          &nbsp;&nbsp; &nbsp;html += `&lt;td class="right"&gt;${e.notes[1]}&lt;/td&gt;`;<br>
+          &nbsp;&nbsp; &nbsp;html += `&lt;td class="right"&gt;${e.notes[2]}&lt;/td&gt;`;<br>
+          &nbsp;&nbsp; &nbsp;html += `&lt;td class="right"&gt;${e.notes[3]}&lt;/td&gt;`;<br>
+          &nbsp;&nbsp; &nbsp;html += `&lt;td class="right"&gt;${e.mitjana.toFixed(1)}&lt;/td&gt;`;<br>
+          &nbsp;&nbsp; &nbsp;html += "&lt;/tr&gt;";<br>
+          }<br>
+          html += "&lt;/tbody&gt;&lt;/table&gt;";<br>
+          terminal.innerHTML = html;</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          const llibres = [];<br>
+          <br>
+          const iISBN = document.getElementById("isbn");<br>
+          const iTitol = document.getElementById("titol");<br>
+          const iAutor = document.getElementById("autor");<br>
+          const iGenere = document.getElementById("genere");<br>
+          const iResum = document.getElementById("resum");<br>
+          <br>
+          const bAFegir = document.getElementById("afegir");<br>
+          const bLlista = document.getElementById("llista");<br>
+          const bTematica = document.getElementById("tematica");<br>
+          <br>
+          const terminal = document.getElementById("terminal");<br>
+          <br>
+          bAFegir.addEventListener("click", afegirLlibre);<br>
+          bLlista.addEventListener("click", llistaLlibres);<br>
+          bTematica.addEventListener("click", llistaLlibresTematica);<br>
+          <br>
+          function afegirLlibre() {<br>
+          &nbsp;&nbsp;&nbsp; // Agafar el codi<br>
+          &nbsp;&nbsp;&nbsp; const codi = iISBN.value.trim();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Buscar el codi en l'array de llibres<br>
+          &nbsp;&nbsp;&nbsp; let ndx = -1;<br>
+          &nbsp;&nbsp;&nbsp; for (let i = 0; i &lt; llibres.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (llibres[i].isbn === codi) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ndx = i;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Si no l'ha trobat, error i sortir<br>
+          &nbsp;&nbsp;&nbsp; if (ndx !== -1) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; alert("Aquest llibre ja existeix");<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Crear un objecte amb les dades del llibre i afegir-lo a la llista<br>
+          &nbsp;&nbsp;&nbsp; let l = {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; isbn: codi,<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; titol: iTitol.value.trim(),<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; autor: iAutor.value.trim(),<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; genere: iGenere.value,<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; resum: iResum.value.replaceAll("\n", "&lt;br&gt;")<br>
+          &nbsp;&nbsp;&nbsp; };<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; llibres.push(l);<br>
+          }<br>
+          <br>
+          function llistaLlibres() {<br>
+          &nbsp;&nbsp;&nbsp; let html = "";<br>
+          &nbsp;&nbsp;&nbsp; for (const l of llibres) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; html += `ISBN: ${l.isbn}&lt;br&gt;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Títol: ${l.titol}&lt;br&gt;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Autor: ${l.autor}&lt;br&gt;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Gènere: ${l.genere}&lt;br&gt;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Resum: ${l.resum}&lt;br&gt;&lt;br&gt;`;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mostrar resultat<br>
+          &nbsp;&nbsp;&nbsp; terminal.innerHTML = html;<br>
+          }<br>
+          <br>
+          function llistaLlibresTematica() {<br>
+          &nbsp;&nbsp;&nbsp; const tema = iGenere.value.trim();<br>
+          &nbsp;&nbsp;&nbsp; let html = "";<br>
+          &nbsp;&nbsp;&nbsp; for (const l of llibres) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (l.genere === tema) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; html += `ISBN: ${l.isbn}&lt;br&gt;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Títol: ${l.titol}&lt;br&gt;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Autor: ${l.autor}&lt;br&gt;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Gènere: ${l.genere}&lt;br&gt;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Resum: ${l.resum}&lt;br&gt;&lt;br&gt;`;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mostrar resultat<br>
+          &nbsp;&nbsp;&nbsp; terminal.innerHTML = html;<br>
+          }<br>
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

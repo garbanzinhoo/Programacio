@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Estructures condicionals en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Estructures condicionals</header>
+    <section>
+      <h2> Estructures condicionals</h2>
+      <p>Permeten triar quin bloc de codi s'ha d'executar en funció d'unes condicions.</p>
+      <p>Quan s'arriba a un punt del programa, s'avalua una expressió el resultat de la qual ha de ser un booleà.<br>
+        Depenent de si el resultat és <span class="c_comanda">true</span> o <span class="c_comanda">false</span> el programa segueix un camí o un altre.</p>
+      <h3>Condicional simple (un únic bloc de codi alternatiu)</h3>
+      <p>Si el resultat de l'expressió lògica és <span class="c_comanda">true</span> s'executa un bloc de codi; si és <span class="c_comanda">false</span>, no s'executa.</p>
+      <p>El diagrama de flux equivalent és el següent:</p>
+      <p><img alt="" src="./imatges/If1.svg" style="width:16em" class="noborder"></p>
+      <p>La sentència equivalent és <span class="c_comanda">if (expressio_logica) bloc_de_codi;</span>, però hi ha diferents formes d'escriure-la.</p>
+      <p>La més senzilla (recomanada només quan la condició i el codi subsegüent són molt curts):</p>
+      <p class="p_codi"><strong>if (preu &gt;= 1000)</strong> preu -= preu * 10 / 100;</p>
+      <p>De totes formes, per fer més llegible el codi, es recomana la següent forma:</p>
+      <p class="p_codi"><strong>if (preu &gt;= 1000)</strong><br>
+        &nbsp;&nbsp;&nbsp; preu -= preu * 10 / 100;</p>
+      <p>Si el codi consta de més d'una sentència o es preveu que més endavant se n'hi poden afegir més, cal afegir les claus <span class="c_comanda">{</span> i <span class="c_comanda">}</span> per delimitar el codi que s'ha d'executar quan la condició sigui certa:</p>
+      <p class="p_codi">if (preu &gt;= 1000) <strong>{</strong><br>
+        &nbsp;&nbsp;&nbsp; preu -= preu * 10 / 100;<br>
+        &nbsp;&nbsp;&nbsp; alert("S'ha fet un descompte del 10%");<br>
+        <strong>}</strong></p>
+      <div class="p_important">
+        <p> Es recomana posar sempre les claus, fins i tot quan només hi ha una sentència associada al condicional.<br>
+          El codi anterior escrit sense les claus no fa el mateix (el missatge s'escriu encara que el preu sigui 500):</p>
+        <p class="p_codi">if (preu &gt;= 1000)<br>
+          &nbsp;&nbsp;&nbsp; preu -= preu * 10 / 100;<br>
+          &nbsp;&nbsp;&nbsp; alert("S'ha fet un descompte del 10%");</p>
+      </div>
+      <p>Les expressions lògiques poden arribar a ser força complicades, però fins i tot les més senzilles s'han de comprovar acuradament.</p>
+      <p>Si l'error és sintàctic, el mateix compilador ens avisarà, però si no s'ha posat l'expressió correcta el programa funcionarà però no farà correctament el què s'espera d'ell.</p>
+      <div class="p_important">
+        <p>Pot semblar que les dues condicions següents són equivalents, però no és així.</p>
+        <p class="p_codi">if (<strong>nota &lt; 5</strong>) alert("Suspès");<br>
+          if (<strong>nota &lt;= 4</strong>) alert("Suspès");</p>
+        <p>Què passarà si la nota és 4.2?</p>
+      </div>
+      <h3>Condicional amb dos blocs de codi alternatius</h3>
+      <p>Si el resultat de l'expressió lògica és <span class="c_comanda">true</span> s'executa un bloc de codi; si és <span class="c_comanda">false</span>, s'executa l'altre.<br>
+        Sempre s'executa un i només un dels dos: no pot ser que s'executin tots dos o cap dels dos.</p>
+      <p>El diagrama de flux equivalent és el següent:</p>
+      <p><img alt="" src="./imatges/If2.svg" style="width:19em" class="noborder"></p>
+      <p>La sentència equivalent és <span class="c_comanda">if (condicio) codi_true else codi_false;</span>, però hi ha diferents formes d'escriure-la. </p>
+      <p>La més senzilla (recomanada només quan la condició i el codi subsegüent són molt curts):</p>
+      <p class="p_codi"><strong>if (codi == 1234)</strong> descompte = 10; <strong>else</strong> descompte = 0;</p>
+      <p>De totes formes, per fer més llegible el codi, es recomana la següent forma:</p>
+      <p class="p_codi"><strong>if (codi == 1234)</strong> descompte = 10;<br>
+        <strong>else</strong> descompte = 0;</p>
+      <p>O aquesta altra:</p>
+      <p class="p_codi"><strong>if (codi == 1234)<br>
+          &nbsp;&nbsp;&nbsp; </strong>descompte = 10;<br>
+        <strong>else</strong><br>
+        &nbsp;&nbsp;&nbsp; descompte = 0;</p>
+      <p>Si el codi consta de més d'una sentència o es preveu que més endavant se n'hi poden afegir més, cal afegir les claus <span class="c_comanda">{</span> i <span class="c_comanda">}</span> per delimitar el codi que s'ha d'executar quan la condició sigui certa:</p>
+      <p class="p_codi">if (codi == 1234) <strong>{</strong><br>
+        &nbsp;&nbsp;&nbsp; descompte = 10;<br>
+        &nbsp;&nbsp;&nbsp; alert("Codi vàlid: s'aplicarà descompte");<br>
+        <strong>}</strong> else <strong>{</strong><br>
+        &nbsp;&nbsp;&nbsp; descompte = 0;<br>
+        &nbsp;&nbsp;&nbsp; alert("Codi incorrecte: NO s'aplicarà descompte");<br>
+        <strong>}</strong></p>
+      <h2>Invertir expressions condicionals</h2>
+      <p>De vegades és més fàcil expressar una condició de forma invertida. Per exemple, la condició "que l'edat no estigui entre 18 i 65 (tots dos inclosos)" es pot expressar directament com:</p>
+      <p class="p_codi">if (!(edat &gt;=18 &amp;&amp; edat &lt;= 65)) ...</p>
+      <p>Però també es pot expressar invertint tots els operadors relacionals i lògics:</p>
+      <p class="p_codi">if (edat &lt; 18 || edat &gt; 65) ...</p>
+      <h4>Operadors relacionals i lògics bàsics i els seus inversos<br>
+      </h4>
+      <table>
+        <tbody>
+          <tr>
+            <th> Operador </th>
+            <th>Op. Invers</th>
+          </tr>
+          <tr>
+            <td style="text-align: center;">==</td>
+            <td style="text-align: center;">!=</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">&lt;</td>
+            <td style="text-align: center;">&gt;=</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">&gt;</td>
+            <td style="text-align: center;">&lt;=</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">&amp;&amp;</td>
+            <td style="text-align: center;">||</td>
+          </tr>
+        </tbody>
+      </table>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

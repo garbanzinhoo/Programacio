@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="CRUD i DAO">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>CRUD i DAO</header>
+    <section>
+      <h2>Facilitar la conversió entre objectes i registres</h2>
+      <p>Utilitzar patrons o esquemes estàndard com <strong>MVC</strong> facilita la creació de projectes grans millorant la independència entre el diferents mòduls que han de ser creats per un equip de programadors.<br>
+        També facilita el manteniment, sigui pel mateix equip que els va crear o per altres programadors diferents.</p>
+      <p>Quan es tracta d'emmagatzemar les dades, sigui en una BD, en un arxiu o fins i tot en estructures de dades en memòria (llistes, diccionaris...), també és convenient utilitzar algun dels següents patrons.</p>
+      <h2>CRUD</h2>
+      <p>Les accions bàsiques que es poden realitzar amb un objecte o un registre d'una BD són:</p>
+      <ul>
+        <li><em><strong>C</strong>reate</em></li>
+        <li><em><strong>R</strong>ead</em></li>
+        <li><em><strong>U</strong>pdate</em></li>
+        <li><em><strong>D</strong>elete</em></li>
+      </ul>
+      <p>Una forma senzilla de realitzar aquestes accions entre objectes i registres és crear una interfície amb mètodes abstractes que s'hauran d'implementar en les classes que tinguin el seu equivalent en taules de la base de dades.</p>
+      <p>Els mètodes que s'hauran d'implementar seran les quatre accions <strong>CRUD</strong>:</p>
+      <ul>
+        <li><span class="c_comanda">boolean create()</span>: afegir un registre a la taula corresponent amb les dades de l'objecte.</li>
+        <li><span class="c_comanda">boolean read()</span>: buscar el registre a partir de l'identificador de l'objecte i guardar les dades en els atributs de l'objecte.</li>
+        <li><span class="c_comanda">boolean update()</span>: buscar el registre a partir de l'identificador de l'objecte i guardar en el registre els atributs de l'objecte.</li>
+        <li><span class="c_comanda">boolean delete()</span>: buscar el registre a partir de l'identificador de l'objecte i eliminar-lo.</li>
+      </ul>
+      <p>Si s'implementen dins de la mateixa classe, no caldrà passar les dades de l'objecte a aquests mètodes.</p>
+      <h5>Exemple</h5>
+      <p class="p_codi">public <strong>interface CRUD</strong> {<br>
+        &nbsp;&nbsp;&nbsp; boolean create();<br>
+        &nbsp;&nbsp;&nbsp; boolean read();<br>
+        &nbsp;&nbsp;&nbsp; boolean update();<br>
+        &nbsp;&nbsp;&nbsp; boolean delete();<br>
+        }</p>
+      <p class="p_codi">public class Departament <strong>implements CRUD</strong> {<br>
+        &nbsp;&nbsp;&nbsp; int id;<br>
+        &nbsp;&nbsp;&nbsp; String nom;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>Constructor</strong><br>
+        &nbsp;&nbsp;&nbsp; public Departament(int id, String nom) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.id = id;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nom = nom;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>Setters &amp; Getters</strong><br>
+        &nbsp;&nbsp;&nbsp; public void setId(int id) { this.id = id; }<br>
+        &nbsp;&nbsp;&nbsp; public void setNom(String nom) { this.nom = nom; }<br>
+        &nbsp;&nbsp;&nbsp; public int getId() { return id; }<br>
+        &nbsp;&nbsp;&nbsp; public String getNom() { return nom; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>Mètodes CRUD</strong><br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public boolean <strong>create()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String query = "INSERT INTO departaments (id,nom) VALUES (<strong>?</strong>,<strong>?</strong>)";<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r = SQLRW.write(query, <strong>id</strong>, <strong>nom</strong>);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r &gt; 0;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public boolean <strong>read()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String query = "SELECT nom FROM departaments WHERE id=<strong>?</strong>";<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;Object[]&gt; r = SQLRW.read(query, <strong>id</strong>);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r == null || r.size() != 1) return false;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nom = (String)((Object[])r.iterator().next())[0];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public boolean <strong>update()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String query = "UPDATE departaments SET nom=<strong>?</strong> WHERE id=<strong>?</strong>";<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r = SQLRW.write(query, <strong>nom</strong>, <strong>id</strong>);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r &gt; 0;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public boolean <strong>delete()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String query = "DELETE FROM departaments WHERE id=<strong>?</strong>";<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r = SQLRW.write(query, <strong>id</strong>);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r &gt; 0;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_codi">System.out.println("\nTEST Departaments");<br>
+        <br>
+        Departament d = new Departament(2, "");<br>
+        if (d.read()) System.out.println("Consulta: " + d.getId() + " | " + d.getNom());<br>
+        String nom = d.getNom();&nbsp;&nbsp;&nbsp; // Guardem el nom actual<br>
+        <br>
+        d.setNom("Prova");&nbsp;&nbsp;&nbsp; // Canviem el nom<br>
+        if (d.update()) System.out.println("Modificació: " + d);<br>
+        d.setNom(nom);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Recuperem el nom que tenia anteriorment<br>
+        if (d.update()) System.out.println("Modificació: " + d);<br>
+        <br>
+        d = new Departament(10,"Prova");<br>
+        if (d.create()) System.out.println("Creació: " + d);<br>
+        if (d.delete()) System.out.println("Eliminació: " + d);<br>
+      </p>
+      <h2>DAO</h2>
+      <p>Per aconseguir una major independència entre dades i mètodes, i possibilitar la creació de diferents interfícies depenent de si les dades s'han de guardar en una BD, un arxiu o en memòria, pot ser convenient crear una classe a part per cada tipus d'objecte amb mètodes estàtics als quals s'hauran de passar les dades dels objectes i retornar objectes o valors booleans per indicar el resultat de les accions.</p>
+      <p>També es poden afegir altres mètodes: comprovar si existeix un registre determinat, quants registres hi ha, obtenir tots els registres, fer consultes que obtinguin més d'un registre...</p>
+      <h5>Exemple</h5>
+      <p><a target="_blank" rel="noopener" href="https://github.com/hatone/java-mysql-dao-example/tree/master/src/jp/co/ca">java DAO exemple</a></p>
+      <h5>Exemple més genèric</h5>
+      <p class="p_codi">public interface DAODB<strong>&lt;T&gt;</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // <strong>CRUD</strong><br>
+        &nbsp;&nbsp;&nbsp; boolean create(<strong>T t</strong>);<br>
+        &nbsp;&nbsp;&nbsp; boolean read(<strong>T t</strong>);<br>
+        &nbsp;&nbsp;&nbsp; boolean update(<strong>T t</strong>);<br>
+        &nbsp;&nbsp;&nbsp; boolean delete(<strong>T t</strong>);<br>
+        &nbsp;&nbsp;&nbsp; // <strong>ALTRES</strong><br>
+        &nbsp;&nbsp;&nbsp; boolean exists(<strong>T t</strong>);<br>
+        &nbsp;&nbsp;&nbsp; int count();<br>
+        &nbsp;&nbsp;&nbsp; List<strong>&lt;T&gt;</strong> all();<br>
+        }</p>
+      <p class="p_codi">public class Empleat {<br>
+        &nbsp;&nbsp;&nbsp; int id;<br>
+        &nbsp;&nbsp;&nbsp; String nom;<br>
+        &nbsp;&nbsp;&nbsp; Date dn;<br>
+        &nbsp;&nbsp;&nbsp; int dep;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>Constructors</strong><br>
+        &nbsp;&nbsp;&nbsp; public Empleat(int id) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.id = id;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(null, null, -1);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public Empleat(int id, String nom, Date dn, int dep) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.id = id;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(nom, dn, dep);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public Empleat(Empleat e) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.id = e.id;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(e.nom, e.dn, e.dep);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public void set(String nom, Date dn, int dep) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nom = nom;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.dn = dn;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.dep = dep;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public String toString() { return id + " | " + nom + " | " + dn + " | " + dep; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>Setters &amp; Getters</strong><br>
+        &nbsp;&nbsp;&nbsp; public void setId(int id) { this.id = id; }<br>
+        &nbsp;&nbsp;&nbsp; public void setNom(String nom) { this.nom = nom; }<br>
+        &nbsp;&nbsp;&nbsp; public void setDn(Date dn) { this.dn = dn; }<br>
+        &nbsp;&nbsp;&nbsp; public void setDep(int dep) { this.dep = dep; }<br>
+        &nbsp;&nbsp;&nbsp; public int getId() { return id; }<br>
+        &nbsp;&nbsp;&nbsp; public String getNom() { return nom; }<br>
+        &nbsp;&nbsp;&nbsp; public Date getDn() { return dn; }<br>
+        &nbsp;&nbsp;&nbsp; public int getDep() { return dep; }<br>
+        }</p>
+      <p class="p_codi">public class EmpleatDAODB implements <strong>DAODB&lt;Empleat&gt;</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // <strong>CRUD</strong><br>
+        &nbsp;&nbsp;&nbsp; public boolean <strong>create(Empleat e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String query = "INSERT INTO " + taula + " (id,nom,dn,dep) VALUES (?,?,?,?)";<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r = SQLRW.write(query, e.getId(), e.getNom(), e.getDep(), e.getDep());<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r &gt; 0;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public boolean <strong>read(Empleat e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Empleat er = read(e.getId());<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (er == null) return false;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.set(er.getNom(), er.getDn(), er.getDep());<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public Empleat <strong>read(int id)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String query = "SELECT nom,dn,dep FROM " + taula + " WHERE id=?";<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;Object[]&gt; r = SQLRW.read(query, id);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r == null || r.size() != 1) return null;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Object[] o = r.iterator().next();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Empleat(id, (String)o[0], Date.valueOf((String)o[1]), (int)o[2]);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public boolean <strong>update(Empleat e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String query = "UPDATE " + taula + " SET nom=?,dn=?,dep=? WHERE id=?";<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r = SQLRW.write(query, e.getNom(), e.getDn(), e.getDep(), e.getId());<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r &gt; 0;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public boolean <strong>delete(Empleat e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String query = "DELETE FROM " + taula + " WHERE id=?";<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int r = SQLRW.write(query, e.getId());<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return r &gt; 0;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>ALTRES DAO</strong><br>
+        &nbsp;&nbsp;&nbsp; public boolean <strong>exists(Empleat e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return read(e);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public int <strong>count()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String query = "SELECT COUNT(*) FROM " + taula;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;Object[]&gt; r = SQLRW.read(query);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (r == null || r.size() != 1) return -1;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Object[] o = r.iterator().next();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (int)o[0];<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public List&lt;Empleat&gt; <strong>all()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;Object[]&gt; l = SQLRW.read("SELECT * FROM " + taula);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (l == null) return null;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; List&lt;Empleat&gt; le = new LinkedList&lt;&gt;();<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Object[] o;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Empleat e;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (Object[] object : l) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; o = object;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e = new Empleat((int) o[0],<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; (String) o[1],<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; o[2] == null ? null : Date.valueOf((String) o[2]),<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; (int) o[3]);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; le.add(e);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return le;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_codi">EmpleatDAODB edb = new EmpleatDAODB();<br>
+        <br>
+        //Empleat e = new Empleat(10, "", Date.valueOf(LocalDate.now()), 0);<br>
+        //Empleat e = new Empleat(10, "", Date.valueOf("2000-1-1"), 0);<br>
+        Empleat e = new Empleat(10, "", new Date(0), 0);<br>
+        if (edb.read(e)) System.out.println("Consulta: " + e);<br>
+        Empleat eTemp = new Empleat(e);<br>
+        <br>
+        e.set("Prova", Date.valueOf("2222-1-1"), 1);<br>
+        if (edb.update(e)) System.out.println("Modificació: " + e);<br>
+        if (edb.update(eTemp)) System.out.println("Modificació: " + eTemp);<br>
+        <br>
+        e = new Empleat(100,"Prova", Date.valueOf("2222-1-1"), 5);<br>
+        if (edb.create(e)) System.out.println("Creació: " + e);<br>
+        if (edb.delete(e)) System.out.println("Eliminació: " + e);<br>
+        <br>
+        System.out.println(edb.count());<br>
+        if (edb.exists(new Empleat(10))) System.out.println("Existeix l'empleat 10");<br>
+        if (!edb.exists(new Empleat(999))) System.out.println("No existeix l'empleat 999");<br>
+        <br>
+        List&lt;Empleat&gt; le = edb.all();<br>
+        if (le != null) {<br>
+        &nbsp;&nbsp;&nbsp; for (Empleat empleat : le) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(empleat);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

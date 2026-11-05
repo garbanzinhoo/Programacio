@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="BDOO">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>BDOO</header>
+    <section>
+      <h2>Gestió avançada de <em>db4o</em></h2>
+      <h3>Precaucions que cal tenir en compte</h3>
+      <p class="p_important"><strong>Modificació de classes</strong><br>
+        Si es modifiquen els atributs d'una classe que té objectes guardats a la base de dades, caldrà tornar a generar tot el contingut (no es podran recuperar els objectes d'aquesta classe).</p>
+      <p class="p_important"><strong>Tractament d'excepcions</strong><br>
+        Cal posar el codi que gestiona la BD dins d'un <strong>try ... finally</strong> per garantir que la BD es tanca en cas d'error.</p>
+      <div class="p_important">
+        <p><strong>Guardar (afegir) i llegir objectes</strong></p>
+        <p>Quan es guarda <strong>un objecte nou</strong> o es llegeix (<strong>no quan s'actualitza</strong>), també es guarden/llegeixen els objectes enllaçats: si un client conté una llista de factures, aquestes també es guarden/llegeixen, i si cada factura conté una llista de productes, aquests també es guarden/llegeixen.</p>
+        <p>El límit de recursivitat per defecte és <strong>5</strong> però, si es considera necessari, es pot modificar:</p>
+        <p class="p_codi">EmbeddedConfiguration conf = Db4oEmbedded.newConfiguration();<br>
+          conf.common().activationDepth(<strong>10</strong>);</p>
+      </div>
+      <h3>Cerca avançada</h3>
+      <p>Per fer cerques més avançades es pot utilitzar el mètode <span class="c_comanda">query(Predicate&lt;T&gt; p)</span>.</p>
+      <p>Cal implementar la classe <strong>Predicate&lt;T&gt;</strong> amb el mètode <span class="c_comanda">boolean match(T t)</span> per saber si un objecte compleix els criteris de la cerca.</p>
+      <p>Normalment, s'implementa creant una classe anònima a la vegada que es crea un objecte d'aquesta classe:</p>
+      <p class="p_codi"><strong>Predicate pred = new Predicate&lt;Persona&gt;()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public <strong>boolean match(Persona p)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return p.calcularIMC() &gt;= 40;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        };<br>
+        <br>
+        ObjectSet&lt;Persona&gt; result = db.query(<strong>pred</strong>);</p>
+      <div class="p_important">
+        <p>En l'exemple anterior es podria canviar el <strong>40</strong> per una variable definida dins del mateix àmbit:</p>
+        <p class="p_codi"><strong>float imcMin = 40;</strong><br>
+          <br>
+          Predicate pred = new Predicate&lt;Persona&gt;() {<br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public boolean match(Persona p) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p.calcularIMC() &gt;= <strong>imcMin</strong>;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          };</p>
+      </div>
+      <p>També es pot crear una classe personalitzada:</p>
+      <p class="p_codi">public class <strong>PredicatIMC extends Predicate&lt;Persona&gt;</strong> {<br>
+        &nbsp;&nbsp;&nbsp; float min;<br>
+        &nbsp;&nbsp;&nbsp; float max;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public <strong>PredicatIMC(float min, float max)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setRang(min, max);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; public void <strong>setRang(float min, float max)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.min = min;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.max = max;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; public boolean match(Persona p) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float imc = p.calcularIMC();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return imc &gt;= min &amp;&amp; imc &lt; max;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+        <br>
+        Predicate pred = <strong>new PredicatIMC(18.5f, 25)</strong>;&nbsp;&nbsp;&nbsp; // IMC normal<br>
+        ObjectSet&lt;Persona&gt; result = db.query(pred);<br>
+        <br>
+        <strong>pred.setRang(50, 100)</strong>;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // IMC obesitat extrema<br>
+        ObjectSet&lt;Persona&gt; result = db.query(pred);</p>
+      <p>O crear una classe com a contenidor per a diferents consultes:</p>
+      <p class="p_codi">public class <strong>ConsultesIMC</strong> {<br>
+        &nbsp;&nbsp;&nbsp; static float min = 18.5f;<br>
+        &nbsp;&nbsp;&nbsp; static float max = 25;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void <strong>setRang(float min, float max)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ConsultesIMC.min = min;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ConsultesIMC.max = max;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static <strong>Predicate obesitatGreu = new Predicate&lt;Persona&gt;()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public boolean match(Persona p) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p.calcularIMC() &gt;= 40;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; };<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static <strong>Predicate rangIMC = new Predicate&lt;Persona&gt;()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public boolean match(Persona p) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float imc = p.calcularIMC();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return imc &gt;= min &amp;&amp; imc &lt; max;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; };<br>
+        }<br>
+        <br>
+        <strong>Predicate pred = ConsultesIMC.rangIMC;</strong><br>
+        <br>
+        <strong> ConsultesIMC.setRang(40, 100)</strong>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // IMC obesitat extrema<br>
+        ObjectSet&lt;Persona&gt; result = db.query(pred);<br>
+        <br>
+        <strong>ConsultesIMC.setRang(18.5f, 25)</strong>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // IMC normal<br>
+        ObjectSet&lt;Persona&gt; result = db.query(pred);<br>
+      </p>
+      <p class="p_important">Tant si es busquen objectes amb el mètode nadiu com si es fa amb <em>Query By Example</em>, es processen tots els objectes de la classe especificada.<br>
+        Si es vol buscar només dins dels objectes enllaçats a un objecte determinat, caldrà fer-ho manualment,<br>
+      </p>
+      <h4>Cerca ordenada</h4>
+      <p>També es pot obtenir el resultat ordenat si s'inclou un <strong>Comparator</strong>:</p>
+      <p class="p_codi">Comparator&lt;Persona&gt; <strong>pCmp = new Comparator&lt;Persona&gt;()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; public int compare(Persona p1, Persona p2) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return (p1.calcularIMC() - p2.calcularIMC());<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+        ObjectSet&lt;Persona&gt; result = <strong>db.query(pred, pCmp)</strong>;</p>
+      <h3>Actualització avançada</h3>
+      <p>Per defecte, amb un objecte que conté relacions amb altres objectes (per exemple una llista), si es llegeix, es modifica (s'afegeixen objectes a la llista) i es torna a guardar, els nous objectes afegits a la llista no es guardaran, excepte que la BD s'obri amb un paràmetre de configuració especial:</p>
+      <p class="p_codi"><strong>EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();</strong><br>
+        // Classes que cal actualitzar en cascada<br>
+        <strong>config.common().objectClass(NomClasse1.class).cascadeOnUpdate(true);</strong><br>
+        <strong>config.common().objectClass(NomClasse2.class).cascadeOnUpdate(true);</strong><br>
+        // ...<br>
+        ObjectContainer db = Db4oEmbedded.openFile(<strong>config</strong>, "persones.db4o");</p>
+      <p class="p_important">Si només es vol actualitzar un objecte, cal comprovar que la cerca ha retornat un objecte, i només un.</p>
+      <h3>Esborrat avançat (objectes que contenen altres objectes)</h3>
+      <p>Quan s'esborra un objecte, <strong>els objectes enllaçats no s'esborren automàticament!</strong><br>
+        Si cal, <strong>s'hauran d'esborrar manualment</strong> o activar una configuració especial abans d'obrir la BD:</p>
+      <p class="p_codi"><strong>EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();</strong><br>
+        // Classes que cal actualitzar en cascada<br>
+        <strong>config.common().objectClass(NomClasse1.class).cascadeOnDelete(true);</strong><br>
+        <strong>config.common().objectClass(NomClasse2.class).cascadeOnDelete(true);</strong><br>
+        // ...<br>
+        ObjectContainer db = Db4oEmbedded.openFile(<strong>config</strong>, "persones.db4o");</p>
+      <p class="p_important">Si s'activa aquesta opció, els objectes enllaçats a l'objecte esborrat s'eliminaran sense tenir en compte si estan enllaçats a altres objectes.</p>
+      <p class="p_important">Si s'esborra directament un objecte enllaçat, en l'objecte o objectes que el contenen apareixerà <strong>null</strong>!</p>
+      <p class="p_important">Les llistes i altres conjunts de dades també són objectes.<br>
+        Si s'esborra un objecte que conté un conjunt d'objectes i no està activat l'esborrat en cascada, aniran quedant aquests conjunts en la base de dades.</p>
+      <h3>Herència</h3>
+      <p>Suposant que la classe <strong>Persona</strong> tingui les subclasses <strong>Adult</strong> i <strong>Infant</strong>, hi ha dues possibilitats:</p>
+      <ul>
+        <li>Si la superclasse (<strong>Persona</strong>) no és abstracta i té constructors, es pot crear un objecte plantilla d'aquesta classe per fer la consulta.<br>
+          En el resultat ObjectSet pot haver-hi objectes de <strong>Adult</strong> i de <strong>Infant</strong>.</li>
+        <li>Si la superclasse és abstracta o no té constructors, es pot utilitzar el nom de la classe directament per obtenir tots els objectes: <span class="c_comanda">ObjectSet resultat = db.get(Persona.class);</span></li>
+      </ul>
+      <div class="p_important">
+        <p>Es podrien obtenir tots els objectes de la BD amb una consulta com la següent:</p>
+        <p class="p_codi"><strong>ObjectSet&lt;Object&gt; result = db.queryByExample(new Object());</strong><br>
+          Object o;<br>
+          while (result.hasNext()) {<br>
+          &nbsp;&nbsp;&nbsp; o = result.next();<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(o.getClass().getSimpleName() + " --&gt; " + o);<br>
+          }</p>
+        <p>O es podrien esborrar tots els objectes afegint <span class="c_comanda">db.delete(o)</span>.</p>
+      </div>
+      <h3>Accés remot a una BD <em>db4o</em></h3>
+      <h4>Engegar i configurar el servidor</h4>
+      <p class="p_codi">import java.util.Scanner;<br>
+        import com.db4o.*;<br>
+        <strong>import com.db4o.cs.Db4oClientServer;</strong><br>
+        <br>
+        public class ServerDB4O {<br>
+        &nbsp;&nbsp;&nbsp; public static final int PORT = 5000;<br>
+        &nbsp;&nbsp;&nbsp; public static final String DB = "agencia.db4o";<br>
+        &nbsp;&nbsp;&nbsp; public static final String USER = "db4o";<br>
+        &nbsp;&nbsp;&nbsp; public static final String PASS = "password";<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>ObjectServer sv = Db4oClientServer.openServer(<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Db4oClientServer.newServerConfiguration(), DB, PORT);</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scanner scan = new Scanner (System.in);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String comanda;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sv.grantAccess(USER, PASS);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nServidor engegat en&nbsp; el port " + PORT);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Base de dades: " + DB);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Usuari per accedir: " + USER);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Contrasenya per accedir: " + PASS);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Introdueix EXIT per tancar el servidor");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comanda = scan.nextLine();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } while (!comanda.equalsIgnoreCase("EXIT"));<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>sv.close();</strong><br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <h4>Engegar el client i connectar amb la BD</h4>
+      <p class="p_codi">import com.db4o.*;<br>
+        <strong>import com.db4o.cs.Db4oClientServer;</strong><br>
+        <br>
+        public class ClientDB4O {<br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Connexió local<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //ObjectContainer db = Db4oEmbedded.openFile("agencia.db4o");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Connexió remota (caldria canviar 'localhost' per la IP o domini)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>ObjectContainer db = Db4oClientServer.openClient(<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "localhost",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ServerDB4O.PORT,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ServerDB4O.USER,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ServerDB4O.PASS);</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Operacions amb la BD<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>db.close();</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_important">Si s'ha obert una BD amb el servidor, queda bloquejada i no es pot obrir en local simultàniament.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

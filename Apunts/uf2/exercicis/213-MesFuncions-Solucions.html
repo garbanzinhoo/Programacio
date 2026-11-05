@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <p>Per provar les funcions de les solucions, es pot utilitzar el següent codi en la funció <span class="c_comanda">main()</span>:</p>
+      <p class="p_desplegable p_codi">convertirSegons();<br>
+        calcularAutonomia();<br>
+        anyTraspas();<br>
+        diaSetmana();<br>
+        diesMes();</p>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// CONVERTIR SEGONS<br>
+          static void convertirSegons() {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Introdueix els segons: ");<br>
+          &nbsp;&nbsp;&nbsp; int segons = introIntMinMax(0, 360000 - 1);<br>
+          &nbsp;&nbsp;&nbsp; String hms = formatarHMS(segons);<br>
+          &nbsp;&nbsp;&nbsp; mostrarHMS(segons, hms);<br>
+          }<br>
+          <br>
+          // Introduir un número enter<br>
+          public static int introInt() {<br>
+          &nbsp;&nbsp;&nbsp; int valor;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (!scan.hasNextInt()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scan.nextLine();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Error: has d'introduir un número enter");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; valor = scan.nextInt();<br>
+          &nbsp;&nbsp;&nbsp; scan.nextLine();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return valor;<br>
+          }<br>
+          <br>
+          // Introduir un número enter entre dos valors<br>
+          public static int introIntMinMax(int min, int max) {<br>
+          &nbsp;&nbsp;&nbsp; int valor;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (min &gt; max) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int t = min;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min = max;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; valor = introInt();<br>
+          &nbsp;&nbsp;&nbsp; while (valor &lt; min || valor &gt; max) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Error: has d'introduir un número entre " + min + " i " + max);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valor = introInt();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return valor;<br>
+          }<br>
+          <br>
+          static String formatarHMS(int segonsTotals) {<br>
+          &nbsp;&nbsp;&nbsp; int minutsTotals;<br>
+          &nbsp;&nbsp;&nbsp; int segons, minuts, hores;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; minutsTotals = segonsTotals / 60;<br>
+          &nbsp;&nbsp;&nbsp; segons =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; segonsTotals % 60;<br>
+          &nbsp;&nbsp;&nbsp; hores =&nbsp; minutsTotals / 60;<br>
+          &nbsp;&nbsp;&nbsp; minuts = minutsTotals % 60;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return String.format("%02d:%02d:%02d", hores, minuts, segons);<br>
+          }<br>
+          <br>
+          static void mostrarHMS(int segons, String hms) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(segons + " segons equivalen a " + hms);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// CALCULAR AUTONOMIA<br>
+          static void calcularAutonomia() {<br>
+          &nbsp;&nbsp;&nbsp; float capacitat = introReal("Introdueix la capacitat: ");<br>
+          &nbsp;&nbsp;&nbsp; float consum = introReal("Introdueix el consum cada 100 Km: ");<br>
+          &nbsp;&nbsp;&nbsp; int[] autonomia = calcularAutonomia(capacitat, consum);<br>
+          &nbsp;&nbsp;&nbsp; mostrarAutonomia(autonomia);<br>
+          }<br>
+          <br>
+          // Introduir un número real<br>
+          public static float introReal(String pregunta) {<br>
+          &nbsp;&nbsp;&nbsp; float valor;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; System.out.print(pregunta);<br>
+          &nbsp;&nbsp;&nbsp; while (!scan.hasNextFloat()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scan.nextLine();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Error: has d'introduir un número real");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; valor = scan.nextFloat();<br>
+          &nbsp;&nbsp;&nbsp; scan.nextLine();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return valor;<br>
+          }<br>
+          <br>
+          static int[] calcularAutonomia(float capacitat, float consum100) {<br>
+          &nbsp;&nbsp;&nbsp; float consumM, consumKm;<br>
+          &nbsp;&nbsp;&nbsp; int metresTotals, metres, km;<br>
+          &nbsp;&nbsp;&nbsp; int[] auto = new int[2];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Calcular les unitats més petites (consum / m)<br>
+          &nbsp;&nbsp;&nbsp; consumKm = consum100 / 100;&nbsp;&nbsp;&nbsp;&nbsp; // Consum per Km<br>
+          &nbsp;&nbsp;&nbsp; consumM = consumKm / 1000;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Consum per metre<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; metresTotals = (int)(capacitat / consumM);<br>
+          &nbsp;&nbsp;&nbsp; km =&nbsp;&nbsp;&nbsp;&nbsp; metresTotals / 1000;<br>
+          &nbsp;&nbsp;&nbsp; metres = metresTotals % 1000;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; auto[0] = km;<br>
+          &nbsp;&nbsp;&nbsp; auto[1] = metres;<br>
+          &nbsp;&nbsp;&nbsp; return auto;<br>
+          }<br>
+          <br>
+          static void mostrarAutonomia(int[] auto) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("El vehicle podrà fer " + auto[0] + " Km i " + auto[1] + " m");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// ÉS ANY DE TRASPÀS<br>
+          static void anyTraspas() {<br>
+          &nbsp;&nbsp;&nbsp; mostrarAnyTraspas(2000, esAnyTraspas(2000));<br>
+          &nbsp;&nbsp;&nbsp; mostrarAnyTraspas(2020, esAnyTraspas(2020));<br>
+          &nbsp;&nbsp;&nbsp; mostrarAnyTraspas(2100, esAnyTraspas(2100));<br>
+          &nbsp;&nbsp;&nbsp; mostrarAnyTraspas(2222, esAnyTraspas(2222));<br>
+          }<br>
+          <br>
+          static boolean esAnyTraspas(int any) {<br>
+          &nbsp;&nbsp;&nbsp; if (any % 400 == 0) return true;<br>
+          &nbsp;&nbsp;&nbsp; else if (any % 100 == 0) return false;<br>
+          &nbsp;&nbsp;&nbsp; else if (any % 4 == 0) return true;<br>
+          &nbsp;&nbsp;&nbsp; else return false;<br>
+          }<br>
+          <br>
+          static void mostrarAnyTraspas(int any, boolean esTraspas) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("L'any " + any + (esTraspas ? "" : " NO") + " és any de traspàs");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// DIA SETMANA<br>
+          static void diaSetmana() {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(diaSetmana(1));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(diaSetmana(3));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(diaSetmana(6));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(diaSetmana(8));<br>
+          }<br>
+          <br>
+          static String diaSetmana(int dia) {<br>
+          &nbsp;&nbsp;&nbsp; if (dia &gt;= 1 &amp;&amp; dia &lt;= 7) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (dia == 1) return "Dilluns";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (dia == 2) return "Dimarts";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (dia == 3) return "Dimecres";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (dia == 4) return "Dijous";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (dia == 5) return "Divendres";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (dia == 6) return "Dissabte";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else return "Diumenge";<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "El dia ha d’estar entre 1 i 7";<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// DIES MES<br>
+          static void diesMes() {<br>
+          &nbsp;&nbsp;&nbsp; mostrarDiesMes(diesMes(1, 2000), 1, 2000);<br>
+          &nbsp;&nbsp;&nbsp; mostrarDiesMes(diesMes(2, 2020), 2, 2020);<br>
+          &nbsp;&nbsp;&nbsp; mostrarDiesMes(diesMes(4, 2100), 4, 2100);<br>
+          &nbsp;&nbsp;&nbsp; mostrarDiesMes(diesMes(2, 2222), 2, 2222);<br>
+          }<br>
+          <br>
+          static int diesMes(int mes, int any) {<br>
+          &nbsp;&nbsp;&nbsp; if (mes &gt;= 1 &amp;&amp; mes &lt;= 12) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 31;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (mes == 4 || mes == 6 || mes == 9 || mes == 11)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 30;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (any % 400 == 0 || (any % 4 == 0 &amp;&amp; any % 100 != 0))<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 29;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 28;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -1;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static void mostrarDiesMes(int dies, int mes, int any) {<br>
+          &nbsp;&nbsp;&nbsp; if (dies == -1) System.out.println("El mes ha d'estar entre 1 i 12");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("El mes " + mes + " de l'any " + any + " te " + dies + " dies");<br>
+          }<br>
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Verificació i operador ternari</h1>
+      <div class="enun">
+        <h3>Aprovat o suspès</h3>
+        <p>Fes un programa que digui "<strong>Suspès</strong>" o "<strong>Aprovat</strong>" depenent de si la nota introduïda és inferior a 5 o no.</p>
+        <p>Si la nota és inferior a 0 o superior a 10, en lloc de mostrar els missatges anteriors, ha de dir "<strong>La nota no pot ser inferior a 0</strong>" o "<strong>La nota no pot ser superior a 10</strong>" .</p>
+        <p>Fes-ho utilitzant condicionals niuats.</p>
+        <p>Fes-ho també utilitzant l'estructura if ... else if ... else if ... else ...</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix nota entre 0 i 10: <strong>6</strong><br>
+          Aprovat</p>
+        <p class="p_consola">Introdueix nota entre 0 i 10: <strong>11</strong><br>
+          La nota no pot ser superior a 10</p>
+      </div>
+      <div class="enun">
+        <h3>Dia de la setmana</h3>
+        <p>El programa ha de preguntar un número entre 1 i 7.</p>
+        <p>Ha de dir el dia de la setmana corresponent (1 = dilluns, 2 = dimarts...) o mostrar un error si el número introduït no està entre 1 i 7.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix dia de la setmana (1-7): <strong>3</strong><br>
+          Dimecres</p>
+        <p class="p_consola">Introdueix dia de la setmana (1-7): <strong>8</strong><br>
+          El dia ha d’estar entre 1 i 7</p>
+      </div>
+      <div class="enun">
+        <h3>Control de temperatura i humitat</h3>
+        <p>Per protegir els servidors que hi ha en una sala, has de fer un programa que faci saltar una alarma si la temperatura o la humitat no estan dins del marge adequat per treballar.</p>
+        <p>Les temperatures correctes estan entre 5 i 25 graus, i la humitat, entre 40 i 80%.</p>
+        <p>El programa hauria de rebre les dades d'uns sensors, però per fer les proves les introduirem a mà.<br>
+          Igualment, en lloc d'activar l'alarma, farem que mostri un missatge.</p>
+        <p></p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix temperatura (0-40): <strong>20</strong><br>
+          Introdueix humitat (20-99): <strong>90</strong><br>
+          ALERTA! temperatura o humitat fora dels marges adequats</p>
+        <p class="p_consola">Introdueix temperatura (0-40): <strong>45</strong><br>
+          Introdueix humitat (20-99): <strong>60</strong><br>
+          ALERTA! temperatura o humitat fora dels marges adequats</p>
+      </div>
+      <div class="enun">
+        <h3>Generar comentari a partir de nota numèrica</h3>
+        <p>Fes un programa que tradueixi una nota numèrica a un dels següents textos:</p>
+        <ul>
+          <li>"Has de millorar moooolt!" si la nota és inferior a 3</li>
+          <li>"Encara et falta una mica per aprovar" si la nota està entre 3 i 5</li>
+          <li>"No vas malament però segur que pots millorar una mica" si la nota està entre 5 i 7</li>
+          <li>"Força bé" si la nota està entre 7 i 9</li>
+          <li>"Excel·lent!" si la nota és 9 o més</li>
+        </ul>
+        <p>El programa ha de mostrar un missatge d'error si la nota introduïda és inferior a 1 o superior a 10.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix nota entre 1 i 10: <strong>6</strong><br>
+          No vas malament però segur que pots millorar una mica</p>
+        <p class="p_consola">Introdueix nota entre 1 i 10: <strong>0</strong><br>
+          La nota no pot ser inferior a 1</p>
+      </div>
+      <div class="enun">
+        <h3>Ordenar tres números</h3>
+        <p>Introdueix tres números enters i mostra'ls ordenats de més petit a més gran.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix primer número: <strong>3</strong><br>
+          Introdueix segon número: <strong>5</strong><br>
+          Introdueix tercer número: <strong>4</strong><br>
+          3 4 5</p>
+      </div>
+      <div class="enun">
+        <h3>Dies del mes</h3>
+        <p>Fes un programa que, introduïn el número del mes, digui quants dies té.</p>
+        <p>Si el número introduït no està entre 1 i 12, ha de mostrar un missatge indicant l'error.<br>
+          Si el mes és febrer, ha de dir que pot ser 28 o 29 depenent de l'any.</p>
+        <p>Fes-ho utilitzant l'estructura condicional "if".</p>
+        <p>Opcionalment, si és febrer, preguntar l'any i dir 29 o 28 depenent de si és any de traspàs o no.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix número del mes (1-12): <strong>8</strong><br>
+          31 dies</p>
+        <p class="p_consola">Introdueix número del mes (1-12): <strong>2</strong><br>
+          Quin any? <strong>2000</strong><br>
+          29 dies</p>
+      </div>
+      <div class="enun">
+        <h3>Prestatges necessaris</h3>
+        <p>Pot ser en un futur no gaire llunyà, les biblioteques acabaran desapareixent, però de moment encara van arribant nous llibres i necessiten comprar prestatgeries per guardar-los.</p>
+        <p>Has de fer un programa que, donat un nombre d'armaris buits, el nombre de prestatges que té cada armari, el nombre de llibres que caben en cada prestatge i el nombre de llibres nous que ha rebut la biblioteca, digui si hi cabran o no.</p>
+        <p>Si hi caben, calcular quants armaris sobren.<br>
+          Si no hi caben, calcula quants armaris més es necessitaran.</p>
+        <p>S'ha de comprovar que cap valor introduït sigui 0 o negatiu.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix el nombre d'armaris buits: <strong>5</strong><br>
+          Introdueix el nombre de prestatges que té cada armari: <strong>7</strong><br>
+          Introdueix el nombre de llibres que té cada prestatge: <strong>12</strong><br>
+          Introdueix el nombre de llibres nous que s'han rebut: <strong>100</strong><br>
+          Sobren 3 armaris</p>
+        <p class="p_consola">Introdueix el nombre d'armaris buits: <strong>5</strong><br>
+          Introdueix el nombre de prestatges que té cada armari: <strong>7</strong><br>
+          Introdueix el nombre de llibres que té cada prestatge: <strong>12</strong><br>
+          Introdueix el nombre de llibres nous que s'han rebut: <strong>500</strong><br>
+          Falten 1 armaris</p>
+      </div>
+      <div class="enun">
+        <h3>Calefacció encesa o apagada</h3>
+        <p>Utilitzant l'operador condicional ternari, guarda en una variable el text "On" o "Off" en funció de si la temperatura baixa de 20 graus.</p>
+        <p>Aquesta variable servirà per encendre o apagar la calefacció: si el valor és "On", mostra el missatge "Calefacció encesa", si és "Off", "Calefacció apagada".</p>
+        <p>Opcionalment, fes-ho també amb el condicional "if".</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix la temperatura: <strong>18</strong><br>
+          Calefacció encesa</p>
+        <p class="p_consola">Introdueix la temperatura: <strong>22</strong><br>
+          Calefacció apagada</p>
+      </div>
+      <div class="enun">
+        <h3>Calefacció o aire condicionat</h3>
+        <p>Utilitzant l'operador condicional ternari, guarda en una variable els valors -1, +1 o 0 en funció de si la temperatura baixa de 20 graus o puja de 24.</p>
+        <p>Aquesta variable servirà per encendre o apagar la calefacció o l'aire condicionat: si el valor és -1, mostra el missatge "Calefacció encesa", si és +1, "Aire condicionat encès", i si és 0, "Què bé! Estem estalviant energia!".</p>
+        <p>Opcionalment, fes-ho també amb el condicional "if".</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix la temperatura: <strong>18</strong><br>
+          Calefacció encesa</p>
+        <p class="p_consola">Introdueix la temperatura: <strong>22</strong><br>
+          Què bé! Estem estalviant energia!</p>
+        <p class="p_consola">Introdueix la temperatura: <strong>26</strong><br>
+          Aire condicionat encès</p>
+      </div>
+    </section>
+  </body>
+</html>

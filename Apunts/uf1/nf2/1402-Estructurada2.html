@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Programació estructurada">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Programació estructurada</header>
+    <section>
+      <h2>Diagrames de flux</h2>
+      <p>Una forma de especificar què ha de fer un programa, és crear un diagrama de flux.</p>
+      <p>Aquests diagrames donaran una idea del quins blocs s'han de programar i ajudaran a preveure casos que potser no s'havien contemplat en un principi.</p>
+      <p>Per fer un diagrama de flux s'utilitzen figures geomètriques i text.</p>
+      <p>A continuació hi ha un diagrama genèric (dins de les figures caldria especificar què ha de fer cada bloc).<br>
+        I a sota un programa en JavaScript que podria ser l'equivalent a aquest diagrama.</p>
+      <p><img alt="" src="./imatges/Estructurada.svg" style="width:16em" class="noborder"></p>
+      <p class="p_codi">// Inici: definir variables<br>
+        let preu;<br>
+        <br>
+        // Entrada de dades<br>
+        preu = parseFloat(prompt("Preu de l'article? "));<br>
+        <br>
+        // Condicional i bloc de codi<br>
+        if (preu &gt;= 1000) {<br>
+        &nbsp;&nbsp;&nbsp; let dte = preu * 10 / 100;<br>
+        &nbsp;&nbsp;&nbsp; preu -= dte;<br>
+        }<br>
+        <br>
+        // Mostrar resultat<br>
+        alert("Preu de venda: " + preu);</p>
+      <h2>Abast de les variables (visibilitat o <em>scope</em>)</h2>
+      <p>Al programar de forma estructurada s'utilitzen molt els blocs de codi.</p>
+      <p>En aquests casos cal tenir en compte que no és el mateix definir una variable dins o fora d'un bloc:<br>
+        les variables, per defecte, són visibles (es poden utilitzar) dins del bloc i sub-blocs on s'han definit.</p>
+      <p>Una possibilitat seria definir totes les variables en el bloc més extern, però no és el més recomanable:<br>
+        si una variable només s'ha d'utilitzar dins d'un bloc, s'ha de definir dins d'aquest bloc.</p>
+      <p class="p_codi">let a = 5, b = 3;<br>
+        <br>
+        if (a &gt; b) {<br>
+        &nbsp; &nbsp; <strong>let t;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Variable visible només dins d'aquest bloc</strong><br>
+        <br>
+        &nbsp; &nbsp; t = a;<br>
+        &nbsp; &nbsp; a = b;<br>
+        &nbsp; &nbsp; b = t;<br>
+        }<br>
+        <br>
+        alert("a = " + a + "\nb = " + b);<br>
+        alert("t = " + t);&nbsp;&nbsp;&nbsp; <strong>// ERROR: t no és visible aquí</strong></p>
+      <h2>Utilitzar el <em>debugger</em></h2>
+      <p>Fins ara, el codi dels programes ha sigut estrictament lineal: comença en la primera línia i s'executen totes i cadascuna en ordre, només una vegada i fins arribar a l'ultima.</p>
+      <p>Amb les estructures condicionals i iteratives, pot haver blocs de codi que no s'executin o que s'executin més d'una vegada.<br>
+        En aquests casos, si el programa no funciona correctament, pot ser difícil trobar on està l'error.</p>
+      <p>Per sort, els IDEs tenen una eina que ens facilita aquesta tasca: el depurador (<em>debugger</em>).</p>
+      <p>Aquesta eina ens permet aturar el programa quan arribi a un punt determinat, executar les instruccions pas a pas o continuar l'execució fins que trobi un altre punt d'aturada.<br>
+        També mostra els valors que tenen les variables en aquest instant.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

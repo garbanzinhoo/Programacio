@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Classes en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Classes en Java</header>
+    <section>
+      <h2>Classes amb funcions estàtiques</h2>
+      <p>El següent pas per tractar amb programes grans és agafar funcions que tenen alguna cosa en comú i traslladar-les dins d'una nova classe.</p>
+      <p>Per exemple, es poden agrupar els mètodes que serveixen per introduir dades o els que serveixen per tractar <em>arrays</em> d'enters o d'<em>strings</em>.</p>
+      <p>Pensant en el següent pas (crear llibreries de classes), es poden crear classes amb funcions genèriques i classes amb funcions pròpies del programa.</p>
+      <p class="p_important">Les noves classes es poden afegir en el mateix arxiu de la classe principal, però és més recomanable posar cada classe en un arxiu separat.<br>
+        De moment, els arxius de les noves classes es crearan en la mateixa carpeta que la classe principal.</p>
+      <p class="p_important"><strong>Recordeu que l'arxiu ha de tenir el mateix nom que la classe!</strong></p>
+      <h3>Definició de les noves classes</h3>
+      <p>L'estructura serà la mateixa que s'ha utilitzat fins ara:</p>
+      <p class="p_codi">public class <strong>NomClasse</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Dades globals de la classe (si cal)<br>
+        &nbsp;&nbsp;&nbsp; // Mètodes de la classe (estàtics)<br>
+        &nbsp;&nbsp;&nbsp; <strong>public static void f1()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Codi de la funció f1<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p>L'única diferència és que les noves classes no tindran la funció <span class="c_comanda">main()</span>.</p>
+      <p>De moment, els mètodes seran estàtics, com els què s'han utilitzat fins ara, però també han de ser públics, per poder accedir des d'altres classes.</p>
+      <h3>Utilització de les funcions d'una classe des d'altres classes</h3>
+      <p>Quan es crida un mètode estàtic des d'una classes diferent, caldrà afegir al davant del nom de la funció el nom de la classe que conté la funció i un punt:</p>
+      <p class="p_codi">public class Main {<br>
+        &nbsp;&nbsp;&nbsp; public static void main(final String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>NomClasse.f1();</strong><br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <h3>Canviar el nom d'una classe</h3>
+      <p>La majoria d'IDEs tenen alguna opció que serveix per fer canvis que afecten a diverses parts d'un projecte, per exemple, canviar el nom d'una variable, d'una funció o d'una classe.</p>
+      <p>Aquesta opció s'anomena <strong>refactoritzar</strong>.</p>
+      <p>En el cas d'<em>IntelliJ</em>, es pot fer seleccionant el nom de la variable, funció o classe, i amb la combinació de tecles <kbd>Shift</kbd> + <kbd>F6</kbd> o amb l'opció <strong>Refactor → Rename</strong> del menú contextual.<br>
+        Després només cal escriure el nou nom i prémer la tecla <kbd>Intro</kbd>.</p>
+      <p>Per exemple, si es vol canviar el nom de la classe principal <strong>Main</strong>, al seguir aquests passos es pot comprovar que també canvia el nom de l'arxiu.</p>
+      <p></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Contenidors">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Contenidors</header>
+    <section>
+      <h2>Col·leccions</h2>
+      <p>Les col·lecions serveixen per guardar un conjunt de dades, habitualment del mateix tipus.<br>
+        Cada una de les classes que implementen la interfície <strong>Collection</strong> i derivades tenen alguna utilitat especial.</p>
+      <p>Les classes que implementen la interfície <strong>Map</strong> són una mica diferents però són molt útils quan s'han d'emmagatzemar dades identificades amb una clau (similar a utilitzar un índex en una taula d'una BD).</p>
+      <p><img alt="" src="./imatges/coleccions.svg" style="width:48em" class="noborder"></p>
+      <h3>HashSet</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_hashset.asp">HashSet (W3Schools)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashSet.html">HashSet ref. (Java SE 17)</a></p>
+      <p>Serveix per emmagatzemar objectes no repetits.<br>
+        Pot contenir un objecte nul com a màxim.</p>
+      <p>Algunes de les operacions que es poden fer són:</p>
+      <ul>
+        <li><span class="c_comanda">add(e)</span>: afegeix un element, si no hi és.</li>
+        <li><span class="c_comanda">remove(o)</span>: elimina l'objecte, si hi és.</li>
+        <li><span class="c_comanda">clear()</span>: elimina tots els elements.</li>
+        <li><span class="c_comanda">contains(o)</span>: comprova si conté l'objecte.</li>
+        <li><span class="c_comanda">isEmpty()</span>: comprova si no conté cap element.</li>
+        <li><span class="c_comanda">size()</span>: obté el nombre d'elements que conté.</li>
+        <li><span class="c_comanda">toArray()</span>: retorna un array amb tots els objectes.</li>
+      </ul>
+      <p>Aquests mètodes són comuns a totes les classes que implementen <strong>Collection</strong>.</p>
+      <h3>ArrayList</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_arraylist.asp">ArrayList (W3Schools)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html">ArrayList ref. (Java SE 17)</a></p>
+      <p>És similar a un <em>array</em> (permet accedir a un element en una posició determinada) però pot crèixer a mida que es van afegint elements.</p>
+      <p>També es pot accedir als seus elements de forma seqüencial utilitzant un iterador.</p>
+      <p>Permet emmagatzemar objectes repetits i nulls.</p>
+      <p>Afegir i eliminar elements (especialment entre altres elements) és més costós que amb <strong>LinkedList</strong>.</p>
+      <p>A part de les operacions típiques de les col·leccions, es poden utilitzar les següents:</p>
+      <ul>
+        <li><span class="c_comanda">add(ndx,e)</span>: insereix un elementen la posició <span class="c_comanda">ndx</span>.</li>
+        <li><span class="c_comanda">set(ndx,e)</span>: canvia l'element de la posició <span class="c_comanda">ndx</span> per l'elementen <span class="c_comanda">e</span>.</li>
+        <li><span class="c_comanda">get(ndx)</span>: retorna l'element que es troba en la posició <span class="c_comanda">ndx</span>.</li>
+        <li><span class="c_comanda">indexOf(e)</span>: retorna la primera posició en què es troba l'element <span class="c_comanda">e</span>.</li>
+      </ul>
+      <h3>LinkedList</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_linkedlist.asp">LinkedList (W3Schools)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/LinkedList.html">LinkedList ref. (Java SE 17)</a></p>
+      <p>Similar a <strong>ArrayList</strong> però algunes operacions són més ràpides i altres més lentes:</p>
+      <ul>
+        <li><strong>Operacions més ràpides</strong>: afegir, consultar o eliminar elements, especialment utilitzant un <strong>ListIterator</strong>.</li>
+        <li><strong>Operacions més lentes</strong>: obtenir o modificar un objecte en una posició determinada.</li>
+      </ul>
+      <p>Implementa les interfícies <strong>List</strong> i <strong>Queue</strong> (de fet, implementa <strong>Deque</strong>, que permet afegir i eliminar elements tant al principi com al final de la cua).</p>
+      <p>Algunes operacions especials d'aquesta classe són:</p>
+      <ul>
+        <li><span class="c_comanda">addFirst(e)</span>: afegeix l'element al principi de la llista.</li>
+        <li><span class="c_comanda">addLast(e)</span>: afegeix l'element al final de la llista.</li>
+        <li><span class="c_comanda">add(e)</span>: afegeix l'element al final de la llista.</li>
+        <li><span class="c_comanda">getFirst()</span>: retorna el primer element de la llista.</li>
+        <li><span class="c_comanda">getLast()</span>: retorna l'últim element de la llista.</li>
+        <li><span class="c_comanda">get(ndx)</span>: retorna l'element de la posició <span class="c_comanda">ndx</span>.</li>
+        <li><span class="c_comanda">removeFirst()</span>: retorna <strong>i elimina</strong> el primer element de la llista (genera excepció si llista buida).</li>
+        <li><span class="c_comanda">removeLast()</span>: retorna <strong>i elimina</strong> l'últim element de la llista (genera excepció si llista buida).</li>
+        <li><span class="c_comanda">remove(ndx)</span>: retorna <strong>i elimina</strong> l'element de la posició <span class="c_comanda">ndx</span> (genera excepció si llista buida).</li>
+      </ul>
+      <p>Les comandes <span class="c_comanda">peekXXX()</span> i <span class="c_comanda">pollXXX()</span> són similars a <span class="c_comanda">removeXXX()</span> però no generen excepcions.</p>
+      <h3>PriorityQueue</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.blog/priorityqueue-in-java">PriorityQueue (W3Schools)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/PriorityQueue.html">PriorityQueue ref. (Java SE 17)</a></p>
+      <p>És similar a una llista però els elements s'afegeixen automàticament en una posició que ve determinada per un <strong>Comparator</strong> que decideix si un element ha d'anar abans o després d'un altre.</p>
+      <p>Els elements es poden consultar i/o treure del principi de la llista amb les següents instruccions:</p>
+      <ul>
+        <li><span class="c_comanda">peek()</span>: retorna<strong></strong> el primer element de la llista (o <span class="c_comanda">null</span> si està buida).</li>
+        <li><span class="c_comanda">poll()</span>: retorna <strong>i elimina</strong> el primer element de la llista (retorna <span class="c_comanda">null</span> si està buida).</li>
+      </ul>
+      <p> </p>
+      <h3>HashMap</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_hashmap.asp">HashMap (W3Schools)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html">HashMap ref. (Java SE 17)</a></p>
+      <p>És similar a un diccionari: serveix per emmagatzemar objectes identificats per una clau.<br>
+        Totes les claus han de ser diferents i només pot haver-hi una que sigui nul·la.<br>
+        En canvi, els objectes de les diferents claus sí que poden ser nuls o estar repetits.</p>
+      <ul>
+        <li><span class="c_comanda">put(key,value)</span>: afegeix una clau i l'element associat.</li>
+        <li><span class="c_comanda">get(key)</span>: obté l'element associat a la clau.</li>
+        <li><span class="c_comanda">remove(key)</span>: elimina la clau i l'element associat.</li>
+        <li><span class="c_comanda">clear()</span>: elimina totes les claus i els elements associats.</li>
+        <li><span class="c_comanda">containsKey(key)</span>: comprova si existeix la clau.</li>
+        <li><span class="c_comanda">containsValue(value)</span>: comprova si existeix l'objecte.</li>
+        <li><span class="c_comanda">isEmpty()</span>: comprova si no conté cap element.</li>
+        <li><span class="c_comanda">size()</span>: obté el nombre d'elements que conté.</li>
+        <li><span class="c_comanda">keySet()</span>: retorna un <strong>Set</strong> amb les claus del <strong>HashMap</strong>.</li>
+        <li><span class="c_comanda">values()</span>: retorna un <strong>Set</strong> amb els elements del <strong>HashMap</strong>.</li>
+      </ul>
+      <p></p>
+      <h2>Iteradors</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_iterator.asp">Iterator (W3Schools)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Iterator.html">Iterator ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ListIterator.html">ListIterator ref. (Java SE 17)</a></p>
+      <p>Els iteradors són objectes que serveixen per recórrer els elements d'una col·lecció.<br>
+        Les col·leccions tenen el mètode <span class="c_comanda">iterator()</span> per obtenir un iterador per recórrer les dades.</p>
+      <p>Són especialment eficients amb les llistes enllaçades i les cues.</p>
+      <p><strong>Iterator</strong> només permet recórrer la llista des del principi fins al final.</p>
+      <ul>
+        <li><span class="c_comanda">hasNext()</span>: per saber si hi un element a continuació de la posició actual.</li>
+        <li><span class="c_comanda">next()</span>: obté el següent element i avança la posició actual.</li>
+        <li><span class="c_comanda">remove()</span>: elimina l'element retornat per <span class="c_comanda">next()</span>.</li>
+      </ul>
+      <p><strong>ListIterator</strong> hereta de <strong>Iterator</strong> i permet recórrer la llista en totes dues direccions.<br>
+        A més de les operacions anteriors també pot fer:</p>
+      <ul>
+        <li><span class="c_comanda">hasPrevious()</span>: per saber si hi un element abans de la posició actual.</li>
+        <li><span class="c_comanda">previous()</span>: obté l'element anterior i retrocedeix una posició.</li>
+        <li><span class="c_comanda">set(e)</span>: modifica l'element retornat per <span class="c_comanda">next()</span> o per <span class="c_comanda">previous()</span>.</li>
+        <li><span class="c_comanda">add(e)</span>: afegeix un element abans de l'element retornat per <span class="c_comanda">next()</span> o després de l'element retornat per <span class="c_comanda">previous()</span>.</li>
+      </ul>
+      <p> </p>
+      <h2>Comparadors</h2>
+      <p>Quan es necessita tenir un conjunt de dades ordenat o si s'ha de poder saber si un element és més gran, més petit o igual que un altre, cal implementar algun comparador.</p>
+      <p>Classes com <strong>TreeSet</strong> o <strong>TreeMap</strong> necessiten un comparador per mantenir ordenats els seus elements.<br>
+        Un dels constructors d'aquestes classes inclou un paràmetre de tipus <strong>Comparator</strong>.</p>
+      <p><strong>Comparable</strong> només té un mètode:</p>
+      <ul>
+        <li><span class="c_comanda">compareTo(o)</span>: retorna un enter que indica si l'element que crida el mètode és més petit (<strong>-1</strong>), més gran (<strong>+1</strong>) o igual (<strong>0</strong>) que l'element que se li passa al mètode.</li>
+      </ul>
+      <p><strong>Comparator</strong> també permet comparar dos elements passats com a paràmetres o decidir directament si dos elements són iguals o no:</p>
+      <ul>
+        <li><span class="c_comanda">compare(o1, o2)</span>: retorna un enter que indica si l'element que crida el mètode és més petit (<strong>-1</strong>), més gran (<strong>+1</strong>) o igual (<strong>0</strong>) que l'element que se li passa al mètode.</li>
+        <li><span class="c_comanda">equals(o)</span>: retorna un enter que indica si l'element que crida el mètode és més petit (<strong>-1</strong>), més gran (<strong>+1</strong>) o igual (<strong>0</strong>) que l'element que se li passa al mètode.</li>
+      </ul>
+      <p class="p_important"><strong>Comparator</strong> NO deriva de <strong>Comparable</strong>!</p>
+      <h2>Altres estructures que utilitzen col·leccions</h2>
+      <h3>Piles</h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Stack.html">Stack ref. (Java SE 17)</a></p>
+      <p><strong>Eliminar Stack (es pot implementar amb <em>LinkedList</em> o <em>ArrayDeque</em>) !!!</strong></p>
+      <p>Una pila és un conjunt de dades seqüencials (semblant a una llista).<br>
+        Quan s'afegeix una dada, es posa al damunt de la pila.<br>
+        Quan es treu una dada, es treu la de sobre de la pila.</p>
+      <p>Aquestes estructures també s'anomenen <strong>LIFO</strong> (Last In, First Out) o <strong>FILO</strong> (First In, Last Out).</p>
+      <p>Les piles tenen dues operacions bàsiques:</p>
+      <ul>
+        <li><span class="c_comanda">push(Element)</span>: afegeix l'element al damunt de la pila.</li>
+        <li><span class="c_comanda">pop()</span>: treu (i retorna) l'element de sobre de la pila (genera <em>EmptyStackException</em> si la pila està buida).</li>
+      </ul>
+      <p>Altres mètodes útils són:</p>
+      <ul>
+        <li><span class="c_comanda">peek()</span>: retorna l'element de sobre de la pila però no l'elimina.</li>
+        <li><span class="c_comanda">empty()</span>: retorna <em>true</em> si la pila està buida.</li>
+      </ul>
+      <ul>
+      </ul>
+      <h3>Cues</h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Queue.html">Interface Queue ref. (Java SE 17)</a></p>
+      <p><strong>(es pot implementar amb <em>ArrayDeque</em>) ???<br>
+        </strong></p>
+      <p>Una cua és un conjunt de dades seqüencials (semblant a una llista).<br>
+        Quan s'afegeix una dada, es posa al final de la llista.<br>
+        Quan es treu una dada, es treu la primera de la llista.</p>
+      <p>Aquestes estructures també s'anomenen <strong>FIFO</strong> (First In, First Out).</p>
+      <div class="p_important">
+        <p>Al ser una interfície, no es poden instanciar objectes directament ni crear classes "filles".<br>
+          Es pot implementar una cua fent que una llista implementi les operacions de la interfície <em>Queue</em>.</p>
+        <p>La forma més eficient d'implementar una cua és a través d'una <em>LinkedList</em>:</p>
+        <p class="p_codi">Queue&lt;String&gt; cua = new LinkedList&lt;&gt; ();</p>
+      </div>
+      <p>Les cues han d'implementar les següents operacions:</p>
+      <ul>
+        <li><span class="c_comanda">add(Element)</span>: afegeix l'element al final de la cua (genera <em>IllegalStateException</em> si no hi ha prou espai).</li>
+        <li><span class="c_comanda">offer(Element)</span>: afegeix l'element al final de la cua.</li>
+        <li><span class="c_comanda">remove()</span>: treu (i retorna) el primer element (genera <em>NoSuchElementException</em> si la cua està buida).</li>
+        <li><span class="c_comanda">poll()</span>: treu (i retorna) el primer element (o <em>null</em> si la cua està buida).</li>
+      </ul>
+      <p>Altres mètodes útils són:</p>
+      <ul>
+        <li><span class="c_comanda">peek()</span>: retorna el primer element (o <em>null</em> si la cua està buida).</li>
+        <li><span class="c_comanda">isEmpty()</span>: retorna <em>true</em> si la cua està buida.</li>
+      </ul>
+      <h2>Altres classes per gestionar col·leccions</h2>
+      <p>Les següents classes contenen mètodes estàtics per facilitar algunes operacions amb <em>arrays</em> i col·leccions.</p>
+      <h3>Arrays</h3>
+      <p>La majoria dels següents mètodes tenen versions per diferents tipus de dades: <strong>char</strong>, <strong>int</strong>, <strong>float</strong>...</p>
+      <ul>
+        <li><span class="c_comanda">asList(...)</span>: retorna una llista amb els elements de l'<em>array</em>.</li>
+        <li><span class="c_comanda">equals(arrayA, arrayB)</span>: retorna <span class="c_comanda">true</span> o <span class="c_comanda">false</span> per indicar si tots els elements dels dos <em>arrays</em> són iguals o no.</li>
+        <li><span class="c_comanda">compare(arrayA, arrayB)</span>: retorna un enter que indica si el primer <em>array</em> és més petit (<strong>-1</strong>), més gran (<strong>+1</strong>) o igual (<strong>0</strong>) que el segon <em>array</em>.<br>
+          Per decidir-ho, compara els valors un a un fins que troba dos que són diferents.<br>
+          La comparació d'aquests valors és el què determina l'ordre.</li>
+        <li><span class="c_comanda">fill(array,valor)</span>: omple tots els elements de l'<em>array</em> amb el valor especificat.<br>
+          Si la mida és inferior, elimina els elements sobrants; si és superior, afegeix elements buits (<strong>0</strong> o <strong>null</strong>).</li>
+        <li><span class="c_comanda">copyOf(array,mida)</span>: retorna un <em>array</em> que és una còpia d'un altre.<br>
+          Si la mida és inferior, elimina els elements sobrants; si és superior, afegeix elements buits (<strong>0</strong> o <strong>null</strong>).</li>
+        <li><span class="c_comanda">copyOfRange(array,ndx1,ndx2)</span>: similar a l'anterior però només copia els elements entre <span class="c_comanda">ndx1</span> i <span class="c_comanda">ndx2</span> (l'element en la&nbsp; posició <span class="c_comanda">ndx2</span> no s'inclou).<br>
+          Si la mida és inferior, elimina els elements sobrants; si és superior, afegeix elements buits (<strong>0</strong> o <strong>null</strong>).</li>
+        <li><span class="c_comanda">sort(array)</span>: ordena els elements de l'<em>array</em> de menor a major.</li>
+        <li><span class="c_comanda">sort(array,ndx1,ndx2)</span>: similar a l'anterior però només ordena els elements entre <span class="c_comanda">ndx1</span> i <span class="c_comanda">ndx2</span> (l'element en la&nbsp; posició <span class="c_comanda">ndx2</span> no s'inclou).</li>
+        <li><span class="c_comanda">toString(array)</span>: retorna un <strong>String</strong> amb els elements separats per <span class="c_comanda">,&nbsp;</span> i tancat entre <span class="c_comanda">[</span> i <span class="c_comanda">]</span>.</li>
+      </ul>
+      <h3>Collections</h3>
+      <p>A més de les següents operacions, també es poden intercanviar elements, invertir una llista, fer rotacions...</p>
+      <ul>
+        <li><span class="c_comanda">addAll(collection, ...)</span>: afegeix els elements a la col·lecció.</li>
+        <li><span class="c_comanda">copy(list1,list2)</span>: copia (modifica) els elements d'una llista a una altra.<br>
+          Si la segona és més gran, els últims elements no queden afectats.<br>
+          Si la segona és més petita, acabarà siguent igual que la primera.</li>
+        <li><span class="c_comanda">fill(list,e)</span>: substitueix tots els elements per l'element <span class="c_comanda">e</span>.</li>
+        <li><span class="c_comanda">max(collection)</span>: retorna l'element més gran.</li>
+        <li><span class="c_comanda">min(collection)</span>: retorna l'element més petit.</li>
+        <li><span class="c_comanda">sort(list,comparator)</span>: ordena la llista utilitzant el comparador especificat.</li>
+      </ul>
+      <ul>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

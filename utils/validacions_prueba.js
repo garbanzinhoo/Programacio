@@ -6,7 +6,7 @@ function esBuit(valor){
 }
 
 // Retorna true si el valor és un número vàlid
-function esNumero(valor){
+export function esNumero(valor){
     return !esBuit(valor) && !isNaN(Number(valor));
 }
 
@@ -36,8 +36,10 @@ function esMesGran(valor1, valor2){
     }
 }
 
-
-function prova (){
+export function comprovaMenu(opcio, min, max) {
+    return esEnter(opcio) && estaEntre(opcio, min, max);
+}
+export function prova (){
     alert("Funciona")
 }
 

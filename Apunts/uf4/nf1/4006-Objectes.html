@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Classes i objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Classes i objectes</header>
+    <section>
+      <h2>Crear i treballar amb objectes</h2>
+      <h3>Constructor d'objectes</h3>
+      <p>Al definir una classe amb la qual es puguin crear objectes, cal definir un constructor (una funció amb el mateix nom que la classe i, opcionalment, paràmetres que defineixen l'objecte):</p>
+      <p class="p_codi">public class Persona {<br>
+        &nbsp;&nbsp;&nbsp; // <strong>Atributs privats de l'objecte (no són estàtics)</strong><br>
+        &nbsp;&nbsp;&nbsp; String nom;<br>
+        &nbsp;&nbsp;&nbsp; int edat;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>Constructor</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>public Persona(String _nom, int _edat)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nom = _nom;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; edat = _edat;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // <strong>Mètode públic de l'objecte (no és estàtic)</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>public void mostrarDadesPersona()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Nom: " + nom);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Edat: " + edat);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <div class="p_important">
+        <p>Alguns IDEs tenen la capacitat de crear automàticament un constructor, els <em>getters</em> i els <em>setters</em> a partir dels atributs de la classe.</p>
+        <p>En el cas de <strong>IntelliJ</strong> cal obrir el menú <strong>Code</strong> o el menú contextual i triar l'opció <strong>Generate...</strong><br>
+          En el cas dels <em>getters</em> i <em>setters</em>, es pot triar quins es volen crear.</p>
+      </div>
+      <h3>Crear objectes</h3>
+      <p>Per crear objectes d'una classe cal definir una variable de la classe corresponent, utilitzar la paraula <span class="c_comanda">new</span> i cridar el <strong>constructor</strong> de la classe amb els paràmetres adequats:</p>
+      <p class="p_codi">Persona <strong>persona1</strong> = <strong>new Persona("Mary", 18)</strong>;<br>
+        Persona <strong>persona2</strong> = <strong>new Persona("Peter", 20)</strong>;</p>
+      <h3>Utilitzar els objectes</h3>
+      <p>Per utilitzar els mètodes d'un objecte, s'ha de posar al davant el nom de la variable que el conté.</p>
+      <p class="p_codi"><strong>persona1.mostrarDadesPersona()</strong>;<br>
+        <strong>persona2.mostrarDadesPersona()</strong>;</p>
+      <p><strong><span>Scanner</span></strong> és un exemple de classe per crear objectes que serveixen per llegir dades seqüencialment:</p>
+      <p class="p_codi">// Objecte per llegir dades introduïdes amb el teclat<br>
+        Scanner <strong>scan = new Scanner(System.in)</strong>;<br>
+        int n = <strong>scan.nextInt()</strong>;<br>
+        <br>
+        // Objecte per llegir dades d'un arxiu de text<br>
+        Scanner <strong>reader = new Scanner(new File("arxiu.txt"))</strong>;<br>
+        String l = <strong>reader.nextLine()</strong>;<br>
+      </p>
+      <h2>Paraules especials relacionades amb els objectes</h2>
+      <h3>La paraula reservada <em>this</em></h3>
+      <p>Aquesta paraula es pot utilitzar per distingir variables locals dels atributs de l'objecte si tenen el mateix nom:</p>
+      <p class="p_codi">public Persona(String nom, int edat) {<br>
+        &nbsp;&nbsp;&nbsp; <strong>this.</strong>nom = nom;<br>
+        &nbsp;&nbsp;&nbsp; <strong>this.</strong>edat = edat;<br>
+        }<br>
+      </p>
+      <h3>La paraula reservada <em>null</em></h3>
+      <p>Aquest és el valor que han de prendre les variables quan no estan assignades a cap objecte.<br>
+        Si s'intenta fer alguna operació amb un valor nul, es produirà l'excepció <strong>NullPointerException</strong>:</p>
+      <p class="p_codi">Persona p = null;<br>
+        if (p == null) System.out.println("La variable no està assignada a cap objecte");<br>
+        String nom = p.getNom();&nbsp;&nbsp; // <strong>NullPointerException</strong> </p>
+      <div class="p_important">
+        <p>En el cas de <strong>String</strong>, no és el mateix assignar una cadena buida (<span class="c_comanda">""</span>) que un valor <span class="c_comanda">null</span>.</p>
+        <p class="p_codi">String <strong>s = ""</strong>;<br>
+          if (s.isBlank()) System.out.println("La cadena està buida o només conté separadors");<br>
+          if (s.isEmpty()) System.out.println("La cadena està buida");<strong></strong><br>
+          <strong>s = null;<br>
+          </strong> if (s.equals("")) System.out.println("La cadena està buida"); // <strong>NullPointerException</strong><br>
+          <strong></strong></p>
+      </div>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

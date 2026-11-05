@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <p>Per provar les funcions de les solucions pots utilitzar el següent codi:</p>
+      <p class="p_desplegable p_codi">// Factories per crear constructors<br>
+        static DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();<br>
+        static TransformerFactory tf = TransformerFactory.newInstance();<br>
+        <br>
+        public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp; Document doc;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>// Estructura de l'arxiu menu.xml</strong><br>
+        &nbsp;&nbsp;&nbsp; doc = loadXmlDocument("src/uf5/exercicis/xml/menu.xml");<br>
+        &nbsp;&nbsp;&nbsp; System.out.print("\nEstructura document menu.xml");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNode(doc.getDocumentElement());<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>// Filtres de l'arxiu llibres.xml</strong><br>
+        &nbsp;&nbsp;&nbsp; doc = loadXmlDocument("src/uf5/exercicis/xml/llibres.xml");<br>
+        &nbsp;&nbsp;&nbsp; System.out.print("\nLlibres de fantasia");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNodes(filtrarCampValor(doc.getDocumentElement(), "genre", "Fantasy", true));<br>
+        &nbsp;&nbsp;&nbsp; System.out.print("\nLlibres que parlen de Microsoft");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNodes(filtrarCampValor(doc.getDocumentElement(), "description", "Microsoft", false));<br>
+        &nbsp;&nbsp;&nbsp; System.out.print("\nLlibres barats");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNodes(filtrarMinMax(doc.getDocumentElement(), "price", 0, 5));<br>
+        &nbsp;&nbsp;&nbsp; System.out.print("\nLlibre bk106");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNodes(filtrarCampAtributValor(doc.getDocumentElement(), "book", "id", "bk106"));<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Guardar llibres en HashMap, mostrar info bk106 i eliminar bk107<br>
+        &nbsp;&nbsp;&nbsp; System.out.print("\nGuardar llibres en HashMap, mostrar info bk106 i eliminar bk107");<br>
+        &nbsp;&nbsp;&nbsp; llibres = crearHashMap(doc.getDocumentElement(), "id");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNode(llibres.get("bk106"));<br>
+        &nbsp;&nbsp;&nbsp; doc.getDocumentElement().removeChild(llibres.get("bk107"));<br>
+        &nbsp;&nbsp;&nbsp; llibres.remove("bk107");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNode(doc.getDocumentElement());<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>// Filtres de l'arxiu musica.xml</strong><br>
+        &nbsp;&nbsp;&nbsp; doc = loadXmlDocument("src/uf5/exercicis/xml/musica.xml");<br>
+        &nbsp;&nbsp;&nbsp; System.out.print("\nDiscos entre 8 i 9 Euros");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNodes(filtrarMinMax(doc.getDocumentElement(), "PRICE", 8, 9));<br>
+        &nbsp;&nbsp;&nbsp; System.out.print("\nDiscos agrupats per preu");<br>
+        &nbsp;&nbsp;&nbsp; agruparCampValor(doc.getDocumentElement(), "PRICE");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>// Processar l'arxiu plantes.xml</strong><br>
+        &nbsp;&nbsp;&nbsp; doc = loadXmlDocument("src/uf5/exercicis/xml/plantes.xml");<br>
+        &nbsp;&nbsp;&nbsp; System.out.print("\nIncrementar un 20% el preu");<br>
+        &nbsp;&nbsp;&nbsp; incrementarCamp(doc.getDocumentElement(), "PRICE", 20);<br>
+        &nbsp;&nbsp;&nbsp; canviarCampValor(doc.getDocumentElement(), "LIGHT", "Shade", "Ombra", true);<br>
+        &nbsp;&nbsp;&nbsp; afegirCampValor(doc.getDocumentElement(), "WATHERING", "Every day");<br>
+        &nbsp;&nbsp;&nbsp; afegirElement(doc.getDocumentElement(), "PLANT", "Rosa", "Rosae", "Annual", "Sunny", "6,00", "010101", "Setmanal");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNode(doc.getDocumentElement());<br>
+        &nbsp;&nbsp;&nbsp; <strong>// Guardar arxiu plantes.xml</strong><br>
+        &nbsp;&nbsp;&nbsp; saveXmlDocument("src/uf5/exercicis/xml/prova.xml", doc);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>// Crear l'arxiu aficions.xml</strong><br>
+        &nbsp;&nbsp;&nbsp; doc = crearXmlDocument("aficions");<br>
+        &nbsp;&nbsp;&nbsp; afegirAficions(doc.getDocumentElement(), "Escacs", "Llegir", "Música", "Cinema");<br>
+        &nbsp;&nbsp;&nbsp; mostrarNode(doc.getDocumentElement());<br>
+        &nbsp;&nbsp;&nbsp; <strong>// Guardar arxiu aficions.xml</strong><br>
+        &nbsp;&nbsp;&nbsp; saveXmlDocument("src/uf5/exercicis/xml/aficions.xml", doc);<br>
+        }</p>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Carregar document des d'un arxiu, mostrar arbre d'un element i altres funcions auxiliars</h6>
+        <p class="p_codi">/**<br>
+          &nbsp;* Carregar un arxiu XML.<br>
+          &nbsp;* @param path Ruta cap a l'arxiu<br>
+          &nbsp;* @return Document XML creat a partir de l'arxiu<br>
+          &nbsp;*/<br>
+          <strong>private static Document loadXmlDocument(String path) {</strong><br>
+          &nbsp;&nbsp;&nbsp; DocumentBuilder db;<br>
+          &nbsp;&nbsp;&nbsp; Document doc = null;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; db = dbf.newDocumentBuilder();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; doc = db.parse(new File(path));<br>
+          &nbsp;&nbsp;&nbsp; } catch (ParserConfigurationException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; } catch (SAXException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return doc;<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Mostrar tota la informació dels nodes (i subnodes) d'una llista.<br>
+          &nbsp;* @param l Lista de nodes a mostrar<br>
+          &nbsp;*/<br>
+          <strong>private static void mostrarNodes(LinkedList&lt;Node&gt; l) {</strong><br>
+          &nbsp;&nbsp;&nbsp; Node p;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l.size(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = l.get(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mostrarArbre(p, "");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Mostrar tota la informació d'un node i els seus subnodes.<br>
+          &nbsp;* @param n Node a mostrar<br>
+          &nbsp;*/<br>
+          <strong>private static void mostrarNode(Node n) {</strong><br>
+          &nbsp;&nbsp;&nbsp; mostrarArbre(n, "");<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Mostrar de forma recursiva tota la informació d'un node i subnodes.&lt;br&gt;<br>
+          &nbsp;* Només mostra els nodes de tipus Element i Text.<br>
+          &nbsp;* @param n Node del qual es vol mostrar la informació<br>
+          &nbsp;* @param tab Tabuladors per indentar cada nivell<br>
+          &nbsp;*/<br>
+          <strong>private static void mostrarArbre(Node n, String tab) {</strong><br>
+          &nbsp;&nbsp;&nbsp; if (n.getNodeType() == Node.TEXT_NODE) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Node tipus Text<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String t = ((Text)n).getWholeText().replaceAll("\\s+", " ").trim();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Només mostra el node si no està buit<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!t.isBlank()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(" --&gt; " + t);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; } else if (n.getNodeType() == Node.ELEMENT_NODE) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Node tipus Element<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Element e = (Element)n;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String atributs = getAtributs(e);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("\n" + tab + e.getTagName() + (atributs == null ? "" : atributs));<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Per cada fill, torna a cridar-se a sí mateixa<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Node c = e.getFirstChild();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (c != null) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mostrarArbre(c, tab + "\t");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = c.getNextSibling();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Obtenir els atributs de l'element 'e'.<br>
+          &nbsp;* @param e Element del qual es vol obtenir els atributs<br>
+          &nbsp;* @return String amb els atributs de l'element 'e'<br>
+          &nbsp;*/<br>
+          <strong>private static String getAtributs(Element e) {</strong><br>
+          &nbsp;&nbsp;&nbsp; NamedNodeMap atributs = e.getAttributes();<br>
+          &nbsp;&nbsp;&nbsp; String s = " (";<br>
+          &nbsp;&nbsp;&nbsp; Attr a;<br>
+          &nbsp;&nbsp;&nbsp; int i;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (atributs.getLength() == 0) return null;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; atributs.getLength() - 1; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a = (Attr)atributs.item(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s += a.getName() + " = " + a.getValue() + ", ";<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; a = (Attr)atributs.item(i);<br>
+          &nbsp;&nbsp;&nbsp; s += a.getName() + " = " + a.getValue();<br>
+          &nbsp;&nbsp;&nbsp; s += ")";<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return s;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Filtrar i agrupar</h6>
+        <p class="p_codi">/**<br>
+          &nbsp;* Filtrar i mostrar elements amb un valor concret en un camp concret.<br>
+          &nbsp;* @param e Element pare a partir del qual s'han de buscar els elements<br>
+          &nbsp;* @param camp Nom del camp<br>
+          &nbsp;* @param valor Valor que ha de contenir el camp<br>
+          &nbsp;* @param exact 'true' si el valor ha de coïncicir exactament; 'false' si pot ser una subcadena<br>
+          &nbsp;* @return Llista amb els nodes que compleixen la condició<br>
+          &nbsp;*/<br>
+          <strong>private static LinkedList&lt;Node&gt; filtrarCampValor(Element e, String camp, String valor, boolean exact) {</strong><br>
+          &nbsp;&nbsp;&nbsp; NodeList l = e.getElementsByTagName(camp);<br>
+          &nbsp;&nbsp;&nbsp; LinkedList&lt;Node&gt; le = new LinkedList&lt;&gt;();<br>
+          &nbsp;&nbsp;&nbsp; String contingut;<br>
+          &nbsp;&nbsp;&nbsp; Node p;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l.getLength(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = l.item(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contingut = ((Text)p.getFirstChild()).getWholeText().replaceAll("\\s+", " ").trim();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (exact) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (contingut.equals(valor)) le.add(p.getParentNode());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (contingut.contains(valor)) le.add(p.getParentNode());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return le;<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Filtrar i mostrar elements amb un camp amb el valor dins d'un rang.<br>
+          &nbsp;* @param e Element pare a partir del qual s'han de buscar els elements<br>
+          &nbsp;* @param preuMin El preu ha de ser superior o igual a aquest valor<br>
+          &nbsp;* @param preuMax El preu ha de ser inferior a aquest valor<br>
+          &nbsp;* @return Llista amb els nodes que compleixen la condició<br>
+          &nbsp;*/<br>
+          <strong>private static LinkedList&lt;Node&gt; filtrarMinMax(Element e, String camp, float preuMin, float preuMax) {</strong><br>
+          &nbsp;&nbsp;&nbsp; NodeList l = e.getElementsByTagName(camp);<br>
+          &nbsp;&nbsp;&nbsp; LinkedList&lt;Node&gt; le = new LinkedList&lt;&gt;();<br>
+          &nbsp;&nbsp;&nbsp; Node p;<br>
+          &nbsp;&nbsp;&nbsp; String contingut;<br>
+          &nbsp;&nbsp;&nbsp; float preu;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l.getLength(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = l.item(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contingut = ((Text)p.getFirstChild()).getWholeText().replaceAll("\\s+", " ").trim();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preu = Float.parseFloat(contingut);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (preu &gt;= preuMin &amp;&amp; preu &lt; preuMax) le.add(p.getParentNode());<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return le;<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Filtrar i mostrar elements amb un valor concret en un camp concret.<br>
+          &nbsp;* @param e Element pare a partir del qual s'han de buscar els elements<br>
+          &nbsp;* @param camp Nom del camp<br>
+          &nbsp;* @param attr Atribut a comparar<br>
+          &nbsp;* @param valor Valor que ha de contenir l'atribut<br>
+          &nbsp;* @return Llista amb els nodes que compleixen la condició<br>
+          &nbsp;*/<br>
+          <strong>private static LinkedList&lt;Node&gt; filtrarCampAtributValor(Element e, String camp, String attr, String valor) {</strong><br>
+          &nbsp;&nbsp;&nbsp; NodeList l = e.getElementsByTagName(camp);<br>
+          &nbsp;&nbsp;&nbsp; LinkedList&lt;Node&gt; le = new LinkedList&lt;&gt;();<br>
+          &nbsp;&nbsp;&nbsp; Node p;<br>
+          &nbsp;&nbsp;&nbsp; String atribut;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l.getLength(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = l.item(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; atribut = ((Element)p).getAttribute(attr);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (atribut.equals(valor)) le.add(p);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return le;<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Crear un HasMap amb els fills de l'element 'e' utilitzant<br>
+          &nbsp;* com a clau un atribut concret.<br>
+          &nbsp;* @param e Element del que s'han de guardar els fills en el HasMap<br>
+          &nbsp;* @param atribut Atribut dels fills que s'utilitzarà com a clau<br>
+          &nbsp;* @return HashMap amb els fills de l'element 'e'<br>
+          &nbsp;*/<br>
+          <strong>private static HashMap&lt;String,Node&gt; crearHashMap(Element e, String atribut) {</strong><br>
+          &nbsp;&nbsp;&nbsp; HashMap&lt;String,Node&gt; l = new HashMap&lt;&gt;();<br>
+          &nbsp;&nbsp;&nbsp; Node n = e.getFirstChild();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (n != null) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (n.getNodeType() == Node.ELEMENT_NODE) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l.put(((Element)n).getAttribute(atribut), n);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n = n.getNextSibling();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return l;<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Agrupar i mostrar elements que tenen el mateix valor en un camp concret.&lt;br&gt;<br>
+          &nbsp;* Per guardar els nodes agrupats s'utilitza un HashMap en què l'identificador<br>
+          &nbsp;* és el preu convertit a Float per poder-lo ordenar fàcilment i el contingut<br>
+          &nbsp;* és una llista que contindrà els nodes que tingui el mateix preu.<br>
+          &nbsp;* @param e Element pare a partir del qual s'han de buscar els elements<br>
+          &nbsp;* @param agruparCamp Nom del camp pel qual s'han d'agrupar<br>
+          &nbsp;* @param mostrarCamp Nom del camp que s'ha de mostrar<br>
+          &nbsp;*/<br>
+          <strong>private static void agruparCampValor(Element e, String agruparCamp, String mostrarCamp) {</strong><br>
+          &nbsp;&nbsp;&nbsp; NodeList l = e.getElementsByTagName(agruparCamp);<br>
+          &nbsp;&nbsp;&nbsp; HashMap&lt;Float, LinkedList&lt;Node&gt;&gt; grups = new HashMap&lt;&gt;();<br>
+          &nbsp;&nbsp;&nbsp; LinkedList&lt;Node&gt; nodes;<br>
+          &nbsp;&nbsp;&nbsp; Node p;<br>
+          &nbsp;&nbsp;&nbsp; String contingut;<br>
+          &nbsp;&nbsp;&nbsp; Float preu;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l.getLength(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = l.item(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contingut = ((Text)p.getFirstChild()).getWholeText().replaceAll("\\s+", " ").trim();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preu = Float.parseFloat(contingut);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Obtenim la llista corresponent al preu (si existeix)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nodes = grups.get(preu);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (nodes == null) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Si no existeix cap element amb aquest preu,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // es crea la llista i se li afegeix el node.<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nodes = new LinkedList&lt;&gt;();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nodes.add(p.getParentNode());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grups.put(preu, nodes);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Ja s'ha guardat algun element amb aquest preu<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // per tant només cal afegirlo a la llista<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nodes.add(p.getParentNode());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Agafem els preus...<br>
+          &nbsp;&nbsp;&nbsp; Set&lt;Float&gt; pr = grups.keySet();<br>
+          &nbsp;&nbsp;&nbsp; // ... els fiquem en un array...<br>
+          &nbsp;&nbsp;&nbsp; Object[] preus = pr.toArray();<br>
+          &nbsp;&nbsp;&nbsp; // ... i ordenem l'array<br>
+          &nbsp;&nbsp;&nbsp; Arrays.sort(preus);<br>
+          &nbsp;&nbsp;&nbsp; // Per cada element de l'array (per cada preu)...<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; preus.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preu = (Float)preus[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("\nPreu: %.2f €", preu);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ... obtenim la llista corresponent...<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nodes = grups.get(preu);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ... i per cada element...<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; nodes.size(); ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ... obtenim i mostrem el camp que ens interessa<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = ((Element)nodes.get(j)).getElementsByTagName(mostrarCamp).item(0);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("\n\t" + ((Text)p.getFirstChild()).getWholeText().replaceAll("\\s+", " ").trim());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Processar</h6>
+        <p class="p_codi">/**<br>
+          &nbsp;* Augmentar el valor d'un camp de tots els fills de 'e' en un percentatge determinat.<br>
+          &nbsp;* @param e Element pare<br>
+          &nbsp;* @param camp Camp amb el valor que s'ha d'incrementar<br>
+          &nbsp;* @param inc Percentatge en qué s'ha d'incrementar el valor<br>
+          &nbsp;*/<br>
+          <strong> private static void incrementarCamp(Element e, String camp, float inc) {</strong><br>
+          &nbsp;&nbsp;&nbsp; NodeList l = e.getElementsByTagName(camp);<br>
+          &nbsp;&nbsp;&nbsp; // Patró per agafar només el número decimal (per si conté altres símbols)<br>
+          &nbsp;&nbsp;&nbsp; Pattern pattern = Pattern.compile("(\\d+(\\.\\d+)?)");<br>
+          &nbsp;&nbsp;&nbsp; Matcher matcher;<br>
+          &nbsp;&nbsp;&nbsp; String contingut;<br>
+          &nbsp;&nbsp;&nbsp; Node p;<br>
+          &nbsp;&nbsp;&nbsp; float preu;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l.getLength(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = l.item(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contingut = ((Text)p.getFirstChild()).getWholeText().replaceAll("\\s+", " ").trim();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; matcher = pattern.matcher(contingut);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (matcher.find()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Si troba una part del text que sigui un número decimal<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // agafa només aquesta part<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contingut = matcher.group(1);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preu = Float.parseFloat(contingut);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preu += preu * inc / 100;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((Text)p.getFirstChild()).replaceWholeText(String.format("%.2f", preu));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Substitueix el contingut actual de tots els camps d'un tipus<br>
+          &nbsp;* amb un valor determinat per un altre valor.&lt;br&gt;<br>
+          &nbsp;* @param e Element pare dins del qual s'han de buscar el camps<br>
+          &nbsp;* @param camp Nom dels camps que es volen modificar<br>
+          &nbsp;* @param vActual Valor que han de tenir actualment<br>
+          &nbsp;* @param vNou Valor pel qual s'ha de subtituir<br>
+          &nbsp;* @param exact Ha de comprovar que tot el contingut coïncideixi o només una part<br>
+          &nbsp;*/<br>
+          <strong> private static void canviarCampValor(Element e, String camp, String vActual, String vNou, boolean exact) {</strong><br>
+          &nbsp;&nbsp;&nbsp; NodeList l = e.getElementsByTagName(camp);<br>
+          &nbsp;&nbsp;&nbsp; String contingut;<br>
+          &nbsp;&nbsp;&nbsp; Node p;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l.getLength(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = l.item(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contingut = ((Text)p.getFirstChild()).getWholeText().replaceAll("\\s+", " ").trim();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (exact) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (contingut.equals(vActual)) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((Text)p.getFirstChild()).replaceWholeText(vNou);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (contingut.contains(vActual)) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((Text)p.getFirstChild()).replaceWholeText(contingut.replaceAll(vActual, vNou));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Afegir un nou camp (element) amb un valor (text) determinat<br>
+          &nbsp;* a tots els fills de l'element 'e'.<br>
+          &nbsp;* @param e Element pare al qual s'ha dafegir el nou camp<br>
+          &nbsp;* @param camp Nom del camp (element) que s'ha d'afegir<br>
+          &nbsp;* @param valor Valor (text) que ha de contenir<br>
+          &nbsp;*/<br>
+          <strong> private static void afegirFillsCampValor(Element e, String camp, String valor) {</strong><br>
+          &nbsp;&nbsp;&nbsp; Document doc = e.getOwnerDocument();<br>
+          &nbsp;&nbsp;&nbsp; Node n = e.getFirstChild();<br>
+          &nbsp;&nbsp;&nbsp; Node nou;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (n != null) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (n.getNodeType() == Node.ELEMENT_NODE) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nou = doc.createElement(camp);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nou.setTextContent(valor);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n.appendChild(nou);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n = n.getNextSibling();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Crea i afegeix un nou element (planta).<br>
+          &nbsp;* @param e Element pare on s'ha d'afegir l'element (planta)<br>
+          &nbsp;* @param tipus Nom de l'element (PLANT)<br>
+          &nbsp;* @param nomComu Nom comú de la planta<br>
+          &nbsp;* @param nomBotanic Nom científic de la planta<br>
+          &nbsp;* @param zona En quina zona del viver es troba<br>
+          &nbsp;* @param llum Quin tipus d'il·luminació necessita<br>
+          &nbsp;* @param preu Preu de la planta<br>
+          &nbsp;* @param disponible Quantes hi ha de disponibles?<br>
+          &nbsp;* @param reg Periodicitat amb què s'ha de regar<br>
+          &nbsp;*/<br>
+          <strong> private static void afegirElement(Element e, String tipus, String nomComu, String nomBotanic, String zona, String llum, String preu, String disponible, String reg) {</strong><br>
+          &nbsp;&nbsp;&nbsp; Document doc = e.getOwnerDocument();<br>
+          &nbsp;&nbsp;&nbsp; Node nou;<br>
+          &nbsp;&nbsp;&nbsp; Node camp;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; nou = doc.createElement(tipus);<br>
+          &nbsp;&nbsp;&nbsp; camp = doc.createElement("COMMON");<br>
+          &nbsp;&nbsp;&nbsp; camp.setTextContent(nomComu);<br>
+          &nbsp;&nbsp;&nbsp; nou.appendChild(camp);<br>
+          &nbsp;&nbsp;&nbsp; camp = doc.createElement("BOTANICAL");<br>
+          &nbsp;&nbsp;&nbsp; camp.setTextContent(nomBotanic);<br>
+          &nbsp;&nbsp;&nbsp; nou.appendChild(camp);<br>
+          &nbsp;&nbsp;&nbsp; camp = doc.createElement("ZONE");<br>
+          &nbsp;&nbsp;&nbsp; camp.setTextContent(zona);<br>
+          &nbsp;&nbsp;&nbsp; nou.appendChild(camp);<br>
+          &nbsp;&nbsp;&nbsp; camp = doc.createElement("LIGHT");<br>
+          &nbsp;&nbsp;&nbsp; camp.setTextContent(llum);<br>
+          &nbsp;&nbsp;&nbsp; nou.appendChild(camp);<br>
+          &nbsp;&nbsp;&nbsp; camp = doc.createElement("PRICE");<br>
+          &nbsp;&nbsp;&nbsp; camp.setTextContent(preu);<br>
+          &nbsp;&nbsp;&nbsp; nou.appendChild(camp);<br>
+          &nbsp;&nbsp;&nbsp; camp = doc.createElement("AVAILABILITY");<br>
+          &nbsp;&nbsp;&nbsp; camp.setTextContent(disponible);<br>
+          &nbsp;&nbsp;&nbsp; nou.appendChild(camp);<br>
+          &nbsp;&nbsp;&nbsp; camp = doc.createElement("WATHERING");<br>
+          &nbsp;&nbsp;&nbsp; camp.setTextContent(reg);<br>
+          &nbsp;&nbsp;&nbsp; nou.appendChild(camp);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; e.appendChild(nou);<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Afegeix aficions (sense cap dada més) a l'element&nbsp; 'e'.<br>
+          &nbsp;* @param e Element pare on s'han d'afegir els altres elements<br>
+          &nbsp;* @param a Paràmetres amb els noms de les aficions<br>
+          &nbsp;*/<br>
+          <strong> private static void afegirAficions(Element e, String... a) {</strong><br>
+          &nbsp;&nbsp;&nbsp; Document doc = e.getOwnerDocument();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; a.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.appendChild(doc.createElement(a[i]));<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // TODO: afegir camps i valors a cada afició<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          /**<br>
+          &nbsp;* Crear un document XML amb un element arrel.<br>
+          &nbsp;* @param arrel Nom de l'element arrel<br>
+          &nbsp;* @return Document XML creat o 'null' si s'ha produït una excepció<br>
+          &nbsp;*/<br>
+          <strong>private static Document createXmlDocument(String arrel) {</strong><br>
+          &nbsp;&nbsp;&nbsp; DocumentBuilder db;<br>
+          &nbsp;&nbsp;&nbsp; Document doc = null;<br>
+          &nbsp;&nbsp;&nbsp; Node root;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; db = dbf.newDocumentBuilder();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; doc = db.newDocument();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; root = doc.createElement(arrel);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; doc.appendChild(root);<br>
+          &nbsp;&nbsp;&nbsp; } catch (ParserConfigurationException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return doc;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Guardar</h6>
+        <p class="p_codi">/**<br>
+          &nbsp;* Guardar un document XML en un arxiu.<br>
+          &nbsp;* @param path Ruta cap a l'arxiu on es guardarà el document<br>
+          &nbsp;* @param doc Document XML que es vol guardar<br>
+          &nbsp;*/<br>
+          <strong>private static void saveXmlDocument(String path, Document doc) {</strong><br>
+          &nbsp;&nbsp;&nbsp; Transformer t;<br>
+          &nbsp;&nbsp;&nbsp; DOMSource source;<br>
+          &nbsp;&nbsp;&nbsp; StreamResult result;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = tf.newTransformer();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; source = new DOMSource(doc);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result = new StreamResult(new File(path));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t.transform(source, result);<br>
+          &nbsp;&nbsp;&nbsp; } catch (TransformerConfigurationException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; } catch (TransformerException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

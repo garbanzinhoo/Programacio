@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="So en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>So en Java</header>
+    <section>
+      <h2>Reproduir so</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/Canvas.html">Clip ref. (Java SE 17)</a></p>
+      <p>Una de les formes de generar so és carregar i reproduir un arxiu de so.<br>
+        Els tipus d'arxius d'àudio que es poden utilitzar són <strong>AIFF</strong>, <strong>AU</strong> o <strong>WAV</strong>.</p>
+      <p>Primer de tot, cal carregar l'arxiu:</p>
+      <p class="p_codi">public static Clip carregarSo(String path) {<br>
+        &nbsp;&nbsp;&nbsp; Clip so;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; try {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; java.net.URL soundURL = ClassLoader.getSystemResource(path);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (soundURL == null) return null;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Line.Info linfo = new Line.Info(Clip.class);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Line line = AudioSystem.getLine(linfo);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; so = (Clip) line;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; so.open(ais);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return so;<br>
+        &nbsp;&nbsp;&nbsp; } catch (LineUnavailableException lue) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.err.println("No s'ha trobat l'arxiu: " + path);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;<br>
+        &nbsp;&nbsp;&nbsp; } catch (UnsupportedAudioFileException uafe) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.err.println("Format d'àudio no soportat: " + path);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;<br>
+        &nbsp;&nbsp;&nbsp; } catch (IOException ioe) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.err.println("Error d'entrada/sortida: " + path);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return null;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      Després, cada cop que es vulgui reproduir:
+      <p class="p_codi">so.setFramePosition(0);<br>
+        so.start();<br>
+      </p>
+      <p class="p_important">Utilitzant altres mètodes de la classe <strong>Clip</strong> es poden reproduir fragments del so, repetir N vegades tot el so o només una part, saber la durada, el format o si s'està reproduint...</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

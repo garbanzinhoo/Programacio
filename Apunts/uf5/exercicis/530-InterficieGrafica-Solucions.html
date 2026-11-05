@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// Missatge<br>
+          <strong> JOptionPane.showMessageDialog</strong>(<br>
+          &nbsp;&nbsp;&nbsp; null,&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Finestra pare<br>
+          &nbsp;&nbsp;&nbsp; "Benvingut !!!",&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Missatge<br>
+          &nbsp;&nbsp;&nbsp; "Benvinguda",&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Títol<br>
+          &nbsp;&nbsp;&nbsp; JOptionPane.INFORMATION_MESSAGE&nbsp; // Tipus de missatge (icona informació)<br>
+          );<br>
+          <br>
+          // Confirmar<br>
+          int seleccio = <strong>JOptionPane.showConfirmDialog</strong>(<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; null,<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; "Vols continuar?",<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; "Continuar",<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; JOptionPane.YES_NO_OPTION,&nbsp;&nbsp;&nbsp; // Botons YES / NO<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; JOptionPane.QUESTION_MESSAGE&nbsp; // Tipus de missatge (interrogant)<br>
+          );<br>
+          if (seleccio &gt; 0) return;<br>
+          <br>
+          // Introduir text<br>
+          String nom = <strong>JOptionPane.showInputDialog</strong>(<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; null,<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; "Com et dius?",<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; "Nom",<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; JOptionPane.PLAIN_MESSAGE<br>
+          );<br>
+          System.out.println("Nom: " + nom);<br>
+          <br>
+          // Seleccionar arxiu<br>
+          final JFileChooser <strong>fc = new JFileChooser(new File(".")</strong>);&nbsp; // Directori de treball<br>
+          int opcio = <strong>fc.showOpenDialog(null)</strong>;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // Mostrar diàleg<br>
+          if (opcio == JFileChooser.APPROVE_OPTION) {<br>
+          &nbsp;&nbsp;&nbsp; File file = fc.getSelectedFile();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Obtenir arxiu seleccionat<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(file.getAbsolutePath());<br>
+          }<br>
+          <br>
+          // Seleccionar color<br>
+          Color color = <strong>JColorChooser.showDialog(null, "Selecciona un color", null)</strong>;<br>
+          if (color != null) System.out.println(color);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_important">En aquesta solució, el <strong>Model</strong> obté el valor i el modifica directament en la <strong>Vista</strong>.</p>
+        <h6>Vista</h6>
+        <p class="p_codi"><strong>public class Vista extends JFrame</strong> {<br>
+          &nbsp;&nbsp;&nbsp; private static JTextField comptador;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Constructor de la finestra<br>
+          &nbsp;&nbsp;&nbsp; <strong>public Vista()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Container panell = getContentPane();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Etiqueta on escriure el valor del comptador<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador = new JTextField();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setPreferredSize(new Dimension(100, 30));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setHorizontalAlignment(SwingConstants.CENTER);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Botons per incrementar/decrementar el comptador i controlador<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton dButton = new JButton("Dec");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton iButton = new JButton("Inc");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Controlador ctrl = new Controlador();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dButton.addActionListener(ctrl);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iButton.addActionListener(ctrl);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Afegir l'etiqueta i el botó a la finestra<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; panell.add(comptador, BorderLayout.PAGE_START);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; panell.add(dButton, BorderLayout.LINE_START);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; panell.add(iButton, BorderLayout.LINE_END);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pack();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setVisible(true);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setDefaultCloseOperation(EXIT_ON_CLOSE);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Actualitzar el comptador<br>
+          &nbsp;&nbsp;&nbsp; <strong>public static String getComptador()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return comptador.getText();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Actualitzar el comptador<br>
+          &nbsp;&nbsp;&nbsp; <strong>public static void setComptador(String c)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; comptador.setText(c);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>public static void main(String[] args)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Vista();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vista.setComptador("0");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h6>Controlador</h6>
+        <p class="p_codi"><strong>public class Controlador implements ActionListener</strong> {<br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; // Acció quan es clica el botó<br>
+          &nbsp;&nbsp;&nbsp; <strong>public void actionPerformed(ActionEvent e)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Modificar el comptador<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (e.getActionCommand().equals("Inc")) Model.incrementar();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else Model.decrementar();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h6>Model</h6>
+        <p class="p_codi"><strong>public class Model</strong> {<br>
+          &nbsp;&nbsp;&nbsp; // Decrementar el valor del comptador i mostrar-lo<br>
+          &nbsp;&nbsp;&nbsp; <strong>public static void decrementar()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int c = Integer.parseInt(Vista.getComptador());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --c;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vista.setComptador("" + c);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Incrementar el valor del comptador i mostrar-lo<br>
+          &nbsp;&nbsp;&nbsp; <strong>public static void incrementar()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int c = Integer.parseInt(Vista.getComptador());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++c;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Vista.setComptador("" + c);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_important">En aquesta solució, el <strong>Controlador</strong> fa de pont entre el <strong>Model</strong> i la <strong>Vista</strong>.</p>
+        <p>Descarrega el <a download="" target="_blank" rel="noopener" href="arxius/calculadoramvc.zip">projecte CalculadoraMVC</a>.</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p>Descarrega el <a download="" target="_blank" rel="noopener" href="arxius/cucamvc.zip">projecte CucaMVC</a>.</p>
+      </div>
+    </section>
+  </body>
+</html>

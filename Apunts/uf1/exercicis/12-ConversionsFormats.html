@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Caràcters, text, conversions i formats</h1>
+      <div class="enun">
+        <h3>Conversions implícites</h3>
+        <p>Indica si són correctes o no les següents conversions implícites:</p>
+        <p class="p_codi">boolean resposta = 0;<br>
+          double sou = 1000;<br>
+          float lletra = 'a';</p>
+      </div>
+      <div class="enun">
+        <h3>Caràcters especials</h3>
+        <p>Fes un programa que escrigui la frase <strong>Estic fins als @!\?"#€~ del coronavirus</strong></p>
+        <p>Després, ha d'escriure una frase que contingui almenys un salt de línia i un tabulador.<strong></strong></p>
+        <ul>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Caràcters i codis</h3>
+        <p>Segueix pas a pas el següent codi i pensa quin valor tindran les diferents variables.<br>
+          Executa'l pas a pas i comprova si el què havies calculat és correcte.</p>
+        <p class="p_codi">char lletra = '0';<br>
+          char lletra2 = 0;<br>
+          boolean sonIguals = lletra == lletra2;<br>
+          lletra = 'A';<br>
+          lletra2 = 65;<br>
+          sonIguals = lletra == lletra2;<br>
+          ++lletra;<br>
+          lletra = '0' + '1';</p>
+      </div>
+      <div class="enun">
+        <h3>Tipus de caràcter</h3>
+        <p>Fes un programa que, donada una variable de tipus <em>char</em>, mostri amb un valor booleà (<strong>true</strong> o <strong>false</strong>) depenent de si pertany o no a cada un dels següents conjunts: <strong>lletra</strong>, <strong>dígit</strong>, <strong>majúscula</strong> i <strong>minúscula</strong>.</p>
+        <p>Per exemple, si la variable conté el caràcter '<strong>c</strong>', ha d'escriure:</p>
+        <p class="p_consola">És lletra? true<br>
+          És dígit? false<br>
+          És majúscula? false<br>
+          És minúscula? true</p>
+      </div>
+      <div class="enun">
+        <h3>Deduir el format</h3>
+        <p>Pensa com es mostraran els següents números.<br>
+          Després comprova-ho executant el codi:</p>
+        <p class="p_codi">System.out.printf("|%20d|\n", 53); <br>
+          System.out.printf("|%-20d|\n", 53); <br>
+          System.out.printf("|%020d|\n", 53); <br>
+          System.out.printf("%,d\n", 10000000); <br>
+          System.out.printf("%.2f\n", 12.9f);<br>
+          System.out.printf("%,.2f\n", 54999.99789f);</p>
+      </div>
+      <div class="enun">
+        <h3>Format numèric</h3>
+        <p>Fes que el <em>double</em> <strong>564200.5947</strong> es mostri amb els següents formats:</p>
+        <p class="p_consola">564200,59<br>
+          564.200,595<br>
+          00564201<br>
+          +00564200,6</p>
+      </div>
+      <div class="enun">
+        <h3>Format tabulat</h3>
+        <p>Escriu un programa que mostri per pantalla 10 paraules en anglès amb la seva corresponent traducció al català o castellà.<br>
+          Les paraules han d’estar distribuïdes en dues columnes i alineades a l’esquerra.<br>
+          S'ha d'utilitzar la funció <span class="c_comanda">printf()</span> per donar el format adequat.</p>
+        <p class="p_consola">ANGLÈS&nbsp;&nbsp;&nbsp;&nbsp; CATALÀ<br>
+          --------&nbsp;&nbsp; --------<br>
+          man&nbsp; &nbsp; &nbsp; &nbsp; home<br>
+          woman&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dona<br>
+          ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</p>
+      </div>
+    </section>
+  </body>
+</html>

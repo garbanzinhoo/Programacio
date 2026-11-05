@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="JavaDoc">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>JavaDoc</header>
+    <section>
+      <h2>Documentació del codi</h2>
+      <p class="p_important">És imprescindible documentar el codi!<br>
+        El més recomanable és fer-ho a mida que es van creant les classes i mètodes, no deixar-ho pel final.</p>
+      <p>Una de les tasques que menys ens agrada als programadors és la de documentar els "nostres" programes.<br>
+        Però quan hem de modificar el codi fet per un altre, és del primer que ens queixem si no s'ha fet!</p>
+      <p>Primer de tot, cal recordar que, en una empresa, el codi no és nostre, i que en qualsevol moment pot ser que algú altre l'hagi de modificar.<br>
+        Fins i tot pot passar que al cap d'un temps nosaltres mateixos l'haguem de retocar, i que no recordem per a què serveix algun tros de codi especialment complicat.</p>
+      <p>A més, si es creen classes per a una llibreria, qui la vulgui utilitzar, no té perquè saber com funciona internament, però sí que ha de saber detalladament què fa cada funció, quines dades s'han de passar i si retorna algun tipus de dada.</p>
+      <p>Es pot considerar que hi ha dos tipus de documentació:</p>
+      <ul>
+        <li>Documentació del codi: normalment es posen amb comentaris d'una sola línia.<br>
+          Només cal comentar el codi que pot resultar difícil d'entendre.</li>
+        <li>Documentació de classes i mètodes (llibreries): abans de cada classe i mètode s'han d'especificar un mínim de dades: per a què serveix, quines dades s'han de passar i quin valor retorna.<br>
+          També pot ser necessari afegir les condicions de les dades i possibles excepcions que pugui generar.</li>
+      </ul>
+      <h3>JavaDoc</h3>
+      <p>Java disposa de l'eina <strong>javadoc</strong> que permet generar la documentació de classes i mètodes a partir de comentaris amb un format determinat.</p>
+      <p>En IntelliJ, si s'escriu <span class="c_comanda">/**</span> en la línia anterior a una definició i es prem la tecla <kbd>Intro</kbd>, automàticament genera una estructura bàsica per documentar la classe o la funció.</p>
+      <p>En el cas de les funcions, si tenen paràmetres d'entrada o valors de retorn, també afegeix el text necessari (en negreta, el text afegit automàticament):</p>
+      <p class="p_codi"><strong>/**</strong><br>
+        &nbsp;<strong>*</strong> Descripció de la funció<br>
+        &nbsp;<strong>* @param nElem</strong> Descripció del paràmetre 'nElem'<br>
+        <strong>&nbsp;* @param value</strong> Descripció del paràmetre 'value'<br>
+        <strong>&nbsp;* @return</strong>&nbsp; Descripció del valor de retorn<br>
+        <strong>&nbsp;*/</strong><br>
+        public static int[] initArrayInt(int <strong>nElem</strong>, int <strong>value</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; // Codi de la funció<br>
+        }</p>
+      <p>Hi ha algunes paraules reservades per especificar determinades dades:</p>
+      <ul>
+        <li><strong>@param</strong>: per especificar un paràmetre d'entrada.</li>
+        <li><strong>@return</strong>: per especificar que el mètode retorna una dada.</li>
+        <li><strong>@author</strong>: per indicar qui ha escrit el codi.</li>
+      </ul>
+      <p>Les paraules anteriors són les més utilitzades però hi ha moltes altres.</p>
+      <p>Dins del text es poden utilitzar alguns codis HTML, però convé limitar-se als més simples (negreta, llistes...).</p>
+      <p class="p_important">Cal revisar els comentaris de documentació si es fan canvis en els paràmetres d'entrada o valor de retorn.<br>
+        IntelliJ mostra un missatge d'error si detecta alguna incongruència.</p>
+      <h3>Generar la documentació amb IntelliJ</h3>
+      <p>La majoria dels IDEs també permeten cridar la utilitat <strong>javadoc</strong> per generar la documentació.</p>
+      <p>En el cas d'IntelliJ, en el menú principal s'ha de seleccionar <strong>Tools → Generate JavaDoc...</strong></p>
+      <p>És necessari indicar en quin directori es crearà la documentació.</p>
+      <p>També es pot triar per a quines classes i mètodes es generarà la documentació.<br>
+        De moment, amb l'opció per defecte, serà suficient (<strong>Protected</strong>: classes i mètodes publics i protegits).</p>
+      <p>La documentació es crearà en format HTML i es pot veure obrint l'arxiu <span class="c_arxiu">index.html</span> de la carpeta on se li ha dit que la generi.</p>
+      <p class="p_important">Si al generar JavaDoc dóna error amb algun caràcter especial, s'ha de posar la següent configuració:<br>
+        En <strong>Other command line arguments:</strong> <span class="c_comanda">-encoding utf8 -docencoding utf8 -charset utf8</span></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

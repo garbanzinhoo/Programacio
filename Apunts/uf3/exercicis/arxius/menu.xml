@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<esmorzar>
+    <tipus>
+        <nom>Lleuger</nom>
+        <preu>5.95€</preu>
+        <descripcio>Café i Croissant</descripcio>
+        <calories>650</calories>
+    </tipus>
+    <tipus>
+        <nom>Normal</nom>
+        <preu>7.95€</preu>
+        <descripcio>Suc de taronja i tostades amb mantega i melmelada</descripcio>
+        <calories>900</calories>
+    </tipus>
+    <tipus>
+        <nom>Energètic</nom>
+        <preu>8.95€</preu>
+        <descripcio>Vi i ous remenats amb bacó</descripcio>
+        <calories>900</calories>
+    </tipus>
+    <tipus>
+        <nom>Saludable</nom>
+        <preu>10.50€</preu>
+        <descripcio>Suc de taronja i pa amb tomàquet i gall dindi</descripcio>
+        <calories>500</calories>
+    </tipus>
+</esmorzar>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="BDOO">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>BDOO</header>
+    <section>
+      <h2>Bases de dades orientades a objectes (BDOO)</h2>
+      <p>Les BDOO pretenen solventar el problema de l'adaptació entre objectes i registres que tenen les aplicacions orientades a objectes al guardar i recuperar les dades en base de dades relacionals (BDR).</p>
+      <p>En les BDOO, els objectes es guarden i es recuperen sense necessitat de fer cap transformació.</p>
+      <p>El principal inconvenient és que, al contrari que passa amb JDBC, no hi ha un estàndar consolidat per gestionar aquestes bases de dades: cada fabricant ho implementa a la seva manera.</p>
+      <h2>Introducció a <em>db4o</em></h2>
+      <p>Aquest és un gestor de BDOO molt simple i que es pot utilitzar localment o de forma remota.</p>
+      <p>Es pot descarregar el projecte complet a <a target="_blank" rel="noopener" href="https://github.com/Kampbell/db4o-8.0">GitHub db4o</a>, però per utilitzar-lo a Java només cal extreure la llibreria <span class="c_arxiu">db4o-8.0.249.16098-all-java5.jar</span> i afegir-la al nostre projecte.</p>
+      <h3>Connexió i desconnexió amb una base de dades db4o</h3>
+      <p>Cada base de dades es guarda en un arxiu.</p>
+      <p>Per fer la connexió cal indicar la ruta de l'arxiu.<br>
+        No cal crear l'arxiu prèviament: si no existeix, es crea automàticament.</p>
+      <p class="p_codi">import com.db4o.*;<br>
+        <br>
+        <strong>ObjectContainer db = Db4oEmbedded.openFile("persones.db4o");</strong><br>
+        // Comandes per gestionar la base de dades<br>
+        <strong>db.close();</strong><br>
+      </p>
+      <h3>Afegir objectes</h3>
+      <p class="p_codi">public class Persona {<br>
+        &nbsp;&nbsp;&nbsp; private String nom;<br>
+        &nbsp;&nbsp;&nbsp; private int edat;<br>
+        &nbsp;&nbsp;&nbsp; private float pes;<br>
+        &nbsp;&nbsp;&nbsp; private float altura;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public Persona(String nom, int edat, float pes, float altura) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set(nom, edat, pes, altura);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+        <br>
+        <strong>db.store(new Persona("Peter Parker", 30</strong><strong><strong>, 73</strong>, 1.73f));</strong></p>
+      <div class="p_important">
+        <p>Si en una execució posterior es torna a crear i afegir aquesta persona, la base de dades en contindrà 2, a no ser que, abans d'afegir-la, es comprovi si ja existeix:</p>
+        <p class="p_codi">db.store(new Persona("Peter Parker", 30, 73, 1.73f));&nbsp; // S'afegeix a la BDOO<br>
+          db.store(new Persona("Peter Parker", 30, 73, 1.73f));&nbsp; // <strong>Es torna a afegir a la BDOO</strong></p>
+        <p>Si s'intenta guardar <strong>el mateix objecte</strong>, aquest no s'afegeix:</p>
+        <p class="p_codi">Persona p1 = new Persona("Peter Parker", 30, 73, 1.73f);<br>
+          Persona p2 = p1;<br>
+          db.store(p1);&nbsp;&nbsp;&nbsp; // S'afegeix a la BDOO<br>
+          db.store(p2);&nbsp;&nbsp;&nbsp; // <strong>NO s'afegeix a la BDOO</strong></p>
+      </div>
+      <h3>Buscar i llegir objectes</h3>
+      <p>Una forma senzilla d'obtenir un objecte és buscar-lo utilitzant un consulta senzilla (<em>Query By Example</em>).</p>
+      <ol>
+        <li>Crear un objecte plantilla del tipus que es vol buscar inicialitzant només els atributs necessaris (la resta s'han de posar a <span class="c_comanda">null</span> o <span class="c_comanda">0</span>).</li>
+        <li>Obtenir tots els objectes que coïncideixen amb l'objecte plantilla (comanda <span class="c_comanda">queryByExample</span> passant-li l'objecte plantilla).</li>
+        <li>Llegir els objectes utilitzant un bucle.</li>
+      </ol>
+      <p class="p_codi"><strong>ObjectSet&lt;Persona&gt; result = db.queryByExample(new Persona("Peter Parker", 0, 0, 0));<br>
+        </strong>Persona p;<br>
+        <br>
+        while (result.hasNext()) {<br>
+        &nbsp;&nbsp;&nbsp; <strong>p = result.next();</strong><br>
+        &nbsp;&nbsp;&nbsp; System.out.println(p);<br>
+        }</p>
+      <p class="p_important">Si no es poden crear objectes amb atributs nuls o algun dels paràmetres per fer la cerca és 0, s'hauran d'utilitzar altres tipus de consultes que es veuran més endavant.</p>
+      <h3>Modificar objectes</h3>
+      <p>Un cop s'ha llegit l'objecte de la base de dades, només cal modificar els seus atributs i tornar-lo a guardar:</p>
+      <p class="p_codi">p = result.next();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Llegir<br>
+        p.setNom("Peter Punk");&nbsp;&nbsp; // Modificar<br>
+        <strong>db.store(p);</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // Guardar<br>
+      </p>
+      <h3>Eliminar objectes</h3>
+      <p>Primer s'ha de llegir l'objecte de la base de dades i després eliminar-lo:</p>
+      <p class="p_codi">p = result.next();&nbsp;&nbsp;&nbsp; // Llegir<br>
+        <strong>db.delete(p);</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Esborrar<strong><br>
+        </strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

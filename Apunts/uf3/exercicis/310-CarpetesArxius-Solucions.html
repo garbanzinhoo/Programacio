@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <p>Per provar les funcions de les solucions pots utilitzar el següent codi en la funcio <span class="c_comanda">main()</span>:</p>
+      <p class="p_desplegable p_codi">// Obtenir informacio detallada arxiu/carpeta<br>
+        showDetailedInfo(".");<br>
+        showDetailedInfo("./Proves");<br>
+        showDetailedInfo("./Proves/arxiu.txt");<br>
+        showDetailedInfo("./Proves/arxiu2.txt");&nbsp;&nbsp;&nbsp; // Error: no s'ha trobat<br>
+        <br>
+        // Obtenir informacio resumida arxiu/carpeta<br>
+        System.out.println();<br>
+        System.out.println(getFileInfo("."));<br>
+        System.out.println(getFileInfo("./Proves"));<br>
+        System.out.println(getFileInfo("./Proves/arxiu.txt"));<br>
+        System.out.println(getFileInfo("./Proves/arxiu2.txt"));&nbsp;&nbsp;&nbsp; // No existeix: ????<br>
+        <br>
+        // Obtenir informacio ruta<br>
+        showPathInfo(".");<br>
+        showPathInfo("./Proves");<br>
+        showPathInfo("./Proves/arxiu.txt");<br>
+        showPathInfo("./Proves/arxiu2.txt");&nbsp;&nbsp;&nbsp; // Error: no s'ha trobat<br>
+        <br>
+        // Obtenir informacio Sistema Fitxers<br>
+        showFS();<br>
+        showInfoFS();<br>
+        showInfoFS2();<br>
+        <br>
+        // Obtenir informacio Usuari, Directori personal...<br>
+        showUserHomeWorkingDir();<br>
+        <br>
+        // Llistar, crear, moure/renombrar i esborrar<br>
+        dir("./Proves");<br>
+        crearEstructura();<br>
+        <br>
+        // Treballar des d'un directori per defecte<br>
+        directoriPerDefecte();<br>
+        <br>
+        // Funcions amb varargs<br>
+        crearCarpetes("./Proves1/Subdir1", "./Proves1/Subdir2", "./Proves1/Subdir3");<br>
+        crearArxius("./Proves1/Arxiu1.txt", "./Proves2/Arxiu2.txt", "./Proves1/Arxiu3.txt");<br>
+        <br>
+        // Llibreria externa<br>
+        copiarCarpeta("./Proves", "./CopiaProves");</p>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Mostrar informació detallada</h6>
+        <p class="p_codi">static <strong>void showDetailedInfo(File f)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nCanonical path: " + f.getCanonicalPath());<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nError al obtenir la ruta canònica:");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Directory:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f.isDirectory());<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Hidden:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f.isHidden());<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Read:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f.canRead());<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Write:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f.canWrite());<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Execute:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f.canExecute());<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Length:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f.length());<br>
+          &nbsp;&nbsp;&nbsp; Date d = new Date(f.lastModified());<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("LastModified:&nbsp;&nbsp; " + d.toString());<br>
+          }<br>
+          <br>
+          static <strong>void showDetailedInfo(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (f.exists()) showDetailedInfo(f);<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("\nNo s'ha trobat l'arxiu o carpeta " + p);<br>
+          }</p>
+        <h6>Obtenir atributs DHRWX</h6>
+        <p class="p_codi">static <strong>String getAttributes(File f)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; String attr = "";<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; attr += f.isDirectory() ? "D" : "-";<br>
+          &nbsp;&nbsp;&nbsp; attr += f.isHidden() ? "H" : "-";<br>
+          &nbsp;&nbsp;&nbsp; attr += f.canRead() ? "R" : "-";<br>
+          &nbsp;&nbsp;&nbsp; attr += f.canWrite() ? "W" : "-";<br>
+          &nbsp;&nbsp;&nbsp; attr += f.canExecute() ? "X" : "-";<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return attr;<br>
+          }<br>
+          <br>
+          static <strong>String getAttributes(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (f.exists()) return getAttributes(f);<br>
+          &nbsp;&nbsp;&nbsp; else return "?????";<br>
+          }</p>
+        <h6>Obtenir data/hora i mida</h6>
+        <p class="p_codi">static <strong>String getDateSize(File f)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; Calendar c = Calendar.getInstance();<br>
+          &nbsp;&nbsp;&nbsp; c.setTimeInMillis(f.lastModified());<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; int y = c.get(Calendar.YEAR);<br>
+          &nbsp;&nbsp;&nbsp; int m = c.get(Calendar.MONTH) + 1;<br>
+          &nbsp;&nbsp;&nbsp; int d = c.get(Calendar.DAY_OF_MONTH);<br>
+          &nbsp;&nbsp;&nbsp; int hh = c.get(Calendar.HOUR);<br>
+          &nbsp;&nbsp;&nbsp; int mm = c.get(Calendar.MINUTE);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return String.format("%02d/%02d/%04d %02d/%02d %12d", d, m, y, hh, mm, f.length());<br>
+          }<br>
+          <br>
+          static <strong>String getDateSize(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (f.exists()) return getDateSize(f);<br>
+          &nbsp;&nbsp;&nbsp; else return "??/??/???? ??/??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?";<br>
+          }</p>
+        <h6>Obtenir informació resumida (tot en una línia)</h6>
+        <p class="p_codi">static <strong>String getFileInfo(File f)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; return getAttributes(f) + " " + getDateSize(f) + "&nbsp; " + f.getName();<br>
+          }<br>
+          <br>
+          static <strong>String getFileInfo(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (f.exists()) return getFileInfo(f);<br>
+          &nbsp;&nbsp;&nbsp; else return "????? ??/??/???? ??/??&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?&nbsp; " + p;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void showPathInfo(File f)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("\nName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f.getName());<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Parent:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f.getParent());<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f.getPath());<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("AbsolutePath:&nbsp; " + f.getAbsolutePath());<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("CanonicalPath: " + f.getCanonicalPath());<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static <strong>void showPathInfo(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (f.exists()) showPathInfo(f);<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("\nNo s'ha trobat la ruta " + p);<br>
+          }</p>
+        <p class="p_important">Si se li passa la ruta <span class="c_configura">"."</span> (carpeta de treball per defecte) s'obtindrà que <span class="c_comanda">getParent()</span> retorna <span class="c_configura">null</span>.<br>
+          En canvi, si se li passa (o es converteix a) la ruta canònica d'aquesta ruta, proporcionarà el valor correcte.</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Mostrar informació general dels sistemes d'arxius</h6>
+        <p class="p_codi">static String convertSize(long b) {<br>
+          &nbsp;&nbsp;&nbsp; final String[] B = {"&nbsp; B", " KB", " MB", " GB", " TB"};<br>
+          &nbsp;&nbsp;&nbsp; int i = 0;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (!(b / 1000 == 0 || i == B.length - 1)) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b /= 1000;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++i;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return b + B[i];<br>
+          }<br>
+          <br>
+          static <strong>void showFS()</strong> {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("\nSistemes de fitxers");<br>
+          &nbsp;&nbsp;&nbsp; File[] roots = File.listRoots();<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; roots.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(roots[i].getAbsolutePath());<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Sistema de fitxers de la carpeta de treball actual");<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(".");<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("TotalSpace: %8s\n", convertSize(f.getTotalSpace()));<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("FreeSpace:&nbsp; %8s\n", convertSize(f.getFreeSpace()));<br>
+          }<br>
+          <br>
+          static <strong>void showUserHomeWorkingDir()</strong> {<br>
+          &nbsp;&nbsp;&nbsp; //System.out.println("\nUsuari, directori personal i directori de treball");<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("\nUsuari:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + System.getProperty("user.name"));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Directori personal:&nbsp;&nbsp; " + System.getProperty("user.home"));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Directori de treball: " + System.getProperty("user.dir"));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Directori de Java:&nbsp;&nbsp;&nbsp; " + System.getProperty("java.home"));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Versió de Java:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + System.getProperty("java.version"));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Nom del SO:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + System.getProperty("os.name"));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Versió del SO:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + System.getProperty("os.version"));<br>
+          }</p>
+        <h6>Obtenir informació dels sistemes d'arxius<em></em></h6>
+        <p class="p_codi">static <strong>String[] sistemesFitxers()</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File[] roots = File.listRoots();<br>
+          &nbsp;&nbsp;&nbsp; String[] sf = new String[roots.length];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; roots.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sf[i] = roots[i].toString();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return sf;<br>
+          }<br>
+          <br>
+          static <strong>long[] midaEspaiLliure(String sf)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(sf);<br>
+          &nbsp;&nbsp;&nbsp; long[] mides = new long[2];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; mides[0] = f.getTotalSpace();<br>
+          &nbsp;&nbsp;&nbsp; mides[1] = f.getUsableSpace();<br>
+          &nbsp;&nbsp;&nbsp; //mides[1] = f.getFreeSpace();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return mides;<br>
+          }<br>
+          <br>
+          static <strong>void showInfoFS()</strong> {<br>
+          &nbsp;&nbsp;&nbsp; String[] sf = sistemesFitxers();<br>
+          &nbsp;&nbsp;&nbsp; String mides;<br>
+          &nbsp;&nbsp;&nbsp; long[] m;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; System.out.println("\nSistemes de fitxers (v1)");<br>
+          &nbsp;&nbsp;&nbsp; for (String s: sf) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m = midaEspaiLliure(s);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mides = String.format("%8s %8s", convertSize(m[0]), convertSize(m[0]));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.format("%s&nbsp;&nbsp; %s\n", mides, s);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // AVANÇAT<br>
+          static <strong>void showInfoFS2()</strong> {<br>
+          &nbsp;&nbsp;&nbsp; long total, avail;<br>
+          &nbsp;&nbsp;&nbsp; String mides, s;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; System.out.println("\nSistemes de fitxers (v2)");<br>
+          &nbsp;&nbsp;&nbsp; for (FileStore store : FileSystems.getDefault().getFileStores()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total = store.getTotalSpace();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; avail = store.getUsableSpace();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //avail = store.getUnallocatedSpace();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mides = String.format("%8s %8s", convertSize(total), convertSize(avail));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = store.toString();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (avail &gt; 0 &amp;&amp; (s.contains("(/dev") || s.contains(":)"))) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("%s&nbsp;&nbsp; %s\n", mides, s);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <p class="p_important">En Linux, <span class="c_comanda">showInfoFS()</span> només mostra informació sobre el directori arrel (<span class="c_arxiu">/</span>).<br>
+          <span class="c_comanda">showInfoFS2()</span> mostra informació sobre tots els sistemes d'arxius, tant en Linux com en Windows.</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Mostrar el contingut d'una carpeta</h6>
+        <p class="p_codi">static <strong>void dir(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.exists() || !f.isDirectory()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nNo existeix la ruta o no és una carpeta");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; File[] e = f.listFiles();<br>
+          &nbsp;&nbsp;&nbsp; int n = e.length;<br>
+          &nbsp;&nbsp;&nbsp; int na = 0, nc = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; n; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(getFileInfo(e[i]));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (e[i].isDirectory()) ++nc;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else ++na;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + na + " arxius");<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + nc + " carpetes");<br>
+          }</p>
+        <h6>Crear i modificar l'estructura de proves</h6>
+        <p class="p_codi">static <strong>void crearEstructura()</strong> {<br>
+          &nbsp;&nbsp;&nbsp; // Tornar a crear l'estructura de proves<br>
+          &nbsp;&nbsp;&nbsp; File f = new File("./Proves/Subcarpeta");<br>
+          &nbsp;&nbsp;&nbsp; f.mkdirs();<br>
+          &nbsp;&nbsp;&nbsp; f = new File("./Proves/arxiu.txt");<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.createNewFile();<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nNo s'ha pogut crear l'arxiu " + f);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Afegir carpeta i arxiu<br>
+          &nbsp;&nbsp;&nbsp; f = new File("./Proves/Proves2");<br>
+          &nbsp;&nbsp;&nbsp; f.mkdir();<br>
+          &nbsp;&nbsp;&nbsp; f = new File("./Proves/Proves2/arxiu2.txt");<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.createNewFile();<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nNo s'ha pogut crear l'arxiu " + f);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Renombrar arxiu i esborrar arxiu i carpeta<br>
+          &nbsp;&nbsp;&nbsp; File fNou = new File("./Proves/Proves2/arxiu3.txt");<br>
+          &nbsp;&nbsp;&nbsp; f.renameTo(fNou);<br>
+          &nbsp;&nbsp;&nbsp; fNou.delete();<br>
+          &nbsp;&nbsp;&nbsp; f = new File("./Proves/Proves2");<br>
+          &nbsp;&nbsp;&nbsp; f.delete();<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Treballar en un directori per defecte<em></em></h6>
+        <p class="p_codi">static String <strong>directoriBase</strong>;<br>
+          <br>
+          static <strong>void directoriPerDefecte()</strong> {<br>
+          &nbsp;&nbsp;&nbsp; <strong>directoriBase</strong> = System.getProperty("user.home");<br>
+          &nbsp;&nbsp;&nbsp; <strong>directoriBase</strong> += "/Escritorio"; // En Windows hauria de ser "/Desktop"<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Tornar a crear l'estructura de proves en l'escriptori<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(<strong>directoriBase</strong>, "Proves/Subcarpeta");<br>
+          &nbsp;&nbsp;&nbsp; f.mkdirs();<br>
+          &nbsp;&nbsp;&nbsp; f = new File(<strong>directoriBase</strong>, "Proves/arxiu.txt");<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.createNewFile();<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nNo s'ha pogut crear l'arxiu " + f);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void crearCarpeta(File f)</strong> throws Exception {<br>
+          &nbsp;&nbsp;&nbsp; if (!f.mkdirs()) throw new Exception("\nNo s'ha pogut crear la carpeta " + f);<br>
+          &nbsp;&nbsp;&nbsp; //if (!f.mkdirs()) System.out.println("\nNo s'ha pogut crear la carpeta " + f);<br>
+          &nbsp;&nbsp;&nbsp; //return f.mkdirs(); // CAL CANVIAR void PER boolean<br>
+          }<br>
+          <br>
+          static <strong>void crearCarpetes(String... paths)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; paths.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>crearCarpeta(new File(paths[i]));</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(e.getMessage());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static <strong>void crearArxiu(File f)</strong> throws Exception {<br>
+          &nbsp;&nbsp;&nbsp; if (f.exists()) throw new Exception("\nNo s'ha creat l'arxiu: l'arxiu ja existeix");<br>
+          &nbsp;&nbsp;&nbsp; f.createNewFile();<br>
+          &nbsp;&nbsp;&nbsp; //if (!f.createNewFile()) System.out.println("\nNo s'ha pogut crear l'arxiu " + f);<br>
+          &nbsp;&nbsp;&nbsp; //return f.createNewFile(); // CAL CANVIAR void PER boolean<br>
+          }<br>
+          <br>
+          static <strong>void crearArxius(String... arxius)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; for (String arxiu: arxius) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>crearArxiu(new File(arxiu));</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nNo s'ha pogut crear l'arxiu " + arxiu);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(e.getMessage());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void copiarCarpeta(String orig, String dest)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File fo = new File(orig);<br>
+          &nbsp;&nbsp;&nbsp; File fd = new File(dest);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>FileUtils.copyDirectory(fo, fd);</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nCarpeta "&nbsp; + orig + " copiada a " + dest);<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nNo s'ha pogut copiar la carpeta");;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

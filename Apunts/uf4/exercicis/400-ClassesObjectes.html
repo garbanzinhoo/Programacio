@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Classes i objectes</h1>
+      <div class="enun">
+        <h3>Classe Persona</h3>
+        <p>Crea la classe <strong>Persona</strong> amb els atributs:</p>
+        <ul>
+          <li><strong>nif</strong>: <em>string</em> amb 8 dígits i una lletra majúscula,</li>
+          <li><strong>nom</strong>: <em>string</em>,</li>
+          <li><strong>dataNaixement</strong>: <em>string</em> amb el format <strong>DD-MM-AAAA</strong>.</li>
+        </ul>
+        <p>Ha de tenir un constructor per inicialitzar els atributs anteriors.<br>
+          De moment, no es verificarà que les dades siguin correctes.</p>
+        <p>Ha de tenir un mètode per obtenir l'edat de la persona.<br>
+          La classe <strong>java.time.LocalDate</strong> té mètodes que et poden ser útils.</p>
+        <p>Fes el mètode <strong>toString()</strong> que retorni un <em>string</em> amb el format <strong>nif : nom : edat</strong>.</p>
+        <p>Els atributs han de ser privats i els mètodes, públics.</p>
+        <p>Crea també una classe <strong>TestPersona</strong> amb un mètode <strong>main()</strong> que creï unes quantes persones i mostri les seves dades.</p>
+      </div>
+      <div class="enun">
+        <h3>Classe Persona (v2.0)</h3>
+        <p>Afegeix a la classe <strong>Persona</strong> un atribut que serveixi per comptar quantes persones s'han creat i un mètode per consultar aquest atribut.</p>
+        <p>Crea també els mètodes <strong>getNif()</strong>, <strong>getNom()</strong> i <strong>getDataNaixement()</strong> per obtenir aquestes dades.</p>
+        <p>A més, ha de tenir mètodes privats per comprovar si un NIF i una data de naixement són correctes.<br>
+          En cas que alguna d'elles no ho sigui, el constructor ha de llençar una excepció que serà tractada en la classe que necessiti crear persones.</p>
+        <p>En la classe <strong>TestPersona</strong>, crea el mètode <strong>creador(nif, nom, dn)</strong>, que serà l'encarregat de crear les persones. Aquest mètode haurà de gestionar possibles excepcions i retornar la persona creada o, en cas d'error, mostrar un missatge per consola i retornar <strong>null</strong>.</p>
+        <p>En el mètode <strong>main()</strong> de la classe <strong>TestPersona</strong> crea alguna persona amb dades incorrectes.<br>
+          Després de mostrar la informació de les persones, mostra quantes s'han creat.</p>
+      </div>
+      <div class="enun">
+        <h3>Classe Article</h3>
+        <p>Crea la classe <strong>Article</strong> amb els atributs:</p>
+        <ul>
+          <li><strong>codi</strong>: <em>string</em> (4 caràcters),</li>
+          <li><strong>descripcio</strong>: <em>string</em>,</li>
+          <li><strong>unitats</strong>: <em>int</em> (no pot ser negatiu),</li>
+          <li><strong>preu</strong>: <em>float</em> (no pot ser inferior a 10 cèntims),</li>
+          <li><strong>iva</strong>: <em>int</em> (només pot ser 0, 4, 5, 10 o 21) representa el tant per cent d'IVA.</li>
+        </ul>
+        <p>Ha de tenir un constructor per inicialitzar els atributs anteriors.<br>
+          S'han de fer totes les comprovacions necessàries i no crear l'objecte si alguna dada no és correcta.</p>
+        <p>Ha de tenir un mètode per obtenir el preu final multiplicant el preu per les unitats i sumant l'IVA.</p>
+        <p>S'han de crear <em>getters</em> per totes les propietats i <em>setters</em> pels atributs <strong>unitats</strong>, <strong>preu</strong> i <strong>IVA</strong>.<br>
+          Els <em>setters</em> han de verificar que les dades siguin correctes. Si no ho són, no actualitzaran l'atribut corresponent i retornaran <em><strong>false</strong></em>.</p>
+        <p>El mètode <strong>toString()</strong> ha de retornar un <em>string</em> amb el format <strong>codi : descripcio : preuFinal</strong>.<br>
+          El preu final s'ha de mostrar en el format local (2 decimals separats per coma i el símbol de l'€: <strong>12,50 €</strong>).</p>
+        <h4>Classe Cistella</h4>
+        <p>Crea la classe <strong>Cistella</strong> amb un <em>array</em> per guardar 5 articles.<br>
+          A més del mètode <strong>main()</strong>, ha de tenir un mètode per demanar les dades dels articles a l'usuari.<br>
+          Si alguna dada no és correcta o es produeix algun error, no s'ha de crear l'article ni afegir-lo a l'<em>array</em>.</p>
+        <p>Afegeix també un mètode per sumar i mostrar el total dels articles comprats.</p>
+        <p><strong>És molt recomanable utilitzar la introducció automàtica de dades des d'un arxiu per fer les proves!</strong></p>
+      </div>
+      <div class="enun">
+        <h3>Taller d'ordinadors</h3>
+        <p>Per muntar un ordinador de sobretaula cal triar, com a mínim:</p>
+        <ul>
+          <li>Un monitor</li>
+          <li>Un teclat</li>
+          <li>Un ratolí</li>
+          <li>Una torre</li>
+        </ul>
+        <p>Crea les classes <strong>Monitor</strong>, <strong>Teclat</strong>, <strong>Ratoli</strong> i <strong>Torre</strong> amb els atributs i mètodes que consideris necessaris.<br>
+          Com a mínim han de tenir marca, model, preu i algunes característiques interessants.</p>
+        <p>Crea uns quants monitors, teclats, ratolins i torres (amb 2 o 3 de cada n'hi ha prou, no cal crear <em>arrays</em>).</p>
+        <p>Crea la classe <strong>Ordinador</strong> que tingui com atributs un monitor, un teclat, un ratoli i una torre.</p>
+        <p>També ha de tenir un mètode per calcular el preu final i un altre per retornar les característiques.</p>
+        <p>Fes una classe de prova per crear un ordinador triant els diferents components.<br>
+          Un cop creat, s'hauran de mostrar les característiques i el preu total.</p>
+        <p>Opcionalment, pots crear la classe <strong>Taller</strong> amb un menú per triar els components de l'ordinador.<br>
+          Igual que abans, un cop triats els components, haurà de mostrar les característiques i el preu final.</p>
+      </div>
+    </section>
+  </body>
+</html>

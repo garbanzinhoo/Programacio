@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Operadors de Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Operadors de Java</header>
+    <section>
+      <h2>Precedència dels operadors</h2>
+      <p>Si no es posen parèntesis, les operacions s'executen en el següent ordre:</p>
+      <ul>
+      </ul>
+      <ol>
+        <li>Operadors unaris (signe <span class="c_comanda">-</span>, increment <span class="c_comanda">++</span>, decrement <span class="c_comanda">--</span>)</li>
+        <li>Multiplicació, divisió i residu (<span class="c_comanda">*</span>, <span class="c_comanda">/</span>, <span class="c_comanda">%</span>)</li>
+        <li>Suma i resta (<span class="c_comanda">+</span>, <span class="c_comanda">-</span>)</li>
+        <li>Relacionals (<span class="c_comanda">&lt;</span>, <span class="c_comanda">&gt;</span>, <span class="c_comanda">&lt;=</span>, <span class="c_comanda">&gt;=</span>, <span class="c_comanda">==</span>, <span class="c_comanda">!=</span>)</li>
+        <li>Lògics (<span class="c_comanda">!</span>, <span class="c_comanda">&amp;&amp;</span>, <span class="c_comanda">||</span>)</li>
+      </ol>
+      <div class="p_important">
+        <p> Igual que en matemàtiques, la prioritat es pot modificar utilitzant parèntesis.<br>
+          Fins i tot en expressions simples, és convenient utilitzar parèntesis per indicar l'ordre de les operacions.</p>
+        <p class="p_codi">int a = 2 * 3 + 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // a = 7<br>
+          int b = 1 + 2 * 3;&nbsp; &nbsp; &nbsp; // b = 7<br>
+          int c = 2 * (3 + 1);&nbsp;&nbsp;&nbsp; // c = 8</p>
+      </div>
+      <p> En el cas d'operadors que tinguin la mateixa precedència, s'executa primer el que es troba més a l'esquerra en l'expressió: </p>
+      <p class="p_codi">float a = 10 / 5 * 3;&nbsp;&nbsp;&nbsp;&nbsp; // a = 6.0</p>
+      <h3>Precedència i arrodoniment en les operacions amb enters</h3>
+      <div class="p_important">
+        <p>En l'exemple anterior pot semblar que és el mateix fer <strong>10 / 5 * 3</strong> que <strong>10 * 3 / 5</strong> (i seria així amb nombres reals) però, què passa amb la següent operació?</p>
+        <p class="p_codi">int b = 10 / 3 * 3;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>b = 9.0</strong><br>
+          int c = 10 * 3 / 3;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>c = 10.0</strong></p>
+      </div>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

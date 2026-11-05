@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Estructures condicionals (II)">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Estructures condicionals (II)</header>
+    <section>
+      <h2>Condicionals encadenat (amb més de dos blocs alternatius)</h2>
+      <p>Si hi ha més de dos possibles blocs cal utilitzar aquesta estructura:</p>
+      <p><img alt="" src="./imatges/If3.svg" style="width:30em" class="noborder"></p>
+      <p>El codi equivalent seria:</p>
+      <p class="p_codi"><strong>if (codi == 1234)</strong> descompte = 10;<br>
+        <strong>else if (codi == 5678)</strong> descompte = 5;<br>
+        <strong>else</strong> descompte = 0;</p>
+      <p>O també:</p>
+      <p class="p_codi"><strong>if (codi == 1234)</strong><br>
+        &nbsp;&nbsp;&nbsp; descompte = 10;<br>
+        <strong>else if (codi == 5678)</strong><br>
+        &nbsp;&nbsp;&nbsp; descompte = 5;<br>
+        <strong>else</strong><br>
+        &nbsp;&nbsp;&nbsp; descompte = 0;</p>
+      <p>Es poden afegir tants <span class="c_comanda">else if (condicio)</span> com sigui necessari.</p>
+      <p>No és imprescindible posar el bloc <span class="c_comanda">else</span>, però si es posa, només pot haver-hi un i s'ha de posar al final.<br>
+        Aquest bloc s'executarà si no es compleix cap de les condicions anteriors.</p>
+      <p>Com sempre, és molt recomanable posar les claus per indicar cada bloc:<br>
+      </p>
+      <p class="p_codi"><strong>if</strong> (codi == 1234) <strong>{</strong><br>
+        &nbsp;&nbsp;&nbsp; descompte = 10;<br>
+        &nbsp;&nbsp;&nbsp; alert("S'aplicarà descompte PLUS");<br>
+        <strong>}</strong> <strong>else if</strong> (codi == 5678) <strong>{</strong><br>
+        &nbsp;&nbsp;&nbsp; descompte = 5;<br>
+        &nbsp;&nbsp;&nbsp; alert("S'aplicarà descompte");<strong></strong><br>
+        <strong>}</strong> <strong>else</strong> <strong>{</strong><br>
+        &nbsp;&nbsp;&nbsp; descompte = 0;<br>
+        &nbsp;&nbsp;&nbsp; alert("NO s'aplicarà descompte");<strong></strong><strong></strong><br>
+        <strong>}</strong></p>
+      <div class="p_important">
+        <p>Encara que més d'una condició es compleixi, només s'executa un dels blocs:</p>
+        <p class="p_codi">if (<strong>nota &lt;= 5</strong>)<br>
+          &nbsp;&nbsp;&nbsp; // Bloc 1<br>
+          else if (<strong>nota &gt;= 5 &amp;&amp; nota &lt; 8</strong>)<br>
+          &nbsp;&nbsp;&nbsp; // Bloc 2<br>
+          else<br>
+          &nbsp;&nbsp;&nbsp; // Bloc 3</p>
+        <p>Si la nota és 5, es compleix tant la condició 1 com la 2, però només s'executa la primera que és certa.<br>
+          A més, què passa si la nota és inferior a 0 o superior a 10?<br>
+          <strong>Sempre s'han d'evitar aquestes situacions fixant correctament els límits!</strong></p>
+      </div>
+      <h3>Condicionals amb rangs de valors contigus</h3>
+      <p>Si hi ha diferents rangs de valors contigus, la millor forma de determinar en quin rang es troba un valor és:</p>
+      <p class="p_codi">if (<strong>nota &lt; 0</strong>)<br>
+        &nbsp;&nbsp;&nbsp; // Bloc 1 (error: nota &lt; 0)<br>
+        else if (<strong>nota &lt; 5</strong>)<br>
+        &nbsp;&nbsp;&nbsp; // Bloc 1: entre 0 i 4.999999 (suspès)<br>
+        else if (<strong>nota &lt; 8</strong>)<br>
+        &nbsp;&nbsp;&nbsp; // Bloc 2: entre 5 i 7.999999 (aprovat)<br>
+        else if (<strong>nota &lt;= 10</strong>)<br>
+        &nbsp;&nbsp;&nbsp; // Bloc 3: entre 8 i 10 (excel·lent)<br>
+        else<br>
+        &nbsp;&nbsp;&nbsp; // Bloc 4 (error: nota &gt; 10)</p>
+      <p>D'aquesta forma s'evita que pugui haver-hi solapament o rangs buits.</p>
+      <div class="p_important">
+        <p>S'ha d'evitar la següent forma de codificar aquest tipus de condicions:</p>
+        <p class="p_codi">if (<strong>nota &gt;= 0 &amp;&amp; nota &lt; 5</strong>)<br>
+          &nbsp;&nbsp;&nbsp; // Bloc 1<br>
+          if (<strong>nota &gt;= 5 &amp;&amp; nota &lt; 8</strong>)<br>
+          &nbsp;&nbsp;&nbsp; // Bloc 2<br>
+          if (<strong>nota &gt;= 8 &amp;&amp; nota &lt;= 10</strong>)<br>
+          &nbsp;&nbsp;&nbsp; // Bloc 3</p>
+        <p>El codi és menys eficient i és més fàcil cometre errors.</p>
+      </div>
+      <h2>Condicionals niuats</h2>
+      <p></p>
+      <p>També es poden aniuar condicions dins d'altres condicions i realitzar comparacions múltiples:</p>
+      <p class="p_codi"><strong>if</strong> (a &gt; b) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>1ª</strong> condició<br>
+        &nbsp; <strong>if</strong> (b &gt; c) {&nbsp;&nbsp;&nbsp; // <strong>2ª</strong> condició<br>
+        &nbsp;&nbsp;&nbsp; // Sentències que s'executaran <strong>si la 1ª condició és certa</strong> i <strong>la segona també</strong><br>
+        &nbsp; } <strong>else</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Sentències que s'executaran <strong>si la 1ª condició és certa</strong> i <strong>la segona falsa</strong><br>
+        &nbsp; }<br>
+        } <strong>else</strong> {<br>
+        &nbsp; // Sentències que s'executaran <strong>si la 1ª condició és falsa</strong><br>
+        }</p>
+      <div class="p_important">
+        <p>En alguns casos, un condicional niuat es pot simplificar fàcilment.<br>
+          El següent codi...</p>
+        <p class="p_codi"><strong>if (x == 0)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; <strong>if (y == 0)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("X i Y són zero");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <p>... es pot substituir per:</p>
+        <p class="p_codi"><strong>if (x == 0 &amp;&amp; y == 0)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; alert("X i Y són zero");<br>
+          }</p>
+      </div>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

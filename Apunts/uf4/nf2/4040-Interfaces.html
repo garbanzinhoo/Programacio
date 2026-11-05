@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació orientada a objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació orientada a objectes</header>
+    <section>
+      <h2>Interfícies</h2>
+      <p>Java no permet que una subclasse hereti de més d'una superclasse.<br>
+        La solució està en utilitzar interfícies.</p>
+      <p>Amb les interfícies es poden afegir noves funcionalitats a una classe definint els mètodes de les interfícies que es vulguin implementar.</p>
+      <p>Les interfícies són similars a les classes però sense atributs i amb tots els mètodes abstractes.<br>
+        Una classe pot implementar més d'una interfície.</p>
+      <h3>Definir una interfície</h3>
+      <p>Es fa de forma similar a una classe però canviant la paraula <span
+class="c_comanda">class</span> per <span class="c_comanda">interface</span>.</p>
+      <p>En els mètodes no cal posar el modificador d'accés (<strong>públic</strong>, <strong>private</strong>...).<br>
+        Tampoc s'ha posar cap codi: després de definir el mètode i paràmetres, s'acaba la línia amb <span
+class="c_comanda">;</span>.</p>
+      <p class="p_codi"><strong>interface Jugador</strong> {<br>
+        &nbsp;&nbsp;&nbsp; <strong>void caminar();</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>boolean buscar(Object o);</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>void atacar(Object o);</strong><br>
+        }</p>
+      <h3>Implementar una interfície</h3>
+      <p class="p_codi">class Guerrer <strong>implements Jugador</strong> {<br>
+        &nbsp;&nbsp;&nbsp; <strong>public void caminar()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; posicio += 10;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>public boolean buscar(Object o)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (this.distancia(o) &lt; 30) return true;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return false;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>public void atacar(Objecte o)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (this.distancia(o) &lt; 20) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; o.energia -= 50;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; this.energia += 50;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_important">Els mètodes que implementen una interfície només poden ser públics!</p>
+      <h2>Interfícies de Java</h2>
+      <p>La llibreria de Java inclou moltes interfícies.</p>
+      <h4>interface Comparable</h4>
+      <p>Aquesta interfície serveix per poder comparar objectes indicant l'ordre de dos elements (si un és més petit, més gran o igual que l'altre).<br>
+        Els objectes que implementin aquesta interfície podran ser ordenats utilitzant mètodes d'ordenació dels conjunts de dades (<em>arrays</em> i altres que es veuran més endavant).</p>
+      <p>L'únic mètode que cal implementar en les classes que vulguin utilitzar aquesta interfície és <span
+class="c_comanda">compareTo()</span>.</p>
+      <p>Per poder-la utilitzar amb un tipus d'objecte específic, cal indicar el tipus de la següent forma:</p>
+      <p class="p_codi">class Persona <strong>implements Comparable&lt;Persona&gt;</strong> {<br>
+        &nbsp;&nbsp;&nbsp; public int <strong>compareTo(Persona p)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (this.edat &lt; p.edat) return -1;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; else if (this.edat &gt; p.edat) return 1;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else return 0;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p>Per ordenar un <em>array</em> de persones, seria tan fàcil com fer:</p>
+      <p class="p_codi">Persona[] persones = new Persona[10];<br>
+        // ... crear persones i afegir-les a l'<em>array</em> ...<br>
+        <strong>Arrays.sort(persones);</strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

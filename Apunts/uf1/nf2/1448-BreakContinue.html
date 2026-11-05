@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Modificar la seqüència d'un bucle">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Modificar la seqüència d'un bucle</header>
+    <section>
+      <h2>Modificació de la seqüència dins dels bucles</h2>
+      <h3>Comanda "break"</h3>
+      <p>Serveix per trencar la seqüència del codi que hi ha dins d'un bucle fent que aquest acabi la seva execució.</p>
+      <p>En el següent exemple, quan la variable <span class="c_comanda">n</span> arriba a un múltiple de <span class="c_comanda">7</span>, s'acaba el bucle, encara que no es compleixi la condició de finalització (que la variable <span class="c_comanda">i</span> arribi a <span class="c_comanda">30</span>):</p>
+      <p class="p_codi">let i = 0, multiple = 7, n;<br>
+        <br>
+        while (i &lt; 30) {<br>
+        &nbsp;&nbsp;&nbsp; n = (i * 2) + 1;<br>
+        &nbsp;&nbsp;&nbsp; if (n % multiple == 0) <strong>break;</strong><br>
+        &nbsp;&nbsp;&nbsp; i++;<br>
+        }</p>
+      <div class="p_important">
+        <p>La comanda <span class="c_comanda">break</span> pot servir per trencar un bucle aparentment infinit:</p>
+        <p class="p_codi">while (<strong>true</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; n = prompt("Escriu un número enter positiu");<br>
+          &nbsp;&nbsp;&nbsp; if (n &lt; 0) <strong>break</strong>;<br>
+          &nbsp;&nbsp;&nbsp; alert("El doble de " + n + " és " + (n * 2));<br>
+          }</p>
+      </div>
+      <h3>Comanda "continue"</h3>
+      <p>Serveix per saltar des d'on es troba aquesta sentència fins al final del codi del bucle, just abans de modificar la variable de control.</p>
+      <p>En el següent exemple, només escriu múltiple de 5 quan la variable <span class="c_comanda">i</span> sigui múltiple de <span class="c_comanda">5</span>.</p>
+      <p class="p_codi">for (let i = 0; i &lt; 30; i++) {<br>
+        &nbsp; if (i % 5 != 0) <strong>continue;</strong><br>
+        &nbsp; alert(i + " és múltiple de 5");<br>
+        }</p>
+      <div class="p_important">
+        <p>En molts casos, tant el <span class="c_comanda">continue</span> com el <span class="c_comanda">break</span> es poden evitar fent alguna petita modificació.<br>
+          En l'exemple anterior, es podria fer:</p>
+        <p class="p_codi">for (let i = 0; i &lt; 30; i++) {<br>
+          &nbsp; if (i % 5 == 0) alert(i + " és múltiple de 5");<br>
+          }</p>
+        <p>Però en altres casos, intentar eliminar-los pot complicar excessivament el codi.<br>
+          Es podria eliminar fàcilment el <span class="c_comanda">break</span> del següent codi?</p>
+        <p class="p_codi">let i = 1;<br>
+          <br>
+          while (i &lt; 50) {<br>
+          &nbsp; if (i % 7 == 0) {<br>
+          &nbsp;&nbsp;&nbsp; if (i % 5 == 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("El primer múltiple de 7 i de 5 és " + i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>break;</strong><br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; else {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp; if (i % 3 == 0) alert(i + " és múltiple de 3 i de 7 però no de 5");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else alert(i + " és múltiple de 7 però no ho és de 3 ni de 5");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp; }<br>
+          &nbsp; i++;<br>
+          }<br>
+          alert("He provat " + i + " valors");</p>
+      </div>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

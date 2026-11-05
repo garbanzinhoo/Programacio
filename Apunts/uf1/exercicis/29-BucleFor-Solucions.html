@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">for (int i = 25; i &lt;= 100; i += 5) {<br>
+          &nbsp;&nbsp;&nbsp; alert(i + " ");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// Múltiples de 2, 3 o 5<br>
+          for (int i = 1; i &lt;= 100; i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (i % 2 == 0) alert(i + " és múltiple de 2");<br>
+          &nbsp;&nbsp;&nbsp; if (i % 3 == 0) alert(i + " és múltiple de 3");<br>
+          &nbsp;&nbsp;&nbsp; if (i % 5 == 0) alert(i + " és múltiple de 5");<br>
+          }<br>
+          <br>
+          // Múltiples de 2, 3 i 5 (de tots)<br>
+          for (int i = 1; i &lt;= 100; i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (i % 2 == 0 &amp;&amp; i % 3 == 0 &amp;&amp; i % 5 == 0)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert(i + " és múltiple de 2, 3 i 5");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">for (int i = 10; i &gt;= 0; --i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(i + " ");<br>
+          &nbsp;&nbsp;&nbsp; Thread.sleep(1000);<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int n = parseInt(prompt("Introdueix un número enter positiu: "));<br>
+          <br>
+          for (int i = 1; i &lt;= 10; i++) {<br>
+          &nbsp;&nbsp;&nbsp; alert(n + " x " + i + " = " + (n * i));<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int min, max, maxIntents;<br>
+          int num, resposta = 0, intents = 0;<br>
+          <br>
+          System.out.print("Entre quins números he de pensar? ");<br>
+          min = scan.nextInt();<br>
+          max = scan.nextInt();<br>
+          System.out.print("En quants intents ho vols fer? ");<br>
+          maxIntents = scan.nextInt();<br>
+          <br>
+          num = (int)(Math.random() * (max - min + 1) + min);<br>
+          for (int i = 0; i &lt; maxIntents; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("Introdueix un número entre %d i %d: ", min, max);<br>
+          &nbsp;&nbsp;&nbsp; resposta = scan.nextInt();<br>
+          &nbsp;&nbsp;&nbsp; scan.nextLine();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; ++intents;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (num &gt; resposta) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("És més gran");<br>
+          &nbsp;&nbsp;&nbsp; } else if (num &lt; resposta) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("És més petit");<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          if (resposta == num)<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Has encertat en " + intents + " intents");<br>
+          else<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Se t'han acabat els intents\nEra el " + num);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">System.out.print("Quants asteriscos vols? ");<br>
+          int n = Integer.parseInt(scan.nextLine());<br>
+          <br>
+          for (int i = 0; i &lt; n; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("*");<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">System.out.print("Quants asteriscos vols? ");<br>
+          int n = Integer.parseInt(scan.nextLine());<br>
+          <br>
+          for (int i = 0; i &lt; n; i++) {<br>
+          &nbsp;&nbsp;&nbsp; for (int j = 0; j &lt;= i; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("*");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// Incrementant de 1 en 1<br>
+          for (double x = -5; x &lt;= 5; x++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("(%.1f|%.1f) ", x, Math.pow((x-2)/5,2)+4);<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // En increments de 0.5<br>
+          for (double x = -5; x &lt;= 5; x += 0.5) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("(%.1f|%.1f) ", x, Math.pow((x-2)/5,2)+4);<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució barres horitzontals</h6>
+        <p class="p_codi">final int N1 = 8, N2 = 12, N3 = 5;<br>
+          <br>
+          System.out.printf("Valors: %d, %d i %d\n", N1, N2, N3);<br>
+          <br>
+          for (int i = 0; i &lt; 2; i++) {<br>
+          &nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; N1; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("#");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          for (int i = 0; i &lt; 2; i++) {<br>
+          &nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; N2; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("O");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          for (int i = 0; i &lt; 2; i++) {<br>
+          &nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; N3; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("X");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }</p>
+        <h6>Solució barres verticals invertides</h6>
+        <p class="p_codi">final int N1 = 8, N2 = 12, N3 = 5;<br>
+          int max;<br>
+          <br>
+          System.out.printf("Valors: %d, %d i %d\n", N1, N2, N3);<br>
+          <br>
+          if (N1 &gt;= N2 &amp;&amp; N1 &gt;= N3) max = N1;<br>
+          else if (N2 &gt;= N1 &amp;&amp; N2 &gt;= N3) max = N2;<br>
+          else max = N3;<br>
+          <br>
+          for (int i = 0; i &lt; max; i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (i &lt; N1) System.out.print("##### ");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (i &lt; N2) System.out.print("OOOOO ");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (i &lt; N3) System.out.print("XXXXX ");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.print("&nbsp;&nbsp;&nbsp;&nbsp; ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }</p>
+        <h6>Solució barres verticals</h6>
+        <p class="p_codi">final int N1 = 8, N2 = 12, N3 = 5;<br>
+          int max;<br>
+          <br>
+          System.out.printf("Valors: %d, %d i %d\n", N1, N2, N3);<br>
+          <br>
+          if (N1 &gt;= N2 &amp;&amp; N1 &gt;= N3) max = N1;<br>
+          else if (N2 &gt;= N1 &amp;&amp; N2 &gt;= N3) max = N2;<br>
+          else max = N3;<br>
+          <br>
+          for (int i = 0; i &lt; max; i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (i &gt;= max - N1) System.out.print("##### ");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (i &gt;= max - N2) System.out.print("OOOOO ");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.print("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (i &gt;= max - N3) System.out.print("XXXXX ");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.print("&nbsp;&nbsp;&nbsp;&nbsp; ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">for (int i = 1; i &lt;= 10; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (int j = 1; j &lt;= 10; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("%4d", i * j);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final int DARDS = 4000000;<br>
+          double x, y;<br>
+          int puntsDins = 0;<br>
+          <br>
+          for (int i = 0; i &lt; DARDS; ++i)&nbsp; {<br>
+          &nbsp;&nbsp;&nbsp; x = Math.random() * 2 -1;<br>
+          &nbsp;&nbsp;&nbsp; y = Math.random() * 2 -1;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (Math.sqrt(x * x + y * y) &lt;= 1) ++puntsDins;<br>
+          }<br>
+          <br>
+          System.out.printf("Resultat amb %d dards: %d\n", DARDS, puntsDins);</p>
+        <div class="p_important">
+          <p>Es pot calcular el temps que ha trigat important els paquets <span class="c_comanda">java.time.Instant</span> i <span class="c_comanda">java.time.Duration</span> i afegint el següent codi:</p>
+          <p class="p_codi">Instant ini = Instant.now();<br>
+            <br>
+            // POSAR AQUÍ EL CODI QUE ES VOL MESURAR<br>
+            <br>
+            Instant fi = Instant.now();<br>
+            Duration temps = Duration.between(ini, fi);<br>
+            System.out.println("Temps: " + temps.toMillis() + "ms");</p>
+        </div>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final double PRECISIO = 0.001;<br>
+          double x, y;<br>
+          int puntsDins = 0;<br>
+          <br>
+          for (x = -1; x &lt; 1; x += PRECISIO)&nbsp; {<br>
+          &nbsp;&nbsp;&nbsp; for (y = -1; y &lt; 1; y += PRECISIO)&nbsp; {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (Math.sqrt(x * x + y * y) &lt;= 1) ++puntsDins;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          System.out.printf("Resultat amb precisió %.3f: %d", PRECISIO, puntsDins);</p>
+        <p>Una forma ràpida per calcular més decimals:</p>
+        <p class="p_codi">// Solució basada en: pi/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 …<br>
+          double sum = 0;<br>
+          <br>
+          for(int i = 1; i &lt; 100000000; i++) {<br>
+          &nbsp;&nbsp;&nbsp; if(i % 2 == 0)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum += -1 / (2f * i - 1);<br>
+          &nbsp;&nbsp;&nbsp; else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum += 1 / (2f * i - 1);<br>
+          }<br>
+          <br>
+          System.out.println("Resultat: " + (4 * sum));</p>
+        <p>Una forma més ràpida i que permet especificar el nombre de decimals (definit en la variable <span class="c_comanda">nDigits</span>):</p>
+        <p class="p_codi">// Solució per calcular N decimals utilitzant el mètode de l’arc tangent<br>
+          import java.math.BigInteger;<br>
+          import java.time.Instant;<br>
+          import java.time.Duration;<br>
+          &nbsp;<br>
+          public class Main {<br>
+          &nbsp;&nbsp;&nbsp; public static BigInteger ArctanDenom(BigInteger d, int nDigits) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BigInteger total = (BigInteger.TEN.pow(nDigits)).divide(d);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BigInteger term = total;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BigInteger n = BigInteger.ZERO;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (term.compareTo(BigInteger.ZERO) != 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n = n.add(BigInteger.ONE);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term = term.divide(d.multiply(d.negate()));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total = total.add(term.divide(n.add(n).add(BigInteger.ONE)));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("ArctanDenom(%d) took %d iterations\n", d, n);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return total;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;<br>
+          &nbsp;&nbsp;&nbsp; public static void main(final String[] args) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String resultat;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int xDigits = 10;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>int nDigits = 10000;</strong><br>
+          &nbsp;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BigInteger a4 = new BigInteger("4");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BigInteger a5 = new BigInteger("5");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BigInteger a239 = new BigInteger("239");<br>
+          &nbsp;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BigInteger pi = a4.multiply((a4.multiply(ArctanDenom(a5, nDigits + xDigits))).subtract(ArctanDenom(a239, nDigits + xDigits)));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Instant ini = Instant.now();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pi = pi.divide(BigInteger.TEN.pow(xDigits));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat = pi.toString();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Instant fi = Instant.now();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Duration temps = Duration.between(ini, fi);<br>
+          &nbsp;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(resultat);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Temps: " + temps.toMillis() + "ms");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Decimals: " + (resultat.length() - 1));<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int i, j, files, columnes;<br>
+          <br>
+          // Introduir mida<br>
+          System.out.print("Introdueix el nombre de files i de columnes de la matriu: ");<br>
+          files = scan.nextInt();<br>
+          columnes = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          // Crear i inicialitzar array<br>
+          int[][] array = new int[files][columnes];<br>
+          for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i][j] = (int)(Math.random() * 10);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array<br>
+          for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf(" %d ", array[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          <br>
+          // Crear array per guardar la suma de cada fila, fer la suma i guardar<br>
+          int[] sumaFiles = new int[files];<br>
+          int totalFila;<br>
+          for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; totalFila = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; totalFila += array[i][j];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; sumaFiles[i] = totalFila;<br>
+          }<br>
+          <br>
+          // Crear array per guardar la suma de cada columna, fer la suma i guardar<br>
+          int[] sumaColumnes = new int[columnes];<br>
+          int totalColumna;<br>
+          for (j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp; totalColumna = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; totalColumna += array[i][j];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; sumaColumnes[j] = totalColumna;<br>
+          }<br>
+          <br>
+          // Sumar el total de les files i de les columnes i comparar<br>
+          int totalFiles = 0;<br>
+          for (i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; totalFiles += sumaFiles[i];<br>
+          }<br>
+          <br>
+          int totalColumnes = 0;<br>
+          for (i = 0; i &lt; columnes; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; totalColumnes += sumaColumnes[i];<br>
+          }<br>
+          <br>
+          if (totalFiles == totalColumnes) System.out.println("La suma dona el mateix: " + totalFiles);<br>
+          else System.out.println("La suma dona diferent: " + totalFiles + " vs " + totalColumnes);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final int F = 6;<br>
+          final int C = 4;<br>
+          int i, j;&nbsp;&nbsp; // Definir-les aquí per no haver-les de crear cada cop que s'utilitzen<br>
+          float total;<br>
+          int[][] notes = {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {6, 5, 7, 8},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {5, 4, 7, 7},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {7, 6, 5, 6},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {5, 3, 4, 5},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {4, 6, 5, 6},<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {7, 7, 8, 9}<br>
+          };<br>
+          float[] mitjanaAlumnes = new float[F];<br>
+          float[] mitjanaUFs = new float[C];<br>
+          <br>
+          // Mostrar totes les notes (Alumnes x UFs)<br>
+          System.out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UF1&nbsp; UF2&nbsp; UF3&nbsp; UF4");<br>
+          for (i = 0; i &lt; F; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Alumne " + (i + 1) + " ");<br>
+          &nbsp;&nbsp;&nbsp; //System.out.printf("%5d%5d%5d%5d", notes[i][0], notes[i][1], notes[i][2], notes[i][3]);<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; C; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("%5d", notes[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          <br>
+          // Calcular mitjana alumnes<br>
+          for (i = 0; i &lt; F; i++) {<br>
+          &nbsp;&nbsp;&nbsp; //total = notes[i][0] + notes[i][1] + notes[i][2] + notes[i][3];<br>
+          &nbsp;&nbsp;&nbsp; total = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; C; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total += notes[i][j];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; mitjanaAlumnes[i] = total / C;<br>
+          }<br>
+          <br>
+          // Mostrar mitjanes alumnes<br>
+          System.out.println("\nMitjanes alumnes");<br>
+          for (i = 0; i &lt; F; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("Alumne %d&nbsp;&nbsp; %5.1f\n", (i + 1), mitjanaAlumnes[i]);<br>
+          }<br>
+          <br>
+          // Calcular mitjana UFs<br>
+          for (j = 0; j &lt; C; j++) {<br>
+          &nbsp;&nbsp;&nbsp; total = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; F; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total += notes[i][j];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; mitjanaUFs[j] = total / F;<br>
+          }<br>
+          <br>
+          // Mostrar mitjanes UFs<br>
+          System.out.println("\nMitjanes UFs");<br>
+          for (i = 0; i &lt; C; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("UF %d&nbsp;&nbsp; %5.1f\n", (i + 1), mitjanaUFs[i]);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final int HOBBIES = 4;<br>
+          final int MENJARS = 6;<br>
+          final int DIES = 5;<br>
+          final int APATS = 3;<br>
+          final String[] DIES_SETMANA = {<br>
+          &nbsp;&nbsp;&nbsp; "Dilluns",<br>
+          &nbsp;&nbsp;&nbsp; "Dimarts",<br>
+          &nbsp;&nbsp;&nbsp; "Dimecres",<br>
+          &nbsp;&nbsp;&nbsp; "Dijous",<br>
+          &nbsp;&nbsp;&nbsp; "Divendres"<br>
+          };<br>
+          <br>
+          int i, j;&nbsp;&nbsp; // Definir-les aquí per no haver-les de crear cada cop que s'utilitzen<br>
+          String menjar;<br>
+          String hobby;<br>
+          String[] hobbies = new String[HOBBIES];<br>
+          String[] menjars = new String[MENJARS];<br>
+          String[] planing = new String[5][3];<br>
+          <br>
+          // Introduir hobbies<br>
+          for (i = 0; i &lt; HOBBIES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Introdueix un dels teus hobbies: ");<br>
+          &nbsp;&nbsp;&nbsp; hobbies[i] = scan.nextLine();<br>
+          }<br>
+          <br>
+          // Introduir menjars<br>
+          for (i = 0; i &lt; MENJARS; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Introdueix un dels teus menjars preferits: ");<br>
+          &nbsp;&nbsp;&nbsp; menjars[i] = scan.nextLine();<br>
+          }<br>
+          <br>
+          // Generar planificació<br>
+          for (i = 0; i &lt; DIES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; APATS; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; menjar = menjars[(int)(Math.random() * MENJARS)];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hobby = hobbies[(int)(Math.random() * HOBBIES)];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; planing[i][j] = menjar + " | " + hobby;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar planificació<br>
+          System.out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Esmorzar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dinar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sopar");<br>
+          for (i = 0; i &lt; DIES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%-12s", DIES_SETMANA[i]);<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; APATS; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; menjar = menjars[(int)(Math.random() * MENJARS)];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hobby = hobbies[(int)(Math.random() * HOBBIES)];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("%-22s", planning[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int i, j, t, fc;<br>
+          <br>
+          // Introduir mida<br>
+          System.out.print("Introdueix la mida de la matriu: ");<br>
+          fc = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          // Crear i inicialitzar array<br>
+          int[][] array = new int[fc][fc];<br>
+          t = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i][j] = ++t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf(" %2d ", array[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Omplir diagonals<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (j = i; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i][j] = ++t;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[j][i] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf(" %2d ", array[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Sumar diagonal major<br>
+          int sumaDM = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; sumaDM += array[i][i];<br>
+          }<br>
+          System.out.printf("Suma DM: %d\n", sumaDM);<br>
+          <br>
+          // Sumar diagonal major inversa<br>
+          int sumaDMI = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; sumaDMI += array[i][fc - i - 1];<br>
+          }<br>
+          System.out.printf("Suma DMI: %d\n\n", sumaDMI);<br>
+          <br>
+          // Sumar triangle inferior i superior<br>
+          int sumaTS = 0;<br>
+          int sumaTI = 0;<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = i + 1; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sumaTS += array[i][j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sumaTI += array[j][i];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          System.out.printf("Suma triangle superior: %d\nSuma triangle inferior: %d\n\n", sumaTS, sumaTI);<br>
+          <br>
+          // Omplir triangle inferior i superior amb 0<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = i + 1; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i][j] = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[j][i] = 0;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array<br>
+          for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf(" %2d ", array[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int i, j, t, fc, suma;<br>
+          boolean filesIguals, columnesIguals, diagonalsIguals, numerosTots;<br>
+          <br>
+          // Introduir mida<br>
+          //System.out.print("Introdueix la mida de la matriu: ");<br>
+          fc = scan.nextInt();<br>
+          <br>
+          while (fc != 0) {<br>
+          &nbsp;&nbsp;&nbsp; // Crear i llegir array<br>
+          &nbsp;&nbsp;&nbsp; int[][] array = new int[fc][fc];<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i][j] = scan.nextInt();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Comprovar files<br>
+          &nbsp;&nbsp;&nbsp; suma = -1;<br>
+          &nbsp;&nbsp;&nbsp; filesIguals = true;<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t += array[i][j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (suma == -1) suma = t;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (suma != t) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; filesIguals = false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Comprovar columnes<br>
+          &nbsp;&nbsp;&nbsp; suma = -1;<br>
+          &nbsp;&nbsp;&nbsp; columnesIguals = true;<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t += array[j][i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (suma == -1) suma = t;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (suma != t) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; columnesIguals = false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Comprovar diagonals<br>
+          &nbsp;&nbsp;&nbsp; diagonalsIguals = true;<br>
+          &nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t += array[i][i];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; suma = t;<br>
+          &nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t += array[i][fc - i - 1];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; if (suma != t) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; diagonalsIguals = false;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Comprovar si hi son tots els&nbsp; números<br>
+          &nbsp;&nbsp;&nbsp; numerosTots = true;<br>
+          &nbsp;&nbsp;&nbsp; boolean[] numeros = new boolean[fc * fc + 1];<br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; fc; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (j = 0; j &lt; fc; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = array[i][j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (t &gt;= 1 &amp;&amp; t &lt;= fc * fc) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (numeros[t]) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; numerosTots = false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; numeros[t] = true;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; numerosTots = false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!numerosTots) break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mostrar resultat<br>
+          &nbsp;&nbsp;&nbsp; if (filesIguals &amp;&amp; columnesIguals &amp;&amp; diagonalsIguals &amp;&amp; numerosTots) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("És un quadrat màgic");<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("No és un quadrat màgic:");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!filesIguals) System.out.println("&nbsp;&nbsp; -No totes les files sumen el mateix");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!columnesIguals) System.out.println("&nbsp;&nbsp; -No totes les columnes sumen el mateix");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!diagonalsIguals) System.out.println("&nbsp;&nbsp; -Les dues diagonals no sumen el mateix");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!numerosTots) System.out.println("&nbsp;&nbsp; -No conté tots els números");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Introduir mida<br>
+          &nbsp;&nbsp;&nbsp; //System.out.print("\nIntrodueix la mida de la matriu: ");<br>
+          &nbsp;&nbsp;&nbsp; fc = scan.nextInt();<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int i, j, k, t, f1, c1, f2, c2;<br>
+          <br>
+          // Mida de la primera matriu<br>
+          f1 = scan.nextInt();<br>
+          c1 = scan.nextInt();<br>
+          <br>
+          // Llegir primera matriu<br>
+          int[][] a1 = new int[f1][c1];<br>
+          for (i = 0; i &lt; f1; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c1; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a1[i][j] = scan.nextInt();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar primera matriu<br>
+          for (i = 0; i &lt; f1; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c1; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf(" %2d ", a1[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          System.out.println("X");<br>
+          <br>
+          // Mida de la segona matriu<br>
+          f2 = scan.nextInt();<br>
+          c2 = scan.nextInt();<br>
+          <br>
+          // Llegir segona matriu<br>
+          int[][] a2 = new int[f2][c2];<br>
+          for (i = 0; i &lt; f2; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c2; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a2[i][j] = scan.nextInt();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar segona matriu<br>
+          for (i = 0; i &lt; f2; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c2; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf(" %2d ", a2[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          System.out.println("=");<br>
+          <br>
+          // Comprovar que les columnes de la 1ª siguin igual a les files de la 2ª<br>
+          if (c1 != f2) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("No es poden multiplicar");<br>
+          &nbsp;&nbsp;&nbsp; return;<br>
+          }<br>
+          <br>
+          // Crear matriu resultat<br>
+          int[][] a3 = new int[f1][c2];<br>
+          <br>
+          // Multiplicar matrius<br>
+          for (i = 0; i &lt; f1; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c2; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (k = 0; k &lt; c1; ++k) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t += a1[i][k] * a2[k][j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a3[i][j] = t;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar a3<br>
+          for (i = 0; i &lt; f1; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (j = 0; j &lt; c2; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf(" %2d ", a3[i][j]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

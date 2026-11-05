@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Programar amb Java">
+    <meta name="keywords" content="Java">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Programar amb Java</header>
+    <section>
+      <h2>Primer programa</h2>
+      <p>El primer programa que es recomana fer quan es comença a aprendre un llenguatge és "Hola món!" (o "Hello world!" en anglès).<br>
+        Aquest programa es limita a escriure en pantalla el missatge "Hola món!".</p>
+      <p>No importa que encara no es conegui res del llenguatge, només cal copiar el codi font i seguir unes poques instruccions per comprovar que l'entorn que s'ha instal·lat funciona correctament.<br>
+        També serveix com a plantilla per fer els primers programes.</p>
+      <h3>Plantilla mínima</h3>
+      <p>Tot programa Java ha de tenir una classe principal.<br>
+        El nom de les classes ha de començar amb una lletra majúscula.</p>
+      <p class="p_important">El llenguatge Java distingeix majúscules i minúscules: les variables <span class="c_comanda">nom</span>, <span class="c_comanda">Nom</span> i <span class="c_comanda">NOM</span> són tres variables diferents.</p>
+      <p>Tota classe ha de tenir una funció <span class="c_comanda">main()</span> definida com es mostra en l'exemple.</p>
+      <p>Per fer un programa que pugui escriure en el terminal, no cal importar cap classe.<br>
+        Les possibles comandes són:</p>
+      <ul>
+        <li><span class="c_comanda">System.out.print()</span>: escriu el text o la variable que es posa com a paràmetre.</li>
+        <li><span class="c_comanda">System.out.println()</span>: igual que l'anterior però afegeix un salt de línia.</li>
+      </ul>
+      <p class="p_codi">public class <strong>Hello</strong> {<br>
+        &nbsp;&nbsp;&nbsp; public static void <strong>main</strong>(final String[] args) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Codi del programa<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>System.out.println</strong>("Hello world!");<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_important">El nom de l'arxiu on es guardi el programa ha de coincidir amb el nom de la classe, i l'extensió ha de ser <span class="c_comanda">.java</span>. En l'exemple anterior, el nom de l'arxiu hauria de ser <span class="c_arxiu">Hello.java</span>.</p>
+      <h3>Editar, compilar i executar</h3>
+      <ol>
+        <li>Escriure (o copiar) el codi en un editor de text pla.</li>
+        <li>Guardar l'arxiu amb el mateix nom que se li ha donat a la classe principal i afegir l'extensió <strong>.java</strong>.</li>
+        <li>Obrir un terminal i navegar fins la carpeta on s'ha guardat l'arxiu amb el codi font.</li>
+        <li>Compilar el codi font amb la comanda <span class="c_comanda">javac NomArxiu.java</span> (es crearà l'arxiu <span class="c_arxiu">NomArxiu.class</span>).</li>
+        <li>Executar el programa amb la comanda <span class="c_comanda">java NomArxiu</span> (no cal afegir l'extensió <strong>.class</strong>).<br>
+        </li>
+      </ol>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

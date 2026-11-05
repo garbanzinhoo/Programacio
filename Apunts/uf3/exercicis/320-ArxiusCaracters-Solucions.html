@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <p>Per provar les funcions de les solucions pots utilitzar el següent codi en la funcio <span class="c_comanda">main()</span>:</p>
+      <p class="p_desplegable p_codi">llegirParaules("./Proves/arxiuParaules.txt");<br>
+        llegirNumeros("./Proves/arxiuNumeros.txt");<br>
+        llegirLinies("./Proves/arxiuLinies.txt");<br>
+        llegirTipus("./Proves/arxiuTipus.txt");<br>
+        <br>
+        inventarUsuaris("./Proves/usuaris.txt");<br>
+        multesAparcament("./Proves/multes.txt");<br>
+        notesFinals("./Proves/notes.txt", "./Proves/notesFinals.txt");<br>
+        butlletinsNotes("./Proves/notesFinals.txt");</p>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void llegirParaules(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!f.exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n&nbsp;&nbsp; Llegir totes les paraules");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>llegirParaules1(f);</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n&nbsp;&nbsp; Llegir fins que trobi ---");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>llegirParaules2(f);</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n&nbsp;&nbsp; Llegir N paraules i mostrar les de +5 lletres");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>llegirParaules3(f);</strong><br>
+          <br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static <strong>void llegirParaules1(File f)</strong> throws FileNotFoundException {<br>
+          &nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(f);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (reader.hasNext()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(reader.next());<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; reader.close();<br>
+          }<br>
+          <br>
+          static <strong>void llegirParaules2(File f)</strong> throws FileNotFoundException {<br>
+          &nbsp;&nbsp;&nbsp; String s;<br>
+          &nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(f);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (reader.hasNext()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = reader.next();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (s.equals("---")) break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(s);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; reader.close();<br>
+          }<br>
+          <br>
+          static <strong>void llegirParaules3(File f)</strong> throws FileNotFoundException {<br>
+          &nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(f);<br>
+          &nbsp;&nbsp;&nbsp; int i = 0;<br>
+          &nbsp;&nbsp;&nbsp; int n = reader.nextInt();<br>
+          &nbsp;&nbsp;&nbsp; String[] paraules = new String[n];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (reader.hasNext() &amp;&amp; i &lt; n) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraules[i] = reader.next();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++i;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (i = 0; i &lt; n; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (paraules[i].length() &gt; 5) System.out.println(paraules[i]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; reader.close();<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void llegirNumeros(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!f.exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n&nbsp;&nbsp; Llegir tots els numeros");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>llegirNumeros1(f);</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n&nbsp;&nbsp; Llegir fins que trobi un negatiu");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>llegirNumeros2(f);</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n&nbsp;&nbsp; Llegir N numeros i ordenar");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>llegirNumeros3(f);</strong><br>
+          <br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static <strong>void llegirNumeros1(File f)</strong> throws FileNotFoundException {<br>
+          &nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(f);<br>
+          &nbsp;&nbsp;&nbsp; int n = 0;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (reader.hasNext()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(reader.nextInt() + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++n;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (n &gt;= 6) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; if (n &gt; 0) System.out.println();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; reader.close();<br>
+          }<br>
+          <br>
+          static <strong>void llegirNumeros2(File f)</strong> throws FileNotFoundException {<br>
+          &nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(f);<br>
+          &nbsp;&nbsp;&nbsp; int v, n = 0;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (reader.hasNext()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; v = reader.nextInt();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (v &lt; 0) break;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++n;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(v + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (n &gt;= 6) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; if (n &gt; 0) System.out.println();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; reader.close();<br>
+          }<br>
+          <br>
+          static <strong>void llegirNumeros3(File f)</strong> throws FileNotFoundException {<br>
+          &nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(f);<br>
+          &nbsp;&nbsp;&nbsp; int i = 0, j;<br>
+          &nbsp;&nbsp;&nbsp; int n = reader.nextInt();<br>
+          &nbsp;&nbsp;&nbsp; int[] numeros = new int[n];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (reader.hasNext() &amp;&amp; i &lt; n) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; numeros[i] = reader.nextInt();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++i;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>ordenar(numeros);</strong><br>
+          <br>
+          &nbsp;&nbsp;&nbsp; i = 0; j = 0;<br>
+          &nbsp;&nbsp;&nbsp; while (i &lt; n) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(numeros[i] + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++i; ++j;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (j &gt;= 6) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; if (j &gt; 0) System.out.println();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; reader.close();<br>
+          }<br>
+          <br>
+          static <strong>void ordenar(int[] n)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; int t;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; n.length - 1; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int j = i + 1; j &lt; n.length; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (n[i] &gt; n[j]) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = n[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n[i] = n[j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n[j] = t;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void llegirLinies(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(f);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n&nbsp;&nbsp; Llegir linies");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (reader.hasNext()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (<strong>llegirCamps(reader)</strong> &amp;&amp; reader.hasNext()) System.out.println("------");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reader.close();<br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static <strong>boolean llegirCamps(Scanner reader)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; String[] camps;<br>
+          &nbsp;&nbsp;&nbsp; String[] data;<br>
+          &nbsp;&nbsp;&nbsp; String linia;<br>
+          &nbsp;&nbsp;&nbsp; int any;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; linia = reader.nextLine().trim();<br>
+          &nbsp;&nbsp;&nbsp; camps = linia.split(";");<br>
+          &nbsp;&nbsp;&nbsp; if (camps.length != 3) return false;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; System.out.println(camps[0]);<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Data de naixement: " + camps[1]);<br>
+          &nbsp;&nbsp;&nbsp; any = Calendar.getInstance().get(Calendar.YEAR);<br>
+          &nbsp;&nbsp;&nbsp; data = camps[1].split("/");<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Edat aproximada: " + (any - Integer.parseInt(data[2])));<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Altura: " + camps[2]);<br>
+          &nbsp;&nbsp;&nbsp; return true;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void llegirTipus(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(f);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n&nbsp;&nbsp; Llegir tipus");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (reader.hasNext()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(<strong>getType(reader.next())</strong>);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reader.close();<br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static <strong>String getType(String s)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Double.parseDouble(s);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; long v = Long.parseLong(s);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (v &gt;= Byte.MIN_VALUE &amp;&amp; v &lt;= Byte.MAX_VALUE)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "&nbsp; Byte: " + v;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (v &gt;= Short.MIN_VALUE &amp;&amp; v &lt;= Short.MAX_VALUE)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "&nbsp;&nbsp;&nbsp; Short: " + v;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (v &gt;= Integer.MIN_VALUE &amp;&amp; v &lt;= Integer.MAX_VALUE)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Integer: " + v;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Long: " + v;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (NumberFormatException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String d = "" + Double.parseDouble(s);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String f = "" + Float.parseFloat(s);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (d.length() &gt; f.length()) return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Double: " + d;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else return "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Float: " + f;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; } catch (NumberFormatException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "String: " + s;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void inventarUsuaris(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; final String[] NOMS = {"Carlos Alberto", "Ana Belén", "Ana Maria", "María", "Victoria Federica", "Julio César", "María Jesús", "Marco Antonio", "Luis Miguel", "Fernando", "Verónica", "Jesús", "Francisco Javier"};<br>
+          &nbsp;&nbsp;&nbsp; final String[] COGNOMS = {"Morales", "Caçador", "del Moral", "Díaz", "López Contreras", "Smith", "de la Fuente", "Castro Pérez", "Williams", "Tàpies", "Martí Agell", "Caño", "Fernández Colomer", "García Merino"};<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; String[] ids = new String[50];<br>
+          &nbsp;&nbsp;&nbsp; String[] nomsCognoms = new String[50];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; int zNdx;<br>
+          &nbsp;&nbsp;&nbsp; String id;<br>
+          &nbsp;&nbsp;&nbsp; String nom;<br>
+          &nbsp;&nbsp;&nbsp; String cognoms;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 50; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nom = NOMS[((int)(Math.random() * NOMS.length))];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cognoms = COGNOMS[((int)(Math.random() * COGNOMS.length))];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zNdx = cognoms.indexOf(" ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = nom.charAt(0) + "." + ((zNdx &lt; 0) ? cognoms : cognoms.substring(0, zNdx));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = id.toLowerCase();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; id = <strong>eliminarAccents(id)</strong>;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int n = <strong>ultimId(ids, id, i)</strong>;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (n &gt; 0) id += n;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ids[i] = id;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nomsCognoms[i] = cognoms + ", " + nom;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>guardarUsuaris(p, ids, nomsCognoms);</strong><br>
+          }<br>
+          <br>
+          static <strong>void guardarUsuaris(String p, String[] ids, String[] nomsCognoms)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.getParentFile().exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintStream writer = new PrintStream(f);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; ids.length - 1; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.println(ids[i] + ";" + nomsCognoms[i]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(ids[ids.length - 1] + ";" + nomsCognoms[ids.length - 1]);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.close();<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static <strong>int ultimId(String[] ids, String id, int ndx)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; String s;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (ndx &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --ndx;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ids[ndx].contains(id)) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = ids[ndx].replace(id, "");&nbsp;&nbsp;&nbsp; // Es pot fer amb substring(...)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (s.length() == 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (s.matches("^\\d+$")) {&nbsp; // Es pot fer amb try Integer.parseInt(s)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Integer.parseInt(s) + 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return 0;<br>
+          }<br>
+          <br>
+          static <strong>String eliminarAccents(String s)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; final String accents = "áàäâéèëêíìïîóòöôúùüûçñ";<br>
+          &nbsp;&nbsp;&nbsp; final String sense =&nbsp;&nbsp; "aaaaeeeeiiiioooouuuucn";<br>
+          &nbsp;&nbsp;&nbsp; String ssa = "";<br>
+          &nbsp;&nbsp;&nbsp; int ndx;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; s.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ndx = accents.indexOf(s.charAt(i));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ssa += ((ndx &lt; 0) ? s.charAt(i) : sense.charAt(ndx));<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; return ssa;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void multesAparcament(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; String[] mMatricula = {"1234ABC", "5678DEF", "4321FED", "8765CBA", "1029ASD", "4321FED", "1029ASD", "1234ABC", "6939JKL", "2513XYZ"};<br>
+          &nbsp;&nbsp;&nbsp; float[] mImport = {30.5f, 50.8f, 60f, 40f, 30.5f, 60f, 35f, 46.3f, 29.9f, 99.99f};<br>
+          &nbsp;&nbsp;&nbsp; String[] mControlador = {"Pau Gasoil", "Mireia del Monte", "Andres Lasiesta", "Mireia del Monte", "Andres Lasiesta", "Andres Lasiesta", "Mireia del Monte", "Pau Gasoil", "Andres Lasiesta", "Mireia del Monte"};<br>
+          &nbsp;&nbsp;&nbsp; String[] mDescripcio = {"Mal aparcat", "No ha passat la ITV", "Bloqueja un vado permanent", "Sense ticket", "Ticket caducat", "No m’agrada el color", "Ocupa doble espai", "Ocupa plaça de minusvàlid", "Pujat sobre la vorera", "Aparcat en diagonal!"};<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.getParentFile().exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float total = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintStream writer = new PrintStream(f);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; mMatricula.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.println("Operari: " + mControlador[i]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.println("Matrícula: " + mMatricula[i].substring(0, 4) + "-" + mMatricula[i].substring(4));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.printf("Import: %.2f €\n", mImport[i]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.printf("*Import amb dte (20%%): %.2f €\n", (mImport[i] * 0.8));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.println("Infracció: " + mDescripcio[i]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.println("(*) Es descomptarà un 20% si es paga abans de 30 dies.");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.println("------");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total += mImport[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.printf("Total import multes: %.2f €", total);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.close();<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void notesFinals(String origen, String desti)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File forig = new File(origen);<br>
+          &nbsp;&nbsp;&nbsp; if (!forig.exists()) return;<br>
+          &nbsp;&nbsp;&nbsp; File fdest = new File(desti);<br>
+          &nbsp;&nbsp;&nbsp; if (!fdest.getParentFile().exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(forig);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintStream writer = new PrintStream(fdest);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] camps;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(reader.nextLine());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (reader.hasNext()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; camps = reader.nextLine().split(";");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Calcular mitjanes<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (Float.parseFloat(camps[2]) &lt; 5 || Float.parseFloat(camps[3]) &lt; 5 || Float.parseFloat(camps[4]) &lt; 5)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; camps[1] = "---";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; camps[1] = String.format("%.1f", (Float.parseFloat(camps[2]) + Float.parseFloat(camps[3]) + Float.parseFloat(camps[4])) / 3);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (Float.parseFloat(camps[6]) &lt; 5 || Float.parseFloat(camps[7]) &lt; 5 || Float.parseFloat(camps[8]) &lt; 5)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; camps[5] = "---";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; camps[5] = String.format("%.1f", (Float.parseFloat(camps[6]) + Float.parseFloat(camps[7]) + Float.parseFloat(camps[8])) / 3);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (Float.parseFloat(camps[10]) &lt; 5 || Float.parseFloat(camps[11]) &lt; 5 || Float.parseFloat(camps[12]) &lt; 5)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; camps[9] = "---";<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; camps[9] = String.format("%.1f", (Float.parseFloat(camps[10]) + Float.parseFloat(camps[11]) + Float.parseFloat(camps[12])) / 3);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Guardar<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(camps[0]); // Nom alumne<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[1]); // Mitjana M01<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[2]); // Nota UF1<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[3]); // Nota UF2<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[4]); // Nota UF3<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[5]); // Mitjana M02<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[6]); // Nota UF1<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[7]); // Nota UF2<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[8]); // Nota UF3<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[9]); // Mitjana M03<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[10]); // Nota UF1<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[11]); // Nota UF2<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.print(";" + camps[12]); // Nota UF3<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reader.close();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.close();<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void butlletinsNotes(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File forig = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!forig.exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Scanner reader = new Scanner(forig);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] cap = reader.nextLine().split(";");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] dades;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (reader.hasNext()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dades = reader.nextLine().split(";");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>butlleti("./Proves/" + dades[0].replaceAll(", ", "") + ".txt", cap, dades);</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reader.close();<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static <strong>void butlleti(String dest, String[] cap, String[] dades)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File fdest = new File(dest);<br>
+          &nbsp;&nbsp;&nbsp; if (!fdest.getParentFile().exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PrintStream writer = new PrintStream(fdest);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; cap.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (cap[i].charAt(0) == 'U') writer.print("&nbsp;&nbsp; ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.println(cap[i] + ": " + dades[i]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writer.close();<br>
+          &nbsp;&nbsp;&nbsp; } catch (IOException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Finestres">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Finestres</header>
+    <section>
+      <h2>Finestres</h2>
+      <p>En les aplicacions d'escriptori (mode gràfic), les aplicacions es mostren utilitzant finestres.<br>
+        La classe per crear-les és <strong><em>JFrame</em></strong>.</p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JFrame.html">JFrame ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/frame.html">Exemples de finestres</a></p>
+      <h4>Crear una classe específica que hereti de <em>JFrame</em></h4>
+      <p>S'haurà de configurar la finestra i els elements dins del constructor de la classe.</p>
+      <p>Per poder utilitzar els mètodes de la finestra (per exemple per accedir als seus elements), caldrà crear un objecte d'aquesta classe i passar aquest objecte a altres objectes que ho necessitin.</p>
+      <p class="p_codi"><strong>class Finestra extends JFrame</strong> {<br>
+        &nbsp;&nbsp;&nbsp; <strong>public Finestra()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Afegir barra de menús, barra d'eines i altres elements<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Configurar i mostrar finestra<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setSize(400, 300);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setVisible(true);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+        <br>
+        public class Aplicacio {<br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Finestra f = new Finestra();</strong><br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        } </p>
+      <h4>Crear directament un objecte de tipus <em>JFrame</em></h4>
+      <p>S'haurà de crear un objecte de tipus <em>JFrame</em> i configurar i afegir els elements necessaris.</p>
+      <p>En aquest cas, els mètodes que gestionin la finestra hauran de ser estàtics i, si són públics, es podran cridar utilitzant el nom de la classe (sense necessitat de tenir l'objecte).</p>
+      <p class="p_codi">public class Aplicacio {<br>
+        &nbsp;&nbsp;&nbsp; <strong>static JFrame f</strong><strong> = new JFrame("Aplicació");</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void crearFinestra() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Afegir barra de menús, barra d'eines i altres elements<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Configurar i mostrar finestra<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.setSize(400, 300);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.setVisible(true);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; crearFinestra();<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <h4>Resultat</h4>
+      <p><img alt="" src="./imatges/Finestra.png" style="width:25em" class="noborder"></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

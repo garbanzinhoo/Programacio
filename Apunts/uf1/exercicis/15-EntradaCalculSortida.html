@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Introduir dades, calcular i visualitzar</h1>
+      <p class="p_important">En tots els exercicis, sempre que surtin preus, s'han de mostrar amb 2 decimals separats amb la coma i amb el símbol de l'euro separat amb un espai (12,50 €).<br>
+        La forma d'introduir les dades pot ser en una sola línia, una per cada dada o amb qualsevol combinació, però us heu d'assegurar que es consumeix l'últim salt de línia (INTRO) introduït per l'usuari.</p>
+      <div class="enun">
+        <h3>Mostra un menú</h3>
+        <p>Fes un programa que mostri un menú (un conjunt d'opcions amb una lletra o un dígit al davant que identifiqui cada opció) i demani a l'usuari quina opció vol triar.</p>
+        <p>El programa simplement ha de mostrar quina opció (lletra o dígit) ha triat l'usuari.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">MENÚ<br>
+          ---------------------------------<br>
+          A - Només un plat<br>
+          B - Primer i segon<br>
+          C - Primer, segon i postres<br>
+          D - Primer, segon, postres i cafè<br>
+          ---------------------------------<br>
+          Tria una opció (A, B, C o D): <strong>A</strong><br>
+          Has triat l'opció A<br>
+        </p>
+      </div>
+      <div class="enun">
+        <h3>Calcular la lletra del NIF</h3>
+        <p>Modifica el següent codi de forma que demani el número del DNI en comptes de posar-lo com una constant.</p>
+        <p class="p_codi">final String LLETRES = "TRWAGMYFPDXBNJZSQVHLCKE";<br>
+          final int DNI = 12345678;<br>
+          int residu = DNI % 23;<br>
+          char lletra = LLETRES.charAt(residu);<br>
+          System.out.println("La lletra del DNI " + DNI + " és " + lletra);</p>
+        Posa comentaris explicant què fa cada sentència.<br>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Escriu el teu DNI (8 dígits): <strong>12345678</strong><br>
+          La lletra del DNI 12345678 és Z</p>
+      </div>
+      <div class="enun">
+        <h3>Pitàgoras</h3>
+        <p>Fes un programa que demani la base i l'altura d'un triangle rectangle i que, a partir d'aquestes dades, calculi i mostri l'àrea i el perímetre.</p>
+        <p>L'àrea es calcula amb la fòrmula <em>base * altura / 2</em>.<br>
+          La hipotenusa es calcula fent l'arrel quadrada de (base<sup>2</sup> + altura<sup>2</sup>).</p>
+        <p>Totes les dades han de ser valors reals de precisió simple.<br>
+          S'han d'utilitzar funcions matemàtiques del paquet <span class="c_comanda">Math</span> sempre que es pugui.<br>
+          El resultat s'ha de mostrar amb 3 decimals.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Base del triangle rectangle: <strong>3</strong><br>
+          Altura del triangle rectangle: <strong>4</strong><br>
+          Àrea: 6,000<br>
+          Perímetre: 12,000</p>
+      </div>
+      <div class="enun">
+        <h3>Àrea i perímetre d'un cercle</h3>
+        <p>Fes un programa que demani el radi d'un cercle i que, a partir d'aquest, calculi i mostri l'àrea i el perímetre.</p>
+        <p>Totes les dades han de tenir màxima precisió.<br>
+          S'han d'utilitzar les constants i funcions matemàtiques sempre que es pugui.<br>
+          El resultat s'ha de mostrar amb 6 decimals i separant els milers amb un punt.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Radi del cercle: <strong>100</strong><br>
+          Area del cercle: 31.415,926536<br>
+          Perímetre: 628,318531</p>
+      </div>
+      <div class="enun">
+        <h3>A voltes amb l'edat</h3>
+        <p>Fes un programa que demani l'edat a l'usuari i que mostri <strong>true</strong> o <strong>false</strong> pels següents casos:</p>
+        <ul>
+          <li>Pot conduir cotxe (edat més gran o igual que 18 i inferior a 80)</li>
+          <li>No està en edat de treballar (es pot treballar ente els 16 i els 65 anys, tots dos inclosos)</li>
+          <li>Ha d'anar a la guarderia (té menys de 3 anys)</li>
+          <li>Pot estudiar un CFGS (edat entre 18 i 24, totes dues incloses)</li>
+        </ul>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Quants anys tens? <strong>18</strong><br>
+          Pots conduir cotxe: true<br>
+          No estàs en edat de treballar: false<br>
+          Has d'anar a la guarderia: false<br>
+          Pots estudiar un CFGM: true</p>
+      </div>
+      <div class="enun">
+        <h3>Mitjana ponderada</h3>
+        <p>Fes un programa que demani les notes de les 6 unitats formatives del mòdul 3 de 1DAW i calculi la mitjana ponderada: UF1 = 74, UF2 = 40, UF3 = 23, UF4 = 26, UF5 = 30, UF6 = 22.</p>
+        <p>Les 6 notes s'han d'introduir de cop, separades per espais i poden tenir decimals.<br>
+          El resultat s'ha de mostrar amb un decimal.</p>
+        <h5>Exemples de sortida per consola</h5>
+        <p class="p_consola">Introdueix les notes de les 6 UF: <strong>5 6 5 6 5 6</strong><br>
+          Mitjana M03 Programació: 5,4</p>
+        <p class="p_consola">Introdueix les notes de les 6 UF: <strong>8 7 8 7 8 7</strong><br>
+          Mitjana M03 Programació: 7,6</p>
+      </div>
+      <div class="enun">
+        <h3>Convertir segons a hores, minuts i segons</h3>
+        <p>Fes un programa que, introduint un nombre de segons, calculi quantes hores, minuts i segons són, i ho mostri en el format HH:MM:SS (sempre ha de mostrar 2 dígits per cada valor, per exemple, 05:08:00).</p>
+        <p>El&nbsp; nombre de segons ha de ser inferior a 360000.<br>
+        </p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix quants segons: <strong>18481</strong><br>
+          05:08:01<br>
+        </p>
+      </div>
+      <div class="enun">
+        <h3>Black Friday trampós</h3>
+        <p>T'ha contractat una important botiga d'electrodomèstics perquè facis un programa que calculi el preu final dels articles per al proper BlackFriday.</p>
+        <p>Però com que són una mica tramposos, volen pujar els preus els dies anteriors perquè sembli que el dia de BlackFriday apliquen un descompte més gran.</p>
+        <p>El programa ha de demanar el nom de l'article, el preu original, el percentatge d'increment de preu pels dies anteriors i el percentatge de descompte pel BalckFriday.</p>
+        <p>Després de fer els càlculs haurà de mostrar la següent informació amb format: la primera columna ha d'estar alineada a l'esquerra i ha de tenir una amplada de 20 caràcters; la resta han d'estar alineades a la dreta i amb una amplada de 15 caràcters.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix el nom del producte: <strong>M. XiaoMiau X20Pro</strong><br>
+          Introdueix el preu original: <strong>600</strong><br>
+          Introdueix el % d'increment: <strong>15</strong><br>
+          Introdueix el % de descompte: <strong>30</strong><br>
+          Nom del producte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Preu orig&nbsp;&nbsp;&nbsp; Preu pre BF&nbsp;&nbsp;&nbsp; Dte BlackFr&nbsp;&nbsp; Preu BlackFr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dte real<br>
+          M. XiaoMiau X20Pro&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 600,00 €&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 690,00 €&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 30,00 %&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 483,00 €&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19,50 %</p>
+      </div>
+      <div class="enun">
+        <h3>Càlcul de prèstecs</h3>
+        <p>Has&nbsp; de demanar un préstec i decideixes anar a diversos bancs per veure quines condicions t'ofereixen i decidir quin t'interessa més en funció de quant hauràs de pagar cada mes.</p>
+        <p>Els bancs només et diuen quin interès anual et cobraran i en quants plaços ho pots pagar, així que has decidit fer un programa perquè et calculi quant hauràs de pagar cada mes.</p>
+        <p>Hauràs d'introduir l'import del préstec, l'interès anual i quants plaços.</p>
+        <p>El programa ha de mostrar aquesta informació més l'import dels interessos i l'import de cada plaç en el següent format: el text de la primera columna ha d'estar alineat a l'esquerra i els valors de la segona columna han d'estar alineats a la dreta.</p>
+        <div class="p_important">
+          <p>L'interès del préstec és anual però els terminis són per mesos, per tant, per calcular l'import total dels interessos s'ha de fer la part proporcional.</p>
+          <p>En l'exemple, si el préstec hagués sigut a <strong>1 any</strong> (12 mesos) l'import dels interessos hauria sigut <strong>240 €</strong>, i l'import a pagar mensualment, <strong>120 €</strong> (pagaríem menys cada mes però més interessos en total).</p>
+        </div>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Quants euros necessites? <strong>1200</strong><br>
+          Introdueix l'interès anual: <strong>20</strong><br>
+          Introdueix quants plaços: <strong>10</strong><br>
+          Import del prèstec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1200,00 €<br>
+          Interès anual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20,00 %<br>
+          Nombre de plaços&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 plçs<br>
+          Import dels interessos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 200,00 €<br>
+          Import a pagar mensualment&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 140,00 €</p>
+      </div>
+      <div class="enun">
+        <h3>Calcular l'autonomia d'un vehicle</h3>
+        <p>Per atraure més clients, en una benzinera han decidit que, quan un client ompli el dipòsit, l'informaran de quants quilòmetres pot fer sense tornar a repostar.</p>
+        <p>L'expenedor té una llista de models de cotxes en la que pot consultar la capacitat del dipòsit de combustible i el consum per cada 100 Km.</p>
+        <p>El programa ha de demanar la capacitat del dipòsit i el consum per cada 100 Km (poden tenir decimals)<br>
+          i ha de mostrar quants kilòmetres i metres podrà recòrrer sense repostar (sense decimals).</p>
+        <p>Si et sembla complicat, comença per calcular només els kilòmetres.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix la capacitat en litres del dipòsit de benzina: <strong>60</strong><br>
+          Introdueix el consum en litres per cada 100 Km: <strong>7,8</strong><br>
+          Pot recórrer 769 Km i 230 metres</p>
+      </div>
+      <div class="enun">
+        <h3>Que no s'equivoquin al tornar el canvi!</h3>
+        <p>Per evitar errors en els comerços, s'estan fabricant màquines per cobrar i tornar el canvi de forma automatitzada.</p>
+        <p>Podria ser un bon negoci fer un programa que, donat l'import de la venda i els diners que s'ha introduït, retorni el canvi amb el mínim de monedes possible.</p>
+        <p>Per simplificar, els preus estan arrodonits a 10 cèntims i només es tornarà el canvi en monedes de 2€, 1€, 50c, 20c i 10c.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix import a pagar: <strong>8,10</strong><br>
+          Diners introduïts: <strong>10</strong><br>
+          El canvi seran 1,90 €:<br>
+          0 monedes de 2 euros<br>
+          1 monedes de 1 euro<br>
+          1 monedes de 50 cent<br>
+          2 monedes de 20 cent<br>
+          0 monedes de 10 cent</p>
+      </div>
+    </section>
+  </body>
+</html>

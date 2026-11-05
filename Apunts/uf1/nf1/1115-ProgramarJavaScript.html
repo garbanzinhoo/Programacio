@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Programar amb JavaScript">
+    <meta name="keywords" content="JavaScript">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Programar amb Java</header>
+    <section>
+      <h2>Instal·lació de l'IDE i extensions (<em>plugins</em>)</h2>
+      <h3>Instal·lació de Visual Studio Code (VSCode)</h3>
+      <ol>
+        <li>Entrar a la <a target="_blank" rel="noopener" href="https://code.visualstudio.com/Download">web de descàrregues de Visual Studio Code</a> i descarregar la versió corresponent al vostre sistema operatiu.</li>
+        <li>Executar l'instal·lador i acceptar els termes de la llicència.</li>
+        <li>Prémer el botó <strong>Siguiente</strong> (normalment no cal modificar les opcions) fins a finalitzar l'instal·lació.</li>
+      </ol>
+      <h3>Instal·lació de l'extensió (<em>plugin</em>) Live Server</h3>
+      <p>Quan s'obri VSCode, l'última icona de la columna esquerra permet instal·lar extensions.</p>
+      <p>Cal buscar i instal·lar <strong>Live Server</strong>.</p>
+      <h2>Primera aplicació web</h2>
+      <p>El primer programa que es recomana fer quan es comença a aprendre un llenguatge és <strong>Hola Món</strong> (o <strong>Hello World</strong>).<br>
+        Aquest programa es limita a escriure en pantalla el missatge <strong>Hello World</strong>.</p>
+      <p>No importa que encara no es conegui res del llenguatge, només cal copiar el codi i seguir unes poques instruccions per comprovar que l'entorn que s'ha instal·lat funciona correctament.<br>
+        També pot servir com a plantilla per fer els primers programes.</p>
+      <p>En el cas de les aplicacions web, encara que tot el codi es pugui posar en un únic arxiu, és recomanable separar-ho per facilitar el mateniment quan l'aplicació vagi creixent.<br>
+        De moment, la separació més simple és:</p>
+      <ul>
+        <li>Un arxiu <strong>HTML</strong> on anirà el contingut del document (text, imatges, enllaços...).</li>
+        <li>Un arxiu <strong>CSS</strong> on posar els estils dels diferents tipus d'lements (tipus i mida de lletra general, dels títols...).</li>
+        <li>Un arxiu <strong>JS</strong> on escriurem el codi JavaScript per executar l'aplicació.</li>
+      </ul>
+      <h3>Codi HTML, CSS i JavaScript</h3>
+      <p>Primer de tot cal crear una carpeta pel projecte.<br>
+        Es recomana crear l'estructura <span class="c_arxiu">PROG → INTRODUCCIÓ → HELLO</span> dins de la carpeta de l'usuari.</p>
+      <p>Després, obrir <strong>VSCode</strong> i, en el menú principal, seleccionar <span class="c_comanda">File → Open Folder</span> per obrir la carpeta <span class="c_arxiu">HELLO</span> que s'ha creat anteriorment.<br>
+        Al obrir una carpeta per primer cop, demanarà si es confia en els autors de la carpeta i els arxius que conté: cal marcar la casella i clicar el botó <strong>Yes, I trust the authors</strong>.</p>
+      <p>Dins de la columna <strong>EXPLORER</strong> apareixerà la carpeta <strong>HELLO</strong>.<br>
+        Fent clic amb el botó secundari a dins i triant l'opció <span class="c_comanda">New File...</span> es crearà un nou arxiu i s'ha de posar un nom.</p>
+      <p>Cal crear els arxius: <span class="c_arxiu">hello.html</span> i <span class="c_arxiu">hello.js</span> (de moment no cal crear l'arxiu pels estils).<br>
+        Al seleccionar un arxiu, s'obrirà en la finestra principal i s'ha de copiar el codi corresponent que hi ha a continuació.</p>
+      <h4>Document HTML (<span class="c_arxiu">hello.html</span>):</h4>
+      <p class="p_codi">&lt;!doctype html&gt;<br>
+        &lt;html lang="ca"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&lt;head&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &lt;title&gt;Hello&lt;/title&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &lt;meta charset="UTF-8" /&gt;<br>
+        <strong>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &lt;script defer src="hello.js"&gt;&lt;/script&gt;</strong><br>
+        &nbsp;&nbsp;&nbsp; &lt;/head&gt;<br>
+        <br>
+        &nbsp;&nbsp; &nbsp;&lt;body&gt;<br>
+        &nbsp;&nbsp;&nbsp; &lt;/body&gt;<br>
+        &lt;/html&gt;</p>
+      <h4>Document JavaScript (<span class="c_arxiu">hello.js</span>):</h4>
+      <p class="p_codi">"use strict";<br>
+        <br>
+        // El mètode <strong>alert()</strong> serveix per mostrar missatges i dades<br>
+        alert("Hello World");</p>
+      <h2>Executar l'aplicació</h2>
+      <p>Per obrir l'aplicació en un navegador web cal fer clic amb el botó secundari sobre l'arxiu <span class="c_arxiu">hello.html</span> i seleccionar l'opció <span class="c_comanda">Open with Live Server</span>.</p>
+      <p>Això farà que la'plicació s'obri en el navegdor per defecte i apareixi un missatge amb el text <strong>Hello World</strong>.<br>
+        Si es modifica i es guarda el codi dels arxius de la pàgina (o al prémer la tecla <strong>F5</strong>) es tornarà a mostrar el missatge.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

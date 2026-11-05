@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Contenidors">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Contenidors</header>
+    <section>
+      <h2>Contenidors de primer nivell</h2>
+      <p>Els contenidors de primer nivell són:</p>
+      <ul>
+        <li> <em>JFrame</em></li>
+        <li><em>JDialog</em></li>
+      </ul>
+      <p>També es poden considerar de primer nivell els diàlegs simples que hereten de <em>JComponent</em>:</p>
+      <ul>
+        <li><em>JOptionPane</em></li>
+        <li><em>JFileChooser</em></li>
+        <li><em>JColorChooser</em></li>
+      </ul>
+      <p>Aquests contenidors ja s'han vist anteriorment, però per conèixer millor l'estructura interna es pot consultar <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/toplevel.html">com utilitzar els contenidors de primer nivell</a>.</p>
+      <h2>Contenidors secundaris</h2>
+      <p>Els contenidors també són components (hereten de <em>JComponent</em>), per tant, tenen els mateixos mètodes per modificar la seva mida i el seu aspecte.<br>
+        Els principals són:</p>
+      <ul>
+        <li>setBackgroud(Color)</li>
+        <li>setBorder(Border)</li>
+        <li>setSize(int width, int height)</li>
+        <li>setSize(Dimension)</li>
+        <li>setPreferredSize(Dimension)</li>
+        <li>setMinimumSize(Dimension)</li>
+        <li>setMaximumSize(Dimension)</li>
+      </ul>
+      <p class="p_important">En general, en aquests contenidors es poden afegir i treure components amb els mètodes <span class="c_comanda">add(Component)</span>, <span class="c_comanda">remove(Component)</span> i <span class="c_comanda">removeAll()</span>, però alguns tenen mètodes especials.</p>
+      <h3><em>JPanel</em></h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JPanel.html">JPanel ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/panel.html">Com utilitzar un <em>JPanel</em></a></p>
+      <p>Una forma fàcil d'agrupar objectes i organitzar-los dins d'una finestra és utilitzar un o més <em>JPanel</em>.</p>
+      <p>Un <em>JPanel</em> pot contenir altres <em>JPanel</em>, i cada un es pot configurar amb un <em>layout</em> diferent.<br>
+        En el següent exemple es crea una estructura com la següent:</p>
+      <ul>
+        <li><em>JPanel</em> amb <em>BoxLayout</em> vertical</li>
+        <ul>
+          <li><em>JPanel</em> amb <em>BoxLayout</em> horitzontal</li>
+          <ul>
+            <li>3 botons</li>
+          </ul>
+          <li><em>JPanel</em> amb <em>GridLayout</em> de 5 files i 5 columnes</li>
+          <ul>
+            <li>5 x 5 botons</li>
+          </ul>
+        </ul>
+      </ul>
+      <p><img alt="" src="./imatges/Panells/Panells.png" style="width:14em"></p>
+      <h5>Exemple</h5>
+      <p class="p_codi">public class Panells extends JFrame {<br>
+        &nbsp;&nbsp;&nbsp; final int MIDA = 25;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public Panells() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Configurar el panell principal de la finestra<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // per fer que posi els seus components en vertical<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // (per defecte, el panell principal utilitza BorderLayout)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Container <strong>panell</strong> = getContentPane();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>panell.setLayout(new BoxLayout(panell, BoxLayout.Y_AXIS));</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Panell amb 3 botons posats en horitzontal<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JPanel <strong>botons1</strong> = new JPanel();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>new BoxLayout(botons1, BoxLayout.X_AXIS);</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; afegirBotons(botons1, 3, "B ", MIDA * 4, MIDA * 3 / 2);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>panell.add(botons1);</strong>&nbsp;&nbsp;&nbsp; // Afegir al panell principal<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Panell amb 25 botons posats en una graella de 5x5<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JPanel <strong>botons2</strong> = new JPanel(<strong>new GridLayout(5, 5)</strong>);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; afegirBotons(botons2, 25, "", MIDA, MIDA * 2);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>panell.add(botons2);</strong>&nbsp;&nbsp;&nbsp; // Afegir al panell principal<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Mostrar finestra<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pack();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setResizable(false);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setVisible(true);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; private void afegirBotons(JPanel jp, int nb, String prefix, int w, int h) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JButton jb;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; nb; ++i) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jb = new JButton(prefix + i);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jb.setPreferredSize(new Dimension(w, h));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jp.add(jb);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Panells();<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <h3> <em>JScrollPane</em></h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JScrollPane.html">JScrollPane ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/scrollpane.html">Com utilitzar un <em>JScrollPane</em></a></p>
+      <p>Aquest tipus de contenidor s'utlitza quan el contingut és massa gran per poder-lo mostrar completament.<br>
+        En aquest cas, aquest tipus de panell mostra unes barres de desplaçament per poder moure la vista.</p>
+      <p>Dins d'aquest tipus de contenidor s'acostuma a posar àrees de text (<em>JTextArea</em>), llistes (<em>JList</em>), arbres (<em>JTree</em>), taules (<em>JTable</em>), àrees de dibuix (<em>Canvas</em>) o imatges (<em>Image</em>).</p>
+      <p class="p_codi">JTextArea textArea = new JTextArea();<br>
+        textArea.setFont(new Font("Serif", Font.PLAIN, 20));<br>
+        textArea.setText(<strong>text</strong>);&nbsp;&nbsp;&nbsp; // <strong>'text'</strong> és qualsevol text una mica llarg<br>
+        <br>
+        <strong>JScrollPane scrollPane = new JScrollPane(textArea);</strong><br>
+        finestra.setContentPane(scrollPane);&nbsp;&nbsp;&nbsp; // Canvia el contenidor principal</p>
+      <div class="p_important">
+        <p>Si es vol canviar el component, cal fer-ho a través de l'objecte <em>JViewport</em> que conté aquest panell:</p>
+        <p class="p_codi">scrollPane.<strong>getViewport()</strong>.add(textArea);</p>
+      </div>
+      <p><img alt="" src="./imatges/Panells/PanellScroll.png" style="width:25em" class="noborder"></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

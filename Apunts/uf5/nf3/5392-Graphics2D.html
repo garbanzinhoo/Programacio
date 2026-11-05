@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Graphics i Graphics2D">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Graphics i Graphics2D</header>
+    <section>
+      <h2>Graphics i Graphics2D</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/Graphics.html">Graphics ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/Graphics2D.html">Graphics2D ref. (Java SE 17)</a></p>
+      <p>Tots els components sobre els quals es pot dibuixar tenen un objecte d'aquest tipus: panells, butons...</p>
+      <p><strong>Graphics</strong> conté mètodes bàsics per dibuixar línies, text i imatges:</p>
+      <ul>
+        <li>setColor(): selecciona el color per dibuixar.</li>
+        <li>setFont(): selecciona el tipus de lletra.</li>
+        <li>drawLine(): dibuixa una línia.</li>
+        <li>drawRect(): dibuixa un rectangle.</li>
+        <li>drawRoundRect(): dibuixa un rectangle amb les cantonades arrodonides.</li>
+        <li>drawOval(): dibuixa una el·lipse o circumferència.</li>
+        <li>drawPolygon(): dibuixa un polígon.</li>
+        <li>drawArc(): dibuixa un arc d'el·lipse o arc de circumferència.</li>
+        <li>drawString(): dibuixa (escriu) un text.</li>
+        <li>drawImage(): dibuixa (copia) una imatge. Té moltes versions amb diferents paràmetres.</li>
+      </ul>
+      <p>I també té els equivalents per omplir figures: fillRect() ... fillArc().</p>
+      <p><strong>Graphics2D</strong> és filla de <strong>Graphics</strong> i conté alguns mètodes més:</p>
+      <ul>
+        <li>setStroke(): selecciona el tipus de línia (gruix, estil...).</li>
+        <li>setBackground().</li>
+      </ul>
+      <p>I altres mètodes per canviar l'origen de coordenades, escalar, girar, activar <em>antialiasing</em>...</p>
+      <p class="p_important">Diferència entre activar o no l'<em>antialiasing</em> (millora la qualitat però és més lent):<br>
+        <img alt="" src="./imatges/Grafics/Antialias.png" style="width:24em"></p>
+      <h3>Dibuixar utilitzant <em>Graphics</em> i <em>Graphics2D</em></h3>
+      <p>Primer cal obtenir l'objecte d'aquest tipus del component sobre el qual es vol dibuixar.</p>
+      <p>En alguns casos (per exemple amb <em>JPanel</em>), es pot sobrecarregar el mètode <span class="c_comanda">paintComponent(Graphics g)</span> o similar (<span class="c_comanda">paint(g)</span>, <span class="c_comanda">update(g)</span>...).<br>
+        Cada cop que cal redibuixar el component, la finestra crida algun d'aquests mètodes.</p>
+      <p class="p_important">En altres casos que es veuran més endavant, es pot obtenir l'objecte <strong>Graphics</strong> amb el mètode <span class="c_comanda">getGraphics()</span> o <span class="c_comanda">getDrawGraphics()</span> del component corresponent.</p>
+      <p class="p_codi">@Override<br>
+        protected void <strong>paintComponent(Graphics g)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; int x, y;<br>
+        &nbsp;&nbsp;&nbsp; final int P_WIDTH = 600;<br>
+        &nbsp;&nbsp;&nbsp; final int P_HEIGHT = 300;<br>
+        &nbsp;&nbsp;&nbsp; final int WIDTH = 80;<br>
+        &nbsp;&nbsp;&nbsp; final int HEIGHT = 60;<br>
+        &nbsp;&nbsp;&nbsp; final int MIDA = 2 * WIDTH;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; super.paintComponent(g);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Crida el mètode del pare per si ha de dibuixar<br>
+        &nbsp;&nbsp;&nbsp; <strong>Graphics2D g2 = (Graphics2D) g;</strong> // Converteix a Graphics2D per tenir més funcions<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Activa antialiasing per suavitzar les línies<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>setRenderingHint</strong>(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Pinta tot el fons de blanc<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>setColor</strong>(Color.white);<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>fillRect</strong>(0,0,P_WIDTH,P_HEIGHT);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; x = 10;<br>
+        &nbsp;&nbsp;&nbsp; y = HEIGHT / 3;<br>
+        &nbsp;&nbsp;&nbsp; g2.setColor(Color.black);<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>setFont</strong>(new Font(Font.SANS_SERIF, Font.BOLD, HEIGHT/3));<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>drawString</strong>("Text amb tipus Sans Serif, negreta i mida " + (HEIGHT/3), x, y);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>setStroke</strong>(new BasicStroke(4));<br>
+        &nbsp;&nbsp;&nbsp; g2.setColor(Color.red);<br>
+        &nbsp;&nbsp;&nbsp; y += HEIGHT / 3;<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>drawLine</strong>(x,y,x+WIDTH,y+HEIGHT);<br>
+        &nbsp;&nbsp;&nbsp; x += WIDTH + 20;<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>drawRect</strong>(x,y,WIDTH,HEIGHT);<br>
+        &nbsp;&nbsp;&nbsp; x += WIDTH + 20;<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>drawRoundRect</strong>(x,y,WIDTH,HEIGHT,WIDTH/2,HEIGHT/2);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; x = 10;<br>
+        &nbsp;&nbsp;&nbsp; y += HEIGHT + 20;<br>
+        &nbsp;&nbsp;&nbsp; g2.setColor(Color.green);<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>fillOval</strong>(x,y,WIDTH,HEIGHT);<br>
+        &nbsp;&nbsp;&nbsp; x += WIDTH + 20;<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>fillArc</strong>(x,y,WIDTH,HEIGHT,180,180);<br>
+        &nbsp;&nbsp;&nbsp; x += WIDTH + 20;<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>fillPolygon</strong>(new int[]{x,x+WIDTH,x+WIDTH/2}, new int[]{y+HEIGHT, y+HEIGHT, y},3);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; x += WIDTH + 50;<br>
+        &nbsp;&nbsp;&nbsp; y -= 2 * HEIGHT - 20;<br>
+        &nbsp;&nbsp;&nbsp; g2.<strong>drawImage</strong>(imatge, x, y, MIDA, MIDA, null);<br>
+        }</p>
+      <p>La imatge resultant és la següent:</p>
+      <p><img alt="" src="./imatges/Grafics/ExempleDibuix.png" style="width:24em"></p>
+      <h3>Dibuixar a partir de les accions de l'usuari</h3>
+      <p>L'exemple anterior sempre dibuixa el mateix.</p>
+      <p>En el següent exemple, cada cop que l'usuari fa clic en un punt de la finestra, s'afegeixen les coordenades del punt a una llista i es crida el mètode <span class="c_comanda">repaint()</span>.<br>
+        Aquest mètode crida a <span class="c_comanda">paintComponent()</span>, que dibuixa un quadrat per cada coordenada de la llista.</p>
+      <p class="p_codi">public class DibuixUsuari extends JPanel {<br>
+        &nbsp;&nbsp;&nbsp; static final int P_WIDTH = 600;<br>
+        &nbsp;&nbsp;&nbsp; static final int P_HEIGHT = 400;<br>
+        &nbsp;&nbsp;&nbsp; static final int COSTAT = 100;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>ArrayList&lt;Point&gt; punts</strong> = new ArrayList&lt;&gt;();<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public DibuixUsuari() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setPreferredSize(new Dimension(P_WIDTH, P_HEIGHT));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setBackground(Color.white);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>addMouseListener</strong>(<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new <strong>MouseAdapter</strong>() {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public void <strong>mouseClicked</strong>(MouseEvent e) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>punts.add(e.getPoint())</strong>;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>repaint()</strong>;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; );<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; protected void <strong>paintComponent</strong>(Graphics g) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super.paintComponent(g);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Crida el mètode del pare per si ha de dibuixar<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Graphics2D g2 = (Graphics2D) g; // Converteix a Graphics2D per tenir més funcions<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g2.setStroke(new BasicStroke(4));<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g2.setColor(Color.blue);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>for (Point p : punts) g2.drawRect(p.x,p.y,COSTAT,COSTAT);</strong><br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JFrame f = new JFrame("DibuixUsuari");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.getContentPane().add(new DibuixUsuari());<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.setResizable(false);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.pack();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f.setVisible(true);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

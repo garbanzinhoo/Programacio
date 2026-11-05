@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+    <script defer="defer" src="../../animations.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació</header>
+    <section>
+      <h2>Què ès un programa</h2>
+      <p>En el context de la informàtica, un programa és un conjunt d'ordres que serveixen per fer que un ordinador processi un conjunt de dades.</p>
+      <p>Les ordres que pot executar un ordinador depenen del processador (CPU), però no són gaires i són instruccions molt simples (llegeix una dada, fes una operació amb dues dades, compara dues dades, salta a una instrucció diferent de la següent...).<br>
+        També hi ha instruccions per comunicar el processador amb perifèrics (discos, teclat, xarxa...) de forma que pugui obtenir o guardar les dades en altres llocs, no només en la memòria.</p>
+      <p>La CPU anirà llegint de forma seqüencial (una darrera l'altra) les ordres que hi hagi en la memòria de l'ordinador per processar les dades proporcionades.<br>
+        Quines dades i com s'han de processar dependran del tipus de tasca que s'hagi de resoldre.</p>
+      <h2>En què consisteix la tasca d'un programador</h2>
+      <p>El programador ha d'introduir les ordres en l'ordre correcte i fer que s'apliquin a les dades adequades perquè el programa realitzi la tasca per a la qual s'ha creat.</p>
+      <p>Sovint hi ha diverses formes de fer que un programa dugui a terme una tasca determinada, però la feina del programador també consisteix en fer que el codi compleixi una sèrie de requisits.</p>
+      <p>Alguns d'ells són els següents:</p>
+      <ul>
+        <li>Que resolgui la tasca correctament.</li>
+        <li>Que estigui ben estructurat.</li>
+        <li>Que sigui eficient.</li>
+        <li>Que sigui fàcil d'utilitzar.</li>
+        <li>Que es pugui mantenir fàcilment:</li>
+        <ul>
+          <li>Fer ampliacions o adaptacions.</li>
+          <li>Corregir errors.</li>
+        </ul>
+      </ul>
+      <p>Les ordres s'hauran d'introduir en un llenguatge que entengui la màquina o en un llenguatge que posteriorment es pugui traduir al llenguatge de la màquina.</p>
+      <h2>Tipus de llenguatges i estils de programació</h2>
+      <h3>Llenguatges genèrics o específics</h3>
+      <p>Actualment, la majoria de llenguatges són genèrics (permeten escriure programes per a qualsevol tipus d'aplicació), però també existeixen llenguatges que estan pensats per facilitar la programació d'un tipus de tasca determinada, per exemple, gestionar bases de dades.</p>
+      <h3>Llenguatges compilats o interpretats</h3>
+      <ul>
+        <li><strong>Llenguatges compilats</strong> (C, C++, C#...): un cop escrit el codi, un programa compilador el tradueix a codi màquina i es guarda en un arxiu. Després es pot executar aquest arxiu tantes vegades com es vulgui sense haver-lo de tornar a traduir.<br>
+          Són molt eficients però cal utilitzar un compilador diferent per cada llenguatge, sistema operatiu i processador on es vulgui executar.<br>
+          <object onload="initAnimation(this)" data="imatges/Compilat.svg" style="width:46em;">El teu navegador no suporta SVGs!</object></li>
+        <li><strong>Llenguatges interpretats</strong> (Python, JavaScript, PHP): cada cop que s'executa el programa, un programa intèrpret s'encarrega de traduir cada instrucció del llenguatge en instruccions de codi màquina.<br>
+          Són poc eficients però es poden executar en qualsevol sistema informàtic que tingui un intèrpret per aquest llenguatge.<br>
+          <object onload="initAnimation(this)" data="imatges/Interpretat.svg" style="width:30em;">El teu navegador no suporta SVGs!</object></li>
+        <li><strong>Llenguatges mixtos</strong> (Java): primer cal compilar el codi a un llenguatge intermig (<em>bytecode</em>) i es guarda en un arxiu. Aquest codi intermig s'anirà traduint (interpretant) cada cop que s'executi el programa.<br>
+          Són més eficients que els interpretats però menys que els compilats.<br>
+          Necessiten un intèrpret específic per cada sistema informàtic. En el cas de Java, aquest intèrpret s'anomena Màquina Virtual de Java (JVM).<br>
+          <object onload="initAnimation(this)" data="imatges/JVM.svg" style="width:54em;">El teu navegador no suporta SVGs!</object></li>
+      </ul>
+      <h3>Programació estructurada, modular i orientada a objectes</h3>
+      <p>La <strong>programació estructurada</strong> consisteix en organitzar el codi en estructures de control (seqüències, selecció, iteració, subrutines i blocs).<br>
+        Abans d'aquest mètode, els programes podien resultar força caòtics, difícils d'entendre i de depurar.</p>
+      <p>La <strong>programació modular</strong> es considera una evolució de la programació estructurada i és útil per projectes de mida mitjana i gran.<br>
+        Consisteix en separar el codi en subprogrames o mòduls per facilitar la gestió, per exemple assignant diferents parts del programa a diferents programadors o equips de tal forma que, al final, els mòduls es puguin ensamblar fàcilment.</p>
+      <p>La <strong>programació orientada a objectes</strong> pretén facilitar la programació d'aplicacions que gestionen elements de la vida real. Per exemple, en la gestió d'una empresa, els objectes serien les factures, els productes, els clients... Cada tipus d'objecte té unes propietats (nom, DNI, telèfon...) i unes accions que es poden fer amb ell (afegir o eliminar un article de la factura, calcular el total...).</p>
+      <h4>Model-vista-controlador<strong></strong></h4>
+      <p>Aquest patró de programació s'ha pensat per facilitar el desenvolupament i manteniment d'aplicacions.</p>
+      <p>Consisteix en separar el codi en tres grans mòduls:</p>
+      <ul>
+        <li><strong>Model</strong>: conté la informació amb la que treballa l'aplicació i gestiona els accessos a aquesta informació.<br>
+          Rep les peticions del <em>controlador</em> i envia els resultats a la <em>vista</em> (cap a l'usuari).</li>
+        <li><strong>Vista</strong>: rep del <em>model</em> les dades que s'han sol·licitat i les mostra a l'usuari.</li>
+        <li><strong>Controlador</strong>: respon a les accions de l'usuari (sol·licituds d'informació) i les passa al <em>model</em>.</li>
+      </ul>
+      <p><img alt="" src="./imatges/MVC.svg" style="width:16em" class="noborder"></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

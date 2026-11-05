@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació orientada a objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació orientada a objectes</header>
+    <section>
+      <h2>Polimorfisme</h2>
+      <p>Seguit amb l'exemple dels animals, tots es desplacen però uns caminen, altres neden i altres volen.<br>
+        Per tant, hem de fer que tots es moguin, però cada un a la seva manera (<strong>polimorfisme</strong>).</p>
+      <p>Això s'aconsegueix definint un mètode en la superclasse i el mateix mètode però amb diferent codi per cada subclasse.</p>
+      <p>En el següent exemple, s'ha creat el mètode <span class="c_comanda">moure()</span> en la superclasse.<br>
+        Si en alguna de les subclasses (<strong>Mamifer</strong>) no es defineix aquest mètode, s'executarà el de la superclasse.<br>
+        En les subclasses on es defeineixi (on se sobreescrigui), s'executarà el de la subclasse que correspongui.</p>
+      <p class="p_codi">public class Animal {<br>
+        &nbsp;&nbsp;&nbsp; // <strong>Mètode sobreescrit</strong> en algunes subclasses (<strong>polimorfisme</strong>)<br>
+        &nbsp;&nbsp;&nbsp; public void <strong>moure()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("M'estic movent");<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_codi">public class Mamifer extends Animal {<br>
+        &nbsp;&nbsp;&nbsp; // <strong>No sobreescriu el mètode moure() en aquesta subclasse</strong><br>
+        &nbsp;&nbsp;&nbsp; //&nbsp; perquè hi ha mamífers que neden, volen, corren, salten, pugen als arbres...<br>
+        }</p>
+      <p class="p_codi">public class Peix extends Animal {<br>
+        &nbsp;&nbsp;&nbsp; // <strong>Mètode sobreescrit</strong> (<strong>polimorfisme</strong>)<br>
+        &nbsp;&nbsp;&nbsp; public void <strong>moure()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Estic nedant");<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_codi">public class Ocell extends Animal {<br>
+        &nbsp;&nbsp;&nbsp; // <strong>Mètode sobreescrit</strong> (<strong>polimorfisme</strong>)<br>
+        &nbsp;&nbsp;&nbsp; public void <strong>moure()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Estic volant");<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_codi">public class TestAnimal {<br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animal ovella = new Mamifer("Ovella");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animal sardina = new Peix("Sardina");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animal colom = new Ocell("Colom");<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>ovella.moure();</strong>&nbsp; // Escriu <strong>M'estic movent</strong> (crida el mètode de la superclasse)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>sardina.moure();</strong> // Escriu <strong>Estic nedant</strong> (crida el mètode de la sublasse Peix)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>colom.moure();</strong>&nbsp;&nbsp; // Escriu <strong>Estic volant</strong> (crida el mètode de la subclasse Ocell)<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <div class="p_important">
+        <p>Els mètodes sobreescrits en la subclasse no poden ser més restrictius que el de la superclasse:</p>
+        <ul>
+          <li><strong>private</strong> Animal.moure() i <strong>public</strong> Ocell.moure() → <strong>OK</strong><strong></strong></li>
+          <li><strong>public</strong> Animal.moure() i <strong>private</strong> Ocell.moure() → <strong>ERROR</strong></li>
+        </ul>
+      </div>
+      <h4>La paraula reservada <em>super</em></h4>
+      <p>S'utilitza per cridar un mètode de la superclasse que està sobreescrit en la subclasse.<br>
+        En l'exemple següent, si no es posa la paraula <span class="c_comanda">super</span>, es cridaria el mateix mètode <span
+class="c_comanda">moure()</span> de la classe <strong>Ocell</strong>. A més, en aquest cas concret, es crearia una crida recursiva infinita.</p>
+      <p class="p_codi">public class Ocell extends Animal {<br>
+        &nbsp;&nbsp;&nbsp; // Mètode sobreescrit (polimorfisme)<br>
+        &nbsp;&nbsp;&nbsp; public void moure() {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>super.</strong>moure();&nbsp;&nbsp;&nbsp; // Escriu <strong>"M'estic movent"</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Estic volant");<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Layouts bàsics">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Layouts bàsics</header>
+    <section>
+      <h2>BoxLayout</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/javax/swing/BoxLayout.html">BoxLayout ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/box.html">Com utilitzar un <em>BoxLayout</em></a></p>
+      <p>Organitza els components en horitzontal o en vertical posant un dels següents paràmetres en el constructor:</p>
+      <ul>
+        <li><em>BoxLayout.<strong>X_AXIS</strong></em> (horitzontal)</li>
+        <li><em>BoxLayout.<strong>Y_AXIS</strong></em> (vertical)</li>
+      </ul>
+      <p>Algun component pot quedar retallat o amagat si no hi caben tots.</p>
+      <p>Per defecte, els components queden junts, però es poden afegir separadors.</p>
+      <p class="p_important">Els components es poden alinear entre ells de moltes formes diferents, però en alguns casos no és fàcil.<br>
+      </p>
+      <h2><em>CardLayout</em></h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/CardLayout.html">CardLayout ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/card.html">Com utilitzar un <em>CardLayout</em></a></p>
+      <p>Organitza els components un a sobre dels altres.</p>
+      <p>Té mètodes per triar quin component ha d'anar a sobre:</p>
+      <ul>
+        <li><span class="c_comanda">show()</span></li>
+        <li><span class="c_comanda">first()</span></li>
+        <li><span class="c_comanda">last()</span></li>
+        <li><span class="c_comanda">next()</span></li>
+        <li><span class="c_comanda">prev()</span></li>
+      </ul>
+      <p>Per afegir components s'utilitza el mètode <span class="c_comanda">addLayoutComponent(component, nom)</span>.</p>
+      <p>El nom s'utilitza per localitzar un component concret i posar-lo a sobre dels altres amb el mètode <span class="c_comanda">show()</span>.</p>
+      <p class="p_important">Una forma millor per fer una cosa semblant és utilitzar un <em>JTabbedPane</em>.</p>
+      <h2>GridbagLayout</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/GridBagLayout.html">GridbagLayout ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html">Com utilitzar un <em>GridbagLayout</em></a></p>
+      <p>És una forma d'organitzar els components similar al GridLayout però més flexible (i complicat).<br>
+      </p>
+      <h2>GroupLayout</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/javax/swing/GroupLayout.html">GroupLayout ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/group.html">Com utilitzar un <em>GroupLayout</em></a></p>
+      <p>Una altra forma molt flexible i complicada d'organitzar els components.<br>
+      </p>
+      <h2>SpringLayout</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/javax/swing/SpringLayout.html">SpringLayout ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/spring.html">Com utilitzar un <em>SpringLayout</em></a></p>
+      <p>Igual que l'anterior.<br>
+      </p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

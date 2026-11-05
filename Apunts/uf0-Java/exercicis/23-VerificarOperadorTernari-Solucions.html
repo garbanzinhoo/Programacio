@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int nota;<br>
+          <br>
+          System.out.print("Introdueix nota entre 0 i 10: ");<br>
+          nota = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          <strong> // SOLUCIÓ 1</strong><br>
+          if (nota &gt;= 0 &amp;&amp; nota &lt;= 10) {<br>
+          &nbsp;&nbsp;&nbsp; if (nota &lt; 5) System.out.println("Suspès");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("Aprovat");<br>
+          } else {&nbsp;&nbsp;&nbsp; // Nota incorrecta<br>
+          &nbsp;&nbsp;&nbsp; if (nota &lt; 0) System.out.println("La nota no pot ser inferior a 0");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("La nota no pot ser superior a 10");<br>
+          }<br>
+          <br>
+          <strong> // SOLUCIÓ 2</strong><br>
+          if (nota &lt; 0 || nota &gt; 10) {&nbsp;&nbsp;&nbsp; // Nota incorrecta<br>
+          &nbsp;&nbsp;&nbsp; if (nota &lt; 0) System.out.println("La nota no pot ser inferior a 0");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("La nota no pot ser superior a 10");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; if (nota &lt; 5) System.out.println("Suspès");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("Aprovat");<br>
+          }<br>
+          <br>
+          <strong> // SOLUCIÓ 3</strong><br>
+          if (nota &lt; 0) System.out.println("La nota no pot ser inferior a 0");<br>
+          else if (nota &lt; 5) System.out.println("Suspès");<br>
+          else if (nota &lt;= 10) System.out.println("Aprovat");<br>
+          else System.out.println("La nota no pot ser superior a 10");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int dia;<br>
+          <br>
+          System.out.print("Introdueix dia de la setmana (1-7): ");<br>
+          dia = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          if (dia &gt;= 1 &amp;&amp; dia &lt;= 7) {<br>
+          &nbsp;&nbsp;&nbsp; if (dia == 1) System.out.println("Dilluns");<br>
+          &nbsp;&nbsp;&nbsp; else if (dia == 2) System.out.println("Dimarts");<br>
+          &nbsp;&nbsp;&nbsp; else if (dia == 3) System.out.println("Dimecres");<br>
+          &nbsp;&nbsp;&nbsp; else if (dia == 4) System.out.println("Dijous");<br>
+          &nbsp;&nbsp;&nbsp; else if (dia == 5) System.out.println("Divendres");<br>
+          &nbsp;&nbsp;&nbsp; else if (dia == 6) System.out.println("Dissabte");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("Diumenge");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("El dia ha d’estar entre 1 i 7");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int temperatura;<br>
+          int humitat;<br>
+          <br>
+          System.out.print("Introdueix temperatura (0-40) i humitat (20-99): ");<br>
+          temperatura = scan.nextInt();<br>
+          humitat = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          if (temperatura &lt; 5 || temperatura &gt; 25 || humitat &lt; 40 || humitat &gt; 80) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("ALERTA! temperatura o humitat fora dels marges adequats");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; byte[] buf = new byte[ 1 ];<br>
+          &nbsp;&nbsp;&nbsp; AudioFormat af = new AudioFormat( (float )44100, 8, 1, true, false );<br>
+          &nbsp;&nbsp;&nbsp; SourceDataLine sdl = AudioSystem.getSourceDataLine( af );<br>
+          &nbsp;&nbsp;&nbsp; sdl.open();<br>
+          &nbsp;&nbsp;&nbsp; sdl.start();<br>
+          &nbsp;&nbsp;&nbsp; for( int i = 0; i &lt; 1000 * (float )44100 / 1000; i++ ) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double angle = i / ( (float )44100 / 440 ) * 2.0 * Math.PI;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; buf[ 0 ] = (byte )( Math.sin( angle ) * 100 );<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sdl.write( buf, 0, 1 );<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; sdl.drain();<br>
+          &nbsp;&nbsp;&nbsp; sdl.stop();<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int nota;<br>
+          System.out.print("Introdueix nota entre 1 i 10: ");<br>
+          nota = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          if (nota &gt;= 1 &amp;&amp; nota &lt;= 10) {<br>
+          &nbsp;&nbsp;&nbsp; if (nota &lt; 3) System.out.println("Has de millorar moooolt!");<br>
+          &nbsp;&nbsp;&nbsp; else if (nota &lt; 5) System.out.println("Encara et falta una mica per aprovar");<br>
+          &nbsp;&nbsp;&nbsp; else if (nota &lt; 7) System.out.println("No vas malament però segur que pots millorar una mica");<br>
+          &nbsp;&nbsp;&nbsp; else if (nota &lt; 9) System.out.println("Força bé");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("Excel·lent!");<br>
+          } else {&nbsp;&nbsp;&nbsp; // Nota incorrecta<br>
+          &nbsp;&nbsp;&nbsp; if (nota &lt; 1) System.out.println("La nota no pot ser inferior a 1");<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println("La nota no pot ser superior a 10");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int n1, n2, n3;<br>
+          <br>
+          System.out.print("Introdueix 3 números: ");<br>
+          n1 = scan.nextInt();<br>
+          n2 = scan.nextInt();<br>
+          n3 = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          if (n1 &lt;= n2 &amp;&amp; n1 &lt;= n3) {&nbsp;&nbsp;&nbsp; // n1 és el més petit<br>
+          &nbsp;&nbsp;&nbsp; if (n2 &lt; n3) System.out.println(n1 + " " + n2 + " " + n3);<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println(n1 + " " + n3 + " " + n2);<br>
+          } else if (n2 &lt;= n1 &amp;&amp; n2 &lt;= n3) {&nbsp;&nbsp;&nbsp; // n2 és el més petit<br>
+          &nbsp;&nbsp;&nbsp; if (n1 &lt; n3) System.out.println(n2 + " " + n1 + " " + n3);<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println(n2 + " " + n3 + " " + n1);<br>
+          } else {&nbsp;&nbsp;&nbsp; // n3 és el més petit<br>
+          &nbsp;&nbsp;&nbsp; if (n1 &lt; n2) System.out.println(n3 + " " + n1 + " " + n2);<br>
+          &nbsp;&nbsp;&nbsp; else System.out.println(n3 + " " + n2 + " " + n1);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int mes;<br>
+          <br>
+          System.out.print("Introdueix número del mes (1-12): ");<br>
+          mes = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          if (mes &gt;= 1 &amp;&amp; mes &lt;= 12) {<br>
+          &nbsp;&nbsp;&nbsp; if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("31 dies");<br>
+          &nbsp;&nbsp;&nbsp; else if (mes == 4 || mes == 6 || mes == 9 || mes == 11)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("30 dies");<br>
+          &nbsp;&nbsp;&nbsp; else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("Quin any? ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int any = scan.nextInt();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scan.nextLine();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (any % 400 == 0 || (any % 4 == 0 &amp;&amp; any % 100 != 0))<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("29 dies");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("28 dies");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Error: mes ha d'estar entre 1 i 12");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">System.out.print("Introdueix el nombre d'armaris buits: ");<br>
+          int nArmaris = scan.nextInt();<br>
+          System.out.print("Introdueix el nombre de prestatges que té cada armari: ");<br>
+          int nPrestatgesArmari = scan.nextInt();<br>
+          System.out.print("Introdueix el nombre de llibres que té cada prestatge: ");<br>
+          int nLlibresPrestatge = scan.nextInt();<br>
+          System.out.print("Introdueix el nombre de llibres nous que s'han rebut: ");<br>
+          int nLlibres = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          if (nArmaris &lt;= 0 || nPrestatgesArmari &lt;= 0 || nLlibresPrestatge &lt;= 0 || nLlibres &lt;= 0)<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("ERROR en alguna de les dades introduïdes");<br>
+          else {<br>
+          &nbsp;&nbsp;&nbsp; int capacitatArmari = nPrestatgesArmari * nLlibresPrestatge;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Comprovar si els llibres hi caben (no és imprescindible)<br>
+          &nbsp;&nbsp;&nbsp; // int capacitatTotal = nArmaris * capacitatArmari;<br>
+          &nbsp;&nbsp;&nbsp; // if (capacitatTotal &gt;= nLlibres) … // hi caben<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; int nArmarisNecessaris = nLlibres / capacitatArmari;<br>
+          &nbsp;&nbsp;&nbsp; if (nLlibres % capacitatArmari != 0) ++nArmarisNecessaris;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (nArmarisNecessaris &lt;= nArmaris) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Sobren " + (nArmaris - nArmarisNecessaris) + " armaris");<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Falten " + (nArmarisNecessaris - nArmaris) + " armaris");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int t;<br>
+          <br>
+          System.out.print("Introdueix la temperatura: ");<br>
+          t = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          // <strong>Utilitzant operador ternari</strong><br>
+          String m = (t &lt; 20) ? "On" : "Off";<br>
+          <br>
+          // <strong>Utilitzant <em>if</em></strong><br>
+          if (t &lt; 20) m=&nbsp; "On";<br>
+          else m =&nbsp; "Off";<br>
+          <br>
+          if (m.equals( "On")) System.out.println( "Calefacció encesa");<br>
+          else System.out.println( "Calefacció apagada");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int t;<br>
+          <br>
+          System.out.print("Introdueix la temperatura: ");<br>
+          t = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          // <strong>Utilitzant operador ternari</strong><br>
+          int v = (t &lt; 20) ? -1 : (t &gt; 24 ? +1 : 0);<br>
+          <br>
+          // <strong>Utilitzant if</strong><br>
+          if (t &lt; 20) v= -1;<br>
+          else if (t &gt; 24) v = 1;<br>
+          else v = 0;<br>
+          <br>
+          if (v == -1) System.out.println("Calefacció encesa");<br>
+          else if (v == 1) System.out.println("Aire condicionat encès");<br>
+          else System.out.println("Què bé! Estem estalviant energia!");</p>
+      </div>
+    </section>
+  </body>
+</html>

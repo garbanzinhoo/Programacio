@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="ordenatsArrays ordenats">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Arrays ordenats</header>
+    <section>
+      <h2><em>Arrays</em> ordenats</h2>
+      <p>De vegades és necessari presentar les dades de forma ordenada (de més petites a més grans o al revès).<br>
+        A més, cercar informació en un conjunt de dades ordenades és més eficient.</p>
+      <p>En aquests casos cal disposar d'algun mètode per ordenar les dades d'un <em>array</em> o per trobar de forma ràpida les dades en un l'<em>array</em> ordenat.</p>
+      <h3>Algorisme de cerca binària</h3>
+      <p>Si l'<em>array</em> està ordenat, una forma ràpida de trobar un element determinat és comparar amb l'element del mig. Si l'element que es vol trobar és més gran, es compara amb l'element que està entre el del mig i el del final. I així successivament fins que ja no es pot dividir més l'<em>array</em> o fins que es troba l'element.</p>
+      <p class="p_codi">let n = [3,4,6,9];&nbsp;&nbsp;&nbsp; &nbsp; // Llista de valors<br>
+        let valor = 6;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Valor buscat<br>
+        let min = 0;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // Primera posició de la llista<br>
+        let max = n.length - 1;&nbsp;&nbsp; // Última posició de la llista<br>
+        let mid = 0;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; // Posició central (inicialitzar per evitar error)<br>
+        <br>
+        while (min &lt;= max) {<br>
+        &nbsp; mid = (min + max) / 2;&nbsp; // Calcular la posició central del tram entre min i max<br>
+        &nbsp; if (n[mid] &lt; valor) {<br>
+        &nbsp;&nbsp;&nbsp; min = mid + 1;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Agafar la meitat superior<br>
+        &nbsp; } else if (n[mid] &gt; valor) {<br>
+        &nbsp;&nbsp;&nbsp; max = mid - 1;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Agafar la meitat inferior<br>
+        &nbsp; } else {<br>
+        &nbsp;&nbsp;&nbsp; break;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Valor trobat<br>
+        &nbsp; }<br>
+        }<br>
+        <br>
+        if (n.length &gt; 0 &amp;&amp; n[mid] == valor) {<br>
+        &nbsp; alert("S'ha trobat el valor en la posició " + mid);<br>
+        } else {<br>
+        &nbsp; alert("NO s'ha trobat el valor en la llista");<br>
+        }</p>
+      <p class="p_important">Fent petites modificacions en aquest algorisme es poden tractar casos especials com quan hi ha més d'un element igual (trobar el primer) o trobar el més proper si no hi ha el valor exacte.</p>
+      <h3>Algorisme senzill (i lent) d'ordenació</h3>
+      <p>El <strong>mètode d'intercanvi</strong> és bastant ineficient, però és relativament senzill d'entendre.</p>
+      <p>Consisteix en comparar el primer element amb tots els altres i intercambiar-los si el primer és més gran que l'altre. Després es repeteix amb el segon, i així successivament fins al penúltim element.</p>
+      <p class="p_codi">let n = [9,4,6,3];<br>
+        let t;<br>
+        <br>
+        // Agafa el primer valor entre el primer i el penúltim<br>
+        for (let i = 0; i &lt; n.length - 1; i++) {<br>
+        &nbsp; // Agafa el segon valor entre el següent al primer i l'últim<br>
+        &nbsp; for (let j = i + 1; j &lt; n.length; j++) {<br>
+        &nbsp;&nbsp;&nbsp; // Intercanviar si el primer és més gran que el segon<br>
+        &nbsp;&nbsp;&nbsp; if (n[i] &gt; n[j]) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = n[i];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n[i] = n[j];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n[j] = t;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp; }<br>
+        }<br>
+        <br>
+        // Mostrar els valors ja ordenats: 3, 4, 6 i 9<br>
+        for (let i = 0; i &lt; n.length; i++) {<br>
+        &nbsp; alert(n[i]);<br>
+        }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+      <p class="p_important">Altres mètodes senzills però lents: el mètode de la bombolla, el mètode d'inserció i el de selecció.<br>
+        Altres mètodes més eficients: <em>quick sort</em>, <em>merge sort</em> i <em>heap sort</em>.</p>
+      <p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sorting_algorithm">Mètodes d'ordenació</a></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

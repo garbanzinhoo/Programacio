@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació orientada a objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació orientada a objectes</header>
+    <section>
+      <h2>Classes i objectes</h2>
+      <p>Una <strong>classe</strong> és la descripció d'un tipus d'objecte: quines característiques té (atributs) i què pot fer (mètodes).<br>
+        També es pot dir que és com una plantilla o un motlle.<br>
+        A partir d'una classe es poden crear molts objectes del mateix tipus.</p>
+      <p>Un <strong>objecte</strong> té identitat pròpia, amb unes dades concretes en els seus atributs.<br>
+        Cal un mètode especial (constructor) per crear (instanciar) objectes.</p>
+      <p>Una <strong>aplicació orientada a objectes</strong> consisteix en un conjunt d'objectes que es creen, interaccionen entre ells i es destrueixen quan ja no són necessaris.</p>
+      <p class="p_important">Els objectes també s'anomenen <strong>instàncies d'una classe</strong>.<br>
+        <strong>Instanciar un objecte</strong> és el mateix que crear un objecte.</p>
+      <h2>Membres d'una classe o d'un objecte</h2>
+      <p>Els membres d'una classe o d'un objecte són els <strong>atributs</strong> (o propietats) i els <strong>mètodes</strong>.</p>
+      <p>Els atributs són les <strong>constants</strong> i/o <strong>variables</strong> globals definides dins de la classe.</p>
+      <p>Els mètodes són les funcions definides dins de la classe.<br>
+        Es poden dividir en diferents tipus:</p>
+      <ul>
+        <li><strong>Constructors</strong>: s'utilitzen per crear els objectes.</li>
+        <li><strong><em>Getters</em></strong> (consultors): s'utilitzen per obtenir els valors dels atributs privats.</li>
+        <li><strong><em>Setters</em></strong> (modificadors): s'utilitzen per modificar els valors dels atributs privats de forma controlada, verificant que els valors que es volen assignar siguin correctes.</li>
+        <li><strong>Operacions</strong>: serveixen per realitzar operacions amb els objectes i els seus atributs o per les interaccions entre objectes.</li>
+      </ul>
+      <div class="p_important">
+        <p>Els membres de la classe s'han de definir posant el modificador <em><strong>static</strong></em> al davant.<br>
+          Els membres dels objectes no porten aquest modificador.</p>
+        <p>Els atributs estàtics pertanyen a la classe (es podria dir que són comuns a tots els objectes).<br>
+          Els mètodes estàtics no poden accedir als mètodes ni atributs no estàtics.</p>
+        <p>Per accedir a un membre estàtic es pot utilitzar el nom de la classe o un objecte de la classe.<br>
+          Per accedir a un membre no estàtic cal utilitzar un objecte de la classe.</p>
+      </div>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          const terminal = document.getElementById("terminal");<br>
+          <br>
+          let a1 = [<br>
+          &nbsp;&nbsp; &nbsp;[1, 2, 3],<br>
+          &nbsp;&nbsp; &nbsp;[4, 5, 6]<br>
+          ]<br>
+          <br>
+          let a2 = [<br>
+          &nbsp;&nbsp; &nbsp;[1, 2],<br>
+          &nbsp;&nbsp; &nbsp;[3, 4],<br>
+          &nbsp;&nbsp; &nbsp;[5, 6]<br>
+          ]<br>
+          <br>
+          // Esborrar terminal<br>
+          terminal.innerHTML = "";<br>
+          <br>
+          // Mostrar matrius i símbols<br>
+          mostrarArrayBi(a1);<br>
+          terminal.innerHTML += "X&lt;br&gt;";<br>
+          mostrarArrayBi(a2);<br>
+          terminal.innerHTML += "=&lt;br&gt;";<br>
+          <br>
+          // Multiplicar matrius i mostrar resultat<br>
+          let a3 = multiplicarArraysBi(a1, a2);<br>
+          if (a3 != null) {<br>
+          &nbsp;&nbsp; &nbsp;mostrarArrayBi(a3);<br>
+          } else {<br>
+          &nbsp;&nbsp; &nbsp;alert("No es poden multiplicar");<br>
+          }<br>
+          <br>
+          <br>
+          function mostrarArrayBi(array) {<br>
+          &nbsp;&nbsp; &nbsp;let resultat = "";<br>
+          &nbsp;&nbsp; &nbsp;for (let i = 0; i &lt; array.length; i++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (let j = 0; j &lt; array[i].length; j++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;resultat += ("" + array[i][j]).padStart(3, "\xa0");<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;resultat += "&lt;br&gt;";<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;terminal.innerHTML += resultat;<br>
+          }<br>
+          <br>
+          function multiplicarArraysBi(a1, a2) {<br>
+          &nbsp;&nbsp; &nbsp;// Obtenir les files i columnes de cada matriu<br>
+          &nbsp;&nbsp; &nbsp;let f1 = a1.length;<br>
+          &nbsp;&nbsp; &nbsp;let c1 = a1[0].length;<br>
+          &nbsp;&nbsp; &nbsp;let f2 = a2.length;<br>
+          &nbsp;&nbsp; &nbsp;let c2 = a2[0].length;<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Comprovar que les columnes de la 1ª siguin igual a les files de la 2ª<br>
+          &nbsp;&nbsp; &nbsp;if (c1 != f2) return null;<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Crear matriu resultat<br>
+          &nbsp;&nbsp; &nbsp;let i, j, k, t;<br>
+          &nbsp;&nbsp; &nbsp;let a3 = [];<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Multiplicar matrius<br>
+          &nbsp;&nbsp; &nbsp;for (i = 0; i &lt; f1; ++i) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;a3[i] = [];<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (j = 0; j &lt; c2; ++j) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;t = 0;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (k = 0; k &lt; c1; ++k) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;t += a1[i][k] * a2[k][j];<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;a3[i][j] = t;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;return a3;<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          const iMida = document.getElementById("mida");<br>
+          const bInicialitzar = document.getElementById("inicialitzar");<br>
+          const bSeguent = document.getElementById("seguent");<br>
+          const terminal = document.getElementById("terminal");<br>
+          <br>
+          bInicialitzar.addEventListener("click", init);<br>
+          bSeguent.addEventListener("click", seguentGeneracio);<br>
+          <br>
+          let generacio;<br>
+          let actual;<br>
+          let seguent;<br>
+          let mida;<br>
+          <br>
+          function init() {<br>
+          &nbsp;&nbsp; &nbsp;mida = parseInt(iMida.value);<br>
+          &nbsp;&nbsp; &nbsp;generacio = 0;<br>
+          &nbsp;&nbsp; &nbsp;actual = [];<br>
+          &nbsp;&nbsp; &nbsp;seguent = [];<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Inicialitzar a 0<br>
+          &nbsp;&nbsp; &nbsp;for (let i = 0; i &lt; mida; ++i) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;actual[i] = [];<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;seguent[i] = [];<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (let j = 0; j &lt; mida; ++j) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;actual[i][j] = 0;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;seguent[i][j] = 0;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;// Posar 1 aleatòriament<br>
+          &nbsp;&nbsp; &nbsp;for (let i = 1; i &lt; mida - 1; ++i) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (let j = 1; j &lt; mida - 1; ++j) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if (Math.random() &lt; .5) actual[i][j] = 1;<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;dibuixar(actual);<br>
+          }<br>
+          <br>
+          function seguentGeneracio() {<br>
+          &nbsp;&nbsp; &nbsp;for (let f = 1; f &lt; mida - 1; f++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (let c = 1; c &lt; mida - 1; c++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;// Comptar quants veïns<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;let veins&nbsp; = actual[f-1][c-1] + actual[f-1][c] + actual[f-1][c+1];<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;veins += actual[f&nbsp; ][c-1] +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; actual[f&nbsp; ][c+1];<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;veins += actual[f+1][c-1] + actual[f+1][c] + actual[f+1][c+1];<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;// Implementar regles<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;if ((actual[f][c] == 1) &amp;&amp; (veins &lt; 2 || veins &gt; 3))<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;seguent[f][c] = 0;&nbsp;&nbsp;&nbsp; // Hi ha pocs veïns o massa: desapareix<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;else if ((actual[f][c] == 0) &amp;&amp; (veins == 3))<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;seguent[f][c] = 1;&nbsp;&nbsp;&nbsp; // Nou bacteri<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;else<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;seguent[f][c] = actual[f][c]; // No canvia<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;++generacio;<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;copiar(actual, seguent);<br>
+          <br>
+          &nbsp;&nbsp; &nbsp;dibuixar(actual);<br>
+          }<br>
+          <br>
+          function dibuixar(actual) {<br>
+          &nbsp;&nbsp; &nbsp;let resultat = "Generació " + generacio + "&lt;br&gt;&lt;br&gt;";<br>
+          &nbsp;&nbsp; &nbsp;for (let f = 0; f &lt; mida; f++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (let c = 0; c &lt; mida; c++) {<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;resultat += actual[f][c] == 0 ? "·&nbsp; " : "B&nbsp; ";<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;resultat += "&lt;br&gt;";<br>
+          &nbsp;&nbsp; &nbsp;}<br>
+          &nbsp;&nbsp; &nbsp;terminal.innerHTML = resultat;<br>
+          }<br>
+          <br>
+          function copiar(actual, seguent) {<br>
+          &nbsp;&nbsp; &nbsp;for (let f = 1; f &lt; mida - 1; f++)<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;for (let c = 1; c &lt; mida - 1; c++)<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;actual[f][c] = seguent[f][c];<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Classe principal</h6>
+        <p class="p_codi"><strong>public class Penjat</strong> {<br>
+          &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PenjatControlador.jugar();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h6>Controlador</h6>
+        <p class="p_codi"><strong>public class PenjatControlador</strong> {<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; static Scanner scan = new Scanner(System.in);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void jugar() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char l;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PenjatModel.triarParaula();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l = introLletra();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PenjatModel.posarLletra(l);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } while (!PenjatModel.haAcabat());<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; static char introLletra() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char l = ' ';<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (l &lt; 'A' || l &gt; 'Z') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("Tria una lletra: ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l = scan.nextLine().toUpperCase().charAt(0);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return l;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h6>Model</h6>
+        <p class="p_codi"><strong>public class PenjatModel</strong> {<br>
+          &nbsp;&nbsp;&nbsp; static String[] paraules = {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "MURCIELAGO",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "ORDENADOR",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "METROPOLITANO",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "PROGRAMADOR",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "QUITANIEVES",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "VULCANOLOGO",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "RASCACIELOS",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "PENSAMIENTO",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "DESCONOCIDO",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "FANTASTICO"<br>
+          &nbsp;&nbsp;&nbsp; };<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; static String paraula;<br>
+          &nbsp;&nbsp;&nbsp; static StringBuilder paraulaJugador;<br>
+          &nbsp;&nbsp;&nbsp; static int intents;<br>
+          &nbsp;&nbsp;&nbsp; static boolean fi;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void triarParaula() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; intents = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi = false;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraula = paraules[(int)(Math.random() * paraules.length)];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraulaJugador = new StringBuilder("");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; paraula.length(); i++) paraulaJugador.append("_");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PenjatVista.mostrarParaula(PenjatModel.paraulaJugador);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void posarLletra(char l) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (paraula.contains("" + l)) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; paraula.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (paraula.charAt(i) == l) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraulaJugador.setCharAt(i, l);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PenjatVista.mostrarParaula(PenjatModel.paraulaJugador);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (haGuanyat()) PenjatVista.mostrarMissatge("HAS GUANYAT!");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++intents;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PenjatVista.mostrarPenjat(intents);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (intents == 7) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi = true;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PenjatVista.mostrarMissatge("HAS PERDUT!");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PenjatVista.mostrarMissatge("La paraula era " + paraula);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PenjatVista.mostrarParaula(PenjatModel.paraulaJugador);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static boolean haGuanyat() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; paraula.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (paraulaJugador.charAt(i) == '_') return false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi = true;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static boolean haAcabat() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return fi;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h6>Vista</h6>
+        <p class="p_codi"><strong> public class PenjatVista</strong> {<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; static String[] penjat = {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n |\n",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n |\n O\n",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n |\n_O\n",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n |\n_O_\n",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n |\n_O_\n |\n",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n |\n_O_\n |\n/\n",<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n |\n_O_\n |\n/ \\\n"<br>
+          &nbsp;&nbsp;&nbsp; };<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void mostrarParaula(StringBuilder p) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; p.length(); i++) System.out.print(p.charAt(i) + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void mostrarPenjat(int intents) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(penjat[intents]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void mostrarMissatge(String m) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(m);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Classe principal</h6>
+        <p class="p_codi"><strong>public class SetMig</strong> {<br>
+          &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetMigControlador.jugar();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h6>Controlador</h6>
+        <p class="p_codi"><strong>public class SetMigControlador</strong> {<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; static Scanner scan = new Scanner(System.in);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void jugar() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char l;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetMigModel.inicialitzar();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l = introLletra();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetMigModel.treurePlantar(l);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } while (!SetMigModel.haAcabat());<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; static char introLletra() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char l = ' ';<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (l != 'T' &amp;&amp; l != 'P') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("Tria una acció (Treure carta o Plantar-se): ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l = scan.nextLine().toUpperCase().charAt(0);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return l;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          }</p>
+        <h6>Model</h6>
+        <p class="p_codi"><strong>public class SetMigModel</strong> {<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; static final String[] pals = {"Ors", "Cors", "Espases", "Bastos"};<br>
+          &nbsp;&nbsp;&nbsp; static final String[] figures = {"1", "2", "3", "4", "5", "6", "7",<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; "Sota", "Cavall", "Rei"};<br>
+          &nbsp;&nbsp;&nbsp; static String[] cartes = new String[pals.length * figures.length];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; static float puntsJugador;<br>
+          &nbsp;&nbsp;&nbsp; static float puntsBanca;<br>
+          &nbsp;&nbsp;&nbsp; static int carta;<br>
+          &nbsp;&nbsp;&nbsp; static boolean fi;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void inicialitzar() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int k = 0, r;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String s;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Generar baralla<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; pals.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; figures.length; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cartes[k] = figures[j] + " de " + pals[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++k;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Barrejar cartes<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (k = 0; k &lt; cartes.length; k++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r = (int)(Math.random() * cartes.length);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s = cartes[k];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cartes[k] = cartes[r];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cartes[r] = s;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Inicialitzar valors<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; puntsJugador = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; puntsBanca = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; carta = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi = false;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void treurePlantar(char l) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (l == 'T') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; puntsJugador += treuCarta();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetMigVista.mostrarJugadorPunts("El jugador", puntsJugador);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (puntsJugador &gt; 7.5) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetMigVista.mostrarMissatge("HAS PERDUT!");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi = true;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; banca();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void banca() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (puntsJugador &gt; puntsBanca) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; puntsBanca += treuCarta();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetMigVista.mostrarJugadorPunts("La banca", puntsBanca);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thread.sleep(3000);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (InterruptedException e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (puntsJugador == puntsBanca)<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; SetMigVista.mostrarMissatge("EMPAT: guanya la banca");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (puntsBanca &gt; 7.5) SetMigVista.mostrarMissatge("HAS GUANYAT!");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else SetMigVista.mostrarMissatge("HAS PERDUT!");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi = true;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static float treuCarta() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String c = cartes[carta];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float punts;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (c.charAt(0) &gt;= '1' &amp;&amp; c.charAt(0) &lt;= '7') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; punts = c.charAt(0) - '0';<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; punts = 0.5f;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SetMigVista.mostrarCartaPunts(c, punts);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++carta;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return punts;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static boolean haAcabat() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return fi;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          }</p>
+        <h6>Vista</h6>
+        <p class="p_codi"><strong>public class SetMigVista</strong> {<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void mostrarCartaPunts(String carta, float punts) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("Carta: %s&nbsp;&nbsp; Punts: %.1f\n", carta, punts);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void mostrarJugadorPunts(String jugador, float punts) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("%s té %.1f punts\n", jugador, punts);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void mostrarMissatge(String m) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(m);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

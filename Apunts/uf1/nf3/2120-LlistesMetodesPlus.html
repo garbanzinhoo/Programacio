@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Mètodes de les llistes en JavaScript">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Mètodes de les llistes en JavaScript</header>
+    <section>
+      <h2>Mètodes dels <em>arrays</em></h2>
+      <p class="p_important">Alguns mètodes modifiquen la mateixa llista; altres no la modifiquen però retornen una llista nova; alguns modifiquen la llista i retornen una llista nova.</p>
+      <p class="p_important"><strong>Convé evitar que un <em>array</em> contingui elements</strong><strong><strong> <span class="c_comanda">undefined</span></strong> o <span class="c_comanda">empty</span>.<br>
+        </strong></p>
+      <h3>Mostrar tots els elements de l'<em>array</em></h3>
+      <p>Si és necessari, un <em>array</em> es converteix automàticament a un <em>string</em> separant els elements amb una coma:</p>
+      <p class="p_codi">document.write(["SMX", "DAW"]);&nbsp;&nbsp;&nbsp; // Escriu 'SMX,DAW'</p>
+      <p>Si es vol un altre tipus de separador, es pot utilitzar la comanda <span class="c_comanda">join()</span>:</p>
+      <p class="p_codi">let cicles = ["SMX", "DAW"];<br>
+        document.write(cicles.join(" - "));&nbsp;&nbsp;&nbsp; // Escriu 'SMX - DAW'<br>
+      </p>
+      <h3>Ordenar l'<em>array</em></h3>
+      <p>La comanda <span class="c_comanda">sort()</span> ordena l'<em>array</em> alfabèticament de més petit a més gran.</p>
+      <p>La comanda <span class="c_comanda">reverse()</span> inverteix la posició de tots els elements: si es vol ordenar un <em>array</em> inversament, primer s'utilitza la comanda <span class="c_comanda">sort()</span> i després <span class="c_comanda">reverse()</span>.</p>
+      <p>Si l'<em>array</em> conté números, l'ordre pot ser incorrecte: el número 2 es posaria abans del 10.<br>
+        En aquest cas (o si tenim objectes més complexos) es pot ordenar utilitzant una <strong>funció personalitzada</strong> que indiqui si un element és més gran, més petit o igual que un altre.<br>
+        Aquesta funció ha de retornar:</p>
+      <ul>
+        <li>Un número negatiu (&lt; 0) si el primer element és menor que el segon.</li>
+        <li>Un número positiu (&gt; 0) si el primer element és més gran que el segon.</li>
+        <li>0 (zero) si els dos elements són iguals.</li>
+      </ul>
+      <p class="p_codi">let edats = [35, 9, 18];<br>
+        <br>
+        function ordreXY(x, y) {<br>
+        &nbsp; return x - y;<br>
+        }<br>
+        <br>
+        edats.sort(ordreXY);&nbsp;&nbsp; // edats = [9, 18, 35];<br>
+        edats.reverse();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // edats = [35, 18, 9]; </p>
+      <h3>Recórrer tots els elements d'un <em>array</em> </h3>
+      <p>Es pot accedir a tots els elements utilitzant bucles (<span class="c_comanda">for</span>, <span class="c_comanda">while</span>...).</p>
+      <p>Si es fa així cal saber quants elements té l'array.<br>
+        Aquest valor es troba a la propietat <span class="c_comanda">length</span>:</p>
+      <p class="p_codi">let cicles = ["SMX", "ASX", "DAW"];<br>
+        <br>
+        for (let i = 0; <strong>i &lt; </strong><strong>cicles.length</strong>; i++) {<br>
+        &nbsp; console.log("\n" + cicles[i]);<br>
+        }</p>
+      <h4>for ... of</h4>
+      <p>També es pot utilitzar <span class="c_comanda">for ... of</span> (<strong>no confondre amb</strong> <span class="c_comanda">for ... in</span>).</p>
+      <p>En aquest cas cal utilitzar una variable (en aquest cas <span class="c_comanda">c</span>) a la qual s'assigna un element diferent de la llista (en aquest cas <span class="c_comanda">cicles</span>) en cada iteració del bucle:</p>
+      <p class="p_codi">let cicles = ["SMX", "ASX", "DAW"];<br>
+        <br>
+        <strong>for</strong> (let c <strong>of</strong> cicles) {<br>
+        &nbsp; console.log("\n" + c);<br>
+        }</p>
+      <h4>Funció map()</h4>
+      <p>Retorna una nova llista després de realitzar alguna operació determinada amb cada element.<br>
+        L'acció que s'ha de realitzar ve determinada per una funció personalitzada:</p>
+      <p class="p_codi">let numeros = [1, 2, 3];<br>
+        <br>
+        function <strong>doble</strong>(valor, index, array) {&nbsp;&nbsp; // Funció personalitzada<br>
+        &nbsp; return 2 * valor;<br>
+        }<br>
+        <br>
+        let n2 = cicles.<strong>map</strong>(<strong>doble</strong>);&nbsp;&nbsp; // <strong>n2 = [2, 4, 6]</strong></p>
+      <h4>Funció filter()</h4>
+      <p>Retorna una nova llista amb els elements de la llista que compleixen una condició.<br>
+        La funció personalitzada ha de retornar <span class="c_comanda">true</span> si l'element que se li passa compleix la condició:</p>
+      <p class="p_codi">let edats = [10, 20, 30];<br>
+        <br>
+        function <strong>major</strong>(valor, index, array) {&nbsp;&nbsp; // Funció personalitzada<br>
+        &nbsp; return valor &gt;= 18;<br>
+        }<br>
+        <br>
+        let m18 = edats.<strong>filter</strong>(<strong>major</strong>);&nbsp;&nbsp; // <strong>m18 = [20, 30]</strong></p>
+      <h4>Funcions reduce() i reduceRight()</h4>
+      <p>Retorna un valor (no necessàriament numèric) després de realitzar alguna operació determinada amb tots els elements.<br>
+        L'acció que s'ha de realitzar ve determinada per una funció personalitzada que, a partir d'un valor inicial, realitza una operació amb un element i retorna el resultat d'aquesta operació. Aquest resultat serà el valor inicial per fer la operació amb el següent element:</p>
+      <p class="p_codi">let numeros = [1, 2, 3];<br>
+        <br>
+        function <strong>suma</strong>(anterior, actual) {&nbsp;&nbsp; // Funció personalitzada<br>
+        &nbsp; return anterior + actual;<br>
+        }<br>
+        <br>
+        let t = numeros.<strong>reduce</strong>(<strong>suma</strong>, <strong>0</strong>);&nbsp;&nbsp; // <strong>t = 6</strong></p>
+      <p>La diferència entre <strong>reduce()</strong> i <strong>reduceRight()</strong> és que en el primer cas es comença pel primer element de la llista i en el segon cas es comença pel final.</p>
+      <div class="p_important">
+        <p>Si no es posa el valor inicial, el valor anterior i l'actual seran el primer i el segon respectivament.</p>
+        <p class="p_codi">let t = numeros.<strong>reduce(suma)</strong>;&nbsp;&nbsp; // t = 6</p>
+      </div>
+      <h4>Funcions every() i some()<br>
+      </h4>
+      <p>Retornen <span class="c_comanda">true</span> o <span class="c_comanda">false</span> si tots o algun element de la llista compleixen una condició.<br>
+        La funció personalitzada ha de retornar <span class="c_comanda">true</span> o <span class="c_comanda">false</span> si l'element que se li passa compleix o no la condició:</p>
+      <p class="p_codi">let numeros = [1, 2, 3];<br>
+        <br>
+        function <strong>imparell</strong>(valor) {&nbsp;&nbsp; // Funció personalitzada<br>
+        &nbsp; return valor % 2;<br>
+        }<br>
+        <br>
+        let i = numeros.<strong>every</strong>(<strong>imparell</strong><strong></strong>);&nbsp;&nbsp; // <strong>i = false</strong><br>
+        i = numeros.<strong>some</strong>(<strong>imparell</strong><strong></strong>); &nbsp; &nbsp;&nbsp; &nbsp; // <strong>i = true</strong><br>
+      </p>
+      <h3>Buscar elements dins d'un <em>array</em></h3>
+      <p> </p>
+      <ul>
+        <li><span class="c_comanda">includes(v)</span>: retorna <span class="c_comanda">true</span> si existeix el valor <span class="c_comanda">v</span> dins de l'<em>array</em>.</li>
+        <li><span class="c_comanda">indexOf(v)</span>: retorna l'index del primer element amb el valor <span class="c_comanda">v</span>.<br>
+          Opcionalment es pot indicar a partir de quin índex s'ha de començar a buscar.</li>
+        <li><span class="c_comanda">lastIndexOf(v)</span>: igual que l'anterior, però comença a buscar pel final.</li>
+        <li><span class="c_comanda">find(func)</span>: retorna el primer element que fa que la funció <span class="c_comanda">func</span> retorni <span class="c_comanda">true</span>.</li>
+        <li><span class="c_comanda">findIndex(func)</span>: retorna l'índex del primer element que fa que la funció <span class="c_comanda">func</span> retorni <span class="c_comanda">true</span>.</li>
+      </ul>
+      <h3>Altres funcions</h3>
+      <ul>
+        <li><span class="c_comanda">slice(ini, fi)</span>: genera una nova llista amb els elements entre <span class="c_comanda">ini</span> (inclòs) i <span class="c_comanda">fi</span> (no inclòs).<br>
+          Tots dos paràmetres són opcionals i també poden tenir valors negatius.</li>
+        <li><span class="c_comanda">splice()</span>: permet afegir o eliminar elements a una llista.</li>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

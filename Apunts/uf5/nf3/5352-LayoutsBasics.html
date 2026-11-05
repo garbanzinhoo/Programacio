@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Layouts bàsics">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Layouts bàsics</header>
+    <section>
+      <h2><em>FlowLayout</em></h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/FlowLayout.html">FlowLayout ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/flow.html">Com utilitzar un <em>FlowLayout</em></a></p>
+      <p>És el <em>layout</em> per defecte dels contenidors (<em>JPanel</em><em></em>).</p>
+      <p>Els components es van afegint un a continuació de l'altre en horitzontal.<br>
+        Quan un component no hi cap degut a l'amplada del contenidor, es posa a sota.</p>
+      <p>Per defecte, els components d'una línia queden centrats respecte de la línia i centrats entre ells.<br>
+        També s'afegeix una separació de 5 píxels entre ells.</p>
+      <p>Hi ha diferents constructors per poder indicar l'alineació dels components i la separació entre ells.<br>
+        Les principals formes d'alineació poden ser:</p>
+      <ul>
+        <li><em>FlowLayout.<strong>LEFT</strong></em></li>
+        <li><em>FlowLayout.<strong>RIGHT</strong></em></li>
+        <li><em>FlowLayout.<strong>CENTER</strong></em> (per defecte)</li>
+      </ul>
+      <p class="p_important">No es pot fixar la posició dels components, però sí la seva mida.<br>
+        Al redimensionar el contenidor, els components poden canviar de posició, però la mida es manté.<br>
+        Si un component no hi cap, quedarà retallat.</p>
+      <p class="p_codi">// Obtenir el panell principal de la finestra (JFrame) i posar FlowLayout<br>
+        Container panell = finestra.getContentPane();<br>
+        panell.setLayout(<strong>new FlowLayout()</strong>);<br>
+        <br>
+        // Crear objectes i afegir-los al contenidor<br>
+        JLabel lNom = new JLabel("Nom");<br>
+        panell.<strong>add</strong>(lNom);<br>
+        <br>
+        JTextField tfNom = new JTextField();<br>
+        tfNom.setPreferredSize(new Dimension(300, 40));<br>
+        panell.<strong>add</strong>(tfNom);<br>
+        <br>
+        JButton bOk = new JButton("OK");<br>
+        bOk.setPreferredSize(new Dimension(100, 60));<br>
+        panell.<strong>add</strong>(bOk);<br>
+      </p>
+      <p><img alt="" src="./imatges/Layouts/LayoutFlow.png" style="width:38em"></p>
+      <h2><em>BorderLayout</em></h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/BorderLayout.html">BorderLayout ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/border.html">Com utilitzar un <em>BorderLayout</em></a></p>
+      <p>És el <em>layout</em> per defecte de les finestres (<em>JFrame</em>) i diàlegs (<em>JDialog</em>).</p>
+      <p>Divideix el contenidor en 5 zones i es pot posar un component en cada zona.<br>
+        Evidentment, cada component pot ser un contenidor (<em>JPanel</em>), i a dins es poden posar altres components.</p>
+      <p>Les 5 zones s'anomenen:</p>
+      <ul>
+        <li><em>BorderLayout.<strong>PAGE_START</strong></em>: l'altura s'adapta a l'altura del component.</li>
+        <li><em>BorderLayout.<strong>PAGE_END</strong></em>: l'altura s'adapta a l'altura del component.</li>
+        <li><em>BorderLayout.<strong>LINE_START</strong></em>: l'amplada s'adapta a l'amplada del component.</li>
+        <li><em>BorderLayout.<strong>LINE_END</strong></em>: l'amplada s'adapta a l'amplada del component.</li>
+        <li><em>BorderLayout.<strong>CENTER</strong></em>: ocupa la resta de l'espai de la finestra (el component s'adapta a la seva mida).</li>
+      </ul>
+      <ul>
+      </ul>
+      <p class="p_important">Per afegir un component, cal indicar en quina zona s'afegirà.<br>
+        Si en una zona no s'afegeix cap component, aquesta no ocuparà cap espai.</p>
+      <p class="p_codi">// Obtenir el panell principal de la finestra (JFrame) i posar BorderLayout<br>
+        Container panell = finestra.getContentPane();<br>
+        <strong>// NO CAL: el panell principal de la finestra ja té BorderLayout per defecte<br>
+          //panell.setLayout(new BorderLayout());</strong><br>
+        <br>
+        JButton b = new JButton("PAGE_START");<br>
+        b.<strong>setPreferredSize</strong>(new Dimension(120, <strong>50</strong>));<br>
+        <strong>panell.add(b, BorderLayout.PAGE_START);</strong><br>
+        <br>
+        b = new JButton("PAGE_END");<br>
+        b.<strong>setPreferredSize</strong>(new Dimension(120, <strong>50</strong>));<br>
+        panell.<strong>add</strong>(b, <strong>BorderLayout.PAGE_END</strong>);<br>
+        <br>
+        b = new JButton("LINE_START");<br>
+        b.<strong>setPreferredSize</strong>(new Dimension(<strong>120</strong>, 50));<br>
+        panell.<strong>add</strong>(b, <strong>BorderLayout.LINE_START</strong>);<br>
+        <br>
+        b = new JButton("LINE_END");<br>
+        b.<strong>setPreferredSize</strong>(new Dimension(<strong>120</strong>, 50));<br>
+        panell.<strong>add</strong>(b, <strong>BorderLayout.LINE_END</strong>);<br>
+        <br>
+        b = new JButton("CENTER");<br>
+        panell.<strong>add</strong>(b, <strong>BorderLayout.CENTER</strong>);<br>
+      </p>
+      <p><img alt="" src="./imatges/Layouts/LayoutBorder.png" style="width:37em"></p>
+      <h2>GridLayout</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/GridLayout.html">GridLayout ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/grid.html">Com utilitzar un <em>GridLayout</em></a></p>
+      <p>Divideix el contenidor en tantes files i columnes com s'indiqui en el constructor.<br>
+        També es pot indicar una separació vertical i horitzontal entre les files i columnes.</p>
+      <p>L'amplada de les columnes i l'alçada de les files s'adapta a la mida del contenidor, repartint-se per igual.<br>
+        Els components adaptaran la seva mida a la mida de les files i columnes.</p>
+      <p class="p_important">No es pot triar en quina zona s'afegeix un element: el primer anirà a la primera fila primera columna, el següent a la primera fila segona columna...</p>
+      <p class="p_codi">// Obtenir el panell principal de la finestra (JFrame) i posar GridLayout<br>
+        Container panell = finestra.getContentPane();<br>
+        panell.setLayout(<strong>new GridLayout(4, 3)</strong>);<br>
+        <br>
+        JButton b;<br>
+        for (int i = 0; i &lt; 12; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; b = new JButton("B " + i);<br>
+        &nbsp;&nbsp;&nbsp; panell.<strong>add</strong>(b);<br>
+        }<br>
+      </p>
+      <p><img alt="" src="./imatges/Layouts/LayoutGrid.png" style="width:38em"></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

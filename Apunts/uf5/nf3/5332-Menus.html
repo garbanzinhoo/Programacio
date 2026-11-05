@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Finestres">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Finestres</header>
+    <section>
+      <h2>Barra de menús</h2>
+      <p>Les aplicacions d'escriptori acostumen a tenir una barra de menús.</p>
+      <p>Per afegir aquest component, s'utilitza la classe <strong><em>JMenuBar</em></strong>.</p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JMenuBar.html">JMenuBar ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html">Exemples de barra de menús</a></p>
+      <h3>Afegir una barra de menús</h3>
+      <p>Per afegir una barra de menús a una finestra, no es fa de la mateixa forma com s'afegeixen altres components: s'ha d'utilitzar el mètode <span class="c_comanda">setJMenuBar(menuBar)</span> de la finestra (<em>JFrame</em>).</p>
+      <p>Abans, però, cal crear els menús, afergir elements de cada menú i afegir els menús a la barra de menús.</p>
+      <p>Els elements que es poden afegir a un menú són:</p>
+      <ul>
+        <li><em>JMenuItem</em></li>
+        <li><em>JRadioButtonMenuItem</em></li>
+        <li><em>JCheckBoxMenuItem</em></li>
+        <li><em>JMenu</em> (submenú)</li>
+        <li>Separador</li>
+      </ul>
+      <p>Com es pot veure en el següent diagrama de classes, els elements d'un menú són similars a botons.<br>
+        Per tant, es podran utilitzar molts dels seus mètodes, i la forma de gestionar esdeveniments serà similar.</p>
+      <p>La classe <em>JMenu</em> serveix per crear els menús que s'afegiran a la barra de menús i per crear els submenús.</p>
+      <ul>
+      </ul>
+      <p><img alt="" src="./imatges/EsquemaMenus.png" style="width:36em"></p>
+      <p>Els elements han de tenir un text, però també s'hi pot afegir una imatge al davant.<br>
+        També s'hi pot afegir una etiqueta d'ajuda (<strong><em>tooltip</em></strong>) amb el mètode <span class="c_comanda">setToolTipText(helpText)</span> i una drecera (<strong><em>shotcut keys</em></strong> o combinació de tecles) per facilitar la selecció d'opcions amb el teclat.</p>
+      <p>Més endavant es veurà com gestionar les accions sobre els elements dels menús.<br>
+        De moment, només dir que es gestionen igual que amb qualsevol botó.</p>
+      <p>Per afegir un separador entre elements, s'utilitza el mètode <span class="c_comanda">addSeparator()</span>.</p>
+      <p>Per crear un submenú, només cal crear un menú amb els seus elements i afegir-lo al menú pare.</p>
+      <h4>Exemple</h4>
+      <p class="p_codi">private static void <strong>crearMenu()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Crear la barra de menús<br>
+        &nbsp;&nbsp;&nbsp; <strong>JMenuBar menuBar = new JMenuBar();</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Crear menú Opcions<br>
+        &nbsp;&nbsp;&nbsp; <strong>JMenu menu = new JMenu("Opcions");</strong><br>
+        &nbsp;&nbsp;&nbsp; menu.setMnemonic(KeyEvent.VK_O);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Afegir items al menú<br>
+        &nbsp;&nbsp;&nbsp; <strong>menu.add</strong>(crearMenuItem("Opció 1", KeyEvent.VK_1, KeyEvent.VK_A, "op1"));<br>
+        &nbsp;&nbsp;&nbsp; <strong>menu.add</strong>(crearMenuItem("Opció 2", KeyEvent.VK_2, KeyEvent.VK_B, "op2"));<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Afegir menú Opcions a la barra de menús<br>
+        &nbsp;&nbsp;&nbsp; <strong>menuBar.add(menu);</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Afegir la barra de menús a la finestra<br>
+        &nbsp;&nbsp;&nbsp; <strong>f.setJMenuBar(menuBar);</strong><br>
+        }<br>
+        <br>
+        private static JMenuItem <strong>crearMenuItem</strong>(String text, int mnemonic, int accelerator, String action) {<br>
+        &nbsp;&nbsp;&nbsp; JMenuItem mi = new JMenuItem(text);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; mi.<strong>setMnemonic</strong>(mnemonic);<br>
+        &nbsp;&nbsp;&nbsp; mi.<strong>setAccelerator</strong>(KeyStroke.getKeyStroke(accelerator, InputEvent.ALT_DOWN_MASK));<br>
+        &nbsp;&nbsp;&nbsp; // TODO: configurar acció i afegir controlador<br>
+        &nbsp;&nbsp;&nbsp; // mi.<strong>setActionCommand</strong>(action);<br>
+        &nbsp;&nbsp;&nbsp; // mi.<strong>addActionListener</strong>(optionControl);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; return mi;<br>
+        }<br>
+      </p>
+      <h4>Resultat</h4>
+      <p><img alt="" src="./imatges/Menu.png" style="width:25em" class="noborder"></p>
+      <h4>Mètodes per configurar els elements dels menús</h4>
+      <ul>
+        <li><span class="c_comanda">setMnemonic(int t)</span>: el paràmetre <span class="c_comanda">t</span> és el codi d'una tecla (els possibles codis es troben a la classe <em>KeyEvent</em>: <em><span>KeyEvent.<strong>VK_0</strong></span></em>, <em><span>KeyEvent.<strong>VK_A</strong></span></em>...).<br>
+          Fa que se subratlli el caràcter corresponent en el text de l'element i que es pugui seleccionar l'opció amb <kbd>ALT</kbd> + <kbd>tecla</kbd> (per deplegar el menú principal) o directament <kbd>tecla</kbd> (si és un element d'un menú).</li>
+        <li><span class="c_comanda">setAccelerator(KeyStroke ks)</span>: el paràmetre <span class="c_comanda">ks</span> representa una combinació de tecles.<br>
+          per crear un objecte d'aquest tipus es crida el mètode <span class="c_comanda">Keystroke.getKeyStroke(int t, int m)</span>.<br>
+          <span class="c_comanda">t</span> és el codi de tecla (igual que abans) i <span class="c_comanda">m</span> és el codi d'una tecla o combinació de tecles especials (els possibles codis es troben a la classe <em>InputEvent</em>: <em><span>InputEvent.<strong>ALT_DOWN_MASK</strong></span></em>...).<br>
+          Fa que aparegui la combinació de tecles al costat de l'element del menú i que es pugui triar l'opció amb aquesta combinació sense haver d'obrir el menú.</li>
+        <li><span class="c_comanda">setActionCommand(String accio)</span>: el paràmetre <span class="c_comanda">accio</span> es pot obtenir en el gestor d'esdeveniments per distingir les diferents opcions.</li>
+        <li><span class="c_comanda">addActionListener(ActionListener al)</span>: el paràmetre <span class="c_comanda">al</span> ha de ser un objecte que rebri i tracti les accions realitzades sobre els menús. Més endavant es veurà com fer-ho.</li>
+      </ul>
+      <h2>Menú contextual</h2>
+      <p>Un menú contextual és un menú flotant que apareix al clicar el botó secundari sobre un component per mostrar les opcions relacionades amb aquest component.</p>
+      <p>Els passos a seguir són:</p>
+      <ol>
+        <li>Instanciar un objecte de la classe <em>JPopupMenu</em>.</li>
+        <li>Afegir elements de la mateixa forma que amb un <em>JMenu</em>.</li>
+        <li>Crear un <em>listener</em> per gestionar el ratolí, concretament quan es premi el botó secundari.</li>
+        <li>Connectar el component sobre el qual es vol mostrar el menú contextual amb el <em>listener</em> anterior.</li>
+      </ol>
+      <h4>Exemple</h4>
+      <ol>
+      </ol>
+      <p class="p_codi">private static void crearMenuContext() {<br>
+        &nbsp;&nbsp;&nbsp; // Crear menú flotant<br>
+        &nbsp;&nbsp;&nbsp; <strong>JPopupMenu ctxMenu = new JPopupMenu();</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Afegir items al menú<br>
+        &nbsp;&nbsp;&nbsp; ctxMenu.add(crearMenuItem("Opció 1", KeyEvent.VK_1, KeyEvent.VK_A, "op1"));<br>
+        &nbsp;&nbsp;&nbsp; ctxMenu.add(crearMenuItem("Opció 2", KeyEvent.VK_2, KeyEvent.VK_B, "op2"));<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Afegir un panell (o qualsevol component) a la finestra<br>
+        &nbsp;&nbsp;&nbsp; JPanel jp = new JPanel();<br>
+        &nbsp;&nbsp;&nbsp; f.getContentPane().add(jp, BorderLayout.CENTER);<br>
+        &nbsp;&nbsp;&nbsp; // Crear i afegir listener al panell<br>
+        &nbsp;&nbsp;&nbsp; <strong>jp.addMouseListener</strong>(<strong>new MouseAdapter()</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public void <strong>mousePressed(MouseEvent e)</strong> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>boolean botoDret = SwingUtilities.isRightMouseButton(e);</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Component c = e.getComponent();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int x = e.getX();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int y = e.getY();<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (botoDret) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctxMenu.show(c, x, y);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; });<br>
+        }</p>
+      <h4>Resultat</h4>
+      <p><img alt="" src="./imatges/MenuContext.png" style="width:25em" class="noborder"></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

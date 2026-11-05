@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Arxius de text</h1>
+      <div class="enun">
+        <h3>Llegir paraules</h3>
+        <p>Crea manualment un arxiu amb el següent text:</p>
+        <p class="p_codi">20<br>
+          En un lugar de la Mancha, de cuyo nombre no quiero acordarme,<br>
+          no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero,<br>
+          adarga antigua, rocín flaco y galgo corredor.<br>
+          ---<br>
+          Una olla de algo más vaca que carnero, salpicón las más noches,<br>
+          duelos y quebrantos los sábados, lentejas los viernes,<br>
+          algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.</p>
+        <p>Fes una funció que llegeixi l'arxiu i mostri per pantalla cada paraula del text.<br>
+          Es considera separador entre paraules l'espai o el salt de línia.<br>
+          Cada paraula s'ha de mostrar en una línia:</p>
+        <p class="p_consola">20<br>
+          En<br>
+          un<br>
+          lugar<br>
+          de<br>
+          la<br>
+          Mancha,<br>
+          de<br>
+          cuyo<br>
+          nombre<br>
+          ...</p>
+        <p>Fes una funció semblant a l'anterior però que llegeixi fins que trobi la marca <span class="c_configura">---</span>.<br>
+          Aquesta última no s'ha de mostrar.</p>
+        <p>Fes una funció semblant a l'anterior però que llegeixi tantes paraules com indica el número del principi.<br>
+          Les paraules s'han de guardar en un <em>array</em> i, després, s'han de mostrar les que tinguin més de 5 lletres.<br>
+          El número que indica el nombre de paraules no s'ha de mostrar.</p>
+      </div>
+      <div class="enun">
+        <h3>Llegir números</h3>
+        <p>Crea manualment un arxiu amb els següents valors:</p>
+        <p class="p_codi">13 5 12 8 3 24 6 9 1 15<br>
+          20 7 18 0 33 -1 11 4 27 2</p>
+        <p>Fes una funció que llegeixi l'arxiu i mostri per pantalla tots els valors.<br>
+          S'han de mostrar 6 valors en cada línia:</p>
+        <p class="p_consola">13 5 12 8 3 24<br>
+          6 9 1 15 20 7<br>
+          18 0 33 -1 11 4<br>
+          27 2</p>
+        <p>Fes una funció semblant a l'anterior però que llegeixi fins que trobi un valor negatiu.<br>
+          Aquest valor no s'ha de mostrar.</p>
+        <p>Fes una funció semblant a l'anterior però que llegeixi tants valors com indica el primer número.<br>
+          Els valors s'han de guardar en un <em>array</em> i mostrar el màxim, el mínim i la mitjana amb un decimal.<br>
+          Després s'han d'ordenar els números en el mateix <em>array</em> i mostrar-los.</p>
+      </div>
+      <div class="enun">
+        <h3>Llegir línies</h3>
+        <p>Crea manualment un arxiu amb el següent text (o similar): </p>
+        <p class="p_codi">Michael Jordan;17/02/1963;1.98<br>
+          Lebron James;30/12/1984;2.06<br>
+          Shaquille O'Neal;06/03/1972;2.16<br>
+          Kobe Bryant;23/08/1978;1.98<br>
+          Magic Johnson;14/08/1959;2.06</p>
+        <p class="p_important">És habitual guardar les dades d'un full de càlcul en format CSV per processar-les després automàticament.<br>
+          Els separadors també poden ser comes, tabuladors...</p>
+        <p>Llegeix l'arxiu línia per línia, separa els camps utilitzant la comanda <span class="c_comanda">split()</span> (és molt recomanable crear una funció que, passant-li la línia i el separador, retorni un <em>array</em> de <em>Strings</em> amb cada camp).<br>
+          Mostra les següents dades (per calcular l'edat només cal que tinguis en compte l'any de naixement):</p>
+        <p class="p_consola">Michael Jordan<br>
+          Data de naixement: 17/02/1963<br>
+          Edat aproximada: 59 anys<br>
+          Altura: 1.98 metres<br>
+          ------<br>
+          ...<br>
+          ------<br>
+          Magic Johnson<br>
+          Data de naixement: 14/08/1959<br>
+          Edat aproximada: 63 anys<br>
+          Altura: 2.06 metres</p>
+      </div>
+      <div class="enun">
+        <h3>Distingir tipus de dades</h3>
+        <p>Crea manualment un arxiu amb el següent text: </p>
+        <p class="p_codi">Text<br>
+          100 10000 10000000 100000000000<br>
+          Text1234 1234Text<br>
+          0.123456 -0.123456E-10<br>
+          0.1234.1234 -0.1234E12E34<br>
+          -0.12345678901234<br>
+          0.12345678901234E-10</p>
+        <p>Mostra cada dada indicant de quin tipus és.<br>
+          Fes una funció que, passant-li la dada, retorni de quin tipus és (pots utilitzar <span class="c_comanda">try/catch</span>, per exemple).</p>
+        <p class="p_consola">String: Text<br>
+          &nbsp; Byte: 100<br>
+          &nbsp;&nbsp;&nbsp; Short: 10000<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Integer: 10000000<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Long: 100000000000<br>
+          String: Text1234<br>
+          String: 1234Text<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Float: 0.123456<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Float: -1.23456E-11<br>
+          String: 0.1234.1234<br>
+          String: -0.1234E12E34<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Double: -0.12345678901234<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Double: 1.2345678901234E-11</p>
+        <p>Per començar, només cal que distingeixis entre <strong>String</strong>, <strong>Long</strong> i <strong>Double</strong> o entre <strong>String</strong>, <strong>Integer</strong> i <strong>Float</strong>.</p>
+        <p class="p_important">Distingir entre <strong>Double</strong> i <strong>Float</strong> pot ser complicat!!!<br>
+          No cal que escriguis els espais davant del tipus (en l'exemple s'ha fet així per facilitar la distinció).</p>
+      </div>
+      <div class="enun">
+        <h3>Inventar usuaris</h3>
+        <p>Fes una funció que contingui dues llistes amb valors constants: una amb noms de persones (poden ser noms compostos) i l'altra amb els cognoms (poden tenir un o més cognoms).</p>
+        <p>Combinant aquestes dues llistes ha de generar 50 usuaris amb el seu corresponent identificador i guardar-los en un arxiu de text amb el següent format:</p>
+        <p class="p_codi">n.cognom;Cognom Cognom2, Nom</p>
+        <p>L'identificador ha de constar de la primera lletra del nom, un punt i el primer cognom.</p>
+        <p>Opcionalment, s'ha de comprovar que l'identificador no existeixi per evitar generar identificadors duplicats.<br>
+          Cal avisar si es produeix aquesta situació indicant el nom i cognoms de l'usuari que no s'ha pogut crear.</p>
+      </div>
+      <div class="enun">
+        <h3>Multes d'aparcament</h3>
+        <p>Fes una funció que contingui les següents llistes amb dades constants:</p>
+        <p class="p_codi">mMatricula: "1234ABC", "5678DEF", "4321FED", "8765CBA", "1029ASD", "4321FED", "1029ASD", "1234ABC", "6939JKL", "2513XYZ"<br>
+          mImport: 30.5f, 50.8f, 60f, 40f, 30.5f, 60f, 35f, 46.3f, 29.9f, 99.99f<br>
+          mControlador: "Pau Gasoil", "Mireia del Monte", "Andres Lasiesta", "Mireia del Monte", "Andres Lasiesta", "Andres Lasiesta", "Mireia del Monte", "Pau Gasoil", "Andres Lasiesta", "Mireia del Monte"<br>
+          mDescripcio: "Mal aparcat", "No ha passat la ITV", "Bloqueja un vado permanent", "Sense ticket", "Ticket caducat", "No m’agrada el color", "Ocupa doble espai", "Ocupa plaça de minusvàlid", "Pujat sobre la vorera", "Aparcat en diagonal!"</p>
+        <p>Has de generar un document de text amb el següent format:</p>
+        <p class="p_consola">Operari: Pau Gasoil<br>
+          Matricula: 1234-ABC<br>
+          Import: 30,50 €<br>
+          *Import amb dte (20%): 24,40 €<br>
+          Infracció: Mal aparcat<br>
+          (*) Es descomptarà un 20% si es paga abans de 30 dies.<br>
+          ------<br>
+          ...<br>
+          ------<br>
+          Total import multes: 482,99 €</p>
+      </div>
+      <div class="enun">
+        <h3>Notes finals</h3>
+        <p>Fes una funció que, a partir d'un arxiu amb les notes dels alumnes en format CSV, generi un altre arxiu amb les notes finals de cada mòdul amb un decimal.</p>
+        <p>Arxiu d'entrada:</p>
+        <p class="p_codi">Alumne;M01-Sistemes;UF1;UF2;UF3;M02-BBDD;UF1;UF2;UF3;M03-Prog;UF1;UF2;UF3<br>
+          Matagatos, Sofia;0;5;6;4;0;6;8;7;0;7;6;7<br>
+          Punk, Peter;0;5;6;6;0;6;6;7;0;7;6;8</p>
+        <p>Arxiu de sortida:</p>
+        <p class="p_codi">Alumne;M01-Sistemes;UF1;UF2;UF3;M02-BBDD;UF1;UF2;UF3;M03-Prog;UF1;UF2;UF3<br>
+          Matagatos, Sofia;---;5;6;4;7,0;6;8;7;6,7;7;6;7<br>
+          Punk, Peter;5,7;5;6;6;6,3;6;6;7;7,0;7;6;8</p>
+        <p>Si vols complicar-ho més, pensa que el nombre de mòduls i de UF per mòdul pot canviar d'un curs a l'altre.</p>
+      </div>
+      <div class="enun">
+        <h3>Butlletins de notes</h3>
+        <p>Amb el mateix arxiu de sortida que en l'exercici anterior, genera els butlletins de notes per cada alumne.<br>
+          Per cada alumne s'ha de generar un arxiu de text amb el format <span class="c_arxiu">CognomNom.txt</span>.</p>
+        <p>Pensa que si un mòdul té alguna UF suspesa (nota &lt; 5), la nota final no s'ha de mostrar (---).</p>
+        <p>El format del butlletí ha de ser semblant al següent:</p>
+        <p class="p_codi">Alumne: Matagatos, Sofia<br>
+          M01-Sistemes: ---<br>
+          &nbsp;&nbsp; UF1: 5<br>
+          &nbsp;&nbsp; UF2: 6<br>
+          &nbsp;&nbsp; UF3: 4<br>
+          M02-BBDD: 7,0<br>
+          &nbsp;&nbsp; UF1: 6<br>
+          &nbsp;&nbsp; UF2: 8<br>
+          &nbsp;&nbsp; UF3: 7<br>
+          M03-Prog: 6,7<br>
+          &nbsp;&nbsp; UF1: 7<br>
+          &nbsp;&nbsp; UF2: 6<br>
+          &nbsp;&nbsp; UF3: 7<br>
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

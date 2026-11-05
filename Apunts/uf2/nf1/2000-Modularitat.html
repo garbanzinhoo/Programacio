@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Disseny descendent">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Disseny descendent</header>
+    <section>
+      <h2>Disseny descendent</h2>
+      <p>Quan els problemes que es volen resoldre creixen i es compliquen, no n'hi ha prou amb conèixer la programació estructurada.</p>
+      <p>Per tractar aquests casos, el disseny descendent és una de les tècniques més utilitzades.</p>
+      <p>Aquest mètode consisteix en dividir el problema en trossos més petits, i si aquests trossos encara són massa grans o complicats, es tornen a subdividir fins que s'arribi a un nivell abastable.</p>
+      <p>Per exemple, la majoria dels exercicis que s'han fet anteriorment es poden dividir en tres grans blocs: introducció de dades, processament de les dades i visualització dels resultats.<br>
+        I cada un d'aquests blocs es pot subdividir si es considera necessari:</p>
+      <ul>
+        <li>Introducció de dades.</li>
+        <ul>
+          <li>Introduir les dades del client.</li>
+          <li>Introduir les dades de la comanda.</li>
+          <li>Comprovar les dades introduïdes.</li>
+        </ul>
+        <li>Processament de dades.</li>
+        <ul>
+          <li>Calcular subtotals.</li>
+          <li>Calcular descompte, IVA i import total.</li>
+        </ul>
+        <li>Visualització de resultats.</li>
+        <ul>
+          <li>Mostrar la factura detallada.</li>
+          <li>Demanar confirmació de la compra.</li>
+          <li>Realizar el procés de pagament.</li>
+        </ul>
+      </ul>
+      <p>També es poden considerar com a blocs de primer o segon nivell les diferents opcions en un programa que pot realitzar diferents accions a partir d'un menú:</p>
+      <ul>
+        <li>Mostrar menú d'opcions.</li>
+        <li>Triar una opció.</li>
+        <ul>
+          <li>Comprovar que l'opció sigui correcta.</li>
+          <li>Processar l'opció triada (cada opció tindrà el seu propi bloc).</li>
+          <ul>
+            <li>Demanar les dades necessàries per aquesta opció.</li>
+            <li>Processar les dades.</li>
+            <li>Mostrar el resultat.</li>
+          </ul>
+        </ul>
+      </ul>
+      <h2>Descomposició bàsica en funcions</h2>
+      <p>Una forma senzilla de descomposar un programa consisteix en crear funcions o mètodes i cridar-los des del mètode principal o des d'altres mètodes.</p>
+      <p>En el cas de JavaScript es poden definir funcions de la següent forma:</p>
+      <p class="p_codi">function nomDeLaFuncio() {<br>
+        &nbsp;&nbsp;&nbsp; // Codi de la funció<br>
+        }</p>
+      <p>Per executar (cridar, invocar...) aquesta funció des de qualsevol punt del programa es fa així:</p>
+      <p class="p_codi"><strong>nomDeLaFuncio();</strong></p>
+      <p>Quan el programa troba una crida a una funció, s'executa el codi d'aquesta i, quan acaba o troba una instrucció <span class="c_comanda">return</span>, torna a la instrucció següent a on s'ha cridat la funció.</p>
+      <p>La instrucció <span class="c_comanda">return</span> dins d'una funció és similar a la instrucció <span class="c_comanda">break</span> dins d'un bucle.</p>
+      <p>Un exemple molt bàsic podria ser el següent:</p>
+      <p class="p_codi"><strong>introduirDades();</strong><br>
+        <strong>processarDades();</strong><br>
+        <strong>mostrarResultats();</strong><br>
+        <br>
+        function <strong>introduirDades()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Codi per demanar les dades<br>
+        }<br>
+        <br>
+        function <strong></strong><strong>processarDades()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Codi per processar les dades<br>
+        }<br>
+        <br>
+        function <strong></strong><strong>mostrarResultats()</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Codi per mostrar el resultat<br>
+        }</p>
+      <h2>Utilitzar el <em>debugger</em> amb funcions</h2>
+      <p>Quan estem depurant pas a pas i trobem una crida a una funció, el depurador ens permet executar tota la funció i aturar-se en la següent línia o entrar dins de la funció per executar-la pas a pas.</p>
+      <p>Si entrem dins de la funció, en qualsevol moment podem fer que el depurador executi fins al final de la funció i s'aturi en la línia següent on s'ha cridat la funció.</p>
+      <h2>Variables globals i locals</h2>
+      <p>Les variables que es defineixen dins d'un bloc de codi, i per tant les que es defineixen dins d'una funció, són <strong>variables locals</strong>. Això vol dir que només es poden utilitzar dins d'aquest bloc de codi.</p>
+      <p>Per fer que una variable es pugui utilitzar des de qualsevol lloc, cal definir-la fora de qualsevol bloc (en el cos principal del programa). Això farà que sigui una <strong>variable global</strong>.</p>
+      <p>Exemple:</p>
+      <p class="p_codi">let<strong> radi, area;</strong>&nbsp;&nbsp;&nbsp; // Variables globals<br>
+        <br>
+        introduirDades();<br>
+        processarDades();<br>
+        mostrarResultats();<br>
+        <br>
+        function introduirDades() {<br>
+        &nbsp;&nbsp;&nbsp; <strong>radi</strong> = parseFloat(prompt("Introdueix el radi del cercle"));<br>
+        }<br>
+        <br>
+        function processarDades() {<br>
+        &nbsp;&nbsp;&nbsp; let <strong>radi2</strong> = radi * radi;&nbsp;&nbsp;&nbsp; // Variable local<br>
+        &nbsp;&nbsp;&nbsp; <strong>area</strong> = Math.PI * <strong>radi2</strong><strong></strong>;<br>
+        }<br>
+        <br>
+        function mostrarResultats() {<br>
+        &nbsp;&nbsp;&nbsp; alert("L'àrea del cercle és " + <strong>area</strong>);<br>
+        }</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

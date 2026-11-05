@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <p>Per provar les funcions de les solucions pots utilitzar el següent codi en la funcio <span class="c_comanda">main()</span>:</p>
+      <p class="p_desplegable p_codi">// Diàleg per seleccionar arxiu<br>
+        final JFileChooser fc = new JFileChooser(new File("."));<br>
+        int returnVal = fc.showOpenDialog(null);<br>
+        if (returnVal == JFileChooser.APPROVE_OPTION) {<br>
+        &nbsp;&nbsp;&nbsp; File file = fc.getSelectedFile();<br>
+        &nbsp;&nbsp;&nbsp; llegirArxiuBinariHexadecimal(file.getAbsolutePath());<br>
+        }<br>
+        <br>
+        //llegirArxiuBinariHexadecimal("./ArxiusBinaris/apunts.pdf");<br>
+        <br>
+        System.out.println();<br>
+        guardarNumerosBinaris("./ArxiusBinaris/numerosBinaris.bin");<br>
+        llegirNumerosBinaris("./ArxiusBinaris/numerosBinaris.bin");<br>
+        <br>
+        System.out.println();<br>
+        llegirArxiuBinariHexadecimal("./ArxiusBinaris/numerosBinaris.bin");<br>
+        <br>
+        llegirNumerosBinarisError("./ArxiusBinaris/numerosBinaris.bin");<br>
+        <br>
+        System.out.println();<br>
+        llegirArxiuBinariHexadecimal("./ArxiusBinaris/textBinari.bin");<br>
+        <br>
+        guardarRegistresText("./ArxiusBinaris/registresText.bin");<br>
+        System.out.println();<br>
+        llegirArxiuBinariHexadecimal("./ArxiusBinaris/registresText.bin");<br>
+        System.out.println();<br>
+        llegirRegistresText("./ArxiusBinaris/registresText.bin");<br>
+        System.out.println();<br>
+        modificarRegistresText("./ArxiusBinaris/registresText.bin");<br>
+        llegirRegistresText("./ArxiusBinaris/registresText.bin");</p>
+      <p>Les funcions <span class="c_comanda">guardarText()</span> i <span class="c_comanda">llegirText()</span> s'utilitzen en els següents exercicis per guardar i llegir camps de text en un arxiu binari:</p>
+      <p class="p_desplegable p_codi">public static <strong>void guardarText(RandomAccessFile raf, long pos, String text, int maxSize)</strong> throws IOException{<br>
+        &nbsp;&nbsp;&nbsp; byte[] b = new byte[maxSize];<br>
+        &nbsp;&nbsp;&nbsp; byte[] bs = text.getBytes(StandardCharsets.UTF_8);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; if (bs.length &gt; b.length - 1) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Error: text massa llarg");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // throw new Exception("Error: text massa llarg");<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; System.arraycopy(bs, 0, b, 0, bs.length);<br>
+        &nbsp;&nbsp;&nbsp; if (pos &gt;= 0) raf.seek(pos);<br>
+        &nbsp;&nbsp;&nbsp; raf.write(b);<br>
+        }<br>
+        <br>
+        public static <strong>String llegirText(RandomAccessFile raf, long pos, int maxSize)</strong> throws IOException{<br>
+        &nbsp;&nbsp;&nbsp; byte[] b = new byte[maxSize];<br>
+        &nbsp;&nbsp;&nbsp; if (pos &gt;= 0) raf.seek(pos);<br>
+        &nbsp;&nbsp;&nbsp; raf.read(b);<br>
+        &nbsp;&nbsp;&nbsp; String s = new String(b, StandardCharsets.UTF_8);<br>
+        &nbsp;&nbsp;&nbsp; int z = s.indexOf((char)0);<br>
+        &nbsp;&nbsp;&nbsp; if (z &gt;= 0) s = s.substring(0, z);<br>
+        &nbsp;&nbsp;&nbsp; return s;<br>
+        }</p>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void llegirArxiuBinariHexadecimal(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; final int N_BYTES = 20;<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RandomAccessFile raf = new RandomAccessFile(f, "r");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; long l = raf.length();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byte[] b = new byte[N_BYTES];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; long pos = 0;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (l &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Llegir línia<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raf.read(b);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Mostrar posició<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("%08d&nbsp; ", pos);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Mostrar bytes en hexadecimal<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; N_BYTES; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (i &lt; l) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(String.format("%02X ", b[i]));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("&nbsp;&nbsp; ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(" ");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Mostrar bytes en ASCII<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; N_BYTES; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (i &lt; l) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (b[i] &lt; 32 || b[i] &gt;= 127) System.out.print("\u001b[31m.\u001b[0m");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else System.out.print((char)(b[i] &amp; 0xFF));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(" ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pos += N_BYTES;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l -= N_BYTES;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void guardarNumerosBinaris(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.getParentFile().exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RandomAccessFile raf = new RandomAccessFile(f, "rw");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) raf.writeByte((byte)i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) raf.writeShort((short)i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) raf.writeInt(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) raf.writeLong(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) raf.writeFloat(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) raf.writeDouble(i);<br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void llegirNumerosBinaris(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RandomAccessFile raf = new RandomAccessFile(f, "r");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) System.out.print(raf.readByte() + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) System.out.print(raf.readShort() + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) System.out.print(raf.readInt() + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) System.out.print(raf.readLong() + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) System.out.print(raf.readFloat() + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; 10; i++) System.out.print(raf.readDouble() + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static <strong>void llegirNumerosBinarisError(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RandomAccessFile raf = new RandomAccessFile(f, "r");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mostrarPosicioTipus(raf, 4, 'a');<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mostrarPosicioTipus(raf, 18, 'a');<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mostrarPosicioTipus(raf, 46, 'a');<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mostrarPosicioTipus(raf, 102, 'a');<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mostrarPosicioTipus(raf, 166, 'a');<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mostrarPosicioTipus(raf, 222, 'a');<br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static <strong>void mostrarPosicioTipus(RandomAccessFile raf, long pos, char type)</strong> throws IOException {<br>
+          &nbsp;&nbsp;&nbsp; switch (type) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'a':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'b':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raf.seek(pos);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Byte posicio " + pos + ":&nbsp;&nbsp;&nbsp; " + raf.readByte());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (type != 'a') break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 's':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raf.seek(pos);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Short posicio " + pos + ":&nbsp;&nbsp; " + raf.readShort());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (type != 'a') break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'i':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raf.seek(pos);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Integer posicio " + pos + ": " + raf.readInt());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (type != 'a') break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'l':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raf.seek(pos);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Long posicio " + pos + ":&nbsp;&nbsp;&nbsp; " + raf.readLong());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (type != 'a') break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'f':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raf.seek(pos);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Float posicio " + pos + ":&nbsp;&nbsp; " + raf.readFloat());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (type != 'a') break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'd':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; raf.seek(pos);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Double posicio " + pos + ":&nbsp; " + raf.readDouble());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; default:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Tipus desconegut");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static void <strong>guardarRegistresText(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; final int TEXT_SIZE = 40;<br>
+          &nbsp;&nbsp;&nbsp; final int MIDA_REGISTRE = TEXT_SIZE + Float.BYTES + Integer.BYTES;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.getParentFile().exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; String[] pacients = {"Pau Gasoil", "Mireia del Monte", "Andrés Lasiesta"};<br>
+          &nbsp;&nbsp;&nbsp; float[] altures = {1.98f, 1.76f, 1.71f};<br>
+          &nbsp;&nbsp;&nbsp; int[] pesos = {93, 71, 75};<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RandomAccessFile raf = new RandomAccessFile(f, "rw");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; pacients.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>modificarRegistre(raf, i, MIDA_REGISTRE, pacients[i], altures[i], pesos[i])</strong>;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static void <strong>llegirRegistresText(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; final int TEXT_SIZE = 40;<br>
+          &nbsp;&nbsp;&nbsp; final int MIDA_REGISTRE = TEXT_SIZE + Float.BYTES + Integer.BYTES;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.getParentFile().exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; String pacient;<br>
+          &nbsp;&nbsp;&nbsp; float altura;<br>
+          &nbsp;&nbsp;&nbsp; int pes;<br>
+          &nbsp;&nbsp;&nbsp; long mida;<br>
+          &nbsp;&nbsp;&nbsp; long regs;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RandomAccessFile raf = new RandomAccessFile(f, "rw");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mida = raf.length();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; regs = mida / MIDA_REGISTRE;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; regs; i++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pacient = <strong>llegirText(raf, -1, TEXT_SIZE)</strong>;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; altura = raf.readFloat();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pes = raf.readInt();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("%-20s %4.2f m&nbsp;&nbsp; %3d Kg\n", pacient, altura, pes);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">static void <strong>modificarRegistresText(String p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp; final int TEXT_SIZE = 40;<br>
+          &nbsp;&nbsp;&nbsp; final int MIDA_REGISTRE = TEXT_SIZE + Float.BYTES + Integer.BYTES;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; File f = new File(p);<br>
+          &nbsp;&nbsp;&nbsp; if (!f.getParentFile().exists()) return;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RandomAccessFile raf = new RandomAccessFile(f, "rw");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>modificarRegistre</strong>(raf, 0, MIDA_REGISTRE, "Peter Punk", 1.82f, 79);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>modificarRegistre</strong>(raf, 1, MIDA_REGISTRE, "Mireia del Monte", 1.74f, 71);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>modificarRegistre</strong>(raf, 2, MIDA_REGISTRE, "Andrés Lasiesta", 1.71f, 77);<br>
+          &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          static void <strong>modificarRegistre(RandomAccessFile raf, long reg, int mida, String pacient, float altura, int pes)</strong> throws IOException {<br>
+          &nbsp;&nbsp;&nbsp; final int TEXT_SIZE = 40;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; raf.seek(reg * mida);<br>
+          &nbsp;&nbsp;&nbsp; <strong>guardarText(raf, -1, pacient, TEXT_SIZE);</strong><br>
+          &nbsp;&nbsp;&nbsp; raf.writeFloat(altura);<br>
+          &nbsp;&nbsp;&nbsp; raf.writeInt(pes);<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

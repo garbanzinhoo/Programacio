@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Evolució de la programació">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Evolució de la programació</header>
+    <section>
+      <h2>Evolució de la programació</h2>
+      <p>Primer de tot cal tenir en compte que la CPU llegeix les instruccions de la memòria en forma de voltatges: quan hi ha tensió, ho interpretem com un 1; si no hi ha tensió, ho interpretem com un 0.<br>
+        Per tant, es pot dir que el llenguatge dels ordinadors està format per uns i zeros.</p>
+      <p>Aquest era el "llenguatge" que s'utilitzava al principi per programar ordinadors, però a mesura que la tecnologia va anar avançant, es van poder crear llenguatges més fàcils pels humans.</p>
+      <h3>Codi màquina</h3>
+      <p>Al principi, els programes s'havien d'escriure en el mateix llenguatge del processador, que està format pels <strong>bits 0 i 1</strong>.<br>
+        Aquest llenguatge és molt difícil, es triga molt a fer un programa i es molt fàcil cometre errades.</p>
+      <p>A continuació hi ha un exemple de com seria un programa així.</p>
+      <p class="p_codi">01111111010001010100110001000110000000010000000100000001000000000000000000000000000000000000000000000000000000000000000000000000<br>
+        00000010000000000000001100000000000000010000000000000000000000001000000010000000000001000000100000110100000000000000000000000000<br>
+        11110100000000000000000000000000000000000000000000000000000000000011010000000000001000000000000000000010000000000010100000000000<br>
+        00000110000000000000010100000000000000010000000000000000000000000000000000000000000000000000000000000000100000000000010000001000<br>
+        00000000100000000000010000001000100111010000000000000000000000001001110100000000000000000000000000000101000000000000000000000000<br>
+        00000000000100000000000000000000000000010000000000000000000000001010000000000000000000000000000010100000100100000000010000001000<br>
+        10100000100100000000010000001000000011100000000000000000000000000000111000000000000000000000000000000110000000000000000000000000<br>
+        00000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000<br>
+        10111010000011100000000000000000000000001011100110100000100100000000010000001000101110110000000100000000000000000000000010111000<br>
+        00000100000000000000000000000000110011011000000010111000000000010000000000000000000000001100110110000000000000000000000000000000<br>
+        <strong> 01001000011001010110110001101100011011110010110000100000011101110110111101110010011011000110010000100001</strong>000010100000000000000000<br>
+        00000000010101000110100001100101001000000100111001100101011101000111011101101001011001000110010100100000010000010111001101110011<br>
+        01100101011011010110001001101100011001010111001000100000001100000010111000111001001110000010111000110011001110010000000000000000<br>
+        00101110011100110110100001110011011101000111001001110100011000010110001000000000001011100111010001100101011110000111010000000000<br>
+        00101110011001000110000101110100011000010000000000101110011000100111001101110011000000000010111001100011011011110110110101101101<br>
+        01100101011011100111010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000<br>
+        00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000<br>
+        00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001011000000000000000000000000<br>
+        00000001000000000000000000000000000001100000000000000000000000001000000010000000000001000000100010000000000000000000000000000000<br>
+        00011101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000<br>
+        00000000000000000000000000000000000100010000000000000000000000000000000100000000000000000000000000000011000000000000000000000000<br>
+        10100000100100000000010000001000101000000000000000000000000000000000111000000000000000000000000000000000000000000000000000000000<br>
+        00000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000010111000000000000000000000000<br>
+        00000001000000000000000000000000000000010000000000000000000000001010111010010000000001000000100010101110000000000000000000000000<br>
+        00000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000<br>
+        00000000000000000000000000000000000111000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000<br>
+        00000000000000000000000000000000101100000000000000000000000000000001111100000000000000000000000000000000000000000000000000000000<br>
+        00000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000<br>
+        00000011000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011001111000000000000000000000000<br>
+        00100101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000<br>
+        00000000000000000000000000000000</p>
+      <p><a target="_blank" rel="noopener" href="./programes/hello">Aquest programa (versió per a Linux)</a> es limita a fer sortir per pantalla el missatge "<strong>Hello, world!</strong>":</p>
+      <p class="p_consola">peter@ubuntu14:~$ ./hello<br>
+        Hello, world!</p>
+      <h3>Assemblador</h3>
+      <p>En <strong>Assemblador</strong>, cada instrucció equival directament a una instrucció en codi màquina i només fa falta un compilador que les tradueixi per generar el programa en codi màquina.</p>
+      <p>El mateix programa anterior, en Assemblador s'escriuria així:</p>
+      <p class="p_codi">section .text<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; global&nbsp; _start<br>
+        <br>
+        _start:<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; mov&nbsp;&nbsp;&nbsp;&nbsp; edx,len<br>
+        &nbsp;&nbsp;&nbsp; mov&nbsp;&nbsp;&nbsp;&nbsp; ecx,msg<br>
+        &nbsp;&nbsp;&nbsp; mov&nbsp;&nbsp;&nbsp;&nbsp; ebx,1<br>
+        &nbsp;&nbsp;&nbsp; mov&nbsp;&nbsp;&nbsp;&nbsp; eax,4<br>
+        &nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp; 0x80<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; mov&nbsp;&nbsp;&nbsp;&nbsp; ebx,0<br>
+        &nbsp;&nbsp;&nbsp; mov&nbsp;&nbsp;&nbsp;&nbsp; eax,1<br>
+        &nbsp;&nbsp;&nbsp; int&nbsp;&nbsp;&nbsp;&nbsp; 0x80<br>
+        <br>
+        section .data<br>
+        <br>
+        msg db&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "<strong>Hello, world!</strong>",0xa<br>
+        len equ&nbsp;&nbsp;&nbsp;&nbsp; $ - msg</p>
+      <h3>Llenguatges estructurats</h3>
+      <p>Al ser una mica més fàcil fer programes, es van inventar altres llenguatges i els seus corresponents traductors, per exemple, el <strong>llenguatge C</strong>.</p>
+      <p>En aquest llenguatge, el programa anterior té menys comandes i és més fàcil d'entendre:</p>
+      <p class="p_codi">#include &lt;stdio.h&gt;<br>
+        &nbsp;<br>
+        int main()&nbsp; {<br>
+        &nbsp;&nbsp;&nbsp; char string[] = "<strong>Hello, world!</strong>";<br>
+        &nbsp;&nbsp;&nbsp; printf("%s\n", string);<br>
+        &nbsp;&nbsp;&nbsp; return 0;<br>
+        }</p>
+      <h3>Llenguatges orientats a objectes</h3>
+      <p>Per facilitar encara més la programació van aparèixer altres mètodes, per exemple la <strong>programació orientada a objectes</strong>.</p>
+      <p>Un exemple de llenguatge orientat a objectes és <strong>Java</strong>:</p>
+      <p class="p_codi">public class HelloWorld {<br>
+        &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("<strong>Hello, world!</strong>");<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <h3>Llenguatges interpretats</h3>
+      <p>Els llenguatges interpretats van traduïnt les instruccions del programa a codi màquina cada cop que s'executa el programa.</p>
+      <p>Un exemple de llenguatge interpretat és <strong>Python</strong>:</p>
+      <p class="p_codi">print("<strong>Hello, world!</strong>")<br>
+      </p>
+      <h3>Altres llenguatges</h3>
+      <p>També es poden trobar molts altres llenguatges de programació.</p>
+      <p>Alguns es van crear en el seu moment per intentar facilitar la feina de programació: <strong>Logo</strong> (precursor de <strong>Scratch</strong>), <strong>Basic</strong><strong></strong>...</p>
+      <p>Altres per utilitzar metodologies de programació diferents de les habituals o destinades a aplicacions concretes: <strong>Lisp</strong> (intel·ligència artificial), <strong>SQL</strong> (bases de dades)...</p>
+      <p>I també per fer aplicacions per a Internet: <strong>JavaScript</strong>, <strong>PHP</strong>...</p>
+      <h3>Programació per entorns gràfics</h3>
+      <p>Si bé en un principi els programes només permetien treballar en mode text, actualment la majoria d'aplicacions es fan per funcionar en mode gràfic (<strong>entorns d'escriptori</strong>, <strong>navegadors web</strong>...).</p>
+      <p>Això fa que siguin més fàcils d'utilitzar per a usuaris sense gaires coneixements informàtics, però el desenvolupament pot ser més complicat.</p>
+      <h3>Entorns de desenvolupament (IDEs)</h3>
+      <p>Antigament s'havien d'utilitzar editors de text per fer els programes i un compilador per convertir-los al llenguatge màquina o un intèrpret per executar-los.</p>
+      <p>Actualment s'utilitzen entorns de desenvolupament que faciliten totes aquestes tasques proporcionant eines i llibreries que estalvien molta feina.</p>
+      <p>Alguns permeten programar en diferents llenguatges (<strong>C</strong>, <strong>Java</strong>, <strong>Python</strong>...) i generar programes per a diferents plataformes (<strong>ordinadors</strong>, <strong>mòbils</strong>, <strong>webs</strong>...) i sistemes operatius (<strong>Windows</strong>, <strong>Linux</strong>...).</p>
+      <p><strong>IntelliJ</strong>, <strong>Visual Studio</strong> i <strong>Eclipse</strong> són només alguns dels entorns de desenvolupament per programació general, però també hi ha de més específics, per exemple per programar jocs (<strong>Unity</strong>).</p>
+      <p>També existeixen editors i depuradors <em>online</em> que poden servir per provar petits programes.</p>
+      <h3>IA i assistents de codi</h3>
+      <p>Els entorns de desenvolupament ajuden cada cop més en el procés de desenvolupament d'aplicacions, amb extensions que generen o completen codi a partir del què el programador escriu, però la revolució més important dels últims anys ha sigut l'aparició de la <strong>intel·ligència artificial generativa</strong>.</p>
+      <p>Les IA generatives poden resultat una ajuda inestimable per:</p>
+      <ul>
+        <li>aprendre a programar (o aprendre qualsevol altre cosa)</li>
+        <li>resoldre problemes simples</li>
+        <li>obtenir una primera aproximació a la solució que es busca</li>
+        <li>explorar diferents opcions</li>
+      </ul>
+      <p>Però les IA actuals també tenen limitacions:</p>
+      <ul>
+        <li>sembla que encara falta bastant per poder crear projectes sencers</li>
+        <li>de vegades generen codi incorrecte (alguns parlen d'un 50% de codi erroni)</li>
+        <li>el codi generat pot ser de poca qualitat i acostuma a incloure control d'errors</li>
+        <li>pot "generar" codi protegit per llicències privatives</li>
+      </ul>
+      <div class="p_important">
+        <p>El que no s'ha de fer mai és:</p>
+        <ul>
+          <li>confiar cegament en les respostes (heu sentit parlar de les "al·lucinacions" de les IA?)</li>
+          <li>utilitzar el codi proporcionat sense comprovar-lo a fons</li>
+          <li>copiar i enganxar el codi generat sense entendre com funciona</li>
+        </ul>
+      </div>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

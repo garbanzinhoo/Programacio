@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Arrays i Strings">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Arrays i Strings</header>
+    <section>
+      <h2>Diferències entre <em>Strings</em> i <em>Arrays</em></h2>
+      <div class="p_important">
+        <p>Els <em>strings</em> es processen de forma similar als <em>arrays</em>, però no exactament igual:</p>
+        <ul>
+          <li><span class="c_comanda">a.length</span>: longitud d'un <em>array</em>.</li>
+          <li><span class="c_comanda">s.length()</span>: longitud d'un <em>string</em>.</li>
+          <li><span class="c_comanda">a[n]</span>: element enèsim d'un <em>array</em>.</li>
+          <li><span class="c_comanda">s.charAt(n)</span>: caràcter enèsim d'un <em>string</em>.</li>
+        </ul>
+      </div>
+      <h2><em>Arrays</em> de <em>strings</em></h2>
+      <p>Igual que es poden crear <em>arrays</em> de números, caràcters o booleans, també es poden crear <em>arrays</em> de <em>strings</em>:</p>
+      <p class="p_codi">String[] colors = {"Vermell", "Verd", "Blau"};<br>
+        for (int i = 0; i &lt; colors.length; ++i) {<br>
+        &nbsp; System.out.println(colors[i]);<br>
+        }</p>
+      <h2>Convertir <em>strings</em> a <em>arrays</em></h2>
+      <p>Per convertir un <em>string</em> en un <em>array</em> de caràcters:</p>
+      <p class="p_codi">String s = "En un lugar de la mancha...";<br>
+        char[] caracters = <strong>s.toCharArray()</strong>;<br>
+        for (int i = 0; i &lt; caracters.length; ++i) {<br>
+        &nbsp; System.out.print(caracters[i] + " ");<br>
+        }<br>
+        System.out.println();</p>
+      <p>Per separar un <em>string</em> en un <em>array</em> de <em>strings</em> indicant un <em>substring</em> com a separador:</p>
+      <p class="p_codi">String s = "En un lugar de la mancha...";<br>
+        String[] paraules = <strong>s.split(" ")</strong>;<br>
+        for (int i = 0; i &lt; paraules.length; ++i) {<br>
+        &nbsp; System.out.println(paraules[i]);<br>
+        }</p>
+      <p class="p_important">El separador pot tenir més d'un caràcter.<br>
+        Cal vigilar si el separador conté caràcters especials que s'utilitzen en expressions regulars.</p>
+      <h2>Convertir <em>arrays</em> a <em>strings</em><em></em></h2>
+      <p>En el cas d'<em>arrays</em> de <em>strings</em>, la forma més senzilla és:</p>
+      <p class="p_codi">String[] colors = {"Vermell", "Verd", "Blau"};<br>
+        String s = <strong>String.join(", ", colors)</strong>;<br>
+        System.out.println(s);&nbsp;&nbsp;&nbsp; // Escriurà <strong>Vermell, Verd, Blau</strong></p>
+      <p>La classe <strong>Arrays</strong> també serveix per altres tipus, però cal importar-la i el resultat no és el mateix:</p>
+      <p class="p_codi"><strong>import java.util.Arrays;</strong><br>
+        <br>
+        int[] numeros = {1, 2, 3};<br>
+        String s = <strong>Arrays.toString(numeros)</strong>;<br>
+        System.out.println(s);&nbsp;&nbsp;&nbsp; // Escriurà <strong>[1, 2, 3]</strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

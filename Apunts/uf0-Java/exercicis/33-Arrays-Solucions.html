@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final int NUM_NOTES = 6;<br>
+          int[] notes = new int[NUM_NOTES];<br>
+          int min = 10, max = 0;<br>
+          <br>
+          // Demana N notes<br>
+          for (int i = 0; i &lt; NUM_NOTES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Introdueix nota UF" + (i+1) + " entre 1 i 10: ");<br>
+          &nbsp;&nbsp;&nbsp; notes[i] = scan.nextInt();<br>
+          }<br>
+          scan.nextLine();<br>
+          <br>
+          // Posa en min i max el primer valor de la llista<br>
+          min = notes[0];<br>
+          max = notes[0];<br>
+          // Comprova si algun dels altres és menor o major que aquests<br>
+          for (int i = 1; i &lt; NUM_NOTES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (notes[i] &lt; min) min = notes[i];<br>
+          &nbsp;&nbsp;&nbsp; if (notes[i] &gt; max) max = notes[i];<br>
+          }<br>
+          <br>
+          if (min &lt; 5) {<br>
+          &nbsp;&nbsp;&nbsp; // Si alguna UF està suspesa, no aprova el mòdul<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("No aproves el mòdul");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; // Nota mínima i màxima<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("Nota mínima: %d\nNota màxima: %d\n", min, max);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Calcular mitjana si totes les UF aprovades<br>
+          &nbsp;&nbsp;&nbsp; int total = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; NUM_NOTES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total += notes[i];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("Mitjana: %.1f\n", (float)total / notes.length);<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final int NUM_NOTES = 10;<br>
+          int[] notes = new int[NUM_NOTES];<br>
+          int aprovats = 0, suspesos = 0;<br>
+          int sumaAprovats = 0;<br>
+          <br>
+          // Demana N notes<br>
+          for (int i = 0; i &lt; NUM_NOTES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print("Introdueix una nota entre 1 i 10: ");<br>
+          &nbsp;&nbsp;&nbsp; notes[i] = scan.nextInt();<br>
+          }<br>
+          scan.nextLine();<br>
+          <br>
+          // Compta suspesos i aprovats<br>
+          for (int i = 0; i &lt; NUM_NOTES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (notes[i] &lt; 5) ++suspesos;<br>
+          &nbsp;&nbsp;&nbsp; else ++aprovats;<br>
+          }<br>
+          System.out.println("Aprovats: " + aprovats + "&nbsp;&nbsp; Suspesos: " + suspesos);<br>
+          <br>
+          // Mostra i fa la mitjana només dels aprovats<br>
+          System.out.print("Notes dels aprovats: ");<br>
+          for (int i = 0; i &lt; NUM_NOTES; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (notes[i] &gt;= 5) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(notes[i] + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sumaAprovats += notes[i];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          System.out.printf("\nMitjana dels aprovats: %.1f\n", (float)sumaAprovats / aprovats);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int n[] = new int[1000];<br>
+          int comptador = 0;<br>
+          <br>
+          // Genera números aleatoris entre 100 i 10000<br>
+          for (int i = 0; i &lt; n.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; n[i] = (int)(Math.random() * (10000 - 100 + 1) + 100);<br>
+          }<br>
+          <br>
+          // Mostra només els 10 primers números parells<br>
+          for (int i = 0; i &lt; n.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; // Només mostra si és parell<br>
+          &nbsp;&nbsp;&nbsp; if (n[i] % 2 == 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(n[i]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++comptador;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Si s’han mostrat 10 números parells, surt del bucle<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (comptador == 10) break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int[] a1 = new int[10];<br>
+          int[] a2 = new int[10];<br>
+          <br>
+          // Genera i mostra les dues llistes<br>
+          for (int i = 0; i &lt; a1.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; a1[i] = (int)(Math.random() * 100 + 1);<br>
+          &nbsp;&nbsp;&nbsp; System.out.print((a1[i]) + " ");<br>
+          }<br>
+          System.out.println();<br>
+          for (int i = 0; i &lt; a1.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; a2[i] = (int)(Math.random() * 100 + 1);<br>
+          &nbsp;&nbsp;&nbsp; System.out.print((a2[i]) + " ");<br>
+          }<br>
+          System.out.println("\n");<br>
+          <br>
+          // Multiplica un a un i mostra el resultat<br>
+          for (int i = 0; i &lt; a1.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print((a1[i] * a2[i]) + " ");<br>
+          }<br>
+          System.out.println("\n");<br>
+          <br>
+          // Suma per parelles tots amb tots i mostra el resultat<br>
+          for (int i = 0; i &lt; a1.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; a2.length; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("%4d", (a1[i] + a2[j]));<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; System.out.println();<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">char[] lletres = new char[10];<br>
+          int l = lletres.length - 1;<br>
+          char c;<br>
+          <br>
+          // Generar lletres aleatòries entre 'A' i 'Z'<br>
+          for (int i = 0; i &lt;= l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; lletres[i] = (char)(Math.random() * ('Z' - 'A' + 1) + 'A');<br>
+          }<br>
+          <br>
+          // Mostrar lletres de l'array<br>
+          for (int i = 0; i &lt;= l; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%2s", lletres[i]);<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Mostrar lletres de l'array al revés<br>
+          for (int i = l; i &gt;= 0; i--) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%2s", lletres[i]);<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Invertir posicions<br>
+          for (int i = 0; i &lt;= l / 2; i++) {<br>
+          &nbsp;&nbsp;&nbsp; c = lletres[i];<br>
+          &nbsp;&nbsp;&nbsp; lletres[i] = lletres[l - i];<br>
+          &nbsp;&nbsp;&nbsp; lletres[l - i] = c;<br>
+          }<br>
+          <br>
+          // Mostrar lletres de l'array<br>
+          for (int i = 0; i &lt;= l; i++) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%2s", lletres[i]);<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">//int[] n = {0,1,4,4,6,7,9};<br>
+          //int[] n = {9,7,6,4,4,1,0};<br>
+          //int[] n = {1,3,5,5,4,2};<br>
+          int[] n = {5,5,5,5,5};<br>
+          <br>
+          boolean ordreAscendent = true;<br>
+          boolean ordreDescendent = true;<br>
+          <br>
+          // Mostrar llista<br>
+          for (int i = 0; i &lt; n.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%d ", n[i]);<br>
+          }<br>
+          // Els següents bucles es poden juntar en un si s'eliminen els break,<br>
+          //&nbsp; però pot ser menys eficient<br>
+          <br>
+          // Comprovar si ordre ascendent:<br>
+          //&nbsp; si un número és més petit que l'anterior, no ho és<br>
+          for (int i = 1; i &lt; n.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (n[i] &lt; n[i - 1]) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ordreAscendent = false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Comprovar si ordre descendent:<br>
+          //&nbsp; si un número és més gran que l'anterior, no ho és<br>
+          for (int i = 1; i &lt; n.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (n[i] &gt; n[i - 1]) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ordreDescendent = false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Si tots els números són iguals, ascendent i descendent!!!<br>
+          if (ordreAscendent &amp;&amp; ordreDescendent) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("\nÉs constant!");<br>
+          } else if (ordreAscendent) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("\nOrdre ascendent");<br>
+          } else if (ordreDescendent) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("\nOrdre descendent");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("\nNo està ordenada");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int[] n1 = {1,1,1,1,1};<br>
+          int[] n2 = {2,2,2,2,2};<br>
+          //int[] n1 = {1,1,1,1,1};<br>
+          //int[] n2 = {2,2,2};<br>
+          //int[] n1 = {1,1,1};<br>
+          //int[] n2 = {2,2,2,2,2};<br>
+          <br>
+          int[] n3 = new int[n1.length + n2.length];<br>
+          int j = 0;<br>
+          <br>
+          // Agafar la longitud de la llista més gran<br>
+          int l = n1.length &gt; n2.length ? n1.length : n2.length;<br>
+          <br>
+          // Mostrar les dues llistes<br>
+          for (int i = 0; i &lt; n1.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(n1[i] + " ");<br>
+          }<br>
+          System.out.println();<br>
+          for (int i = 0; i &lt; n2.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(n2[i] + " ");<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Barrejar les dues llistes<br>
+          for (int i = 0; i &lt; l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; // Només afegeix element de n1 si no s’ha arribat al final de n1<br>
+          &nbsp;&nbsp;&nbsp; if (i &lt; n1.length) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n3[j] = n1[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++j;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; // Només afegeix element de n2 si no s’ha arribat al final de n2<br>
+          &nbsp;&nbsp;&nbsp; if (i &lt; n2.length) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n3[j] = n2[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++j;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar la llista barrejada<br>
+          for (int i = 0; i &lt; n3.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(n3[i] + " ");<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int[] a1 = new int[10];<br>
+          <br>
+          // Generar i mostrar números aleatoris<br>
+          for (int i = 0; i &lt; a1.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; a1[i] = (int)(Math.random() * 100);<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%4d", a1[i]);<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Realitzar operació sumar amb el següent<br>
+          System.out.print("&nbsp;&nbsp;&nbsp; ");<br>
+          for (int i = 1; i &lt; a1.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%4d", (a1[i - 1] + a1[i]));<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Realitzar operació sumar amb l'invers (primer amb últim...)<br>
+          for (int i = 0; i &lt; a1.length / 2; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%4d", (a1[i] + a1[a1.length - i - 1]));<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució desplaçar 1</h6>
+        <p class="p_codi">char[] lletres = new char[10];<br>
+          int l = lletres.length - 1;<br>
+          char c;<br>
+          <br>
+          // Generar i mostrar lletres aleatòries entre 'A' i 'Z'<br>
+          for (int i = 0; i &lt;= l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; lletres[i] = (char)(Math.random() * ('Z' - 'A' + 1) + 'A');<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(lletres[i] + " ");<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Guardar l’última lletra<br>
+          c = lletres[l];<br>
+          // Desplaçar començant pel final<br>
+          for (int i = l; i &gt; 0; i--) {<br>
+          &nbsp;&nbsp;&nbsp; lletres[i] = lletres[i - 1];<br>
+          }<br>
+          // Posar a la primera posició la que estava al final<br>
+          lletres[0] = c;<br>
+          <br>
+          // Mostrar array rotat<br>
+          for (int i = 0; i &lt;= l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(lletres[i] + " ");<br>
+          }<br>
+          System.out.println();</p>
+        <h6>Solució desplaçar N sobre la mateixa llista</h6>
+        <p class="p_codi">// Solució basada en l'anterior però posant el codi de desplaçament dins d'un bucle<br>
+          <br>
+          char[] lletres = new char[10];<br>
+          int l = lletres.length - 1;<br>
+          char c;<br>
+          <br>
+          // Demanar desplaçament<br>
+          System.out.print("Desplaçament (1-9): ");<br>
+          int desp = scan.nextInt();<br>
+          <br>
+          // Generar i mostrar lletres aleatòries entre 'A' i 'Z'<br>
+          for (int i = 0; i &lt;= l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; lletres[i] = (char)(Math.random() * ('Z' - 'A' + 1) + 'A');<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(lletres[i] + " ");<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Rotar n vegades<br>
+          while (desp &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; // Guardar l’última lletra<br>
+          &nbsp;&nbsp;&nbsp; c = lletres[l];<br>
+          &nbsp;&nbsp;&nbsp; // Desplaçar començant pel final<br>
+          &nbsp;&nbsp;&nbsp; for (int i = l; i &gt; 0; i--) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lletres[i] = lletres[i - 1];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; // Posar a la primera posició la que estava al final<br>
+          &nbsp;&nbsp;&nbsp; lletres[0] = c;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; --desp;<br>
+          }<br>
+          <br>
+          // Mostrar array rotat<br>
+          for (int i = 0; i &lt;= l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(lletres[i] + " ");<br>
+          }<br>
+          System.out.println();</p>
+        <h6>Solució desplaçar N utilitzant llista auxiliar</h6>
+        <p class="p_codi">// Solució basada en copiar els elements en una llista auxiliar però desplaçats<br>
+          // i després s'assigna la nova llista a la variable de la llista original<br>
+          <br>
+          char[] lletres = new char[10];<br>
+          char[] auxiliar = new char[lletres.length];<br>
+          int l = lletres.length - 1;<br>
+          char c;<br>
+          <br>
+          // Demanar desplaçament<br>
+          System.out.print("Desplaçament (1-9): ");<br>
+          int desp = scan.nextInt();<br>
+          <br>
+          // Generar i mostrar lletres aleatòries entre 'A' i 'Z'<br>
+          for (int i = 0; i &lt;= l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; lletres[i] = (char)(Math.random() * ('Z' - 'A' + 1) + 'A');<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(lletres[i]);<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Copiar lletres amb desplaçament i canviar array<br>
+          for (int i = 0; i &lt; lletres.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; auxiliar[(i + desp) % lletres.length] = lletres[i];<br>
+          }<br>
+          lletres = auxiliar;<br>
+          <br>
+          // Mostrar array rotat<br>
+          for (int i = 0; i &lt;= l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(lletres[i]);<br>
+          }<br>
+          System.out.println();</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int[] a1 = new int[40];<br>
+          int comptador = 0;<br>
+          String resultat = "";<br>
+          <br>
+          // Generar i mostrar llista<br>
+          for (int i = 0; i &lt; a1.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; a1[i] = (int)(Math.random() * 10);<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%2d", a1[i]);<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Preguntar número a buscar<br>
+          System.out.print("Quin número vols buscar? (0-9): ");<br>
+          int n = scan.nextInt();<br>
+          <br>
+          // Buscar número, comptar i afegir posició a 'resultat' per mostrar-ho després<br>
+          for (int i = 0; i &lt; a1.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (a1[i] == n) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++comptador;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += "\nPosició " + i;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar vegades i posicions (en aquest ordre)<br>
+          System.out.println("Apareix " + comptador + " vegades:" + resultat);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final int N = 20;<br>
+          int[] numeros = new int[N];<br>
+          int[] comptador = new int[10];<br>
+          int c;<br>
+          <br>
+          // Omplir array amb números aleatoris entre 0 i 9<br>
+          for (int i = 0; i &lt; N; ++i)<br>
+          &nbsp;&nbsp;&nbsp; numeros[i] = (int) (Math.random() * 10);<br>
+          <br>
+          // Mostrar array<br>
+          for (int i = 0; i &lt; N; ++i)<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(numeros[i] + " ");<br>
+          System.out.println();<br>
+          <br>
+          // SOLUCIÓ 1: array auxiliar<br>
+          // L'array comptador[] té cada posició inicialitzada a 0<br>
+          // Llegeix cada número i incrementa la posició corresponent de l'array comptador[]<br>
+          for (int i = 0; i &lt; N; ++i)<br>
+          &nbsp;&nbsp;&nbsp; ++comptador[numeros[i]];<br>
+          <br>
+          // Per cada posició de l'array comptador[], mostra la posició (el número)<br>
+          // i el seu contingut (les vegades que apareix)<br>
+          for (int i = 0; i &lt; comptador.length; ++i)<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(i + " --&gt; " + comptador[i] + " vegades");<br>
+          <br>
+          // SOLUCIÓ 2: bucle niat<br>
+          // Per cada valor entre 0 i 9...<br>
+          for (int i = 0; i &lt;= 9; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; // ...inicialitzar el comptador<br>
+          &nbsp;&nbsp;&nbsp; c = 0;<br>
+          &nbsp;&nbsp;&nbsp; // Per cada número, si és igual que el valor de 'i', incrementar el comptador<br>
+          &nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; N; ++j)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (numeros[j] == i) ++c;<br>
+          &nbsp;&nbsp;&nbsp; // Mostrar el valor i les vegades que apareix<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(i + " --&gt; " + c + " vegades");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">char[] lletres = new char[80];<br>
+          int l = lletres.length - 1;<br>
+          char c;<br>
+          <br>
+          // Generar i mostrar lletres aleatòries entre 'A' i 'Z'<br>
+          for (int i = 0; i &lt;= l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; lletres[i] = (char)(Math.random() * ('Z' - 'A' + 1) + 'A');<br>
+          &nbsp;&nbsp;&nbsp; System.out.print(lletres[i]);<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Per cada lletra entre 'A' i 'Z'...<br>
+          for (char i = 'A'; i &lt;= 'Z'; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; // … comptem quantes vegades està dins l’array<br>
+          &nbsp;&nbsp;&nbsp; int comptador = 0;<br>
+          &nbsp;&nbsp;&nbsp; for (int j = 0; j &lt;= l; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (lletres[j] == i) ++comptador;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; if (comptador &gt; 0)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(i + " apareix " + comptador + " vegades");<br>
+          &nbsp;&nbsp;&nbsp; else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(i + " no apareix cap vegada");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final int MIDA = 40;<br>
+          int[] a1 = new int[MIDA];<br>
+          int[] a2 = new int[MIDA];<br>
+          <br>
+          // Generar i mostrar les dues llistes<br>
+          for (int i = 0; i &lt; MIDA; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; a1[i] = (int)(Math.random() * 10);<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%2d", a1[i]);<br>
+          }<br>
+          System.out.println();<br>
+          for (int i = 0; i &lt; MIDA; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; a2[i] = (int)(Math.random() * 10);<br>
+          &nbsp;&nbsp;&nbsp; System.out.printf("%2d", a2[i]);<br>
+          }<br>
+          System.out.println();<br>
+          <br>
+          // Comparar cada posició i mostrar posició i número si són iguals<br>
+          for (int i = 0; i &lt; MIDA; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; if (a1[i] == a2[i]) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("Posició %2d&nbsp;&nbsp; Número %d\n", i, a1[i]);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

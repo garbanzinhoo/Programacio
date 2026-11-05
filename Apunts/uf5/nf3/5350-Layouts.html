@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Layouts">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Layouts</header>
+    <section>
+      <h2><em>Layouts</em></h2>
+      <p>La forma com se situen els components dins d'un contenidor secundari (<em>JPanel</em>), ve determinada pel tipus de <em>layout</em> que s'hi configuri.</p>
+      <p>Per defecte, la distribució d'una finestra (<em>JFrame</em>) o d'un diàleg (<em>JDialog</em>) és del tipus <em>BorderLayout</em>.<br>
+        En un contenidor secundari (<em>JPanel</em>), per defecte hi ha configurat un <em>FlowLayout</em>.</p>
+      <p>Però es poden triar diferents tipus de <em>layout</em> o, fins i tot, eliminar el <em>layout</em>.</p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/visual.html">Tutorial visual sobre Layouts</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/layout/using.html">Com utilitzar els diferents Layouts</a></p>
+      <h3>Contenidor sense <em>layout</em></h3>
+      <div class="p_important">
+        <p>Quan es treballa sense <em>layout</em>, és recomanable fixar la mida del contenidor o finestra i, si és una finestra, evitar que es pugui redimensionar i NO ajustar la mida, excepte si es fixa la mida del contenidor:</p>
+        <p class="p_codi">// Configurar la finestra amb mida fixa i que no es pugui redimensionar<br>
+          finestra.setSize(370, 125);<br>
+          finestra.setResizable(false);<br>
+          // finestra.pack();</p>
+      </div>
+      <p>Si es vol distribuir els components en un contenidor de forma arbitrària, s'haurà de configurar un <em>layout</em> nul.</p>
+      <p>Quan es crea un nou panell, se li ha de passar <span class="c_comanda">null</span> com a paràmetre:</p>
+      <p class="p_codi">// Crear un panell nou sense <em>layout</em><br>
+        JPanel panell = <strong>new JPanel(null)</strong>;</p>
+      <p>Si el contenidor ja existeix (per exemple, el contenidor principal d'un <em>JFrame</em>), s'utilitzarà <span class="c_comanda">setLayout(null)</span>.<br>
+        Suposant que <span class="c_comanda">finestra</span> és un objecte de tipus <em>JFrame</em>:</p>
+      <p class="p_codi">// Obtenir el panell principal de la finestra (<em>JFrame</em>) i treure-li el <em>layout</em><br>
+        Container panell = finestra.getContentPane();<br>
+        panell.<strong>setLayout(null)</strong>;</p>
+      <p>Per afegir components, s'ha de configurar la posició i la mida de cada un amb <span class="c_comanda">setBounds(x,y,w,h)</span>:</p>
+      <p class="p_codi">// Crear objecte, configurar posició i mida, i afegir al contenidor<br>
+        JLabel lNom = new JLabel("Nom");<br>
+        lNom.<strong>setBounds</strong>(10, 10, 50, 25);&nbsp;&nbsp;&nbsp; // x, y, amplada, alçada<br>
+        panell.<strong>add</strong>(lNom);<br>
+        <br>
+        JTextField tfNom = new JTextField();<br>
+        tfNom.<strong>setBounds</strong>(60, 10, 300, 25);<br>
+        panell.<strong>add</strong>(tfNom);<br>
+        <br>
+        JButton bOk = new JButton("OK");<br>
+        bOk.<strong>setBounds</strong>(130, 45, 100, 30);<br>
+        panell.<strong>add</strong>(bOk);</p>
+      <p><img alt="" src="./imatges/Layouts/LayoutNull.png" style="width:22em"></p>
+      <p class="p_important">L'avantatge de configurar la posició i la mida dels components, és que no canviarà l'aspecte encara que canviï la mida del contenidor o de la finestra.<br>
+        <strong>No tots els tipus de <em>layout</em> permeten això!</strong></p>
+      <p class="p_important">Només en casos molt concrets pot ser necessari treballar sense <em>layouts</em>.<br>
+        <strong> Situar i dimensionar els components manualment pot donar molta feina!</strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

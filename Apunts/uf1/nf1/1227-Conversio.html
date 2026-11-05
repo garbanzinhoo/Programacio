@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Operadors de Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Operadors de Java</header>
+    <section>
+      <h2>Conversió i format de dades</h2>
+      <h3>Conversió entre text i números</h3>
+      <h4>De número a text</h4>
+      <p>Per convertir qualsevol valor numèric a text, es pot utilitzar:</p>
+      <p> </p>
+      <ul>
+        <li><span class="c_comanda">"" + valor</span></li>
+        <li><span class="c_comanda">variable.toString()</span> (<span class="c_comanda">variable</span> és un valor numèric)</li>
+      </ul>
+      <p class="p_codi"> let s = <strong>"" + 123</strong>;&nbsp;&nbsp;&nbsp; // s = "123"<br>
+        <br>
+        let v = 25;<br>
+        s = <strong>v.toString()</strong>;&nbsp;&nbsp;&nbsp; // s = "25"<br>
+      </p>
+      <h4>De text a número</h4>
+      <p>Per convertir un text que contingui un valor numèric vàlid, es pot utilitzar el mètode <span class="c_comanda">parseInt(text)</span> o <span class="c_comanda">parseFloat(text)</span> per convertir a enter o a real, respectivament:</p>
+      <p class="p_codi">let n = <strong>parseInt("123")</strong>;&nbsp;&nbsp;&nbsp; // n = 123<br>
+        n = <strong>parseFloat("123")</strong>;&nbsp;&nbsp;&nbsp; &nbsp; // n = 123.0<br>
+        <br>
+        n = <strong>parseInt("123.8")</strong>;&nbsp;&nbsp;&nbsp; &nbsp; // n = 123&nbsp;&nbsp;&nbsp; (<strong>no arrodoneix</strong>)<br>
+        n = <strong>parseFloat("123 Hola")</strong>; // n = 123.0&nbsp; (<strong>només té en compte els números del principi</strong>)<br>
+        <br>
+        n = <strong>parseFloat("Hola 123")</strong>; // n = NaN&nbsp;&nbsp;&nbsp; (<strong>si no hi ha números al principi del text, retorna NaN</strong>)</p>
+      <p class="p_important">Si el text no conté un valor numèric, retorna el valor especial <span class="c_comanda">NaN</span> (<strong>Not a Number</strong>).</p>
+      <div class="p_important">
+        <p>Si el text conté una coma per separar els decimals, cal substituir-la per un punt abans de convertir a número:</p>
+        <p class="p_codi">let numero = "123,8";<br>
+          numero = numero.replace(",", ".");<br>
+          let valor = parseFloat(numero);</p>
+      </div>
+      <h3> Formatar números</h3>
+      <p>Per mostrar resultats, és habitual demanar un nombre determinat de decimals o separar els milers i els decimals amb punts o comes depenent de cada país.</p>
+      <p>Per determinar el nombre de decimals, es pot utilitzar el mètode <span class="c_comanda">valor.toFixed(decimals)</span>.<br>
+        Aquest mètode arrodoneix el valor amb el nombre de decimals desitjat i el converteix a text.</p>
+      <p class="p_codi">let v = 123.456789;<br>
+        let t = <strong>v.toFixed(2)</strong>;&nbsp;&nbsp;&nbsp; // t = "123.45"</p>
+      <p>Si es vol separar milers i decimals amb el caràcter corresponent a un idioma, es pot utilitzar el mètode <span class="c_comanda">valor.toLocaleString([codi])</span>.<br>
+        Si no es posa cap codi, s'utilitzarà l'idioma configurat en el navegador.</p>
+      <p class="p_codi">let v = 1234567.89;<br>
+        let t = <strong>v.toLocaleString()</strong>;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // t = "1.234.567,89"<br>
+        let t = <strong>v.toLocaleString("en-US")</strong>;&nbsp;&nbsp; // t = "1,234,567.89"</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

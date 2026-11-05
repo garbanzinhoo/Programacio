@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introduir dades">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introduir dades</header>
+    <section>
+      <h2>Mostrar dades dins de la pàgina web</h2>
+      <p>Estils css</p>
+      <p>Elements &lt;div&gt; </p>
+      <p>Comanda document.getElementById(identificador)</p>
+      <p>innerHTML</p>
+      <h2>Demanar dades a l'usuari</h2>
+      <p><br>
+      </p>
+      <p>confirm()</p>
+      <p>prompt()</p>
+      <p><br>
+      </p>
+      <p>trim()</p>
+      <p>toUpperCase() / toLowerCase()</p>
+      <p>parseInt() / parseFloat()</p>
+      <p><br>
+      </p>
+      <p>Elements &lt;input&gt;</p>
+      <p>Comanda document.getElementById(identificador)</p>
+      <br>
+      <p>Quan es treballa amb el terminal, cal que l'usuari pugui introduir dades escrivint-les pel teclat.</p>
+      <p>Per fer que el programa s'aturi i esperi que l'usuari introdueixi les dades cal:</p>
+      <ul>
+        <li>Importar una llibreria: <span class="c_comanda">import java.util.Scanner</span>.</li>
+        <li>Crear un objecte d'aquesta classe: <span class="c_comanda">static Scanner scan = new Scanner(System.in)</span>.</li>
+        <li>Utilitzar algunes de les seves funcions i guardar el resultat en una variable: <span class="c_comanda">s = scan.nextLine()</span>.</li>
+      </ul>
+      <h5>Exemple</h5>
+      <p class="p_codi"> <strong>import java.util.Scanner;<br>
+        </strong><br>
+        public class Main {<br>
+        &nbsp;&nbsp;&nbsp; <strong>static Scanner scan = new Scanner(System.in);</strong><br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public static void main(final String[] args) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Codi del programa<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; String nom;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.print("Com et dius? ");<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>nom = scan.nextLine();</strong><br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.println("Hola " + nom);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        } </p>
+      <h3>Tractar les dades introduïdes</h3>
+      <p>De vegades, els usuaris escriuen espais al principi o al final de la resposta que no s'han de tenir en compte.<br>
+        O cal que la resposta sigui en majúscules però l'escriuen en minúscules o barrejant majúscules i minúscules.</p>
+      <p>Per aquests casos hi ha dos mètodes que es poden aplicar a les respostes per evitar errors en el processament posterior:</p>
+      <ul>
+        <li><span class="c_comanda">toUpperCase()</span> (o <span class="c_comanda">toLowerCase()</span>): converteix tot a majúscules (o a minúscules).</li>
+        <li><span class="c_comanda">trim()</span>: elimina els espais que pugui haver al principi i al final del text.</li>
+      </ul>
+      <h5>Exemple</h5>
+      <p class="p_codi">String capital;<br>
+        System.out.print("Quina és la capital de Portugal? ");<br>
+        capital = scan.nextLine();<br>
+        capital = <strong>capital.trim()</strong>;<br>
+        capital = <strong>capital.toUpperCase()</strong>;<br>
+        if (capital.equals("LISBOA")) System.out.println("Correcte!");</p>
+      <p>També es podria haver fet amb menys instruccions:</p>
+      <p class="p_codi">capital = scan.nextLine().<strong>trim()</strong>.<strong>toUpperCase()</strong>;</p>
+      <h3>Mètodes per llegir diferents tipus de dades<br>
+      </h3>
+      <p>L'objecte creat (<span class="c_comanda c_configura">scan</span>) inclou mètodes per poder llegir les dades introduïdes de diferents formes.</p>
+      <h4>Llegir tot el què ha escrit l'usuari</h4>
+      <p>El mètode <span class="c_comanda">scan.nextLine()</span> llegeix tot el text introduït amb el teclat, incloent l'<kbd>INTRO</kbd> que s'ha de prémer al final, i retorna un text que s'ha de guardar en una variable de tipus <span class="c_comanda">String</span>:</p>
+      <p class="p_codi">String nomCognoms;<br>
+        ...<br>
+        <strong>nomCognoms = scan.nextLine();</strong></p>
+      <p>Quan el programa arribi a aquesta línia, esperarà fins que rebi un salt de línia (INTRO), i guardarà el text en la variable <span class="c_configura">nomCognoms</span>.</p>
+      <p>També es pot utilitzar per llegir un valor numèric, però s'ha de convertir després de llegir-lo:</p>
+      <p class="p_codi">int edat = <strong>Integer.parseInt(</strong>scan.nextLine()<strong>);</strong></p>
+      <p class="p_important">Si el què ha escrit l'usuari no és un número, es generarà una excepció i es tancarà el programa.</p>
+      <h4>Llegir només fins que trobi un separador (espai, tabulador, intro...)</h4>
+      <p>Els següents mètodes salten els separadors que pugui haver-hi fins al primer caràcter vàlid i llegeixen els caràcters vàlids fins a trobar un caràcter separador (aquest separador no es llegeix, queda pendent).</p>
+      <p>Si queden caràcters pendents, es llegiran amb la següent comanda <span class="c_comanda">next???()</span>.</p>
+      <ul>
+        <li><span class="c_comanda">scan.next()</span>: retorna un text (sense separadors) que s'ha de guardar en una variable <span class="c_comanda">String</span>.</li>
+        <li><span class="c_comanda">scan.nextInt()</span>: converteix el text llegit a un número enter i s'ha de guardar en una variable <span class="c_comanda">int</span>.<br>
+          Si el text no es pot interpretar com un número enter, es genera una excepció i es tanca el programa.</li>
+        <li><span class="c_comanda">scan.nextFloat()</span>: converteix el text llegit a un número real de precisió simple (<span class="c_comanda">float</span>).<br>
+          Si el text no es pot interpretar com un número real, es genera una excepció i es tanca el programa.</li>
+      </ul>
+      <p>També es pot utilitzar amb <span class="c_comanda">Boolean</span>, <span class="c_comanda">Byte</span>, <span class="c_comanda">Short</span>, <span class="c_comanda">Long</span> o <span class="c_comanda">Double</span>.</p>
+      <p>Es poden utilitzar quan s'introdueix més d'una dada en la mateixa línia:</p>
+      <p class="p_codi">System.out.print("Introdueix el teu nom i la teva edat: ");<br>
+        // Suposant que l'usuari escrigui <strong>John 35</strong><br>
+        <strong>nom = scan.next();</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Llegeix John i ho guarda a la variable 'nom'<br>
+        <strong>edat = scan.nextInt();</strong>&nbsp;&nbsp;&nbsp; // Llegeix 35 i ho guarda a la variable 'edat'<br>
+        <strong>scan.nextLine();</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Llegeix el salt de línia que ha quedat pendent</p>
+      <div class="p_important">
+        <p>És important afegir al final un <span class="c_comanda">scan.nextLine()</span> per què no quedin caràcters pendents que puguin ser llegits erròniament en una lectura posterior.</p>
+        <p>El següent codi sembla que funciona correctament (al menys fins que s'hagin d'introduir més dades):</p>
+        <p class="p_codi">System.out.print("Introdueix el teu nom: ");<br>
+          String nom = scan.nextLine();<br>
+          System.out.print("Introdueix la teva edat: ");<br>
+          int edat = scan.nextInt();<br>
+          // Aquí cal afegir <strong>scan.nextLine();</strong></p>
+        <p>El següent codi no funciona (cal afegir <span class="c_comanda">scan.nextLine()</span> després de <span class="c_comanda">int edat = nextInt()</span>):</p>
+        <p class="p_codi">System.out.print("Introdueix la teva edat: ");<br>
+          int edat = scan.nextInt();<br>
+          // Aquí cal afegir <strong>scan.nextLine();</strong><br>
+          System.out.print("Introdueix el teu nom: ");<br>
+          String nom = scan.nextLine();</p>
+      </div>
+      <h4>Llegir només un caràcter</h4>
+      <p>Per llegir només un caràcter, es pot utilitzar:</p>
+      <ul>
+        <li> <span class="c_comanda">scan.next().charAt(0)</span>: llegeix fins que troba un separador però només agafa el primer caràcter.</li>
+        <li><span class="c_comanda">scan.nextLine().charAt(0)</span>: llegeix fins un salt de línia però només agafa el primer caràcter.</li>
+      </ul>
+      <p>Suposant que l'usuari escriu <span class="c_configura">"&nbsp;&nbsp; Hola&nbsp;&nbsp; "</span> (sense les cometes), amb el primer cas, saltarà els espais inicials, llegirà només <span class="c_configura">Hola</span> (quedaran pendents 3 espais i el <strong>Intro</strong> final) i agafarà la <span class="c_configura">H</span>; en el segon cas, llegirà tot el text, incloent l'<strong>Intro</strong> final, i agafarà el primer caràcter, que és un espai.</p>
+      <div class="p_important">
+        <p>En tots dos casos, el caràcter llegit s'ha de guardar en una variable de tipus <span class="c_comanda">char</span>:</p>
+        <p class="p_codi"><strong>char opcio;</strong><br>
+          System.out.print("Tria una opció (A, B o C): ");<br>
+          <strong>opcio = scan.nextLine().charAt(0);</strong></p>
+      </div>
+      <h4>Comprovar si la següent dada és d'un tipus concret</h4>
+      <p>Quan l'usuari ha d'introduir més d'una dada en la mateixa línia, es pot fer una comprovació abans de llegir cada dada per assegurar-se que és del tipus correcte i evitar que el programa s'aturi al intentar llegir-la.</p>
+      <p>Els mètodes, que s'han d'utilitzar amb un objecte de tipus <em>Scanner</em>, són:</p>
+      <ul>
+        <li><span class="c_comanda">hasNext()</span>: comprova si hi ha més dades per llegir.</li>
+        <li><span class="c_comanda">hasNextInt()</span>: comprova si la següent dada és un número enter.</li>
+        <li><span class="c_comanda">hasNextFloat()</span>: comprova si la següent dada és un número real.</li>
+      </ul>
+      <p>També hi ha els equivalents per a <em>short</em>, <em>long</em> i <em>double</em>.</p>
+      <p>En el següent exemple es veu com es poden utilitzar (s'ha d'utilitzar un condicional, una estructura que es veurà més endavant):</p>
+      <p class="p_codi">String nom;<br>
+        int edat;<br>
+        System.out.print("Escriu el teu nom i la teva edat separats per un o més espais: ");<br>
+        nom = scan.next().trim();<br>
+        if (<strong>scan.hasNextInt()</strong>) edat = scan.nextInt();<br>
+        scan.nextLine();</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

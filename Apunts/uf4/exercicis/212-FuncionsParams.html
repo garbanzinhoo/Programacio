@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Funcions parametritzades<em></em></h1>
+      <div class="enun">
+        <h3>Generar caràcter aleatori</h3>
+        <p>Fes una funció que retorni un caràcter aleatori entre la 'A' i la 'Z' totes dues incloses.<br>
+          Millora la funció anterior fent que se li pugui passar el caràcter inicial i el caràcter final.</p>
+      </div>
+      <div class="enun">
+        <h3>Crear un <em>array</em> de N números enters inicialitzat amb un valor V</h3>
+        <p>Fes una funció per crear un <em>array</em> amb N números enters, inicialitzar totes les posicions amb un valor concret (V) i retornar aquest <em>array</em>.<br>
+          Paràmetres d'entrada: N (nombre d'elements de l'array: número enter) i V (valor per inicialitzar els elements de l'array: número enter).</p>
+      </div>
+      <div class="enun">
+        <h3>Mostrar els valors d'un <em>array</em></h3>
+        <p>Fes una funció per mostrar els valors d'un <em>array</em> de números enters, un en cada línia.<br>
+          Crea també una funció per <em>arrays</em> amb <em>Strings</em>.<br>
+          Paràmetre d'entrada: <em>array</em> amb valors enters o <em>Strings</em>.</p>
+        <p>Modifica les funcions anteriors afegint un paràmetre per indicar si es vol mostrar cada dada afegint un salt de línia o tots en una línia separats per un espai.</p>
+        <p>Afegeix un paràmetre per indicar quin separador es vol utilitzar en lloc de l'espai si s'han de mostrar en una sola línia.</p>
+      </div>
+      <div class="enun">
+        <h3>Mostrar els valors d'un <em>array</em> bidimensional</h3>
+        <p>Fes una funció per mostrar els valors d'un <em>array</em> bidimensional de números enters.<br>
+          Paràmetre d'entrada: <em>array</em> bidimensional amb valors enters.</p>
+        <p>Per escriure cada una de les files de l'array es pot utilitzar la funció per mostrar els valors d'un <em>array</em>.</p>
+        <p>Afegeix un paràmetre per indicar quin separador es vol utilitzar per separar els elements de cada fila.<br>
+          Si el separador és <em>null</em> o una cadena buida, utilitzar l'espai.</p>
+      </div>
+      <div class="enun">
+        <h3>Introduir un caràcter verificant que sigui un caràcter d'una llista</h3>
+        <p>Fes una funció que demani un caràcter (podria ser una opció d'un menú).<br>
+          S'ha de demanar repetidament mentre el valor introduït no sigui un caràcter dels que es troba en un <em>String</em> (també es pot fer que la llista de caràcters permesos estigui en una llista de caràcters).<br>
+          Paràmetre d'entrada: un <em>Scanner</em> amb el què llegir les dades introduïdes per teclat.<br>
+          Paràmetre d'entrada: <em>String</em> o <em>array</em> de caràcters amb els caràcters permesos.<br>
+          Valor de retorn: el caràcter introduït per l'usuari.</p>
+      </div>
+      <div class="enun">
+        <h3>Introduir un número enter</h3>
+        <p>Fes una funció que demani un número enter.<br>
+          S'ha de demanar repetidament mentre el valor introduït no sigui un número enter, i avisar amb un missatge d'error. Es pot utilitzar la funció <span class="c_comanda">scan.hasNextInt()</span> per comprovar si el valor introduït és un enter.<br>
+          Paràmetre d'entrada: un <em>Scanner</em> amb el què llegir les dades introduïdes per teclat.<br>
+          Valor de retorn: el número enter introduït per l'usuari.</p>
+        <p>Crea també una funció que utilitzi l'anterior però que se li pugui indicar el valor mínim i màxim entre els quals s'ha de trobar el valor introduït.<br>
+          Si el valor mínim és més gran que el màxim, cal intercanviar els valors.<br>
+          S'ha de demanar repetidament mentre el valor introduït no estigui entre els dos límits, i avisar amb un missatge d'error.</p>
+      </div>
+      <div class="enun">
+        <h3>Crear <em>array</em> de N elements introduïts per l'usuari</h3>
+        <p>Fes una funció per crear un <em>array</em> de N números enters demanant a l'usuari que introdueixi els valors i retornar aquest <em>array</em>. Pots utilitzar alguna de les funcions anteriors.<br>
+          Crea també una funció per <em>arrays</em> amb <em>Strings</em>.<br>
+          Paràmetre d'entrada: un <em>Scanner</em> amb el què llegir les dades introduïdes per teclat.<br>
+          Paràmetre d'entrada: N (nombre d'elements de l'<em>array</em>: número enter).<br>
+          Valor de retorn: l'<em>array</em> d'enters o <em>Strings</em> amb les dades introduïdes.</p>
+      </div>
+      <div class="enun">
+        <h3>Invertir els elements d'un <em>array</em></h3>
+        <p>Fes una funció per invertir els elements d'un <em>array</em> (intercanviar el primer amb l'últim, el segon amb el penúltim...).<br>
+          Fes-ho amb <em>arrays</em> de números enters i <em>amb</em> <em>arrays</em> de <em>Strings</em>.</p>
+      </div>
+      <div class="enun">
+        <h3>Desplaçar els elements d'un <em>array</em></h3>
+        <p>Fes una funció per desplaçar els elements cap a l'esquerra (el primer al final, el segon al primer...).<br>
+          Fes una funció per desplaçar els elements cap a la dreta (l'últim a principi, el primer al segon...).<br>
+          Fes-ho amb <em>arrays</em> de números enters i <em>amb</em> <em>arrays</em> de <em>Strings</em>.<br>
+          Fes també una funció que permeti desplaçar a la dreta o a l'esquerra utilitzant un paràmetre booleà per indicar la direcció i que aprofiti les funcions creades anteriorment.<br>
+          Aprofitant la funció anterior, fes una funció que permeti desplaçar un número determinat de posicions a la dreta o a l'esquerra.</p>
+      </div>
+      <div class="enun">
+        <h3>Barrejar els elements d'un <em>array</em></h3>
+        <p>Fes una funció per barrejar els elements d'un <em>array</em> d'enters.<br>
+          Fes una funció per barrejar els elements d'un <em>array</em> de <em>Strings</em>.</p>
+        <p>Una possible forma és, per cada element de l'<em>array</em> (element[i]):</p>
+        <ol>
+          <li>Generar un número aleatori entre 0 i el nombre d'elements de l'<em>array</em> (r).</li>
+          <li>Intercanviar l'element[i] amb l'element[r].</li>
+        </ol>
+      </div>
+      <div class="enun">
+        <h3>Ordenar <em>arrays</em></h3>
+        <p>Fes una funció per ordenar un <em>array</em> d'enters. Pots trobar el codi en els apunts, <strong>Tema 16: Més arrays</strong>.<br>
+          Fes una funció per ordenar un <em>array</em> de Strings. Pots trobar la solució en l'exercici <strong>Arrays 2: Ordenar i cercar paraules</strong>.</p>
+      </div>
+      <div class="enun">
+        <h3>Cerca binària en <em>arrays</em> ordenats</h3>
+        <p>Fes una funció per cercar en un <em>array</em> ordenat la posició d'un element determinat.<br>
+          Si no es troba, ha de retonar -1.</p>
+        <p>Fes una funció per números enters i una altra per a <em>Strings</em>.<br>
+          També tens el codi en els mateixos apunts i solució de l'exercici anterior.</p>
+      </div>
+    </section>
+  </body>
+</html>

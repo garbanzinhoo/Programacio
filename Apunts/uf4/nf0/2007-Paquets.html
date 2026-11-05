@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Paquets en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Paquets en Java</header>
+    <section>
+      <h2>Paquets</h2>
+      <p>Per desenvolupar projectes grans que utilitzen moltes classes, és molt útil agrupar-les en paquets.<br>
+        Naturalment, les classes s'hauran d'agrupar seguint criteris de similitud.</p>
+      <p>Els paquets faciliten la feina quan es treballa en equip perquè permeten que els diferents programadors treballin simultàniament i de forma independent en diferents parts del programa.</p>
+      <p>En les empreses tambè són útils per reaprofitar el codi generat, creant llibreries o biblioteques de classes que es poden utilitzar en múltiples projectes.</p>
+      <p>Finalment, es poden aprofitar paquets generats per tercers o els mateixos paquets estàndard de Java.</p>
+      <p>Un petit inconvenient de reutilitzar els paquets i les classes és que pot ser que en un projecte determinat no es necessitin tots els mètodes que inclouen, però normalment no és un problema rellevant.</p>
+      <h3>Organització dels arxius de les classes d'un paquet</h3>
+      <p>Normalment, quan es crea un nou projecte en un IDE, es munta una estructura bàsica de carpetes.</p>
+      <p>Per exemple, en <em>IntelliJ</em>, si es crea un projecte indicant com a <strong>Base Package</strong> <span class="c_configura">cat.sapa.uf2</span>, es crea la següent estructura:</p>
+      <ul>
+        <li>cat.sapa.uf2</li>
+        <ul>
+          <li>src</li>
+          <ul>
+            <li>cat</li>
+            <ul>
+              <li>sapa</li>
+              <ul>
+                <li>uf2</li>
+              </ul>
+            </ul>
+          </ul>
+        </ul>
+      </ul>
+      <p>Per afegir un paquet es pot seleccionar l'opció del menú principal <strong>File → New → Package</strong>.</p>
+      <p>Per exemple, es podria crear el paquet <span class="c_configura">cat.sapa.uf2.arrays</span> per ficar a dins les classes amb mètodes estàtics per processar <em>arrays</em> (<em>IntegerArrays</em> i <em>StringArrays</em>).</p>
+      <p>Això crearà una nova carpeta <span class="c_arxiu">arrays</span> dins de la carpeta <span class="c_arxiu">cat.sapa.uf2\src\cat\sapa\uf2</span>.</p>
+      <p class="p_important">Els noms dels paquets s'acostumen a posar en minúscules seguint una notació semblant a una URL.</p>
+      <h3>Afegir classes a un paquet</h3>
+      <p>Al crear una classe dins d'un paquet, l'IDE automàticament afegeix l'identificador a la primera línia.</p>
+      <p>Per exemple, si es crea la classe <span class="c_configura">IntegerArrays</span> dins del paquet <span class="c_configura">cat.sapa.uf2.arrays</span>, al principi de l'arxiu <span class="c_arxiu">IntegerArrays.java</span> afegirà:</p>
+      <p class="p_codi"><strong>package</strong> cat.sapa.uf2.arrays;</p>
+      <div class="p_important">
+        <p>Per poder utilitzar els mètodes estàtics d'una classe que es troba en un altre paquet, s'han de definir els mètodes com a publics:</p>
+        <p class="p_codi"><strong>public</strong> static funcio() {<br>
+          &nbsp;&nbsp;&nbsp; // Codi de la funció<br>
+          }</p>
+      </div>
+      <p class="p_important">Es pot repetir el nom d'una classe sempre que estiguin en paquets diferents, però sempre és millor no fer-ho per evitar confusions.</p>
+      <h3>Utilitzar les classes d'un paquet</h3>
+      <p>Si es vol utilitzar les classes d'un paquet en una altra classe cal importar-les.<br>
+        La forma més recomanable és utilitzar la comanda <span class="c_comanda">import</span> per cada classe:</p>
+      <p class="p_codi"><strong>import</strong> cat.sapa.uf2.arrays.<strong>IntegerArrays</strong>;<br>
+        <strong>import</strong> cat.sapa.uf2.arrays.<strong>StringArrays</strong>;</p>
+      <p>Si es vol utilitzar totes les classes d'un paquet, no cal posar-les una a una:</p>
+      <p class="p_codi"><strong>import</strong> cat.sapa.uf2.arrays.<strong>*</strong>;</p>
+      <div class="p_important">
+        <p>La següent comanda només importa les classes que hi ha directament dins del paquet <span class="c_configura">cat.sapa.uf2</span>, no les classes del subpaquet <span class="c_configura">cat.sapa.uf2.arrays</span>.</p>
+        <p class="p_codi"><strong>import</strong> cat.sapa.uf2.<strong>*</strong>;</p>
+      </div>
+      <p>També es pot utilitzar el nom qualificat (complet) d'una classe si aquesta només s'utilitza una vegada, però no és gaire habitual ni recomanable:</p>
+      <p class="p_codi"><strong>cat.sapa.uf2.IntegerArrays</strong>.ordenar(array);</p>
+      <h3>Executar un projecte amb paquets</h3>
+      <p>Els IDEs executen automàticament el projecte, tingui els paquets que tingui, però si es vol executar des de consola, cal fer el següents passos:</p>
+      <ol>
+        <li>Obrir un terminal i anar al directori principal del projecte compilat.<br>
+          En el cas de IntelliJ, si el projecte s'anomena <span class="c_arxiu">TestFuncions</span>, el directori serà semblant a <span class="c_arxiu">IdeaProjects\TestFuncions\out\production\TestFuncions</span>.</li>
+        <li>Executar la classe principal amb el programa <span class="c_comanda">java</span> indicant la ruta fins la classe principal:<br>
+          <span class="c_comanda">java cat/sapa/uf2/TestFuncions</span> o <span class="c_comanda">java cat.sapa.uf2.TestFuncions</span>.</li>
+      </ol>
+      <p class="p_important">En Windows, els directoris es mostren separats amb contrabarra (<span class="c_arxiu">\</span>); en Linux s'utilitza la barra (<span class="c_arxiu">/</span>).<br>
+        Però amb la comanda <span class="c_comanda">java</span> sempre s'ha d'utilitzar la barra (<span class="c_comanda">/</span>) o el punt (<span class="c_comanda">.</span>) per indicar la ruta de la classe principal.</p>
+      <h4>Comandes per navegar pels directoris</h4>
+      <ul>
+        <li><span class="c_comanda">tree</span>: mostra l'arbre de directoris que hi ha dins del directori actual.</li>
+        <li><span class="c_comanda">cd directori</span>: entra en un directori que és fill del directori actual.</li>
+        <li><span class="c_comanda">cd ..</span>: torna al directori pare del directori actual.</li>
+      </ul>
+      <ol>
+      </ol>
+      <h2>Creació d'un arxiu executable JAR</h2>
+      <p>Quan un projecte conté diversos paquets i/o classes, el procés d'instal·lació en altres màquines pot ser complicat i és fàcil cometre algun error, per exemple, oblidar-se algun arxiu.</p>
+      <p>Tampoc és fàcil executar-lo (encara que es pot automatitzar el procés).</p>
+      <p>Per facilitar aquests processos, es pot crear un arxiu JAR que contindrà tots els arxius necessaris.</p>
+      <p>En IntelliJ, per crear un arxiu JAR cal seguir els següents passos:</p>
+      <ol>
+        <li>Crear la configuració per generar l'arxiu JAR</li>
+        <ol>
+          <li>En el menú principal, seleccionar <strong>File → Project Structure...</strong></li>
+          <li>En l'apartat <strong>Artifacts</strong>, afegir (<strong>+</strong>) <strong>JAR → From modules with dependencies...</strong></li>
+          <li>Triar la classes principal, per exemple <strong>TestFuncions</strong> i guardar.</li>
+        </ol>
+        <li>Crear l'arxiu JAR</li>
+        <ol>
+          <li>En el menú principal, <strong>Build → Build Artifacts...</strong></li>
+          <li>Seleccionar el JAR, per exemple <strong>TestFuncions:jar</strong> i <strong>Build</strong> o <strong>Rebuild</strong></li>
+        </ol>
+      </ol>
+      <p class="p_important">L'arxiu JAR no es genera automàticament: si es fa algun canvi en el codi, cal tornar-lo a construir (<strong>Build → Build Artifacts... → Rebuild</strong>)</p>
+      <h3>Executar un arxiu JAR</h3>
+      <h5>Des del mateix IDE</h5>
+      <p>En IntelliJ, menú principal <strong>Run → Run...</strong><strong> → TestFuncions.jar</strong></p>
+      <p class="p_important">En la barra d'eines superior hi ha un deplegable on es pot triar si es vol executar la classe o l'arxiu JAR.<br>
+        Cal vigilar perquè si està seleccionat el JAR, els canvis que es facin en el codi no actualitzen el JAR quan es clica el botó d'executar (només reconstrueix les classes).</p>
+      <h5>Des de la consola</h5>
+      <ol>
+        <li>Obrir un terminal i anar al directori on s'ha creat l'arxiu JAR, per exemple, <span class="c_arxiu">IdeaProjects\TestFuncions\out\artifacts\TestFuncions_jar</span>.</li>
+        <li>Executar l'arxiu JAR amb la comanda <span class="c_comanda">java -jar TestFuncions.jar</span>.</li>
+      </ol>
+      <h3>Instal·lar el programa JAR en altres màquines</h3>
+      <p>Només cal copiar l'arxiu JAR en un directori qualsevol i crear un enllaç amb la comanda per executar-lo.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

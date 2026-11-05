@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Introducció a Java</h1>
+      <div class="enun">
+        <h3>Tres en ratlla</h3>
+        <p>Crea un projecte amb el nom <strong>TresEnRatlla</strong>.</p>
+        <p>La classe principal també es dirà <strong>TresEnRatlla</strong>.</p>
+        <p>Ha de tenir les següents propietats globals (han de ser públiques):</p>
+        <ul>
+          <li><strong>Scanner scan</strong> (per llegir les dades que l'usuari introdueix amb el teclat)</li>
+          <li><strong>char[][] joc</strong> (<em>array</em> de 3 x 3 que conté les caselles del joc i les peces que els jugadors van posant)</li>
+        </ul>
+        <p>El mètode principal (<strong>main</strong>) ha de:</p>
+        <ul>
+          <li>Inicialitzar l'<em>array</em> del joc (posar un '·' a totes les caselles).</li>
+          <li>Repetir fins que un dels jugadors aconsegueixi tres en ratlla o fins que no es puguin posar més peces.</li>
+          <ul>
+            <li>Mostrar el joc</li>
+            <li>Demanar la jugada alternativament a cada jugador (fila i columna on vol posar la peça)</li>
+            <li>Verificar que la posició està buida i posar la peça (o tornar a demanar)</li>
+            <li>Verificar si ha aconseguit tres en ratlla o si s'ha omplert el tauler</li>
+          </ul>
+          <li>Mostrar el joc i indicar qui ha guanyat</li>
+        </ul>
+        <p><strong>OPCIONAL:</strong> quan s'acabi el joc, demanar si es vol tornar a fer una altra partida.</p>
+      </div>
+      <div class="enun">
+        <h3>Tres en ratlla MVC</h3>
+        <p>Separa el joc anterior en diverses classes i paquets fent que tingui un esquema MVC (Model Vista Controlador).</p>
+      </div>
+      <div class="enun">
+        <h3>Crear i provar una llibreria pròpia</h3>
+        <p>Crea el projecte <strong>Llibreria</strong>.<strong></strong></p>
+        <p>Crea els subpaquets <strong>input</strong>, <strong>arrays</strong> i <strong>altres</strong>.</p>
+        <p><strong></strong>Dins del paquet <strong>input</strong> crea una classe amb mètodes per introduir diferents tipus de dades:</p>
+        <ul>
+          <li>Introduir un número enter</li>
+          <li>Introduir un número verificant que estigui entre dos valors</li>
+          <li>Introduir un caràcter</li>
+          <li>Introduir un caràcter verificant que estigui entre els caràcters de un <em>string</em> o d'un <em>array</em> de caràcters.</li>
+        </ul>
+        <p>A aquests mètodes se'ls hauria de passar la pregunta que s'ha de fer a l'usuari, els valors màxim i mínim, un <em>string</em> o un <em>array</em> amb els caràcters vàlids i haurien de retornar el valor o caràcter introduït per l'usuari.</p>
+        <p>Dins del paquet arrays crea les classes <strong>IntegerArrays</strong> i <strong>StringArrays</strong> i posa dins de cada funcions que serveixin per:</p>
+        <ul>
+          <li>Crear un <em>array</em> de N elements</li>
+          <li>Crear un <em>array</em> bidimensional de N x M elements</li>
+          <li>Inicialitzar un <em>array</em> amb un valor determinat</li>
+          <li>Inicialitzar un <em>array</em> bidimensional amb un valor determinat</li>
+          <li>Mostrar els valors d'un <em>array</em></li>
+          <li>Mostrar els valors d'un <em>array</em> bidimensional</li>
+          <li>Invertir els elements d'un <em>array</em></li>
+          <li>Desplaçar els elements d'un <em>array</em></li>
+          <li>Barrejar els elements d'un <em>array</em>, </li>
+        </ul>
+        <p>Afegeix qualsevol altre mètode que pugui resultar útil.<br>
+          Aquests mètodes han de tenir com a mínim un paràmetre: l'<em>array</em> que s'ha de tractar.<br>
+          Exceptuant els dos primers mètodes, la resta no cal que retornin res.</p>
+        <p>Dins de <strong>altres</strong> pots crear altres mètodes, com per exemple:</p>
+        <ul>
+          <li>Generar un número enter aleatori entre dos valors</li>
+          <li>Generar un caràcter aleatori entre dos caràcters</li>
+        </ul>
+        <p>En l'arrel del projecte crea la classe <strong>TestFuncions</strong> amb el codi necessari per provar els mètodes de les classes anteriors.</p>
+      </div>
+      <div class="enun">
+        <h3>Documentar projecte i generar JAR</h3>
+        <p>Documenta totes les classes i funcions del projecte anterior.</p>
+        <p>A més de documentar utilitzant el format adequat, genera la documentació utilitzant <strong>JavaDoc</strong>.</p>
+        <p>Finalment, empaqueta el projecte en un arxiu <strong>JAR</strong>, intercanvia'l amb un altre company i comproveu que el podeu executar.</p>
+      </div>
+    </section>
+  </body>
+</html>

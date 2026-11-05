@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex"><em>Arrays</em> bidimensionals</h1>
+      <div class="enun">
+        <h3>Crear i processar un <em>array</em> bidimensional</h3>
+        <p>Fes un programa que demani la dimensió de l'<em>array</em> (files i columnes).</p>
+        <p>Crea un <em>array</em> de F x C.</p>
+        <p>Omple l'<em>array</em> amb valors aleatoris.</p>
+        <p>Mostra l'<em>array</em>.</p>
+        <p>Suma els elements de cada fila i guarda'ls en un <em>array</em> (<strong>sumaFiles</strong>) de F elements.</p>
+        <p>Suma els elements de cada columna i guarda'ls en un <em>array</em> (<strong>sumaColumnes</strong>) de C elements.</p>
+        <p>Indica si la suma dels elements de <strong>sumaFiles</strong> és igual o no a la suma dels elements de <strong>sumaColumnes</strong>.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix el nombre de files i de columnes de la matriu: <strong>3 4</strong><br>
+          &nbsp;5&nbsp; 8&nbsp; 7&nbsp; 0 <br>
+          &nbsp;8&nbsp; 2&nbsp; 5&nbsp; 8 <br>
+          &nbsp;7&nbsp; 7&nbsp; 3&nbsp; 8 <br>
+          La suma dona el mateix: 68</p>
+      </div>
+      <div class="enun">
+        <h3>Notes de UFs per alumnes</h3>
+        <p>Fes un programa que contingui les notes de les 4 UF del mòdul Gestió de bases de dades de 6 alumnes.<br>
+          Si vols, pots generar aquestes notes aleatòriament.<br>
+          Les notes han de quedar guardades en un <em>array</em> de 6 x 4.</p>
+        <p>Mostra aquestes dades en el següent format:</p>
+        <p class="p_consola">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UF1&nbsp; UF2&nbsp; UF3&nbsp; UF4<br>
+          Alumne 1&nbsp;&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 8<br>
+          Alumne 2&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 7<br>
+          Alumne 3&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6<br>
+          Alumne 4&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 3&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 5<br>
+          Alumne 5&nbsp;&nbsp;&nbsp;&nbsp; 4&nbsp;&nbsp;&nbsp; 6&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6<br>
+          Alumne 6&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9</p>
+        <p>Genera un <em>array</em> amb la mitjana de les 4 UF per cada alumne i mostra el resultat amb el següent format:</p>
+        <p class="p_consola">Mitjanes alumnes<br>
+          Alumne 1&nbsp;&nbsp;&nbsp;&nbsp; 6,5<br>
+          Alumne 2&nbsp;&nbsp;&nbsp;&nbsp; 5,8<br>
+          Alumne 3&nbsp;&nbsp;&nbsp;&nbsp; 6,0<br>
+          Alumne 4&nbsp;&nbsp;&nbsp;&nbsp; 4,3<br>
+          Alumne 5&nbsp;&nbsp;&nbsp;&nbsp; 5,3<br>
+          Alumne 6&nbsp;&nbsp;&nbsp;&nbsp; 7,8</p>
+        <p> Genera un altre <em>array</em> amb la mitjana de cada UF i mostra el resultat amb el següent format:</p>
+        <p class="p_consola">Mitjanes UFs<br>
+          UF 1&nbsp;&nbsp;&nbsp;&nbsp; 5,7<br>
+          UF 2&nbsp;&nbsp;&nbsp;&nbsp; 5,2<br>
+          UF 3&nbsp;&nbsp;&nbsp;&nbsp; 6,0<br>
+          UF 4&nbsp;&nbsp;&nbsp;&nbsp; 6,8</p>
+      </div>
+      <div class="enun">
+        <h3>Planificació setmanal</h3>
+        <p>Fes un programa que demani 4 <em>hobbies</em> i 6 menjars preferits.</p>
+        <p>A partir d'aquestes dades, ha de guardar en cada casella d'un <em>array</em> de 5 x 3 un <em>hobby</em> i un menjar triats aleatòriament.</p>
+        <p>Finalment, s'ha de mostrar com ha quedat la planificació de la setmana:</p>
+        <p class="p_consola">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Esmorzar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dinar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sopar<br>
+          Dilluns&nbsp;&nbsp;&nbsp;&nbsp; Carn | Jugar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fruita | Jugar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fruita | Jugar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br>
+          Dimarts&nbsp;&nbsp;&nbsp;&nbsp; Pastís | Estudiar&nbsp;&nbsp;&nbsp;&nbsp; Fruita | Jugar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pizza | Estudiar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br>
+          Dimecres&nbsp;&nbsp;&nbsp; Pasta | Jugar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pastís | Cantar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Peix | Passejar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br>
+          Dijous&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pizza | Passejar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Peix | Passejar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Carn | Jugar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br>
+          Divendres&nbsp;&nbsp; Carn | Estudiar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fruita | Passejar&nbsp;&nbsp;&nbsp;&nbsp; Peix | Estudiar </p>
+      </div>
+      <div class="enun">
+        <h3><em>Arrays</em> quadrats</h3>
+        <p>Els <em>arrays</em> quadrats tenen el mateix nombre de files i de columnes.</p>
+        <p>Fes un programa que demani la mida de l'<em>array</em> (M).</p>
+        <p>Crea un <em>array</em> de M x M.</p>
+        <p>Omple l'<em>array</em> amb els números de l'1 al MxM.</p>
+        <p>Mostra l'<em>array</em>.</p>
+        <p>Fes també els següents exercicis.</p>
+        <ol>
+          <li>Omple l'<em>array</em> posant 1 a la diagonal major i els números del 2 a l'M en les altres diagonals.</li>
+          <li>Mostra l'<em>array</em>.</li>
+          <li>Suma els elements de la diagonal major i mostra el resultat.</li>
+          <li>Suma els elements del triangle superior i mostra el resultat (elements per sobre de la diagonal major).</li>
+          <li>Suma els elements del triangle inferior i mostra el resultat (elements per sota de la diagonal major).</li>
+          <li>Omple els elements del triangle superior amb 0s.</li>
+          <li>Omple els elements del triangle inferior amb 0s.</li>
+          <li>Mostra l'<em>array</em>.</li>
+        </ol>
+        <p>Repeteix els passos anteriors però amb la diagonal major inversa.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p></p>
+        <p class="p_consola">Introdueix la mida de la matriu: <strong>4</strong><br>
+          &nbsp; 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4 <br>
+          &nbsp; 5&nbsp;&nbsp; 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8 <br>
+          &nbsp; 9&nbsp; 10&nbsp; 11&nbsp; 12 <br>
+          &nbsp;13&nbsp; 14&nbsp; 15&nbsp; 16 <br>
+          <br>
+          &nbsp; 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4 <br>
+          &nbsp; 2&nbsp;&nbsp; 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3 <br>
+          &nbsp; 3&nbsp;&nbsp; 2&nbsp;&nbsp; 1&nbsp;&nbsp; 2 <br>
+          &nbsp; 4&nbsp;&nbsp; 3&nbsp;&nbsp; 2&nbsp;&nbsp; 1 <br>
+          <br>
+          Suma DM: 4<br>
+          Suma DMI: 12<br>
+          <br>
+          Suma triangle superior: 16<br>
+          Suma triangle inferior: 16<br>
+          <br>
+          &nbsp; 1&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp; 0 <br>
+          &nbsp; 0&nbsp;&nbsp; 1&nbsp;&nbsp; 0&nbsp;&nbsp; 0 <br>
+          &nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp; 1&nbsp;&nbsp; 0 <br>
+          &nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp; 1 </p>
+      </div>
+      <div class="enun">
+        <h3>Quadrats màgics</h3>
+        <p>En una matriu de M x M, comprova independentment les següents condicions:</p>
+        <ul>
+          <li>Els elements de cada fila han de sumar el mateix.</li>
+          <li>Els elements de cada columna han de sumar el mateix.</li>
+          <li>La diagonal major ha de sumar el mateix que la diagonal major inversa.</li>
+          <li>L'array ha de contenir tots els números de l'1 al MxM.</li>
+        </ul>
+        <p>Finalment, si les compleix totes, és un quadrat màgic.</p>
+        <p>Comprova-ho amb les següents matrius (el primer valor abans de les dades de l'<em>array</em> indica la mida; l'últim 0 indica que ja no hi ha més <em>arrays</em>):</p>
+        <p class="p_codi p_desplegable">3<br>
+          1 1 1<br>
+          1 2 1<br>
+          1 1 1<br>
+          3<br>
+          1 2 3<br>
+          4 5 6<br>
+          7 8 9<br>
+          3<br>
+          2 7 6<br>
+          9 5 1<br>
+          4 3 8<br>
+          4<br>
+          1 2 2 1<br>
+          2 1 1 2<br>
+          2 1 1 2<br>
+          1 2 2 1<br>
+          4<br>
+          1 14 14 4<br>
+          11 7 6 9<br>
+          8 10 10 5<br>
+          13 2 3 15<br>
+          4<br>
+          16 3 2 13<br>
+          5 10 11 8<br>
+          9 6 7 12<br>
+          4 15 14 1<br>
+          5<br>
+          1 2 3 4 5<br>
+          2 3 4 5 1<br>
+          3 4 5 1 2<br>
+          4 5 1 2 3<br>
+          5 1 2 3 4<br>
+          5<br>
+          1 2 3 4 5<br>
+          6 7 8 9 10<br>
+          11 12 13 14 15<br>
+          16 17 18 19 20<br>
+          21 22 23 24 25<br>
+          5<br>
+          17 24 1 8 15<br>
+          23 5 7 14 16<br>
+          4 6 13 20 22<br>
+          10 12 19 21 3<br>
+          11 18 25 2 9<br>
+          0</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">No és un quadrat màgic:<br>
+          &nbsp;&nbsp; -No totes les files sumen el mateix<br>
+          &nbsp;&nbsp; -No totes les columnes sumen el mateix<br>
+          &nbsp;&nbsp; -No conté tots els números<br>
+          No és un quadrat màgic:<br>
+          &nbsp;&nbsp; -No totes les files sumen el mateix<br>
+          &nbsp;&nbsp; -No totes les columnes sumen el mateix<br>
+          És un quadrat màgic<br>
+          No és un quadrat màgic:<br>
+          &nbsp;&nbsp; -No conté tots els números<br>
+          No és un quadrat màgic:<br>
+          &nbsp;&nbsp; -No conté tots els números<br>
+          És un quadrat màgic<br>
+          No és un quadrat màgic:<br>
+          &nbsp;&nbsp; -Les dues diagonals no sumen el mateix<br>
+          &nbsp;&nbsp; -No conté tots els números<br>
+          No és un quadrat màgic:<br>
+          &nbsp;&nbsp; -No totes les files sumen el mateix<br>
+          &nbsp;&nbsp; -No totes les columnes sumen el mateix<br>
+          És un quadrat màgic</p>
+        <p></p>
+      </div>
+      <div class="enun">
+        <h3>Multiplicació de matrius</h3>
+        <p>Per poder multiplicar 2 matrius cal que el nombre de columnes de la primera sigui igual al nombre de files de la segona. La matriu resultant tindrà el mateix nombre de files que la primera i el mateix nombre de columnes que la segona.</p>
+        <p>Si el nombre de files de la primera és igual al nombre de columnes de la segona, el resultat serà una matriu quadrada.</p>
+        <p>Els passos a seguir són:</p>
+        <ol>
+          <li>Multiplicar un a un els elements de la primera fila de M1 amb els elements de la primera columna de M2, sumar tots els resultats i guardar-los en la casella [0][0] de M3 (matriu resultant).</li>
+          <ol>
+            <li>Repetir amb cada columna de M2 i guardar a [0][1], [0][2]...</li>
+          </ol>
+          <li>Repetir els passos anterior amb cada fila i guardar a [1][x], [2][x]...</li>
+        </ol>
+        <p>Ho pots comprovar amb les següents dades (els 2 primers valors són el nombre de files i de columnes de la primera matriu i a continuació venen les dades d'aquesta matriu; després hi ha el nombre de files i columnes de la segona matriu i les dades de la segona matriu):</p>
+        <p class="p_codi"><strong>2 3</strong><br>
+          1 2 3<br>
+          4 5 6<br>
+          <strong>3 2</strong><br>
+          1 2<br>
+          3 4<br>
+          5 6</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">&nbsp; 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3 <br>
+          &nbsp; 4&nbsp;&nbsp; 5&nbsp;&nbsp; 6 <br>
+          X<br>
+          &nbsp; 1&nbsp;&nbsp; 2 <br>
+          &nbsp; 3&nbsp;&nbsp; 4 <br>
+          &nbsp; 5&nbsp;&nbsp; 6 <br>
+          =<br>
+          &nbsp;22&nbsp; 28 <br>
+          &nbsp;49&nbsp; 64 </p>
+      </div>
+    </section>
+  </body>
+</html>

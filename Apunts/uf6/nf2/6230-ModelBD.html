@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Traducció del Model a BD relacional">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Traducció del Model a BD relacional</header>
+    <section>
+      <h2>Traducció de classes a taules (objectes a registres)</h2>
+      <p>La forma com es guarden les dades en una BD relacional i com es guarden en memòria (especialment quan es treballa amb objectes), no té res a veure, però cal buscar una forma de traduir un model a l'altre perquè, actualment, la majoria de dades es guarden en BD relacionals i molts programes que accedeixen a aquestes dades estan fets utilitzant la programació orientada a objectes.</p>
+      <h3>Classes amb dades primitives</h3>
+      <p>Aquest cas és el més simple:</p>
+      <ul>
+        <li>Cada classe es tradueix en una taula.</li>
+        <li>Cada atribut privat es correspon amb un camp de la taula (columnes).<br>
+          Si cal, s'afegeix un atribut que identifiqui cada objecte de forma exclusiva.</li>
+        <li>Cada objecte es transforma en un registre de la taula (files).</li>
+      </ul>
+      <h5>Exemples</h5>
+      <p>Classe <strong>Producte</strong></p>
+      <ul>
+        <li>identificador (String)</li>
+        <li>descripció (String)</li>
+        <li>preu (float)</li>
+      </ul>
+      <p>Clase <strong>Client</strong></p>
+      <ul>
+        <li>nif</li>
+        <li>nom</li>
+        <li>cognoms</li>
+        <li>adreça</li>
+        <li>telèfon</li>
+      </ul>
+      <h3>Classes amb llistes (associacions <em>1..n</em>)</h3>
+      <p>Aquest cas es transforma en dues taules:</p>
+      <ul>
+        <li>La classe principal es transforma en una taula de la forma vista anteriorment.</li>
+        <li>La classe que correspon als objectes de la llista es transforma en una taula igual que abans.</li>
+        <ul>
+          <li>En aquesta segona taula s'afegeix un camp pels identificadors dels l'objectes de la classe principal.</li>
+        </ul>
+      </ul>
+      <h5>Exemple</h5>
+      <p>Classe <strong>Examen</strong></p>
+      <ul>
+        <li>identificador (String)</li>
+        <li>llistaExercicis (List&lt;Exercici&gt;)</li>
+      </ul>
+      <p>Classe <strong>Exercici</strong></p>
+      <ul>
+        <li>enunciat (String)</li>
+        <li>puntuació (float)</li>
+      </ul>
+      <p>Se suposa que cada exercici només estarà en un examen.</p>
+      <h3>Classes amb associacions <em>n..m</em></h3>
+      <p>En aquest cas, a més de crear dues taules principals, una per cada classe, cal afegir una tercera amb els identificadors de les dues taules.<br>
+        En alguns casos, també s'afegeixen altres atributs.</p>
+      <h5>Exemple</h5>
+      <p>Classe <strong>Factura</strong></p>
+      <ul>
+        <li>identificador (integer)</li>
+        <li>data (DateTime)</li>
+        <li>client (Client)</li>
+        <li>baseImposable (float)</li>
+        <li>iva (float)</li>
+        <li>importIva (float)</li>
+        <li>total (float)</li>
+        <li>llistaArticles (List&lt;Article&gt;)</li>
+      </ul>
+      <p>Classe <strong>Article</strong></p>
+      <ul>
+        <li>identificadorProducte (String)</li>
+        <li>quantitat (integer)</li>
+        <li>descompte (float)</li>
+        <li>import (float)</li>
+      </ul>
+      <p>En aquest cas, les taules principals contenen les dades de les factures i dels productes.<br>
+        La taula auxiliar contindrà:</p>
+      <ul>
+        <li>identificadorFactura (integer)</li>
+        <li>identificadorProducte (String)</li>
+        <li>quantitat (integer)</li>
+        <li>descompte (float)</li>
+        <li>import (float)</li>
+      </ul>
+      <h3>Herència</h3>
+      <p>Hi ha dues possibilitats:</p>
+      <ul>
+        <li>Fer una taula per cada classe de la que es puguin crear objectes.<br>
+          Pot ser complicat realitzar determinades consultes.</li>
+        <li>Fer una única taula amb tots els atributs de totes les classes.<br>
+          Alguns camps de determinats registres no contindran cap dada.</li>
+      </ul>
+      <h5>Exemple</h5>
+      <p>Classe abstracta <strong>Membre</strong></p>
+      <ul>
+        <li>nif</li>
+        <li>nom</li>
+        <li>telèfon</li>
+        <li>email</li>
+      </ul>
+      <p>Classe <strong>Professor</strong></p>
+      <ul>
+        <li>titulació</li>
+        <li>departament</li>
+        <li>càrreg</li>
+      </ul>
+      <p>Classe <strong>Alumne</strong></p>
+      <ul>
+        <li>dataNaixement</li>
+        <li>cicle</li>
+        <li>curs</li>
+      </ul>
+      <p>La taula <strong>Membres</strong> inclourà els atributs de la classe <strong>Membre</strong> més els de <strong>Professor</strong> més els d'<strong>Alumne</strong>.</p>
+      <h2>Traducció dels tipus de dades</h2>
+      <h3>boolean</h3>
+      <p>La majoria de BD relacionals no tenen el tipus booleà.</p>
+      <p>Si és el cas, i depenent de cada BD, es pot substituir pel tipus <strong>BIT</strong>, <strong>TINYINT</strong>, <strong>CHAR(1)</strong> o <strong>NUMBER(1)</strong>.</p>
+      <h3>Text</h3>
+      <p>El tipus <strong>char</strong> es tradueix a <strong>CHAR(1)</strong>.</p>
+      <p>El tipus <strong>String</strong> es pot traduir a <strong>TINYTEXT</strong>, <strong>CHAR(n)</strong>, <strong>VARCHAR(n)</strong>, o <strong>LONG VARCHAR(n)</strong>.</p>
+      <p class="p_important"><strong>CHAR(n)</strong> completa amb espais si el text no ocupa la mida completa. Els altres, no.</p>
+      <p class="p_important">Els literals de text en SQL es posen entre cometes simples.</p>
+      <h3>Valors numèrics</h3>
+      <p>El tipus <strong>byte</strong> equival a <strong>TINYINT</strong> (8 bits: -128 a 127).</p>
+      <p>El tipus <strong>short</strong> equival a <strong>SMALLINT</strong> (16 bits: -32768 a 32767).</p>
+      <p>El tipus <strong>int</strong> equival a <strong>INTEGER</strong> (32 bits).</p>
+      <p>El tipus <strong>long</strong> equival a <strong>BIGINT</strong> (64 bits).</p>
+      <p>El tipus <strong>float</strong> equival a <strong>REAL</strong> (32 bits).</p>
+      <p>El tipus <strong>double</strong> equival a <strong>DOUBLE</strong> (64 bits).</p>
+      <h3>Data i hora</h3>
+      <p>Els tipus nadius de Java per gestionar dates i hores no s'adapten bé als tipus que s'utilitzen en SQL (<strong>DATE</strong>, <strong>TIME</strong> i <strong>TIMESTAMP</strong>).</p>
+      <p>Per això cal utilitzar <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/Date.html">java.sql.Date</a>, <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/Time.html">java.sql.Time</a> i <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/Timestamp.html">java.sql.Timestamp</a>.</p>
+      <h3>Altres</h3>
+      <p>Per guardar dades binàries (en Java <strong>byte[ ]</strong>), es poden utilitzar <strong>BINARY(n)</strong>, <strong>VARBINAY(n)</strong>, <strong>BLOB(n)</strong>...</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">import java.time.LocalDate;<br>
+          <br>
+          <strong>public class Persona</strong> {<br>
+          &nbsp;&nbsp;&nbsp; <strong>// Atributs privats</strong><br>
+          &nbsp;&nbsp;&nbsp; private String nif;<br>
+          &nbsp;&nbsp;&nbsp; private String nom;<br>
+          &nbsp;&nbsp;&nbsp; private String dataNaixement;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Constructor</strong><br>
+          &nbsp;&nbsp;&nbsp; public Persona(String nif, String nom, String naixement) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nom = nom;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nif = nif;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dataNaixement = naixement;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Calcular l'edat a partir de la data de naixement i la data actual</strong><br>
+          &nbsp;&nbsp;&nbsp; public int getEdat() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LocalDate avui = LocalDate.now();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int any = avui.getYear();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int mes = avui.getMonthValue();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int dia = avui.getDayOfMonth();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] dadesNaixement = dataNaixement.split("-");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int diaN = Integer.parseInt(dadesNaixement[0]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int mesN = Integer.parseInt(dadesNaixement[1]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int anyN = Integer.parseInt(dadesNaixement[2]);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int anys = any - anyN;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (mes &lt; mesN || (mes == mesN &amp;&amp; dia &lt; diaN)) --anys;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return anys;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>@Override</strong><br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nif + " : " + nom + " : " + getEdat();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          <strong>class TestPersona</strong> {<br>
+          &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Persona persona1 = new Persona("12345678Z", "Peter", "30-01-2000");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(persona1);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Persona persona2 = new Persona("44444444A", "Mary", "20-10-2002");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(persona2);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">import java.time.LocalDate;<br>
+          import java.time.Period;<br>
+          import java.time.format.DateTimeFormatter;<br>
+          <br>
+          <strong>public class PersonaV2</strong> {<br>
+          &nbsp;&nbsp;&nbsp; <strong>// Atribut estàtic per comptar quantes persones s'han creat</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>private static</strong> int comptadorPersones = 0;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Atributs privats</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>private</strong> String nif;<br>
+          &nbsp;&nbsp;&nbsp; <strong>private</strong> String nom;<br>
+          &nbsp;&nbsp;&nbsp; <strong>private</strong> String dataNaixement;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Constructor</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>public</strong> PersonaV2(String nif, String nom, String naixement) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Verificar NIF i data de naixement<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Si algun no és correcte, llança un error<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!verificarNif(nif)) throw new Error("NIF incorrecte");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!verificarData(naixement)) throw new Error("Data de naixement incorrecte");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // inicialitzar valors ja verificats<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // S'utilitza 'this' quan el nom de l'atribut coincideix amb el nom del paràmetre<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // (també es podria haver canviat el nom del paràmetre)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>this.</strong>nom = nom;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>this.</strong>nif = nif;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dataNaixement = naixement;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Incrementem el comptador de persones creades<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++comptadorPersones;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Comprovar la data (caldria tenir en compte febrer, any de traspàs...)</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>private</strong> boolean verificarData(String data) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] d = data.split("-");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int dia = Integer.parseInt(d[0]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int mes = Integer.parseInt(d[1]);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int any = Integer.parseInt(d[2]);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return !(dia &lt; 1 || dia &gt; 31 || mes &lt; 0 || mes &gt; 12 || any &lt; 1900 || any &gt; 2020);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Comprovar el NIF</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>private</strong> boolean verificarNif(String nif) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (nif.length() != 9) return false;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char lletra = nif.charAt(8);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (lletra &lt; 'A' || lletra &gt; 'Z') return false;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (lletra != calcularLletraNif(nif.substring(0, 8))) return false;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Calcular la lletra del NIF</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>private</strong> char calcularLletraNif(String dni) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final String LLETRES = "TRWAGMYFPDXBNJZSQVHLCKE";<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int residu;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char lletra;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Impedeix que es generi una excepció que aturi el programa<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Si no es pot convertir el dni a número, llança un error<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; residu = Integer.parseInt(dni) % 23;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw new Error("Error en el número del DNI");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lletra = LLETRES.charAt(residu);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return lletra;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Obtenir el número de persones creades</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>public static</strong> int getNumPersones() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return comptadorPersones;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Inverteix l'ordre de DD-MM-AAAA a AAAA-MM-DD o alrevès</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>public static</strong> String invertirData(String data) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String[] d = data.split("-");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return d[2] + "-" + d[1] + "-" + d[0];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Calcular l'edat a partir de la data de naixement i una data qualsevol</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>public static</strong> int getEdat(String dn) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LocalDate avui = LocalDate.now();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //LocalDate naix = LocalDate.parse(dn, DateTimeFormatter.ofPattern("dd-MM-yyyy"));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LocalDate naix = LocalDate.parse(invertirData(dn));<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Period p = Period.between(naix, avui);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p.getYears();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Calcular l'edat a partir de la data de naixement i la data actual</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>public</strong> int getEdat() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return getEdat(dataNaixement);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>@Override</strong><br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nif + " : " + nom + " : " + getEdat();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          <strong>class TestPersonaV2</strong> {<br>
+          &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PersonaV2 persona1 = crearPersona("12345678Z", "Peter", "30-01-2000");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (persona1 != null) System.out.println(persona1);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PersonaV2 persona2 = crearPersona("44444444A", "Mary", "20-10-2002");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (persona2 != null) System.out.println(persona2);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Creació de persones amb dades errònies<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; persona1 = crearPersona("<strong>1234567AA</strong>", "Peter", "30-01-2000");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; persona2 = crearPersona("44444444A", "Mary", "<strong>2002-10-20</strong>");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("Edat si has nascut el 20-10-2000: %d anys\n", PersonaV2.getEdat("20-10-2000"));<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Persones creades: " + PersonaV2.getNumPersones());<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Crea una persona detectant possibles errors<br>
+          &nbsp;&nbsp;&nbsp; // En cas d'error, retorna null<br>
+          &nbsp;&nbsp;&nbsp; <strong>public static PersonaV2 crearPersona(String nif, String nom, String naix)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PersonaV2 p = null;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = new PersonaV2(nif, nom, naix);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Error e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(e.getMessage());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h4>Classe Article</h4>
+        <p class="p_codi"><strong>public class Article</strong> {<br>
+          &nbsp;&nbsp;&nbsp; <strong>// Atributs dels objectes</strong><br>
+          &nbsp;&nbsp;&nbsp; private String codi;<br>
+          &nbsp;&nbsp;&nbsp; private String descripcio;<br>
+          &nbsp;&nbsp;&nbsp; private int unitats;<br>
+          &nbsp;&nbsp;&nbsp; private float preu;<br>
+          &nbsp;&nbsp;&nbsp; private int iva;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Constructor</strong><br>
+          &nbsp;&nbsp;&nbsp; public Article(String _codi, String _descripcio, int _unitats, float _preu, int _iva) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Verificar dades</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (_codi.length() != 4) throw new Error("El codi ha e tenir 4 caràcters");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (_unitats &lt; 0) throw new Error("Les unitats no poden ser negatives");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (_preu &lt; .1) throw new Error("El preu no pot ser inferior a 10 cèntims");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (_iva != 0 &amp;&amp; _iva != 4 &amp;&amp; _iva != 5 &amp;&amp; _iva != 10 &amp;&amp; _iva != 21) throw new Error("El tant per cent d'IVA només pot ser 0, 4, 5, 10 o 21");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Inicialitzar atributs</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codi = _codi;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; descripcio = _descripcio;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unitats = _unitats;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preu = _preu;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iva = _iva;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Getters</strong><br>
+          &nbsp;&nbsp;&nbsp; public String getCodi() { return codi; }<br>
+          &nbsp;&nbsp;&nbsp; public String getDescripcio() { return descripcio; }<br>
+          &nbsp;&nbsp;&nbsp; public int getUnitats() { return unitats; }<br>
+          &nbsp;&nbsp;&nbsp; public float getPreu() { return preu; }<br>
+          &nbsp;&nbsp;&nbsp; public int getIva() { return iva; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Setters</strong><br>
+          &nbsp;&nbsp;&nbsp; public boolean setUnitats(int _unitats) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (_unitats &lt; 0) return false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unitats = _unitats;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public boolean setPreu(float _preu) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (_preu &lt; .1) return false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preu = _preu;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public boolean setIva(int _iva) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (_iva != 0 &amp;&amp; _iva != 4 &amp;&amp; _iva != 5 &amp;&amp; _iva != 10 &amp;&amp; _iva != 21) return false;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iva = _iva;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Calcula i retorna el preu final</strong><br>
+          &nbsp;&nbsp;&nbsp; public float getPreuFinal() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float subtotal = unitats * preu;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return subtotal + subtotal * iva / 100;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>@Override</strong><br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return codi + " : " + descripcio + " : " + String.format("%.2f €", getPreuFinal());<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+        </p>
+        <h4>Classe Cistella</h4>
+        <p class="p_codi">import java.util.Scanner;<br>
+          <br>
+          <strong>public class Cistella</strong> {<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Articles de la cistella</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>static Article[] productes = new Article[5];</strong><br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Lector de dades (llegeix les dades introduïdes amb el teclat)</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>static Scanner scan = new Scanner(System.in);</strong><br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Mètode principal encarregat d'engegar l'aplicació</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>public static void main(String[] args)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Introduir articles</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; productes.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; productes[i] = introProducte();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Modificar algunes dades (setters)</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; productes[0].setUnitats(50);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; productes[1].setPreu(800);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; productes[4].setIva(10);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// Mostrar els articles de la cistella i calcular el total</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float total = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (Article p : productes) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(p);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total += p.getPreuFinal();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("Total de la cistella: %.2f €", total);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Mètode per introduir un article</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>private static Article introProducte()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Article p = null;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String codi, descripcio;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int unitats, iva;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; float preu;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>// Evita errors imprevistos amb la introducció de dades</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("Introdueix el codi i la descripció: ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; codi = scan.next().trim();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; descripcio = scan.nextLine().trim();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print("Introdueix les unitats, el preu i el %iva: ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unitats = scan.nextInt();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; preu = scan.nextFloat();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iva = scan.nextInt();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = creador(codi, descripcio, unitats, preu, iva);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (p != null) System.out.println(p);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Exception e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(e.getMessage());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } while (p == null &amp;&amp; scan.hasNext());<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Mètode per crear un article tenint en compte possibles errors<br>
+            &nbsp;&nbsp;&nbsp; // Retorna un objecte de la classe Article o null si no s'ha pogut crear</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>private static Article creador(String codi, String descripcio, int unitats, float preu, int iva)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Article p = null;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>// Evita errors amb les dades passades al constructor</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; p = new Article(codi, descripcio, unitats, preu, iva);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (Error e) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(e.getMessage());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h4>Classe Monitor</h4>
+        <p class="p_codi">public class Monitor {<br>
+          &nbsp;&nbsp;&nbsp; <strong>// Atributs</strong><br>
+          &nbsp;&nbsp;&nbsp; String marca;<br>
+          &nbsp;&nbsp;&nbsp; String model;<br>
+          &nbsp;&nbsp;&nbsp; float preu;<br>
+          &nbsp;&nbsp;&nbsp; float mida;<br>
+          &nbsp;&nbsp;&nbsp; int resH;<br>
+          &nbsp;&nbsp;&nbsp; int resV;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Constructor</strong><br>
+          &nbsp;&nbsp;&nbsp; public Monitor(String marca, String model, float preu, float mida, int resH, int resV) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.marca = marca;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.model = model;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.preu = preu;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.mida = mida;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.resH = resH;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.resV = resV;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// <em>Getters</em></strong><br>
+          &nbsp;&nbsp;&nbsp; public float getPreu() { return preu; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Monitor:" +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tMarca: " + marca +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tModel: " + model +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tMida (polzades): " + mida +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tResolució (px): " + resH + " x " + resV +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tPreu (€): " + preu;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe Teclat</h4>
+        <p class="p_codi">public class Teclat {<br>
+          &nbsp;&nbsp;&nbsp; <strong>// Atributs</strong><br>
+          &nbsp;&nbsp;&nbsp; String marca;<br>
+          &nbsp;&nbsp;&nbsp; String model;<br>
+          &nbsp;&nbsp;&nbsp; float preu;<br>
+          &nbsp;&nbsp;&nbsp; boolean retroiluminat;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Constructor</strong><br>
+          &nbsp;&nbsp;&nbsp; public Teclat(String marca, String model, float preu, boolean retroiluminat) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.marca = marca;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.model = model;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.preu = preu;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.retroiluminat = retroiluminat;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// <em>Getters</em></strong><br>
+          &nbsp;&nbsp;&nbsp; public float getPreu() { return preu; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Teclat:" +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tMarca: " + marca +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tModel: " + model +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tRetroiluminat: " + (retroiluminat ? "Sí" : "No") +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tPreu (€): " + preu;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          }</p>
+        <h4>Classe Ratoli</h4>
+        <p class="p_codi">public class Ratoli {<br>
+          &nbsp;&nbsp;&nbsp; <strong>// Atributs</strong><br>
+          &nbsp;&nbsp;&nbsp; String marca;<br>
+          &nbsp;&nbsp;&nbsp; String model;<br>
+          &nbsp;&nbsp;&nbsp; float preu;<br>
+          &nbsp;&nbsp;&nbsp; int botons;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Constructor</strong><br>
+          &nbsp;&nbsp;&nbsp; public Ratoli(String marca, String model, float preu, int botons) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.marca = marca;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.model = model;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.preu = preu;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.botons = botons;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// <em>Getters</em></strong><br>
+          &nbsp;&nbsp;&nbsp; public float getPreu() { return preu; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Ratolí:" +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tMarca: " + marca +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tModel: " + model +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tBotons: " + botons +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tPreu (€): " + preu;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          }</p>
+        <h4>Classe Torre</h4>
+        <p class="p_codi">public class <strong>Torre</strong> {<br>
+          &nbsp;&nbsp;&nbsp; <strong>// Atributs</strong><br>
+          &nbsp;&nbsp;&nbsp; String marca;<br>
+          &nbsp;&nbsp;&nbsp; String model;<br>
+          &nbsp;&nbsp;&nbsp; float preu;<br>
+          &nbsp;&nbsp;&nbsp; String cpu;<br>
+          &nbsp;&nbsp;&nbsp; int ram;<br>
+          &nbsp;&nbsp;&nbsp; int hd;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Constructor</strong><br>
+          &nbsp;&nbsp;&nbsp; public Torre(String marca, String model, float preu, String cpu, int ram, int hd) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.marca = marca;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.model = model;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.preu = preu;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.cpu = cpu;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.ram = ram;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.hd = hd;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// <em>Getters</em></strong><br>
+          &nbsp;&nbsp;&nbsp; public float getPreu() { return preu; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Torre:" +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tMarca: " + marca +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tModel: " + model +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tCPU: " + cpu +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tRAM (GB): " + ram +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tHD (GB): " + hd +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n\tPreu (€): " + preu;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          }</p>
+        <h4>Classe Ordinador</h4>
+        <p class="p_codi">public class <strong>Ordinador</strong> {<br>
+          &nbsp;&nbsp;&nbsp; <strong>// Atributs</strong><br>
+          &nbsp;&nbsp;&nbsp; String nom;<br>
+          &nbsp;&nbsp;&nbsp; Monitor monitor;<br>
+          &nbsp;&nbsp;&nbsp; Teclat teclat;<br>
+          &nbsp;&nbsp;&nbsp; Ratoli ratoli;<br>
+          &nbsp;&nbsp;&nbsp; Torre torre;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// Constructor</strong><br>
+          &nbsp;&nbsp;&nbsp; public Ordinador(String nom, Monitor monitor, Teclat teclat, Ratoli ratoli, Torre torre) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nom = nom;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.monitor = monitor;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.teclat = teclat;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.ratoli = ratoli;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.torre = torre;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>// <em>Getters</em></strong><br>
+          &nbsp;&nbsp;&nbsp; public float getPreu() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return monitor.getPreu() + teclat.getPreu() + ratoli.getPreu() + torre.getPreu();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "&nbsp;&nbsp; ---" + nom + "---" +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n" + monitor.toString() +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n" + teclat.toString() +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n" + ratoli.toString() +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\n" + torre.toString();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe Taller</h4>
+        <p class="p_codi">public class <strong>Taller</strong> {<br>
+          &nbsp;&nbsp;&nbsp; <strong>public static void main(String[] args)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Monitor m1 = new Monitor("HP", "V24 ie", 154, 24, 1920, 1080);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Monitor m2 = new Monitor("Dell", "UltraSharp", 350, 25, 2560, 1440);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teclat t1 = new Teclat("Logitech", "G Pro", 99.99f, true);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teclat t2 = new Teclat("MSI", "Vikor", 30, false);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ratoli r1 = new Ratoli("Tempest", "Soldier", 8.99f, 3);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ratoli r2 = new Ratoli("Racer", "Deathadder", 30, 4);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Torre torre1 = new Torre("Corsair", "4000D", 429.90f, "Intel i7", 8, 999);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Torre torre2 = new Torre("NOX", "Hummer", 1106.99f, "AMD Ryzen7", 16, 2000);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ordinador o1 = new Ordinador("BASIC", m1, t1, r1, torre1);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ordinador o2 = new Ordinador("GAMER", m2, t2, r2, torre2);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("\n%s\nPreu ordinador: %.2f €\n", o1, o1.getPreu());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.printf("\n%s\nPreu ordinador: %.2f €\n", o2, o2.getPreu());<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

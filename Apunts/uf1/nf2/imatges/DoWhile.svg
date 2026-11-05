@@ -1,0 +1,25 @@
+<svg width="160" height="224" version="1.1" viewBox="0 0 160 224" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="TriangleOutS" style="overflow:visible" orient="auto">
+   <path transform="scale(.2)" d="m6 0-9 5v-10z" style="fill-rule:evenodd;stroke-width:1pt;stroke:#000"/>
+  </marker>
+  <marker id="TriangleOutS-3" style="overflow:visible" orient="auto">
+   <path transform="scale(.2)" d="m6 0-9 5v-10z" style="fill-rule:evenodd;stroke-width:1pt;stroke:#000"/>
+  </marker>
+  <marker id="TriangleOutS-36" style="overflow:visible" orient="auto">
+   <path transform="scale(.2)" d="m6 0-9 5v-10z" style="fill-rule:evenodd;stroke-width:1pt;stroke:#000"/>
+  </marker>
+ </defs>
+ <path d="m10 168 50-20 50 20-50 20z" style="fill:#f0c080;stroke-width:2;stroke:#000"/>
+ <text x="66.79" y="173.2" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px"><tspan x="59.99" y="173.2" style="font-size:13px;text-align:center;text-anchor:middle">Condició</tspan></text>
+ <rect x="15" y="70" width="90" height="50" style="fill:#a0c0e0;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000"/>
+ <text x="67.8" y="100" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:center;text-anchor:middle;word-spacing:0px"><tspan x="61" y="100" style="font-size:13px;text-align:center;text-anchor:middle">Bloc de codi</tspan></text>
+ <path d="m60 6v24" style="fill:none;marker-end:url(#TriangleOutS);stroke-width:3;stroke:#000"/>
+ <path d="m60 188v30" style="fill:none;marker-end:url(#TriangleOutS);stroke-width:3;stroke:#000"/>
+ <path d="m108 168h42v-128h-80" style="fill:none;marker-end:url(#TriangleOutS);stroke-width:3;stroke:#000"/>
+ <text x="98.8" y="163.4" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;word-spacing:0px"><tspan x="107.3" y="163.4" style="fill:#c00000;font-family:sans-serif;font-size:13px;font-weight:bold">true</tspan></text>
+ <text x="80.8" y="196.6" style="fill:#000000;font-family:sans-serif;font-size:13px;letter-spacing:0px;line-height:1.25em;text-align:end;text-anchor:end;word-spacing:0px"><tspan x="56.3" y="196.6" style="fill:#c00000;font-family:sans-serif;font-size:13px;font-weight:bold;text-align:end;text-anchor:end">false</tspan></text>
+ <circle x="" y="" cx="60" cy="40" r="5"/>
+ <path d="m60 44v20" style="fill:none;marker-end:url(#TriangleOutS-3);stroke-width:3;stroke:#000"/>
+ <path d="m60 120v22" style="fill:none;marker-end:url(#TriangleOutS-36);stroke-width:3;stroke:#000"/>
+</svg>

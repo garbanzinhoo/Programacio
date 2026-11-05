@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Interfície gràfica</h1>
+      <div class="enun">
+        <h3>Diàlegs simples</h3>
+        <p>Fes un programa per provar els diàlegs bàsics de Java:</p>
+        <ul>
+          <li>JOptionPane:</li>
+          <ul>
+            <li>showMessageDialog</li>
+            <li>showConfirmDialog</li>
+            <li>showInputDialog</li>
+          </ul>
+          <li>JFileChooser</li>
+          <li>JColorChooser</li>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Comptador amb MVC</h3>
+        <p>Modifica l'exemple dels apunts sobre <strong>MVC</strong> afegint un botó per decrementar el valor.</p>
+        <p>Canvia l'etiqueta per un camp de text, de forma que l'usuari pugui escriure un valor i l'increment / decrement es faci sobre el valor que hi en aquest camp.</p>
+      </div>
+      <div class="enun">
+        <h3>Calculadora</h3>
+        <p>Millora la Calculadora que tens en l'arxiu <a download="" target="_blank" rel="noopener" href="arxius/Calculadora.java">Calculadora.java</a>:</p>
+        <ul>
+          <li>Adapta'l al patró <strong>MVC</strong>:</li>
+          <ul>
+            <li>Crea una classe principal per engegar la calculadora.</li>
+            <li>Separa el codi en 3 paquets/classes (<strong>model</strong>, <strong>vista</strong> i <strong>controlador</strong>).</li>
+          </ul>
+          <li>Altres millores:</li>
+          <ul>
+            <li>Fes que sembli una calculadora real: un únic display, botons pels dígits i per les operacions.<br>
+              Et pots basar en la calculadora de Windows.</li>
+            <li>Afegeix un controlador a la finestra per poder utilitzar les tecles.<br>
+              Hauràs d'impedir que els botons agafin el focus.</li>
+            <li>Pots afegir un <strong>JCheckBox</strong> per seleccionar calculadora normal o avançada.<br>
+              En la calculadora avançada pots afegir operacions científiques: arrel, potències, funcions trigonomètriques (sinus, cosinus, tangent...), número π...</li>
+          </ul>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Cuca</h3>
+        <p>Millora el joc Cuca que tens en l'arxiu <a download="" target="_blank" rel="noopener" href="arxius/cuca.zip">cuca.zip</a>:</p>
+        <ul>
+          <li>Petits canvis:</li>
+          <ul>
+            <li>Crea 4 imatges per no haver de calcular com dibuixar els ulls segons la direcció del cuc.</li>
+            <li>Mostra en la cantonada superior esquerra la longitud de la cua en lletres de color blanc.</li>
+          </ul>
+          <li>Adapta'l al patró <strong>MVC</strong>:</li>
+          <ul>
+            <li>Crea una classe principal per engegar el joc.</li>
+            <li>Separa el codi en 3 paquets/classes (<strong>model</strong>, <strong>vista</strong> i <strong>controlador</strong>).</li>
+          </ul>
+          <li>Orientació a objectes:</li>
+          <ul>
+            <li>Crea les classes <strong>Tauler</strong>, <strong>Poma</strong> i <strong>Jugador</strong> (o <strong>Cuc</strong>) dins del Model per gestionar les seves dades.</li>
+            <li>Fes que puguin jugar dues persones:<br>
+              Cada jugador haurà d'introduir les seves inicials i, opcionalment, triar un color pel seu cuc.<br>
+              Les tecles pel segon jugador poden ser <strong>A</strong>, <strong>S</strong>, <strong>D</strong> i <strong>W</strong>.</li>
+          </ul>
+          <li>Altres millores:</li>
+          <ul>
+            <li>Posa un límit de temps i mostra el temps restant a dalt a la dreta.</li>
+            <li>Quan s'acabi el joc, indica qui ha guanyat i demana si es vol tornar a jugar.</li>
+            <li>Afegeix so quan es mengin una poma i/o quan s'acabi el joc.</li>
+            <li>Tenir en compte si no ha trobat els arxius de so o configurar per poder treure el so.</li>
+            <li>Tancar el programa directament si no ha pogut carregar la imatge de la poma.</li>
+          </ul>
+          <li>Pensa qualsevol altra millora que es pugui fer (i fes-la, si tens temps i ganes):<br>
+            afegir obstacles, diferents nivells, anar augmentant la velocitat, guardar les puntuacions, jugar amb un jugador, dos jugadors o un jugador contra l'ordinador, mode client/servidor amb 2 o més jugadors...</li>
+        </ul>
+        <p>No oblidis crear l'arxiu JAR i provar-lo!</p>
+      </div>
+    </section>
+  </body>
+</html>

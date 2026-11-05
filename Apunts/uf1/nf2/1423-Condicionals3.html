@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Estructures condicionals (III)">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Estructures condicionals (III)</header>
+    <section>
+      <h2>... ? ... : ... (operador condicional ternari)</h2>
+      <p>Aquesta estructura s'utilitza habitualment per fer assignacions amb condicions i expressions senzilles.</p>
+      <p class="p_important">Només s'ha d'utilitzar si ens permet reduir l'expressió resultant a una línia curta que es llegeixi fàcilment.<br>
+        En cas contrari (si acaba sortint una línia llarga i complicada), perd tota la seva utilitat.</p>
+      <p>La condició es posa abans de <span class="c_comanda">?</span>.<br>
+        Entre <span class="c_comanda">?</span> i <span class="c_comanda">:</span> es posa el valor que s'ha d'assignar si la condició és certa.<br>
+        Després de <span class="c_comanda">:</span> es posa el valor que s'ha d'assignar si la condició és falsa.</p>
+      <p class="p_codi">let menor = <strong>(a &lt; b) ? a : b;</strong></p>
+      <p>Serveix per simplificar una estructura <span class="c_comanda">if</span> com la següent:</p>
+      <p class="p_codi">let menor;<br>
+        <br>
+        if (a &lt; b)<br>
+        &nbsp; menor = a;<br>
+        else<br>
+        &nbsp; menor = b;</p>
+      <div class="p_important">
+        <p>També es pot utilitzar per triar entre tres o més valors, però la sentència resulta complicada de llegir:</p>
+        <p class="p_codi">let q = <strong>n &lt; 5</strong> ? "Suspès" : (<strong>n &lt; 7</strong> ? "Aprovat" : (<strong>n &lt; 9</strong> ? "Notable" : "Excel·lent"));</p>
+        <p>En un cas com aquest, seria&nbsp; preferible la versió llarga amb condicionals encadenats:</p>
+        <p class="p_codi">let q = "";<br>
+          <br>
+          if (<strong>n &lt; 5</strong>) q = "Suspès"; <br>
+          else if (<strong>n &lt; 7</strong>) q = "Aprovat";<br>
+          else if (<strong>n &lt; 9</strong>) q = "Notable";<br>
+          else q = "Excel·lent";</p>
+      </div>
+      <h2>Recomanacions per triar entre els diferents tipus de condicionals</h2>
+      <ul>
+        <li>S'ha d'utilitzar <strong>blocs condicionals independents</strong> quan les condicions per executar un bloc o un altre no estan relacionades entre elles.</li>
+        <li>Els <strong>blocs condicionals encadenats</strong> són útils quan les condicions per executar un dels blocs són mutuament exclusives (si es compleix una condició, s'executa el bloc de codi corresponent i no s'analitzen les altres condicions ni s'executa cap dels altres blocs de codi).<br>
+          També són la millor opció quan s'ha de triar entre diferents rangs de valors contigus.</li>
+        <li>Els <strong>blocs condicionals niuats</strong> s'utilitzen quan s'ha de triar entre diferents blocs de codi amb condicions complexes en què algunes de les condicions més específiques depenen d'altres més generals.</li>
+        <li>L'<strong>operador ternari</strong> només s'hauria d'utilitzar per assignar a una variable un valor o un altre en funció d'una condició simple. Si el resultat és una sentència difícil de llegir, serà preferible utilitzar altres tipus de condicionals.</li>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Operadors de Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Operadors de Java</header>
+    <section>
+      <h2>Classe <em>Character</em><br>
+      </h2>
+      <p>Aquesta classe conté mètodes útils per treballar amb caràcters.<br>
+        Alguns dels més utilitzats són els següents:</p>
+      <ul>
+        <li><span class="c_comanda">Character.isDigit(char ch)</span>: retorna <span class="c_comanda">true</span> si el caràcter és un dígit ('0' a '9').</li>
+        <li><span class="c_comanda">Character.isLetter(char ch)</span>: retorna <span class="c_comanda">true</span> si el caràcter és una lletra ('a' a 'z' o 'A' a 'Z').</li>
+        <li><span class="c_comanda">Character.isUpperCase(char ch)</span>: retorna <span class="c_comanda">true</span> si el caràcter és una lletra majúscula.</li>
+        <li><span class="c_comanda">Character.isLowerCase(char ch)</span>: retorna <span class="c_comanda">true</span> si el caràcter és una lletra minúscula.</li>
+        <li><span class="c_comanda">Character.toUpperCase(char ch)</span>: retorna el caràcter convertit a majúscula.</li>
+        <li><span class="c_comanda">Character.toLowerCase(char ch)</span>: retorna el caràcter convertit a minúscula.</li>
+      </ul>
+      <p>El cas de les cadenes de caràcters (<span class="c_comanda">String</span>) és diferent.<br>
+        De moment, el més important és que l'operador <span class="c_comanda">+</span> serveix per concatenar.<br>
+        També permet concatenar una cadena de caràcters amb qualsevol altre tipus de dada (el compilador s'encarrega de fer la conversió a cadena de caràcters quan sigui necessari).</p>
+      <p class="p_codi">String s1 = "Hello";<br>
+        String s2 = "world!";<br>
+        String s3 = <strong>s1 + " " + s2</strong>;<br>
+        System.out.println(s3);&nbsp;&nbsp;&nbsp; // Mostrarà <strong>Hello world!</strong> per pantalla<br>
+        float preu = 125.4;<br>
+        System.out.println("El preu és " + preu + " €");&nbsp;&nbsp;&nbsp; // Mostrarà <strong>El preu és 125.4 €</strong></p>
+      <div class="p_important">
+        <p>Compte al barrejar text i números!</p>
+        <p class="p_codi">System.out.println("Preu: " + <strong>5</strong> + <strong>3</strong> + " €");&nbsp;&nbsp;&nbsp; // Mostrarà <strong>Preu: 53 €</strong><br>
+          System.out.println("Preu: " + <strong>(5 + 3)</strong> + " €");&nbsp;&nbsp; // Mostrarà <strong>Preu: 8 €</strong></p>
+      </div>
+      <h3>Obtenir el valor numèric d'un dígit</h3>
+      <p>Com s'ha vist anteriorment, els dígits (caràcters de '0' a '9') tenen un codi ASCII que no es correspon amb el seu valor numèric ('0' = 48, '1' = 49...).</p>
+      <p>Una forma d'obtenir el seu valor numèric és restar 48 (o restar el caràcter '0'):</p>
+      <p class="p_codi">char digit = '5';&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; // <strong>digit</strong> és equivalent a 53 (codi ASCII)<br>
+        int valor = digit - 48; &nbsp; // <strong>valor</strong> conté el valor <strong>5</strong><br>
+        int valor = digit - '0';&nbsp; // <strong>valor</strong> conté el valor <strong>5</strong></p>
+      <p>Però la classe <em>Character</em> té un mètode per fer-ho:</p>
+      <p class="p_codi">char digit = '5';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>digit</strong> és equivalent a 53 (codi ASCII)<br>
+        int valor = <strong>Character.digit(digit, 10)</strong>;&nbsp; // <strong>valor</strong> conté el valor <strong>5</strong></p>
+      <h3>Convertir els valors 0 a 9 en dígits (caràcters)</h3>
+      <p>Una forma seria sumar 48 (o sumar el caràcter '0') al valor i convertir a <em>char</em>:</p>
+      <p class="p_codi">int valor = 5;<br>
+        char digit = (char)(valor + 48);<strong></strong>&nbsp;&nbsp;&nbsp; // <strong>digit</strong> conté <strong>'5'</strong><br>
+        char digit = (char)(valor + '0');<strong></strong>&nbsp;&nbsp; // <strong>digit</strong> conté <strong>'5'</strong></p>
+      <p>Però la classe <em>Character</em> té un mètode per fer-ho:</p>
+      <p class="p_codi">int valor = 5;<br>
+        char digit = <strong>Character.forDigit(valor, 10)</strong>;&nbsp;&nbsp;&nbsp; // <strong>digit</strong> conté <strong>'5'</strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

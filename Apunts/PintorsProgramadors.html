@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Pintors i Programadors</title>
+    <meta name="google-site-verification" content="9UpFtomhPmGyPopyeAavctahIHCdlBbtcEIFOblji2U">
+    <meta name="description" content="Tipus de pintors / programadors">
+    <meta name="keywords" content="pintors, programadors">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000080">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="imatges/favicon.png">
+    <style>
+html{height:100%;}
+body{height:100%;margin:0.25rem;padding:0;overflow:hidden;font-family:Arial,Helvetica,sans-serif;font-size:1em;}
+h3{text-align:center;}
+noscript{display:block;margin:1em;border-style:solid;border-width:1px;border-color:#A00000;background-color:#F0F0F0;color:#A00000;text-align:center;font-size:1.2em;font-weight:bold;}
+img{height:auto;vertical-align:middle;}
+
+.slide {display:none;}
+.button{border:none;display:inline-block;width:2rem;height:2rem;border-radius:50%;padding:.6rem .3rem 0 .3rem;color:#fff;background-color:#ccc;opacity:.4;vertical-align:middle;overflow:hidden;text-align:center;cursor:pointer;white-space:nowrap;}
+.button:hover{color:#fff;background-color:#ccc;opacity:.7;}
+.container{position:relative;}
+.left{position:absolute;top:50%;left:0%;transform:translate(0%,-50%);}
+.right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);}
+</style> </head>
+  <body>
+    <section id="content"> <noscript>El teu navegador no suporta Javascript o no el té activat.</noscript>
+    	<h3 id="title"></h3>
+		<div class="container">
+			<img class="slide" src="imatges/0-Principiant.jpg" style="width:100%">
+			<img class="slide" src="imatges/1-Amateur.jpg" style="width:100%">
+			<img class="slide" src="imatges/2-Professional.jpg" style="width:100%">
+			<img class="slide" src="imatges/3-Mestre.jpg" style="width:100%">
+
+			<div class="button left" onclick="plusDivs(-1)">&#10094;</div>
+			<div class="button right" onclick="plusDivs(1)">&#10095;</div>
+		</div>
+
+		<script>
+			var slideIndex = 0;
+			var slides = document.getElementsByClassName("slide");
+			var nSlides = slides.length;
+			var tipus = ["PRINCIPIANT", "AMATEUR", "PROFESSIONAL", "GENI"];
+
+			function plusDivs(n) {
+				if (slideIndex + n >= nSlides) return;
+				if (slideIndex + n < 0) return;
+				showDivs(slideIndex += n);
+			}
+
+			function showDivs(n) {
+				for (var i = 0; i < nSlides; i++) {
+					slides[i].style.display = "none";
+				}
+				slides[slideIndex].style.display = "block";
+				document.getElementById("title").innerHTML = tipus[slideIndex];
+			}
+			
+			function key(ev) {
+				var tecla = ev.code || ev.key;
+				if (tecla == "ArrowRight") plusDivs(1);
+				if (tecla == "ArrowLeft") plusDivs(-1);
+			}
+			
+			document.addEventListener("keydown", key);
+
+			showDivs(slideIndex);
+		</script>
+    </section>
+  </body>
+</html>

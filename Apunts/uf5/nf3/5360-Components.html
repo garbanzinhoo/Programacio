@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Components">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Components</header>
+    <section>
+      <h2>Components</h2>
+      <p><a target="_blank" rel="noopener" href="https://web.mit.edu/6.005/www/sp14/psets/ps4/java-6-tutorial/components.html">Tipus de components: guia visual</a></p>
+      <p>Un component és qualsevol element individual de la interfície gràfica: text (etiquetes), botons, llistes...</p>
+      <p> Tots aquests elements hereten de la classe <em>JComponent</em> o d'altres subclasses seves (<em>AbstractButton</em>, <em>JTextComponent</em>...), per tant, també poden utilitzar els mètodes de les classes "pare" per modificar la seva mida i els seu aspecte:</p>
+      <ul>
+        <li>setBackgroud(Color)</li>
+        <li>setBorder(Border)</li>
+        <li>setSize(int width, int height)</li>
+        <li>setSize(Dimension)</li>
+        <li>setPreferredSize(Dimension)</li>
+        <li>setMinimumSize(Dimension)</li>
+        <li>setMaximumSize(Dimension)</li>
+        <li>... i molts altres!</li>
+      </ul>
+      <div class="p_important">
+        <p><strong>AVANÇAT</strong>: els components tenen un parell de funcions que ens permeten guardar valors i recuperar-los.</p>
+        <p>El mètode <span class="c_comanda">putClientProperty(Object key, Object value)</span> serveix per guardar un valor.<br>
+          El mètode <span class="c_comanda">getClientProperty(Object key)</span> serveix per recuperar-lo.</p>
+        <p><span class="c_comanda">key</span> sol ser un <em>String</em> que indica el nom de l'atribut.<br>
+          El valor es guarda com a <strong>Object</strong>, per tant, al recuperar-lo, caldrà transformar-lo fent un <em>cast</em>.</p>
+        <p class="p_codi">JLabel etiquetaF2C5 = new JLabel("2,5");<br>
+          etiquetaF2C5.<strong>putClientProperty("fila", 2)</strong>;<br>
+          etiquetaF2C5.putClientProperty("columna", 5);<br>
+          ...<br>
+          int fila = <strong>(int)getClientProperty("fila")</strong>;<br>
+          int columna = (int)getClientProperty("columna");</p>
+      </div>
+      <ul>
+      </ul>
+      <p>Els components més utilitzats són els que es detallen a continuació.</p>
+      <h3><em>JLabel</em></h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JLabel.html">JLabel ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/label.html">Tutorial JLabel</a></p>
+      <p>Una etiqueta pot contenir una imatge (normalment petita) i/o un text (normalment curt).</p>
+      <p>Una etiqueta no pot rebre el focus i, per tant, no pot respondre a accions amb el teclat, però sí amb el ratolí.</p>
+      <p>Per defecte, el contingut es mostra centrat en l'etiqueta, però es pot configurar l'alineació vertical i horitzontal.<br>
+        Si hi ha imatge i text, també es pot configurar la posició relativa i la separació del text respecte de la imatge.</p>
+      <p>Constructors bàsics:</p>
+      <ul>
+        <li>JLabel()</li>
+        <li>JLabel(String)</li>
+        <li>JLabel(Icon)</li>
+      </ul>
+      <p>Mètodes bàsics:</p>
+      <ul>
+        <li>disable()</li>
+        <li>enable()</li>
+        <li>setText(String)</li>
+        <li>setIcon(Icon)</li>
+        <li>setDisabledIcon(Icon): icona quan l'etiqueta es mostra deshabilitada.</li>
+        <li>setHorizontalAlignement(int)</li>
+        <li>setVerticalAlignement(int)</li>
+        <li>setHorizontalTextPosition(int)</li>
+        <li>setVerticalTextPosition(int)</li>
+        <li>setIconTextGap(int)</li>
+        <li>setFont(Font)</li>
+        <li>setForegroundColor(Color)</li>
+      </ul>
+      <h3><em>JButton</em>, <em>JCheckBox</em> i <em>JRadioButton<br>
+        </em></h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JButton.html">JButton ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JCheckBox.html">JCheckBox ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JRadioButton.html">JRadioButton ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/button.html">Tutorial JButton, JCheckBox i JRadioButton</a></p>
+      <p>Un botó pot contenir una imatge (normalment petita) i/o un text (normalment curt). </p>
+      <p>A diferència de les etiquetes, pot rebre el focus i respondre a accions amb el teclat i amb el ratolí.</p>
+      <p>Per defecte, el contingut es mostra centrat en el botó, però es pot configurar l'alineació vertical i horitzontal.<br>
+        Si hi ha imatge i text, també es pot configurar la posició relativa i la separació del text respecte de la imatge.</p>
+      <p class="p_important">Els components relacionats amb menús (<em>JMenuItem</em>, <em>JMenu</em>, <em>JCheckBoxMenuItem</em> i <em>JRadioButtomMenuItem</em>) també hereten de <em>AbstractButton</em>, per això tenen un funcionament i uns mètodes similars als de qualsevol botó.</p>
+      <p>Constructors bàsics:</p>
+      <ul>
+        <li>JButton()</li>
+        <li>JButton(String)</li>
+        <li>JButton(Icon)</li>
+        <li>JButton(String, Icon)</li>
+      </ul>
+      <p>Mètodes bàsics (la majoria els hereta de <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/AbstractButton.html"><em>AbstractButton</em></a> i són els mateixos que els de <em>JLabel</em>)</p>
+      <ul>
+        <li>isDefaultButton(): botó per defecte de l'aplicació (s'activarà al prémer la tecla <kbd>Intro</kbd>).<br>
+          Es pot indicar quin és el botó per defecte amb el mètode <span class="c_comanda">setDefaultbutton()</span> d'un <em>JRootPane</em>.</li>
+      </ul>
+      <h4><em>JCheckBox</em> i <em>JRadioButtom</em></h4>
+      <p>Tots dos hereten de <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JToogleButton.html"><em>JToogleButton</em></a>.</p>
+      <p>Aquest tipus de botons tenen dos estats: premut i deixat anar.<br>
+        En el constructor es pot poser un paràmetre per indicar si el botó estarà premut o no quan es creï.</p>
+      <p>Per consultar o canviar l'estat es poden utilitzar els mètodes:</p>
+      <ul>
+        <li>isSelected()</li>
+        <li>setSelected(boolean)</li>
+      </ul>
+      <p>En el cas dels botons de ràdio, per fer que només un estigui premut, cal afegir els botons a un objecte de la classe <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/ButtonGroup.html"><em>ButtonGroup</em></a>.<br>
+        Aquesta classe conté mètodes per afegir botons de ràdio, seleccionar un, saber quin està seleccionat...</p>
+      <h3><em>JTextField</em>, <em>JTextArea</em> i <em>JTextPane</em></h3>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JTextField.html">JTextField ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JTextArea.html">JTextArea ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JTextPane.html">JTextPane ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/text.html">Tutorial components de text</a></p>
+      <p>Tots tres hereten de <a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JTextComponent.html"><em>JTextComponent</em></a>.</p>
+      <p>Serveixen tant per mostrar text com per què l'usuari l'editi.</p>
+      <ul>
+        <li><em>JTextField</em>: text en una línia</li>
+        <li><em>JTextArea</em>: text en una o més línies</li>
+        <li><em>JTextPane</em>: igual que <em>JTextArea</em> però permet text amb format (negreta, cursiva...) i imatges</li>
+      </ul>
+      <p class="p_important"><em>JTextArea</em> i <em>JTextPane</em> no inclouen <em>scrollers</em>, per això s'han de posar dins d'un <em>JScrollPane</em> si es preveu que puguin contenir un text que no hi càpiga.</p>
+      <p>Constructors bàsics:</p>
+      <ul>
+        <li>Constructor buit, amb el text i/o amb nombre de columnes (caràcters per línia).</li>
+        <li>En el cas de <em>JTextArea</em> i <em>JTextPane</em>, també pot incloure el nombre de files.</li>
+      </ul>
+      <p>Mètodes bàsics:</p>
+      <ul>
+        <li>setText(String)</li>
+        <li>getText()</li>
+        <li>setEditable(boolean)</li>
+        <li>selectAll()</li>
+        <li>setFont(Font)</li>
+        <li>setLineWrap(boolean): només per <em>JTextArea</em> i <em>JTextPane</em>.</li>
+        <li>setWrapStyleWord(boolean): només per <em>JTextArea</em> i <em>JTextPane</em>.</li>
+      </ul>
+      <p class="p_important"><em>JFormatedTextField</em> i <em>JPasswordField</em> són subclasses de <em>JTextField</em> que permeten, respectivament, donar un format específic al contingut (per exemple, dates) o evitar que es mostri el text que l'usuari escriu.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

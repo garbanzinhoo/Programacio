@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">db4o</h1>
+      <div class="enun">
+        <h3>Nutricionista</h3>
+        <p>Fes un programa (mode consola i/o escriptori) per gestionar els pacients d'un nutricionista utilitzant <strong>db4o</strong>.</p>
+        <p>Ha de permetre afegir, consultar, modificar i eliminar un pacient.</p>
+        <p>També s'han de poder fer consultes per rang d'edat, per índex de massa corporal (IMC)...</p>
+        <p>Primer, fes-ho només amb la classe <strong>Pacient</strong>, que contingui el nom, el pes i l'altura.</p>
+        <p>Opcionalment, amplia el programa per poder distingir tipus de pacients afegint les subclasses <strong>Adult</strong> i <strong>Infant</strong>.</p>
+      </div>
+      <div class="enun">
+        <h3>Agència de viatges</h3>
+        <p>Fes un programa (mode consola i/o escriptori) per gestionar una agència de viatges:</p>
+        <p>Ha de guardar objectes de la classe <strong>Client</strong> que conté els següents atributs:</p>
+        <ul>
+          <li>nif</li>
+          <li>cognoms, nom</li>
+          <li>data de naixement</li>
+          <li>vacunat</li>
+          <li><em>llista de viatges</em></li>
+        </ul>
+        <p>La llista de viatges ha de contenir objectes de la classe <strong>Viatge</strong>:</p>
+        <ul>
+          <li>destí</li>
+          <li>data d'inici</li>
+          <li>durada (en dies)</li>
+          <li>preu</li>
+        </ul>
+        <p>Les opcions mínimes que cal implementar en el programa són:</p>
+        <ul>
+          <li>Afegir client.</li>
+          <li>Afegir viatge a un client.</li>
+          <li>Mostrar tots els clients.</li>
+          <li>Mostrar els viatges d'un client.</li>
+        </ul>
+        <p>Opcionalment, pots afegir totes les que et semblin interessants:</p>
+        <ul>
+          <li>Modificar i/o eliminar un client.</li>
+          <li>Eliminar viatge d'un client.</li>
+          <li>Eliminar viatges segons el destí.</li>
+          <li>Eliminar viatges anteriors a una data.</li>
+          <li>Consultar clients que tenen viatges pendents (i quin és el primer viatge pendent).<br>
+            Es podrien ordenar per la data d'inici del viatge.</li>
+          <li>Consultar els clients no vacunats (o els vacunats).</li>
+          <li>Consultar els clients VIP (els que han fet 3 o més viatges amb l'agència o han gastat 3000 € o més).</li>
+          <li>......</li>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Gestor de bases de dades orientades a objectes</h3>
+        <p>Fes un programa (mode consola i/o escriptori) que permeti seleccionar una BDOO (arxius <strong>.db4o</strong>) i mostri totes les classes d'objectes que conté.</p>
+        <p>També s'ha de poder seleccionar una de les classes i mostrar els objectes que conté.</p>
+        <p>Opcionalment, pots fer que es mostri tota la informació en forma d'arbre:</p>
+        <h5>nutricionista.db4o</h5>
+        <ul>
+          <li>Object</li>
+          <ul>
+            <li>Pacient</li>
+            <ul>
+              <li>Adult</li>
+              <ul>
+                <li>Peter | 30 | 80 | 1.78</li>
+                <li>Mary | 28 | 68 | 1.72</li>
+              </ul>
+              <li>Infant</li>
+              <ul>
+                <li>Junior | 8 | 47 | 1.55</li>
+              </ul>
+            </ul>
+          </ul>
+        </ul>
+        <h5>viatges.db4o</h5>
+        <ul>
+          <li>Object</li>
+          <ul>
+            <li>Client</li>
+            <ul>
+              <li>12345678Z | Peter | 2000-12-31 | true</li>
+              <li>11111111A | Mary | 2002-10-01 | false</li>
+            </ul>
+            <li>Viatge</li>
+            <ul>
+              <li>Bahames | 2022-07-28 | 10 | 1900.0</li>
+              <li>Illes Medes | 2021-08-28 | 1 | 150.0</li>
+              <li>Segovia | 2020-07-15 | 5 | 800.0</li>
+              <li>Lloret | 2020-07-15 | 5 | 800.0</li>
+              <ul>
+              </ul>
+            </ul>
+          </ul>
+        </ul>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Arxius orientats a bytes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Arxius orientats a bytes</header>
+    <section>
+      <h2>Arxius orientats a bytes</h2>
+      <p>En aquests arxius, a més de caràcters, també s'emmagatzemen directament valors en binari.</p>
+      <p>Exemples d'aquests tipus de fitxers:</p>
+      <ul>
+        <li>Programes: <strong>.exe</strong>, <strong>.bin</strong>.</li>
+        <li>Arxius de processadors de textos o imatges: <strong>.doc</strong>, <strong>.pdf</strong>, <strong>.bmp</strong>, <strong>.png</strong>, <strong>.jpg</strong><strong></strong>.</li>
+        <li>Arxius de música i vídeos: <strong>.mp3</strong>, <strong>.oog</strong>, <strong>.wav</strong>, <strong>.mpeg</strong>, <strong>.mp4</strong>, <strong>.avi</strong>.</li>
+      </ul>
+      <p>Degut a que no cal convertir la informació a binari o des de binari, el processament és més ràpid i acostumen a necessitar menys espai.<br>
+        Per exemple, el número -4611686018427387903, ocuparia 20 caràcters (40 bytes) en mode text, però només 64 bits (8 bytes) en mode binari.</p>
+      <p>A més, si totes les dades són del mateix tipus o es coneix l'estructura del fitxer, es pot accedir a qualsevol dada de forma molt ràpida (sense haver de llegir totes les anteriors), i es pot modificar una dada sense haver de reescriure tot el fitxer.</p>
+      <p>Un inconvenient és que no es pot veure la informació obrint-los amb un editor de text pla: s'han d'obrir utilitzant programes específics.</p>
+      <h3>Llegir i escriure un arxiu binari</h3>
+      <p>Amb els arxius binaris, cal utilitzar la classe <strong>RandomAccessFile</strong>, que permet llegir i escriure a la vegada, llegir i escriure dades en format binari, i accedir a qualsevol posició de l'arxiu.</p>
+      <p>Al crear un objecte d'aquesta classe, cal passar-li un objecte de tipus <strong>File</strong> amb la ruta de l'arxiu i un <strong>String</strong> indicant el mode d'accés:</p>
+      <ul>
+        <li>Només lectura (<strong>r</strong>): cal que l'arxiu existeixi.</li>
+        <li>Lectura i escriptura (<strong>rw</strong>): si l'arxiu no existeix, es crea; si existeix, només l'obre (no l'esborra).</li>
+      </ul>
+      <p class="p_codi">File f = new File("./Proves/arxiu.bin");<br>
+        RandomAccessFile raf = new RandomAccessFile(f, "rw");</p>
+      <p>Per llegir les dades de l'arxiu es poden utilitzar les següents comandes:</p>
+      <ul>
+        <li><span class="c_comanda">readByte()</span>: llegeix un byte, valors entre <strong>-128</strong> i <strong>+127</strong>.</li>
+        <li><span class="c_comanda">readShort()</span>: llegeix 2 bytes, un enter curt, valors entre <strong>-32768</strong> i <strong>+32767</strong>.</li>
+        <li><span class="c_comanda">readInt()</span>: llegeix 4 bytes, un enter, valors entre <strong>Integer.MIN_VALUE</strong> i <strong>Integer.MAX_VALUE</strong>.</li>
+        <li><span class="c_comanda">readLong()</span>: llegeix 8 bytes, un enter llarg, valors entre <strong>Long.MIN_VALUE</strong> i <strong>Long.MAX_VALUE</strong>.</li>
+        <li><span class="c_comanda">readFloat()</span>: llegeix 4 bytes, un valor real de precisió normal.</li>
+        <li><span class="c_comanda">readDouble()</span>: llegeix 8 bytes, un valor real de precisió doble.</li>
+        <li><span class="c_comanda">readBoolean()</span>: llegeix 1 byte, un valor booleà (<strong>0</strong> o <strong>1</strong>).</li>
+        <li><span class="c_comanda">readChar()</span>: llegeix 2 bytes (Java treballa amb caràcters Unicode).</li>
+      </ul>
+      <p class="p_important">Cal saber el tipus de dada que s'està llegint. En cas contrari es poden produir resultats inesperats.</p>
+      <p>Per escriure es poden utilitzar les comandes equivalents: <span class="c_comanda">writeByte</span>, <span class="c_comanda">writeShort</span>, <span class="c_comanda">writeInt</span>, ...</p>
+      <p class="p_important">Aquesta classe no té les funcions <span class="c_comanda">next</span>, <span class="c_comanda">nextLine</span>, <span class="c_comanda">print</span>, <span class="c_comanda">println</span> ni <span class="c_comanda">printf</span>.</p>
+      <p>Altres mètodes útils:</p>
+      <ul>
+        <li><span class="c_comanda">read(byte[] b)</span>: llegeix com a màxim <span class="c_comanda">b.length</span> bytes del fitxer i els guarda a <span class="c_comanda">b</span>.</li>
+        <li><span class="c_comanda">write(byte[] b)</span>: escriu els bytes de <span class="c_comanda">b</span> i els guarda al fitxer.</li>
+        <li><span class="c_comanda">length()</span>: obté la mida del fitxer en bytes.</li>
+        <li><span class="c_comanda">setLength()</span>: modifica la mida de l'arxiu: si és inferior a l'actual, trunca l'arxiu.</li>
+      </ul>
+      <h4>Llegir i escriure text (avançat)</h4>
+      <p>El problema dels textos és que cal codificar-los (excepte que només s'utilitzin caràcters ASCII, cosa poc habitual actualment).</p>
+      <p>Depenent del tipus de codificació, un mateix text poc ocupar més o menys bytes, i s'ha de saber quina codificació s'ha utilitzat al guardar-lo per poder-lo llegir correctament.</p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/charset/StandardCharsets.html">Conjunts estàndard de codis de caràcters en Java (<em>charsets</em>)<br>
+        </a></p>
+      <p>Una forma de guardar dades que continguin text i altres valors en forma de registres amb camps de mida fixa pot ser la següent:</p>
+      <ul>
+        <li>Crear un <em>array</em> de bytes de mida suficient per guardar la mida màxima del camp de text.</li>
+        <li>Convertir el text a bytes amb la funció <span class="c_comanda">String.getBytes(charset)</span>.</li>
+        <li>Comprovar que l'<em>array</em> amb el text és més petit que la mida de l'<em>array</em> - 1.</li>
+        <li>Copiar l'<em>array</em> amb el text en l'altre <em>array</em>.</li>
+        <li>Guardar aquest <em>array</em>.</li>
+      </ul>
+      <p class="p_codi">RandomAccessFile raf = new RandomAccessFile(f, "rw");<br>
+        <br>
+        String s = "Hola món!";<br>
+        <strong>byte[] b = new byte[</strong><strong><strong>maxSize</strong>];</strong><br>
+        <strong>byte[] bs = s.getBytes(StandardCharsets.UTF_8);</strong><br>
+        <br>
+        <strong>if (bs.length &gt; b.length - 1)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; System.out.println("Error: text massa llarg");<br>
+        &nbsp;&nbsp;&nbsp; // throw new Exception("Error: text massa llarg");<br>
+        &nbsp;&nbsp;&nbsp; return;<br>
+        }<br>
+        <br>
+        <strong>System.arraycopy(bs, 0, b, 0, bs.length);</strong><br>
+        <strong>raf.write(b);</strong></p>
+      <p>Per llegir el camp de text cal:</p>
+      <ul>
+        <li>Crear un <em>array</em> de bytes de mida suficient per guardar la mida màxima del camp de text.</li>
+        <li>Llegir el nombre de bytes corresponent.</li>
+        <li>Crear un <em>String</em> a partir de l'<em>array</em> de bytes i la codificació amb <span class="c_comanda">new String(bytes, charset)</span>.</li>
+        <li>Retallar el text agafant des de l'inici fins que trobi un 0 (si no troba cap 0, no retalla).</li>
+      </ul>
+      <p class="p_codi">RandomAccessFile raf = new RandomAccessFile(f, "r");<br>
+        <br>
+        <strong>byte[] b = new byte[maxSize</strong><strong><strong></strong>];<br>
+          raf.read(b);<br>
+          String s = new String(b, StandardCharsets.UTF_8);<br>
+          int z = s.indexOf((char)0);<br>
+          if (z &gt;= 0) s = s.substring(0, z);</strong><strong></strong><br>
+        System.out.println(s);</p>
+      <ul>
+      </ul>
+      <h3>Lectura i escriptura seqüencial</h3>
+      <p>Quan s'obre un arxiu per llegir i/o escriure utilitzant la classe <strong>RandomAccessFile</strong>, l'apuntador se situa al principi de l'arxiu.</p>
+      <p>Cada cop que es llegeix o s'escriu una dada, el punter avança els bytes corresponents.</p>
+      <h3>Accés relatiu a les dades</h3>
+      <p>Si es coneix l'estructura de l'arxiu (la mida de cada "registre" i "camp"), es pot saber el nombre de registres que conté (<span class="c_comanda">midaArxiu / midaRegistre</span>) i accedir directament als registres i camps.</p>
+      <p>Això permet, entre altres coses, no haver de carregar tota la informació en memòria per modificar-la, processar-la i tornar-la a escriure en el mateix arxiu.</p>
+      <p>Les funcions que permeten treballar amb accés relatiu són:</p>
+      <ul>
+        <li><span class="c_comanda">seek()</span>: situa el punter en una posició determinada.</li>
+        <li><span class="c_comanda">skipBytes()</span>: salta cap endavant un número enter de bytes.</li>
+        <li><span class="c_comanda">getFilePointer()</span>: obté la posició actual del punter.</li>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

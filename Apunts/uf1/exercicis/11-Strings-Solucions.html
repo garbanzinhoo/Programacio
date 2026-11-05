@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi" style="background-color: #e0e0e0;">const LLETRES = "TRWAGMYFPDXBNJZSQVHLCKE";<br>
+          let nLletres = LLETRES.length;<br>
+          alert(nLletres);<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">const LLETRES = "TRWAGMYFPDXBNJZSQVHLCKE";<br>
+          alert(LLETRES.charAt(10));</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">const LLETRES = "TRWAGMYFPDXBNJZSQVHLCKE";<br>
+          let lletres1020 = LLETRES.substring(10, 20);<br>
+          let lletres10final = LLETRES.substring(10);<br>
+          alert(lletres1020 + "\n" + lletres10final);</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">let nom = "peter";<br>
+          let cognom = "SOFT";<br>
+          let primeraLletra = nom.charAt(0).toUpperCase();<br>
+          let altresLletres = nom.substring(1).toLowerCase();<br>
+          nom = primeraLletra + altresLletres;<br>
+          primeraLletra = cognom.charAt(0).toUpperCase();<br>
+          altresLletres = cognom.substring(1).toLowerCase();;<br>
+          cognom = primeraLletra + altresLletres;<br>
+          alert(nom + " " + cognom);<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">let frase = "Les coses clares i la xocolata espessa";<br>
+          let paraula = "XoCoLaTa";<br>
+          frase = frase.toUpperCase();<br>
+          paraula = paraula.toUpperCase();<br>
+          let inclosa = frase.<strong>includes</strong>(paraula);<br>
+          alert(inclosa);<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">let frase = "Tallar el bacallà";<br>
+          alert(frase.toUpperCase().<strong>startsWith</strong>("tallar".toUpperCase())); </p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">let frase = "Quan plou, plou tant que sembla que plourà tot el dia";<br>
+          let primera = frase.indexOf("plou");<br>
+          let ultima = frase.lastIndexOf("plou");<br>
+          alert("Primera aparició en la posició " + primera + "\nÚltima aparició: " + ultima);</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">let frase = "Quan plou, plou tant que sembla que plourà tot el dia";<br>
+          let paraula = "plou";<br>
+          <br>
+          let primera = frase.indexOf(paraula);<br>
+          let ultima = frase.lastIndexOf(paraula) + paraula.length;<br>
+          alert(frase.substring(primera, ultima));<br>
+          <br>
+          primera = frase.indexOf(paraula) + paraula.length;<br>
+          ultima = frase.lastIndexOf(paraula);<br>
+          alert(frase.substring(primera, ultima));</p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Esdeveniments del teclat">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Esdeveniments del teclat</header>
+    <section>
+      <h2>Esdeveniments del teclat (<em>keyboard events</em>)</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/obj_keyboardevent.asp">Referència</a> </p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent">Referència detallada (MDN)</a></p>
+      <p>Els esdeveniments del teclat es produeixen quan l'usuari prem una tecla o la deixa anar:</p>
+      <ul>
+        <li>Al prémer una tecla, es genera l'esdeveniment <span class="c_comanda">keydown</span>.</li>
+        <ul>
+          <li>Si la tecla és imprimible (lletres, números i símbols), també es genera un <span class="c_comanda">keypress</span>.<br>
+            En aquest cas, si es manté premuda la tecla, es repeteixen els esdeveniments <span class="c_comanda">keydown</span> i <span class="c_comanda">keypress</span> fins que es deixi de prémer.</li>
+        </ul>
+        <li>Al deixar anar la tecla, es genera l'esdeveniment <span class="c_comanda">keyup</span>.</li>
+      </ul>
+      <p class="p_important">Mai s'ha de pressuposar en quin ordre es generen aquests esdeveniments: poden variar en diferents navegadors i sistemes operatius.</p>
+      <p class="p_important">En els jocs s'acostuma a utilitzar <span class="c_comanda">keydown</span> i <span class="c_comanda">keyup</span> en lloc de <span class="c_comanda">keypress</span>.</p>
+      <p>Per saber quina tecla s'ha premut, es pot mirar la propietat <span class="c_comanda">event.code</span> o <span class="c_comanda">event.key</span> depenent del navegador:</p>
+      <p class="p_codi">var tecla = ev.code || ev.key;</p>
+      <p class="p_important">Es pot saber el valor que tindrà cada propietat per cada tecla a la web <a target="_blank" rel="noopener" href="https://keycode.info/">keycode.info</a></p>
+      <p>També es pot consultar el codi de la tecla amb <span class="c_comanda">event.keyCode</span>, encara que ja està obsoleta.</p>
+      <p>Per saber si l'esdeveniment s'ha generat per la repetició automàtica, es pot consultar la propietat <span class="c_comanda">event.repeat</span>.</p>
+      <p class="p_important">Les tecles no imprimibles només generen <span class="c_comanda">keydown</span> i <span class="c_comanda">keyup</span>.<br>
+        Aquestes tecles són <strong>shift</strong>, <strong>control</strong>, <strong>alt</strong>, <strong>meta (windows)</strong>, <strong>bloq mayús</strong>, <strong>bloq num</strong>...</p>
+      <p>Es pot saber si les tecles de control estaven premudes en el moment de generar l'esdeveniment consultant les següents propietats:</p>
+      <ul>
+        <li><span class="c_comanda">event.shiftKey</span></li>
+        <li><span class="c_comanda">event.ctrlKey</span></li>
+        <li><span class="c_comanda">event.altKey</span></li>
+        <li><span class="c_comanda">event.metaKey</span> (tecla Windows)</li>
+      </ul>
+      <p>També hi ha una propietat (<span class="c_comanda">location</span>) per saber si es tracta del <strong>shift</strong>, <strong>ctrl</strong> o <strong>alt</strong> de la dreta o de l'esquerra, o si es troba en el bloc numèric, en cas de que sigui un número, fletxa...:</p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/location">https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/location</a>.</p>
+      <p><a target="_blank" rel="noopener" href="https://www.w3.org/TR/uievents-code/">Especificació sobre els codis en els esdeveniments del teclat</a></p>
+      <h3>Elements que poden rebre esdeveniments de teclat</h3>
+      <p class="p_important">Aquests esdeveniments només s'envien a l'objecte que té el focus (l'objecte que està seleccionat) en aquell moment.<br>
+        En una pàgina només pot haver-hi un objecte que tingui el focus.</p>
+      <p>Només poden capturar esdeveniments de teclat els elements que poden rebre el focus o que contenen un element capaç de rebre'l.<br>
+        L'element <span class="c_comanda">body</span> és un cas especial: també pot capturar els esdeveniments de teclat encara que no tingui el focus.</p>
+      <p>Per defecte, només alguns tipus d'objectes poden tenir el focus:</p>
+      <ul>
+        <li>Elements d'un formulari:</li>
+        <ul>
+          <li><span class="c_comanda">input</span></li>
+          <li><span class="c_comanda">textarea</span></li>
+          <li><span class="c_comanda">button</span></li>
+          <li><span class="c_comanda">select</span></li>
+        </ul>
+        <li>Enllaços.</li>
+        <li>Elements amb l'atribut <span class="c_comanda">tabindex</span> i/o <span class="c_comanda">contenteditable</span>.</li>
+      </ul>
+      <h3>Propagació i acció predeterminada</h3>
+      <p>Aquests tipus d'esdeveniments també es propaguen als antecessors (<em>bubbling</em>).<br>
+        Per evitar-ho, es pot utilitzar la comanda <span class="c_comanda">stopPropagation()</span> i <span class="c_comanda">stopImmediatePropagation()</span>.</p>
+      <p>També es pot evitar l'acció predeterminada, que sol ser escriure el caràcter, amb la comanda <span class="c_comanda">preventDefault()</span>.</p>
+      <p class="p_important">Per detectar la tecla <strong>ESC</strong> i evitar l'acció per defecte cal fer-ho amb l'esdeveniment <span class="c_comanda">keydown</span>.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

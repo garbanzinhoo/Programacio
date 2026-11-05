@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Llistes en JavaScript">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Llistes en JavaScript</header>
+    <section>
+      <h2><em>Arrays</em></h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_arrays.asp">Referència</a></p>
+      <p>Si es vol utilitzar un conjunt de dades relativament gran per processar-les més endavant de diferents formes, no és útil tenir-les guardades en variables independents, especialment si no es coneix el nombre de dades. </p>
+      <p>Per exemple, si tenim les notes de 30 alumnes, no és pràctic utilitzar les variables n1, n2, n3, ... , n30.<br>
+        Per això s'han inventat els <em>arrays</em>.</p>
+      <p>Un <em>array</em> és una llista ordenada d'elements.<br>
+        Cada element està identificat amb un índex (un número).<br>
+        Es pot saber la mida d'un <em>array</em> amb l'atribut <span class="c_comanda">length</span> (<strong>llista.length</strong>).</p>
+      <p class="p_important">El primer element d'una llista té l'<strong>índex 0</strong>.<br>
+        L'últim element d'una llista està a la posició <strong>llista.length - 1</strong>.</p>
+      <p>En JavaScript, els elements d'un <em>array</em> no tenen perquè ser tots del mateix tipus.<br>
+        A més, els elements poden ser valors primitius (booleans, números i <em>strings</em>), però també altres llistes o objectes complexos.</p>
+      <p class="p_important">No és obligatori, però és molt recomanable, que tots els elements d'una llista siguin del mateix tipus.<br>
+        D'aquesta forma es faciliten el processos que habitualment s'han de fer amb tots els elements.</p>
+      <p>Un <em>array</em> es representa amb claudàtors (parèntesis quadrats) i separant els elements amb una coma:</p>
+      <ul>
+        <li><span class="c_comanda">[]</span> és un <em>array</em> buit.</li>
+        <li><span class="c_comanda">["SMX", "ASX", "DAW"]</span> és un <em>array</em> amb 3 elements.</li>
+      </ul>
+      <h3>Crear, inicialitzar i eliminar llistes</h3>
+      <p class="p_codi">let cicles = ["SMX", "ASX", "DAW"];&nbsp; // Creem una llista i l'assignem a una variable<br>
+        cicles = [];&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Assignem a la variable una llista buida<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // També es pot fer: <strong>cicles = undefined;</strong></p>
+      <p></p>
+      <h3>Obtenir i modificar un element d'un <em>array</em></h3>
+      <p>Es pot accedir als elements d'un <em>array</em> utilitzant un índex (posició de l'element dins de l'<em>array</em>).<br>
+        La primera posició és la 0.</p>
+      <p>L'índex es posa entre <span class="c_comanda">[</span> i <span class="c_comanda">]</span>:</p>
+      <p class="p_codi">let cicles = ["SMX", "DAW"];<br>
+        let cicle = cicles[0];&nbsp;&nbsp;&nbsp; // cicle = "SMX";<br>
+        cicles[1] = "DAM";&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // cicles = ["SMX", "DAM"];</p>
+      <p></p>
+      <ul>
+      </ul>
+      <h3>Afegir i eliminar elements</h3>
+      <p>En JavaScript, els <em>arrays</em> no tenen una mida fixa: es poden afegir o eliminar elements en qualsevol moment.</p>
+      <p>A més, es poden afegir elements deixant espais buits:</p>
+      <p class="p_codi">let cicles = ["SMX", "ASX", "DAW"];<br>
+        cicles[5] = "DAM";&nbsp;&nbsp; // Els elements cicles[3] i cicles[4] quedaran <strong>buits (empty)<br>
+        </strong></p>
+      <p class="p_important"><strong>IMPORTANT:</strong> més endevant es veuran mètodes per recórrer o tractar tota la llista.<br>
+        Algunes funcions poden donar resultats inesperats quan hi ha valors <strong>buits</strong>, <span class="c_comanda">undefined</span>, <span class="c_comanda">null</span>, <span class="c_comanda">NaN</span>...<br>
+        Per això el més recomanable és inicialitzar tots els elements de les llistes amb valors concrets.</p>
+      <p>Algunes funcions que permeten afegir o eliminar un element a un <em>array</em> són:</p>
+      <ul>
+        <li><span class="c_comanda">push(element)</span>: afegeix l'element al final de la llista.</li>
+        <li><span class="c_comanda">pop()</span>: retorna l'últim element de la llista i l'elimina.</li>
+        <li><span class="c_comanda">unshift(element)</span>: afegeix l'element al principi de la llista.</li>
+        <li><span class="c_comanda">shift()</span>: retorna el primer element de la llista i l'elimina.</li>
+      </ul>
+      <p>També es poden afegir els elements d'una o vàries llistes a una altra amb la comanda <span class="c_comanda">concat()</span>:</p>
+      <p class="p_codi">let cicles = ["SMX", "ASIX"];<br>
+        let c2 = ["DAM", "DAW"];<br>
+        <strong>cicles.concat(c2)</strong>;&nbsp;&nbsp; // Ara cicles conté ["SMX", "ASIX", "DAM", "DAW"]</p>
+      <h3><em>Arrays</em> constants</h3>
+      <p>El significat del modificador <span class="c_comanda">const</span> davant d'un <em>array</em> pot ser confús: evita que es modifiqui l'apuntador cap a l'<em>array</em> però no impedeix que es modifiqui l'<em>array</em>.</p>
+      <p class="p_codi">const numeros = [1, 2, 3];<br>
+        numeros[0] = 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // OK: <strong>[0, 2, 3]</strong><br>
+        console.log(numeros);<br>
+        numeros.push(5);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // OK: <strong>[0, 2, 3, 5]</strong><br>
+        console.log(numeros);<br>
+        numeros = [4, 5, 6];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>error</strong></p>
+      <h3>Assignació d'<em>arrays</em></h3>
+      <p>Al contrari que passa amb les variables primitives, al assignar a una variable una altra que conté un <em>array</em>, no es fa una còpia del contingut, sinó que totes dues variables apunten al mateix <em>array</em>.</p>
+      <p>Això implica que si es modifica algun element en alguna de les variables, també es modifica en l'altra:</p>
+      <p class="p_codi">let cicles1 = ["SMX", "ASX", "DAW"];<br>
+        let cicles2 = cicles1;&nbsp;&nbsp; // Totes dues variables <strong>apunten al mateix <em>array</em></strong><br>
+        <br>
+        cicles1[1] = "ASIX";&nbsp;&nbsp;&nbsp;&nbsp; // 'cicles2[1]' també serà "ASIX"<br>
+        cicles2 = {};&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Ara l'<em>array</em> només està assignat a la variable 'cicles1'<br>
+        cicles1 = undefined;&nbsp;&nbsp;&nbsp;&nbsp; // Una altra forma de treure un <em>array</em> d'una variable<br>
+      </p>
+      <p class="p_important">Quan un <em>array</em> no té cap variable assignada, s'envia a la recollida d'escombraries per ser eliminat.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

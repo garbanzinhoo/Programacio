@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let s = "Hello World!";<br>
+          let i, l = s.length - 1;&nbsp;&nbsp;&nbsp; // Les variables 'i' i 'l' s'utilitzen diverses vegades<br>
+          <br>
+          // Llegir la frase al revés<br>
+          for (i = l; i &gt;= 0; i--) {<br>
+          &nbsp;&nbsp;&nbsp; console.log(s.charAt(i));<br>
+          }<br>
+          <br>
+          // Crear un nou string amb les lletres al revés<br>
+          let s2 = "";<br>
+          for (i = l; i &gt;= 0; i--) {<br>
+          &nbsp;&nbsp;&nbsp; s2 += s.charAt(i);<br>
+          }<br>
+          alert(s2);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let s = "Hi havia una vegada...";<br>
+          let l = s.length;<br>
+          let resultat = "";<br>
+          &nbsp;<br>
+          for (let i = 0; i &lt; l; i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (s.charAt(i) == ' ')<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resultat += i + " ";<br>
+          }<br>
+          alert(resultat);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució 1</h6>
+        <p class="p_codi">let s = "Administració sistemes informàtics xarxa";<br>
+          let cActual, cAnterior;<br>
+          let resultat = "";<br>
+          <br>
+          // Eliminar possibles espais inicials i/o finals i convertir a majúscules<br>
+          s = s.trim().toUpperCase();<br>
+          // Escriure la primera lletra<br>
+          resultat += s.charAt(0);<br>
+          // A partir del segon caràcter...<br>
+          for (let i = 1; i &lt; s.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp; cActual = s.charAt(i);<br>
+          &nbsp;&nbsp;&nbsp; cAnterior = s.charAt(i - 1);<br>
+          &nbsp;&nbsp;&nbsp; // ... escriure'l si no és un espai i l'anterior sí<br>
+          &nbsp;&nbsp;&nbsp; // Aquest mètode funciona encara que hi hagi més d'un espai entre les paraules<br>
+          &nbsp;&nbsp;&nbsp; if (cActual != ' ' &amp;&amp; cAnterior == ' ') resultat += cActual;<br>
+          }<br>
+          alert(resultat);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h6>Solució substituir espais</h6>
+        <p class="p_codi">let s = "Hi havia una vegada...";<br>
+          let s2 = "";<br>
+          <br>
+          // Substituïnt manualment<br>
+          for (let i = 0; i &lt; s.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (s.charAt(i) == ' ')<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s2 += '|';<br>
+          &nbsp;&nbsp;&nbsp; else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s2 += s.charAt(i);<br>
+          }<br>
+          <br>
+          alert(s2);<br>
+          <br>
+          // Utilitzant el mètode replace()<br>
+          alert(<strong>s.replace(' ', '|')</strong>);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let s = "Prov@";<br>
+          //let s = "Prov#";<br>
+          //let s = "Prov€";<br>
+          //let s = "Prova";<br>
+          <br>
+          // Primera opció<br>
+          if (<strong>s.includes("@")</strong> || <strong>s.</strong><strong><strong>includes</strong>("#")</strong> || <strong>s.</strong><strong><strong>includes</strong>("€")</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; alert(s + " conté algun dels caràcters especials");<br>
+          } else<br>
+          &nbsp;&nbsp;&nbsp; alert(s + " no conté cap dels caràcters especials");<br>
+          <br>
+          // OPCIONAL<br>
+          let conteEspecial = false;<br>
+          <br>
+          if (<strong>s.</strong><strong><strong>includes</strong>("@")</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; conteEspecial = true;<br>
+          &nbsp;&nbsp;&nbsp; alert("Conté @");<br>
+          }<br>
+          if (<strong>s.</strong><strong><strong>includes</strong>("#")</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; conteEspecial = true;<br>
+          &nbsp;&nbsp;&nbsp; alert("Conté #");<br>
+          }<br>
+          if (<strong>s.</strong><strong><strong>includes</strong>("€")</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; conteEspecial = true;<br>
+          &nbsp;&nbsp;&nbsp; alert("Conté €");<br>
+          }<br>
+          <br>
+          if (!conteEspecial)<br>
+          &nbsp;&nbsp;&nbsp; alert(s + " no conté cap dels caràcters especials");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">//let s1 = "abc";<br>
+          //let s2 = "DEF";<br>
+          let s1 = "ALUMNE";<br>
+          let s2 = "alumnes";<br>
+          <br>
+          // Comparar quina paraula va abans en el diccionari<br>
+          let comp = <strong>s1.compareLocale(s2);</strong><br>
+          <br>
+          if (comp &lt; 0) alert(s1 + " va abans que " + s2);<br>
+          else if (comp &gt; 0) alert(s2 + " va abans que " + s1);<br>
+          else alert("Son iguals");<br>
+          <br>
+          // Comparar quina paraula té més lletres<br>
+          let l1 = s1.length();<br>
+          let l2 = s2.length();<br>
+          <br>
+          if (l1 &lt; l2) alert(s1 + " és més curta que " + s2);<br>
+          else if (l1 &gt; l2) alert(s1 + " és més llarga que " + s2);<br>
+          else alert("Tenen la mateixa llargada");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let s = "Administració de sistemes informàtics en xarxa";<br>
+          let p1;<br>
+          let ndx;<br>
+          <br>
+          s = s.trim();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Elimina espais al principi i al final<br>
+          ndx = <strong>s.indexOf(" ");</strong>&nbsp;&nbsp;&nbsp; // Busca la posició del primer espai<br>
+          while (ndx &gt;= 0) {<br>
+          &nbsp;&nbsp;&nbsp; // Agafa la primera paraula i l'escriu<br>
+          &nbsp;&nbsp;&nbsp; p1 = <strong>s.substring(0, ndx);</strong><br>
+          &nbsp;&nbsp;&nbsp; alert(p1);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Agafa la resta de la frase i elimina espais al principi<br>
+          &nbsp;&nbsp;&nbsp; s = <strong>s.substring(ndx)</strong>.trim();<br>
+          &nbsp;&nbsp;&nbsp; ndx = <strong>s.indexOf(" ");</strong><br>
+          }<br>
+          alert(s);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let nom;<br>
+          let cognom;<br>
+          let ndx;<br>
+          let error;<br>
+          <br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; error = false;<br>
+          &nbsp;&nbsp;&nbsp; alert("Escriu el teu nom i primer cognom: ");<br>
+          &nbsp;&nbsp;&nbsp; nom = scan.next();<br>
+          &nbsp;&nbsp;&nbsp; cognom = scan.nextLine();<br>
+          &nbsp;&nbsp;&nbsp; cognom = cognom.trim();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Comprovar que hagi posat el cognom<br>
+          &nbsp;&nbsp;&nbsp; if (cognom.length() == 0) {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; error = true;<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; alert("Només has posat el nom");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          } while (error);<br>
+          <br>
+          // Agafa només la primera paraula del cognom<br>
+          ndx = cognom.indexOf(" ");<br>
+          if (ndx &gt; 0) cognom = cognom.substring(0, ndx);<br>
+          <br>
+          // Genera adreça: inicial del nom en minúscules, punt i cognom en minúscules<br>
+          alert(nom.toLowerCase().charAt(0) + "." + cognom.toLowerCase() + "@sapalomera.cat");</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">//let s = "MuRcIeLaGo";<br>
+          //let s = "EsTaDiO";<br>
+          let s = "CoChE";<br>
+          <br>
+          s = s.toUpperCase();&nbsp;&nbsp;&nbsp; // Per poder comparar només majúscules<br>
+          <strong>boolean a = s.contains("A");<br>
+            boolean e = s.contains("E");<br>
+            boolean i = s.contains("I");<br>
+            boolean o = s.contains("O");<br>
+            boolean u = s.contains("U");</strong><br>
+          <br>
+          if (a &amp;&amp; e &amp;&amp; i &amp;&amp; o &amp;&amp; u) {<br>
+          &nbsp;&nbsp;&nbsp; alert(s + ": conté totes les vocals");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; //alert(s + ": NO conté totes les vocals");<br>
+          &nbsp;&nbsp;&nbsp; // OPCIONAL<br>
+          &nbsp;&nbsp;&nbsp; <strong>let falten = "";</strong>&nbsp;&nbsp;&nbsp; // Per anar guardant les lletres que falten<br>
+          &nbsp;&nbsp;&nbsp; if (!a) falten += "A";<br>
+          &nbsp;&nbsp;&nbsp; if (!e) falten += "E";<br>
+          &nbsp;&nbsp;&nbsp; if (!i) falten += "I";<br>
+          &nbsp;&nbsp;&nbsp; if (!o) falten += "O";<br>
+          &nbsp;&nbsp;&nbsp; if (!u) falten += "U";<br>
+          &nbsp;&nbsp;&nbsp; alert(s + ": li falten les vocals " + falten);<br>
+          }</p>
+        <p class="p_important">Al crear les variables booleanes <span class="c_comanda">a</span>, <span class="c_comanda">e</span>, <span class="c_comanda">i</span>, <span class="c_comanda">o</span> i <span class="c_comanda">u</span> s'evita haver de comprovar dues vegades si la paraula conté la lletra.</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">//let s = "MURCIELAGO";<br>
+          //let s = "murcielago";<br>
+          let s = "MuRcIeLaGo";<br>
+          <br>
+          if (s.toUpperCase().equals(s)) {<br>
+          &nbsp;&nbsp;&nbsp; alert(s + ": totes majúscules");<br>
+          } else if (s.toLowerCase().equals(s)) {<br>
+          &nbsp;&nbsp;&nbsp; alert(s + ": totes minúscules");<br>
+          } else {<br>
+          &nbsp;&nbsp;&nbsp; alert(s + ": barrejades");<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let s = "MuRcIeLaGo";<br>
+          let s2 = "";<br>
+          let c;<br>
+          let ndx;<br>
+          <br>
+          alert(s);<br>
+          <br>
+          // Mentre quedin lletres al paraula<br>
+          while (s.length() &gt; 0) {<br>
+          &nbsp;&nbsp;&nbsp; // De moment, la més petita és la primera<br>
+          &nbsp;&nbsp;&nbsp; c = s.charAt(0);<br>
+          &nbsp;&nbsp;&nbsp; ndx = 0;<br>
+          &nbsp;&nbsp;&nbsp; // Comparar la més petita amb les altres...<br>
+          &nbsp;&nbsp;&nbsp; for (let i = 1; i &lt; s.length(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ... si troba una més petita, la guarda i indica la posició<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (s.charAt(i) &lt; c) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = s.charAt(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ndx = i;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; s2 += c;&nbsp;&nbsp;&nbsp; // Afegeix la més petita a la llista de lletres ordenades<br>
+          &nbsp;&nbsp;&nbsp; // Elimina la lletra de la paraula original:<br>
+          &nbsp;&nbsp;&nbsp; //&nbsp; concatena les que hi ha abans amb les que hi ha després<br>
+          &nbsp;&nbsp;&nbsp; s = s.substring(0, ndx) + s.substring(ndx + 1);<br>
+          }<br>
+          <br>
+          alert(s2);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// CAPICUA<br>
+          //let n = 1234567890;<br>
+          let n = 123454321;<br>
+          let s = "" + n;&nbsp;&nbsp;&nbsp; // Converteix el número en String<br>
+          <br>
+          // TODO: pendent<br>
+          <br>
+          // PALÍNDROM<br>
+          //s = "A ti no, bonita";<br>
+          s = "A ti no, bonito";<br>
+          s = s.trim().toUpperCase();<br>
+          let s2 = "";<br>
+          <br>
+          // Agafa només les lletres<br>
+          for (let i = 0; i &lt; s.length(); i++) {<br>
+          &nbsp;&nbsp;&nbsp; if (s.charAt(i) &gt;= 'A' &amp;&amp; s.charAt(i) &lt;= 'Z') s2 += s.charAt(i);<br>
+          }<br>
+          <br>
+          // TODO: pendent</p>
+        <p class="p_important">També es podria fer un bucle comparant el primer i l'últim caràcter, el segon i el penúltim...</p>
+      </div>
+    </section>
+  </body>
+</html>

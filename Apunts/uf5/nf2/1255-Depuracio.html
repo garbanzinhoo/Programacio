@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Detecció i tractament d'excepcions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Detecció i tractament d'excepcions</header>
+    <section>
+      <h2>Detecció i tractament d'excepcions</h2>
+      <h3>Estructures pel control de les excepcions</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_errors.asp">Gestió dels errors (try, cath, finally i throw)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/jsref_obj_error.asp">Referència de l'objecte Error</a></p>
+      <p>Durant l'execució d'un programa es poden produir errors deguts a una mala programació, dades d'entrada incorrectes o, senzillament, a situacions inesperades o impredictibles.</p>
+      <p>Per evitar que el programa quedi aturat degut a un error, s'ha d'intentar preveure, detectar i processar adequadament els errors que es puguin produir.</p>
+      <p>Per ajudar-nos en aquesta tasca, JavaScript i molts altres llenguatges proporcionen la següent estructura:</p>
+      <p class="p_codi"> <strong>try</strong> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Bloc amb codi que pot contenir errors<br>
+        &nbsp; ...<br>
+        } <strong>catch</strong>(err) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Bloc amb el codi que tracta l'error<br>
+        &nbsp; ...<br>
+        } <strong>finally</strong> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Bloc amb codi que s'executarà sempre<br>
+        &nbsp; ...<br>
+        }</p>
+      <p class="p_important">Mai s'ha de posar un <span class="c_comanda">try/catch</span> dins d'una funció recursiva.<br>
+        En aquests casos, s'ha de posar en la funció que crida a la funció recursiva.</p>
+      <p>Per defecte, el tipus de missatge que envia JavaScript quan troba un error, és un objecte de tipus <span class="c_comanda">Error</span>.<br>
+        Aquest és el paràmetre que li arriba al bloc <span class="c_comanda">catch</span>.<br>
+        Es pot trobar informació més detallada en l'enllaç del principi del capítol.</p>
+      <p>Aquest objecte té dos atributs:</p>
+      <ul>
+        <li><span class="c_comanda">name</span>: conté el nom de l'error, que pot ser un dels següents:</li>
+        <ul>
+          <li>EvalError</li>
+          <li>RangeError</li>
+          <li>ReferenceError</li>
+          <li>SyntaxError</li>
+          <li>TypeError</li>
+          <li>URIError</li>
+        </ul>
+        <li><span class="c_comanda">message</span>: un <em>string</em> que conté més informació sobre l'error.</li>
+      </ul>
+      <p>Per tant, dins del bloc <span class="c_comanda">catch</span> es pot posar una comanda com la següent per mostrar l'error:</p>
+      <p class="p_codi">console.log(err.message);</p>
+      <div class="p_important">
+        <p>El bloc <span class="c_comanda">try</span> és obligatori.<br>
+          Els blocs <span class="c_comanda">catch</span> i <span class="c_comanda">finally</span> són opcionals però s'ha de posar al menys un dels dos.<br>
+          Si es posa el bloc <span class="c_comanda">catch</span>, el bloc <span class="c_comanda">finally</span> és innecessari: el seu codi es pot posar després de l'estructura de control (a menys que dins del bloc <span class="c_comanda">catch</span> es pugui produir un altre error o rellançar el què s'havia produït en el bloc <span class="c_comanda">try</span>).</p>
+      </div>
+      <ul>
+        <li>Bloc <span class="c_comanda">try</span>: conté el codi que pot provocar errors que facin aturar el programa.<br>
+          Si no es produeix cap error, s'ignoren els blocs <span class="c_comanda">catch</span> i <span class="c_comanda">finally</span> i continua l'execució del programa.<br>
+          En el moment que es produeix un error, ignora el codi restant.<br>
+          Si existeix un bloc <span class="c_comanda">catch</span>, li passa la informació de l'error i executa el seu codi.<br>
+          Si existeix un bloc <span class="c_comanda">finally</span>, executa el seu codi.</li>
+        <li>Bloc <span class="c_comanda">catch</span>: conté el codi que s'executarà si es produeix un error dins del bloc <span class="c_comanda">try</span>.<br>
+          Serveix per tractar l'error (intentar solventar el problema evitant que el programa s'aturi).<br>
+          Se li passa un paràmetre amb informació sobre l'error que s'ha produït.<br>
+          L'execució continuarà amb el bloc <span class="c_comanda">finally</span> (si existeix).<br>
+          Si no es posa aquest bloc i es produeix un error, el programa finalitzarà amb un error després d'executar el bloc <span class="c_comanda">finally</span> (si existeix).</li>
+        <li>Bloc <span class="c_comanda">finally</span>: conté el codi que s'executarà tant si es produeix un error com si no.<br>
+          <strong>Fins i tot s'executa si en el bloc <span class="c_comanda">try</span> o en el bloc <span class="c_comanda">catch</span> hi ha un <span class="c_comanda">return</span>!!!</strong><br>
+          La principal utilitat és tancar el programa de la forma més correcta possible en cas que no es pugui solventar l'error. I si no s'ha produït cap error o s'ha pogut solucionar, per realitzar tasques que s'han de realitzar tant si hi ha errors com si no (inicialitzar variables, tancar arxius oberts...).<br>
+          També pot servir per saber fins on ha arribat l'execució del bloc <span class="c_comanda">try</span>. Per exemple, si en el <span class="c_comanda">try</span> hi ha un bucle, es pot enviar a la consola el valor de la variable de control en el moment de l'error.<br>
+          Després d'executar el seu codi, si no s'ha produït cap error, el programa continua normalment.<br>
+          Si s'ha produït un error:</li>
+        <ul>
+          <li>Si existeix el bloc <span class="c_comanda">catch</span>, el programa continua l'execució normalment.</li>
+          <li>Si no existeix el bloc <span class="c_comanda">catch</span>, el programa finalitza amb un error.</li>
+        </ul>
+      </ul>
+      <p class="p_important">Dins del bloc <span class="c_comanda">try</span> només s'hauria de posar codi que pugui generar excepcions.</p>
+      <p><a target="_blank" rel="noopener" href="https://www.bennadel.com/blog/2154-i-finally-understand-the-finally-part-of-a-try-catch-control-statement.htm">Entendre la utilitat del "finally" en la gestió d'errors</a></p>
+      <h3>Comanda <em>throw</em></h3>
+      <p>Aquesta comanda es pot utilitzar dins d'un bloc <span class="c_comanda">try</span> (on en qualsevol lloc d'un programa) per comunicar que s'ha produït un error i sol·licitar un tractament.</p>
+      <p>L'execució continuarà en el bloc <span class="c_comanda">catch</span> (si existeix) i/o amb el bloc <span class="c_comanda">finally</span> (si existeix).</p>
+      <p>Cal indicar d'alguna forma el tipus d'error que s'ha produït, per exemple, amb un missatge de text:</p>
+      <p class="p_codi"><strong>throw</strong> new Error("Error indeterminat");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Generar una excepció personalitzada</p>
+      <p>També es pot posar dins d'un bloc <span class="c_comanda">catch</span> per rellançar l'error (indicar que no s'ha pogut solucionar).<br>
+        En aquest cas, s'executarà el bloc <span class="c_comanda">finally</span> (si existeix) i el programa acabarà amb error o serà processat per un altre estructura de control d'errors superior, si existeix (un <span class="c_comanda">try...catch</span> que conté aquest).</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

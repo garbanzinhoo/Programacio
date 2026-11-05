@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"uf4.exercicis.abstracte.joc"}];updateSearchResults();

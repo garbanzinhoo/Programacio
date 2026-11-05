@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="JDBC">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>JDBC</header>
+    <section>
+      <h2>JDBC</h2>
+      <p>Aquesta API consisteix en unes interfícies i classes que permeten accedir a SGBD.</p>
+      <p>Cada SGBD necessita un <em>driver</em> (llibreria) específic que implementa les funcions definides en la API.</p>
+      <p>A més d'afegir la llibreria del SGBD al projecte, també cal importar les classes de la API (<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/package-summary.html">java.sql.*</a>).</p>
+      <p>Les interfícies i classes més importants són:</p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/Connection.html">java.sql.Connection</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/Statement.html">java.sql.Statement</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/PreparedStatement.html">java.sql.PreparedStatement</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/ResultSet.html">java.sql.ResultSet</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.sql/java/sql/ResultSetMetaData.html">java.sql.ResultSetMetaData</a></p>
+      <h3>SQLite</h3>
+      <p>Per fer proves amb aquest SGBD es pot descarregar i instal·lar:</p>
+      <ul>
+        <li><a target="_blank" rel="noopener" href="https://www.sqlite.org/download.html">Pàgina de descàrregues SQLite</a></li>
+        <ul>
+          <li><strong>sqlite-dll-win64-x64-3380400.zip</strong> (llibreries per Windows x64)</li>
+          <li><strong>sqlite-tools-win32-x86-3380500.zip</strong> (SGBD i altres eines per Windows)</li>
+        </ul>
+        <li><a target="_blank" rel="noopener" href="https://sqlitebrowser.org/dl/">Pàgina de descàrregues DB Browser for SQLite</a></li>
+        <ul>
+          <li><strong>Standard installer for 64-bit Windows</strong></li>
+        </ul>
+      </ul>
+      <p>Per connectar amb una DB SQLite amb Java es necessita la llibreria <strong>sqlite-jdbc</strong>:</p>
+      <ul>
+        <li><a target="_blank" rel="noopener" href="https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc">Maven repository</a></li>
+      </ul>
+      <h4>Tutorials útils</h4>
+      <p><a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/sqlite/index.htm">Tutorial SQLite (tutorialspoint.com)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://www.sqlitetutorial.net/sqlite-java/">Tutorial SQLite Java (sqlitetutorial.net)</a></p>
+      <h2>Connectar amb una BD i desconnectar</h2>
+      <h3>Plantilles de connexió i desconnexió</h3>
+      <p class="p_codi">/**<br>
+        &nbsp;* Connectar amb una BD indicada en el paràmetre 'url'.<br>
+        &nbsp;* @param url Protocol i ruta cap a la BD&lt;br&gt;Exemple: "jdbc:sqlite:prova.db"<br>
+        &nbsp;* @return Connexió amb la BD o 'null' si no s'ha pogut connectar<br>
+        &nbsp;*/<br>
+        private static <strong>Connection openCon(String url)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; Connection con = null;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; try {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; con = DriverManager.getConnection(url);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Connexió establerta");<br>
+        &nbsp;&nbsp;&nbsp; } catch (SQLException e) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(e.getMessage());<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; return con;<br>
+        }<br>
+        <br>
+        /**<br>
+        &nbsp;* Desconnectar d'una BD.<br>
+        &nbsp;* @param con Connexió amb la BD<br>
+        &nbsp;*/<br>
+        private static <strong>void closeCon(Connection con)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; try {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (con != null) con.close();<br>
+        &nbsp;&nbsp;&nbsp; } catch (SQLException e) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(e.getMessage());<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <p class="p_important">En un cas real convé posar la URL en un arxiu de configuració per evitar haver de modificar i recompilar el programa si la base de dades canvia de lloc. <br>
+        També s'hauria de demanar un identificador d'usuari i contrasenya per accedir a una BD protegida.</p>
+      <p class="p_important">Si s'han d'executar moltes sentències seguides (processos automàtics), és preferible establir la connexió, executar-les totes i tancar la connexió.<br>
+        Si s'executa una de tant en tant (accions d'usuari) , és preferible obrir i tancar la connexió per cada una.</p>
+      <h2>Executar sentències SQL</h2>
+      <p>Un cop s'ha establert la connexió amb el SGBD, cal crear un objecte de la classe <strong>Statement</strong> per poder executar les sentències SQL.<br>
+        Aquest objecte es crea a partir de l'objecte <strong>Connection</strong> creat per connectar amb la BD:</p>
+      <p class="p_codi"><strong>Statement stmt = con.createStatement();<br>
+        </strong>int r = <strong>stmt.executeUpdate("DELETE FROM alumnes WHERE id=285");<br>
+        </strong>ResultSet rs = <strong>stmt.executeQuery("SELECT * FROM profes");<br>
+        </strong></p>
+      <p class="p_important">Quan s'utilitzen les comandes <strong>SELECT</strong> i <strong>INSERT</strong>, és convenient especificar els camps (no posar <strong>*</strong>).<br>
+        Si s'afegeixen columnes a la taula, podem obtenir resultats erronis o diferents dels esperats!</p>
+      <h3>PreparedStatement</h3>
+      <p>Aquesta subclasse de <strong>Statement</strong> permet executar consultes parametritzades, que són consultes predefinides però amb algun/s paràmetre/s que s'ha/n de passar abans d'executar-la.</p>
+      <p>L'avantatge de <strong>PreparedStatement</strong> és la seva eficiència, sobretot quan s'ha d'executar moltes vegades.<br>
+        Un altre avantatge és que són immunes als atacs de <em><strong>sql injection</strong></em>.</p>
+      <p>Primer cal crear i guardar <strong>PreparedStatement</strong> per poder-lo utilitzar més endavant.<br>
+        En la sentència SQL cal indicar els paràmetres posant un interrogant (<span class="c_comanda">?</span>).<br>
+        Després, quan s'hagi d'utilitzar, cal donar valor als paràmetres i executar-lo:</p>
+      <p class="p_codi">PreparedStatement ps = <strong>con.preparedStatement</strong>("SELECT * FROM alumnes WHERE nif=<strong>?</strong>");<br>
+        ps.<strong>setString(1, "12345678Z");</strong><br>
+        ResultSet rs = ps.<strong>executeQuery();</strong></p>
+      <strong> </strong>
+      <p class="p_important">Els paràmetres comencen en l'índex <strong>1</strong>.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

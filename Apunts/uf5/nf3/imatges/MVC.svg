@@ -1,0 +1,32 @@
+<svg width="480" height="480" version="1.0" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="Arrow2Mstart" style="overflow:visible" orient="auto">
+   <path transform="scale(.6)" d="m8.72 4.03-10.9-4.02 10.9-4.02c-1.75 2.37-1.74 5.62 0 8.04z" style="fill-rule:evenodd;stroke-linejoin:round;stroke-width:.625"/>
+  </marker>
+  <marker id="Arrow2Mend" style="overflow:visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.72 4.03-10.9-4.02 10.9-4.02c-1.75 2.37-1.74 5.62 0 8.04z" style="fill-rule:evenodd;stroke-linejoin:round;stroke-width:.625"/>
+  </marker>
+ </defs>
+ <g transform="translate(0,-70)">
+  <ellipse cx="223" cy="486" rx="60" ry="60" style="fill:#eaeaea"/>
+  <rect x="5.5" y="265" width="188" height="82" style="fill:#eaeaea"/>
+  <rect x="220" y="265" width="254" height="82" style="fill:#eaeaea"/>
+  <rect x="125" y="77.4" width="204" height="82" style="fill:#eaeaea"/>
+  <text x="171.3" y="128.4" style="fill:#333333;font-family:Verdana;font-weight:bold;line-height:0%;stroke-width:1px" xml:space="preserve"><tspan x="171.3" y="128.4" style="font-size:26px;line-height:1.25">MODEL</tspan></text>
+  <text x="59.17" y="316.2" style="fill:#333333;font-family:Verdana;font-weight:bold;line-height:0%;stroke-width:1px" xml:space="preserve"><tspan x="59.17" y="316.2" style="font-size:26px;line-height:1.25">VIEW</tspan></text>
+  <text x="249.5" y="315.9" style="fill:#333333;font-family:Verdana;font-weight:bold;line-height:0%;stroke-width:1px" xml:space="preserve"><tspan x="249.5" y="315.9" style="font-size:26px;line-height:1.25">CONTROLLER</tspan></text>
+  <text transform="rotate(-47.4)" x="-109.1" y="515.3" style="fill:#333333;font-family:Verdana;font-weight:bold;line-height:0%;stroke-width:1px" xml:space="preserve"><tspan x="-109.1" y="515.3" style="font-size:20px;line-height:1.25">USES</tspan></text>
+  <text x="279.5" y="213.8" style="fill:#333333;font-family:Verdana;font-weight:bold;line-height:0%;stroke-width:1px" xml:space="preserve"><tspan x="279.5" y="213.8" style="font-size:20px;line-height:1.25">MANIPULATES</tspan></text>
+  <path d="m279 447 17.1-18.3" style="fill:none;stroke-width:2px;stroke:#000"/>
+  <path d="m342 377 23.4-26" style="fill:none;marker-end:url(#Arrow2Mend);stroke-width:2px;stroke:#000"/>
+  <path d="m89.7 349 13.7 17.9" style="fill:none;stroke-width:2px;stroke:#000"/>
+  <path d="m143 421 22.9 29.6" style="fill:none;marker-end:url(#Arrow2Mend);stroke-width:2px;stroke:#000"/>
+  <text transform="rotate(55.7)" x="368.1" y="126.5" style="fill:#333333;font-family:Verdana;font-weight:bold;line-height:0%;stroke-width:1px" xml:space="preserve"><tspan x="368.1" y="126.5" style="font-size:20px;line-height:1.25">SEES</tspan></text>
+  <path d="m120 120c-10 0-35 5-35 35v40" style="fill:none;stroke-width:2px;stroke:#000"/>
+  <path d="m333 120c37 0 42 15 42 35v40" style="fill:none;marker-start:url(#Arrow2Mstart);stroke-width:2px;stroke:#000"/>
+  <text x="29.17" y="213.8" style="fill:#333333;font-family:Verdana;font-weight:bold;line-height:0%;stroke-width:1px" xml:space="preserve"><tspan x="29.17" y="213.8" style="font-size:20px;line-height:1.25">UPDATES</tspan></text>
+  <text x="184.1" y="493.7" style="fill:#333333;font-family:Verdana;font-weight:bold;line-height:0%;stroke-width:1px" xml:space="preserve"><tspan x="184.1" y="493.7" style="font-size:26px;line-height:1.25">USER</tspan></text>
+  <path d="m85 220v42" style="fill:none;marker-end:url(#Arrow2Mend);stroke-width:2px;stroke:#000"/>
+  <path d="m375 262v-42" style="fill:none;stroke-width:2;stroke:#000"/>
+ </g>
+</svg>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació orientada a objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació orientada a objectes</header>
+    <section>
+      <h2>Abast dels membres d'una classe</h2>
+      <p>Depenent del <strong>modificador d'accés</strong> amb el qual es defineixin, poden ser:</p>
+      <ul>
+        <li><strong><em>private</em></strong>: només permet l'accés des de dins de la mateixa classe.</li>
+        <li><em>(default/package)</em>: només permet l'accés des de qualsevol classe que pertanyi al mateix paquet.</li>
+        <li><strong><em>protected</em></strong>: permet l'accés des de les classes del mateix paquet i des de les subclasses.</li>
+        <li><strong><em>public</em></strong>: permet l'accés des de qualsevol altra classe.</li>
+      </ul>
+      <h3>Encapsulació i ocultació de la informació</h3>
+      <p>Aquesta no és una característica exclusiva de la POO.</p>
+      <h5>Avantatges de l'encapsulació i ocultació</h5>
+      <ul>
+        <li><strong>Facilitar el manteniment</strong>: els canvis interns en una classe no afecten a la resta del programa mentre no es canviï la funcionalitat dels mètodes accessibles.<br>
+          Es poden fer millores o reestructuració de les dades internes sense que això afecti externament.</li>
+        <li><strong>Garantir que les dades siguin consistents</strong>: si només es poden modificar utilitzant mètodes propis, es poden fer comprovacions.</li>
+      </ul>
+      <p>Consisteix en fer que alguns atributs i/o mètodes d'una classe no estiguin accessibles des d'altres classes.</p>
+      <p>Això s'aconsegueix utilitzant els modificadors d'accés que s'han vist abans.</p>
+      <p>La <strong>regla general</strong> per utilitzar aquests modificadors és:</p>
+      <ul>
+        <li>els atributs NO han de ser públics;</li>
+        <li>els mètodes que s'hagin de poder utilitzar des d'altres classes, normalment seran públics;</li>
+        <li>per a la resta, es posarà <strong>private</strong>, <strong>protectec</strong> o res (per defecte) depenent des d'on s'hagi d'accedir, però sempre ha de ser el més restrictiu possible.</li>
+      </ul>
+      <h2>Altres modificadors dels membres d'una classe</h2>
+      <ul>
+        <li><strong><em>static</em></strong>: indica que es tracta d'un membre (atribut o mètode) de la classe, no dels objectes.</li>
+        <li><strong><em>final</em></strong>: en un atribut, impedeix que es modifiqui el seu valor;<br>
+          en un mètode, impedeix que se sobreescrigui en les subclasses.</li>
+        <li><strong><em>abstract</em></strong>: el mètode no s'implementa en la classe, però s'ha d'implementar en les subclasses.<br>
+          Les classes que tenen mètodes abstractes se'n diuen classes abstractes i no poden instanciar objectes.</li>
+        <li><strong><em>native</em></strong>: són mètodes escrits en altres llenguatges.</li>
+        <li><strong><em>synchronized</em></strong>: els mètodes amb aquest modificador no es poden cridar simultàniament.</li>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

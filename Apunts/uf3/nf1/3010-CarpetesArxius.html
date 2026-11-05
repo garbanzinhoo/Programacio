@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Gestió del sistema de fitxers">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Gestió del sistema de fitxers</header>
+    <section>
+      <h2>Gestió del sistema de fitxers</h2>
+      <div class="p_important">
+        <p>Pels exemples s'ha utilitzat la següent estructura d'arxius i carpetes:</p>
+        <p><strong>─ Proves<br>
+            &nbsp;&nbsp; ├─ arxiu.txt<br>
+            &nbsp;&nbsp; └─ Subcarpeta</strong></p>
+      </div>
+      <p>La gestió del sistema de fitxers permet localitzar arxius i carpetes indicant la seva ruta, crear, esborrar copiar i moure arxius i carpetes, obtenir informació sobre els arxius i les carpetes...</p>
+      <p>La principal classe que ens permet fer això i més, es troba en el mòdul <span class="c_arxiu">java.base</span>, paquet <span class="c_arxiu">java.io</span> i es diu <span class="c_arxiu">File</span>, i cal importar-la abans de poder-la utilitzar:</p>
+      <p class="p_codi">import <strong>java.io.File</strong></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html">File: referència oficial</a></p>
+      <p>Per utilitzar les seves funcionalitats cal crear un objecte d'aquesta classe indicant la ruta.<br>
+        Aquesta ruta pot ser tant d'una carpeta com d'un arxiu:</p>
+      <p class="p_codi">File carpeta = <strong>new File</strong>("Proves");<br>
+        File arxiu = <strong>new File</strong>("Proves/arxiu.txt");</p>
+      <p class="p_important">No es pot posar un <em>String</em> buit. Per indicar la carpeta de treball actual cal posar <span class="c_configura">"."</span>.</p>
+      <h6>Exemples de rutes</h6>
+      <p class="p_codi">File arxiu = <strong>new File</strong>("Proves");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Ruta Relativa<br>
+        arxiu = <strong>new File</strong>("C:/Users/usuari/IdeaProjects/Arxius");&nbsp;&nbsp; // Windows Absoluta<br>
+        arxiu = <strong>new File</strong>("/home/usuari/IdeaProjects/Arxius");&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Linux Absoluta</p>
+      <p>Una ruta relativa té com a base la carpeta des de la que s'executa el programa.<br>
+        Si es vol crear la carpeta o l'arxiu en un directori base diferent, al crear el File se li ha de passar aquest directori base com a primer paràmetre:</p>
+      <p class="p_codi">String <strong>baseDir = "C:/Users/usuari";</strong><br>
+        File arxiu = new File(<strong>baseDir</strong>, "Proves");</p>
+      <p>El <span class="c_comanda">.</span> representa la carpeta actual.<br>
+        Els <span class="c_comanda">..</span> representen la carpeta pare.</p>
+      <p class="p_important">Encara que en Windows el separador és la contrabarra (<span class="c_comanda">\</span>), en Java es pot utilitzar la barra (<span class="c_comanda">/</span>).<br>
+        Si es vol utilitzar la contrabarra, cal escriure-la dos cops (<span class="c_comanda">\\</span>).</p>
+      <h3>Funcions per obtenir informació sobre arxius i carpetes<br>
+      </h3>
+      <ul>
+        <li><span class="c_comanda">exists()</span>: per saber si la ruta existeix.</li>
+        <li><span class="c_comanda">isHidden()</span>: per saber si l'arxiu o carpeta està amagat.</li>
+        <li><span class="c_comanda">canRead()</span>: per saber si l'arxiu o carpeta es pot llegir.</li>
+        <li><span class="c_comanda">canWrite()</span>: per saber si l'arxiu o carpeta es pot modificar.</li>
+        <li><span class="c_comanda">canExecute()</span>: per saber si l'arxiu es pot executar.</li>
+        <li><span class="c_comanda">isFile()</span>: per saber si és un arxiu.</li>
+        <li><span class="c_comanda">isDirectory()</span>: per saber si és una carpeta.</li>
+        <li><span class="c_comanda">length()</span>: per saber la mida.</li>
+        <li><span class="c_comanda">lastModified()</span>: per saber la data de l'última modificació. Retorna els mil·lisegons des de les <strong>0:00</strong> hores del <strong>1/1/1970</strong>.</li>
+      </ul>
+      <p class="p_important">També hi ha els mètodes equivalents per modificar aquests atributs: <span class="c_comanda">setReadable()</span>, <span class="c_comanda">setWritable()</span>, <span class="c_comanda">setExecutable()</span>, <span class="c_comanda">setLastModified()</span>...</p>
+      <ul>
+      </ul>
+      <h6>Exemples</h6>
+      <p class="p_codi">File f = new File("./Proves/arxiu.txt");<br>
+        <br>
+        System.out.println("\nPath:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + f);<br>
+        System.out.println("Exists:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.exists()</strong>);<br>
+        if (<strong>!f.exists()</strong>) return;<br>
+        <br>
+        System.out.println("Hidden:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.isHidden()</strong>);<br>
+        System.out.println("Read:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.canRead()</strong>);<br>
+        System.out.println("Write:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.canWrite()</strong>);<br>
+        System.out.println("Execute:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.canExecute()</strong>);<br>
+        System.out.println("File:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.isFile()</strong>);<br>
+        System.out.println("Directory:&nbsp;&nbsp;&nbsp; " + <strong>f.isDirectory()</strong>);<br>
+        System.out.println("Length:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.length()</strong>);<br>
+        System.out.println("LastModified: " + <strong>f.lastModified()</strong>);<br>
+        Date d = new Date(<strong>f.lastModified()</strong>);<br>
+        System.out.println("LastModified: " + d.toString());</p>
+      <p class="p_consola">Path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ./Proves/arxiu.txt<br>
+        Exists:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true<br>
+        Hidden:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; false<br>
+        Read:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true<br>
+        Write:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true<br>
+        Execute:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; false<br>
+        File:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; true<br>
+        Directory:&nbsp;&nbsp;&nbsp; false<br>
+        Length:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4<br>
+        LastModified: 1643394520293<br>
+        LastModified: Fri Jan 28 19:28:40 CET 2022</p>
+      <h3>Funcions per obtenir informació sobre la ruta</h3>
+      <ul>
+        <li><span class="c_comanda">getName()</span>: retorna el nom de l'arxiu o la carpeta.</li>
+        <li><span class="c_comanda">getParent()</span> o <span class="c_comanda">getParentFile()</span>: retorna la carpeta pare on es troba l'arxiu o carpeta.<br>
+          Si la ruta amb la que s'ha creat el <em>File</em> és relativa, pot retornar <em>null</em>.</li>
+        <li><span class="c_comanda">getAbsolutePath()</span> o <span class="c_comanda">getAbsoluteFile()</span>: retorna la ruta absoluta.</li>
+        <li><span class="c_comanda">getCanonicalPath()</span> o <span class="c_comanda">getCanonicalFile()</span>: retorna la ruta absoluta eliminant símbols redundants com <span class="c_comanda">.</span> o <span class="c_comanda">..</span>.</li>
+      </ul>
+      <p class="p_important">La diferència entre <span class="c_comanda">get...Path</span> i <span class="c_comanda">get...File</span> és que les primeres retornen un <em>String</em> mentre que les segones retornen un <em>File</em>.</p>
+      <p class="p_codi">File f = new File("./Proves/arxiu.txt");<br>
+        <br>
+        System.out.println("Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.getName()</strong>);<br>
+        System.out.println("Parent:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.getParent()</strong>);<br>
+        System.out.println("ParentFile:&nbsp;&nbsp;&nbsp; " + <strong>f.getParentFile()</strong>);<br>
+        System.out.println("Path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + <strong>f.getPath()</strong>);<br>
+        System.out.println("AbsolutePath:&nbsp; " + <strong>f.getAbsolutePath()</strong>);<br>
+        System.out.println("AbsoluteFile:&nbsp; " + <strong>f.getAbsoluteFile()</strong>);<br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; System.out.println("CanonicalPath: " + <strong>f.getCanonicalPath()</strong>);<br>
+        &nbsp;&nbsp;&nbsp; System.out.println("CanonicalFile: " + <strong>f.getCanonicalFile()</strong>);<br>
+        } catch (IOException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <p class="p_consola">Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; arxiu.txt<br>
+        Parent:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ./Proves<br>
+        ParentFile:&nbsp;&nbsp;&nbsp; ./Proves<br>
+        Path:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ./Proves/arxiu.txt<br>
+        AbsolutePath:&nbsp; /home/usuari/IdeaProjects/Arxius/./Proves/arxiu.txt<br>
+        AbsoluteFile:&nbsp; /home/usuari/IdeaProjects/Arxius/./Proves/arxiu.txt<br>
+        CanonicalPath: /home/usuari/IdeaProjects/Arxius/Proves/arxiu.txt<br>
+        CanonicalFile: /home/usuari/IdeaProjects/Arxius/Proves/arxiu.txt</p>
+      <h3>Funcions per crear, esborrar, renombrar i moure</h3>
+      <ul>
+        <li><span class="c_comanda">mkdir()</span>: crea un directori (cal que la ruta fins al pare existeixi).</li>
+        <li><span class="c_comanda">mkdirs()</span>: crea un directori i, si cal, els pares.</li>
+        <li><span class="c_comanda">createNewFile()</span>: crea un arxiu buit excepte si ja existeix.</li>
+        <li><span class="c_comanda">renameTo()</span>: canvia el nom d'un arxiu o el mou a una altra ruta.</li>
+        <li><span class="c_comanda">delete()</span>: esborra un arxiu o directori. Si es tracta d'un directori, cal que estigui buit.</li>
+      </ul>
+      <p class="p_important">Aquests mètodes no llancen una excepció si no poden realitzar l'acció que se'ls ha demanat.<br>
+        Per saber si l'han fet o no, <strong>s'ha de comprovar el valor de retorn</strong>, que serà <span class="c_comanda">true</span> o <span class="c_comanda">false</span>.</p>
+      <ul>
+      </ul>
+      <h6>Exemples</h6>
+      <p class="p_codi">File directori2 = new File("Proves/Subcarpeta2");<br>
+        boolean created = <strong>directori2.mkdir();</strong><br>
+        if (created) System.out.println("Directori creat correctament");<br>
+        else System.out.println("El directori no s'ha creat");<br>
+        <br>
+        File arxiu2 = new File("Proves/arxiu2.txt");<br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; <strong>arxiu2.createNewFile();</strong><br>
+        } catch (IOException e) {<br>
+        &nbsp;&nbsp;&nbsp; System.out.println("Error al crear l'arxiu");<br>
+        }<br>
+        <br>
+        File arxiu3 = new File("Proves/Subcarpeta2/arxiu3.txt");<br>
+        <strong>arxiu2.renameTo(arxiu3);</strong><br>
+        <br>
+        <strong>arxiu3.delete();</strong><br>
+        <br>
+        boolean deleted = <strong>directori2.delete();</strong><br>
+        if (deleted) System.out.println("Directori esborrat correctament");<br>
+        else System.out.println("El directori no s'ha esborrat");</p>
+      <h3>Altres funcions interessants</h3>
+      <ul>
+        <li><span class="c_comanda">list()</span> o <span class="c_comanda">listFiles()</span>: si l'objecte <em>File</em> és una carpeta, obté un <em>array</em> de <em>Strings</em> o de <em>File</em> amb els arxius i carpetes que conté.</li>
+        <li><span class="c_comanda">listRoots()</span>: retorna un <em>array</em> de <em>File</em> amb els sistemes d'arxius de la màquina.<br>
+          En Windows podria ser <span class="c_comanda">C:\</span>, <span class="c_comanda">E:\</span>... En Linux podria ser <span class="c_comanda">/</span> (el directori arrel).</li>
+        <li><span class="c_comanda">getTotalSpace()</span>: obté la mida en <em>bytes</em> de la partició on es troba el <em>File</em>.</li>
+        <li><span class="c_comanda">getFreeSpace()</span>: obté l'espai lliure en <em>bytes</em> de la partició on es troba el <em>File</em>.</li>
+        <li><span class="c_comanda">getUsableSpace()</span>: obté l'espai que pot utilitzar la màquina virtual<em></em> de la partició on es troba el <em>File</em>.</li>
+      </ul>
+      <h6>Exemples</h6>
+      <p class="p_codi">File carpeta = new File("Proves");<br>
+        <br>
+        System.out.println("\nLlistat d'arxius i carpetes");<br>
+        <strong> File[] f = carpeta.listFiles();</strong><br>
+        for (int i = 0; i &lt; f.length; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; System.out.printf("%s&nbsp;&nbsp; %6d bytes&nbsp;&nbsp; %s\n", (<strong>f[i]</strong>.isFile() ? "A&nbsp;&nbsp; " : "D&nbsp;&nbsp; "), <strong>f[i]</strong>.length(), <strong>f[i]</strong>.getName());<br>
+        }<br>
+        <br>
+        System.out.println("\nLlistat de sistemes de fitxers");<br>
+        <strong> File[] roots = File.listRoots();</strong><br>
+        for (int i = 0; i &lt; roots.length; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; System.out.println(<strong>roots[i]</strong>.getAbsolutePath());<br>
+        }<br>
+        <br>
+        System.out.println("\nEspai en el SF de la carpeta");<br>
+        System.out.printf("\nTotalSpace: %4d GiB\n", <strong>carpeta.getTotalSpace()</strong> / 1024 / 1024 / 1024);<br>
+        System.out.printf("FreeSpace:&nbsp; %4d GiB\n", <strong>carpeta.getFreeSpace()</strong> / 1024 / 1024 / 1024);<br>
+        System.out.printf("UsableSpace:%4d GiB\n", <strong>carpeta.getUsableSpace()</strong> / 1024 / 1024 / 1024);</p>
+      <p class="p_consola">Llistat d'arxius i carpetes<br>
+        A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4 bytes&nbsp;&nbsp; arxiu.txt<br>
+        D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4096 bytes&nbsp;&nbsp; Subcarpeta<br>
+        <br>
+        Llistat de sistemes de fitxers<br>
+        C:\<br>
+        E:\<br>
+        <br>
+        Espai en el SF de la carpeta<br>
+        TotalSpace:&nbsp;&nbsp; 15 GiB<br>
+        FreeSpace:&nbsp;&nbsp;&nbsp;&nbsp; 6 GiB<br>
+        UsableSpace:&nbsp;&nbsp; 5 GiB</p>
+      <h4>Sistemes d'arxius en Linux (avançat)<em><br>
+        </em></h4>
+      <p>En Linux, la comanda <span class="c_comanda">File.listRoots()</span> no serveix per obtenir els sistemes d'arxius muntats.</p>
+      <p>Els objectes de la classe <strong>FileStore</strong> permeten obtenir l'espai total i lliure, entre altres dades, i aquests objectes es poden obtenir de la següent forma:</p>
+      <p class="p_codi">for (<strong>FileStore store</strong> : <strong>FileSystems.getDefault().getFileStores()</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; long espai = store.getUsableSpace();<br>
+        &nbsp;&nbsp;&nbsp; String nom = store.toString();<br>
+        &nbsp;&nbsp;&nbsp; // <strong>(/dev</strong> per Linux; <strong>:)</strong> per Windows<br>
+        &nbsp;&nbsp;&nbsp; <strong>if (espai &gt; 0 &amp;&amp; (nom.contains("(/dev") || nom.contains(":)")))</strong><br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.println(nom);<br>
+        }</p>
+      <p class="p_important">El problema d'aquest mètode és que, en Linux, pot retornar molts dispositius que en realitat no són particions, per això cal filtrar, per exemple, per l'<strong>espai utilitzable</strong> i pel <strong>nom</strong>.</p>
+      <p class="p_important">Una altra diferència amb <span class="c_comanda">File.listRoots()</span> és com es mostren els noms dels sistemes d'arxius:<br>
+        en <strong>Windows</strong>, <span class="c_arxiu">C:\</span> vs <span class="c_arxiu">[Etiqueta] (C:)</span><br>
+        en <strong>Linux</strong>, <span class="c_arxiu">/</span> vs <span class="c_arxiu">/ (/dev/hda1)</span></p>
+      <h3>Classe System</h3>
+      <p>Pot servir per consultar el directori des d'on s'executa l'aplicació.</p>
+      <ul>
+        <li><span class="c_comanda">System.getProperty("user.name")</span>: obté un <em>String</em> amb l'identificador de l'usuari.</li>
+        <li><span class="c_comanda">System.getProperty("user.home")</span>: obté un <em>String</em> amb la ruta absoluta del directori de l'usuari.</li>
+        <li><span class="c_comanda">System.getProperty("user.dir")</span>: obté un <em>String</em> amb la ruta absoluta del directori de treball.</li>
+      </ul>
+      <p class="p_codi">System.out.println(<strong>System.getProperty("user.name")</strong>);<br>
+        System.out.println(<strong>System.getProperty("user.home")</strong>);<br>
+        System.out.println(<strong>System.getProperty("user.dir")</strong>);</p>
+      <p class="p_consola">usuari<br>
+        /home/usuari<br>
+        /home/usuari/IdeaProjects/Arxius</p>
+      <p>També permet consultar el directori i la versió de Java (<span class="c_comanda">java.home</span> i <span class="c_comanda">java.version</span>) i el nom i la versió del sistema operatiu (<span class="c_comanda">os.name</span> i <span class="c_comanda">os.version</span>).</p>
+      <h3>Classe <em>Files</em></h3>
+      <p>Conté mètodes estàtics per treballar amb arxius, carpetes i enllaços.</p>
+      <p>Algunes de les seves funcions ja existeixen en la classe <em>File</em>, però afegeix excepcions per saber més detalladament quin ha estat el motiu, si una operació ha fallat.</p>
+      <p>Treballa amb objectes de tipus <em>Path</em>.</p>
+      <h3>Interfície <em>Path</em></h3>
+      <p>Serveix per fer determinades operacions amb rutes, per exemple, comparar, extreure una part, saber si comença o acaba amb una sub-ruta determinada...</p>
+      <h2>Utilitzar llibreries externes</h2>
+      <p>Encara que la llibreria de Java és força extensa, es troben a faltar algunes funcions molt útils.<br>
+        Per exemple, si es vol copiar una carpeta i el seu contingut, s'ha de fer recursivament.</p>
+      <p>Una de les llibreries més conegudes és la d'<strong>Apache</strong>.<br>
+        Concretament, per la gestió d'arxius i carpetes, hi ha el paquet <strong>commons.io</strong>.</p>
+      <p>Es pot trobar la documentació i els arxius a descarregar en la web <a target="_blank" rel="noopener" href="https://commons.apache.org/proper/commons-io/">https://commons.apache.org/proper/commons-io/</a></p>
+      <p>Un cop descarregat, es pot descomprimir en qualsevol directori.<br>
+        Si es vol fer accessible a tots els usuaris de la màquina, es pot fer a <span class="c_arxiu">C:/Archivos de programa/Apache/Commons</span> o <span class="c_arxiu">/usr/lib/apache/commons</span>.<br>
+        Si no, es pot descomprimir dins del directori <span class="c_arxiu">usuari/IdeaProjects/commons</span>.</p>
+      <p>Per utilitzar-lo en un projecte de IntelliJ, dins de <strong>File → Project Structure... → Libraries</strong>, afegir l'arxiu <span class="c_arxiu">commons-io-x.xx.x.jar</span>.</p>
+      <p>Finalment, en l'arxiu de la classe on es vol utilitzar, cal importar <a target="_blank" rel="noopener" href="https://commons.apache.org/proper/commons-io/javadocs/api-2.5/org/apache/commons/io/FileUtils.html">org.apache.commons.io.FileUtils.</a></p>
+      <p>Una de les funcions més interessants és la de copiar una carpeta i tot el seu contingut:</p>
+      <p class="p_codi">File fo = new File(dirOrigen);<br>
+        File fd = new File(dirDesti);<br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; <strong>FileUtils.copyDirectory(fo, fd);</strong><br>
+        } catch (IOException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <p>Un altre mètode útil per obtenir la mida total dels arxius d'una carpeta i de les seves subcarpetes:</p>
+      <p class="p_codi">File dir = new File(directori);<br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; <strong>long mida = FileUtils.sizeOfDirectory(dir);</strong><br>
+        } catch (IOException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <p class="p_important">Si s'havia creat el JAR, cal anar a <strong>File → Project Structure... → Artifacts</strong>, buscar en <strong>Available Elements</strong> la llibreria <span class="c_arxiu">commons-io-x.xx.x</span> i seleccionar <strong>Extract Into Output Root</strong> del menú contextual.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

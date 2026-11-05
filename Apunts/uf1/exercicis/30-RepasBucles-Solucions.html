@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let cares = 0;<br>
+          let creus = 0;<br>
+          let moneda;<br>
+          <br>
+          for (let i = 0; i &lt; 1000; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; moneda = Math.floor(Math.random() * 2);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (moneda == 0) ++cares;<br>
+          &nbsp;&nbsp;&nbsp; else ++creus;<br>
+          }<br>
+          <br>
+          alert("Cares: " + cares);<br>
+          alert("Creus: " + creus);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let cara2 = 0;<br>
+          let creu2 = 0;<br>
+          let caraCreu = 0;<br>
+          let moneda1, moneda2;<br>
+          <br>
+          for (let i = 0; i &lt; 1000000; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; moneda1 = Math.floor(Math.random() * 2);<br>
+          &nbsp;&nbsp;&nbsp; moneda2 = Math.floor(Math.random() * 2);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; if (moneda1 == 0 &amp;&amp; moneda2 == 0) ++cara2;<br>
+          &nbsp;&nbsp;&nbsp; else if (moneda1 == 1 &amp;&amp; moneda2 == 1) ++creu2;<br>
+          &nbsp;&nbsp;&nbsp; else ++caraCreu;<br>
+          }<br>
+          <br>
+          alert("Cares: " + cara2 * 100 / 1000000);<br>
+          alert("Creus: " + creu2 * 100 / 1000000)<br>
+          alert("Cara i Creu: " + caraCreu * 100 / 1000000);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0, r6 = 0; // Possibles resultats<br>
+          let dau;<br>
+          <br>
+          for (let i = 0; i &lt; 1000000; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; dau = Math.floor(Math.random() * 6);<br>
+          &nbsp;&nbsp;&nbsp; switch(dau) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 0: ++r1; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 1: ++r2; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 2: ++r3; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 3: ++r4; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 4: ++r5; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 5: ++r6; break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          alert(r1 / 10000);<br>
+          alert(r2 / 10000);<br>
+          alert(r3 / 10000);<br>
+          alert(r4 / 10000);<br>
+          alert(r5 / 10000);<br>
+          alert(r6 / 10000);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let n = 1234567890;<br>
+          <br>
+          alert("L'invers de " + n + " és ");<br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; alert(n % 10);<br>
+          &nbsp;&nbsp;&nbsp; n /= 10;<br>
+          } while(n &gt; 0);<br>
+          alert();<br>
+          <br>
+          // <strong>Opcional</strong><br>
+          let r = "";<br>
+          n = 1234567890;<br>
+          alert("L'invers de " + n + " és ");<br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; r += (n % 10);<br>
+          &nbsp;&nbsp;&nbsp; n /= 10;<br>
+          } while(n &gt; 0);<br>
+          n = Integer.parseInt(r);<br>
+          alert(n);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let n = 1234567890;<br>
+          let resultat = "";<br>
+          <br>
+          alert("Els dígits de " + n + " són ");<br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; resultat = (n % 10) + " " + resultat;<br>
+          &nbsp;&nbsp;&nbsp; n /= 10;<br>
+          } while(n &gt; 0);<br>
+          alert(resultat);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let n = 123456;<br>
+          let s = "" + n;<br>
+          let j = s.length();<br>
+          let d = ' ';<br>
+          <br>
+          for (let i = 0; i &lt; s.length(); ++i) {<br>
+          &nbsp;&nbsp;&nbsp; --j;<br>
+          &nbsp;&nbsp;&nbsp; d = s.charAt(j);<br>
+          &nbsp;&nbsp;&nbsp; switch(i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 0: alert("Unitats de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 1: alert("Desenes de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 2: alert("Centenes de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 3: alert("Milers de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 4: alert("Unitats de miler de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 5: alert("Centenes de miler de " + n + ": " + d); break;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let s = "-123.456";<br>
+          let esNegatiu = false;<br>
+          let esReal = false;<br>
+          let esZero = false;<br>
+          let c;<br>
+          let i = 0;<br>
+          let ndx = -1;<br>
+          let punts = 0;<br>
+          let l = s.length();<br>
+          <br>
+          // Comprovar si té signe, i si és negatiu<br>
+          c = s.charAt(i);<br>
+          if (c == '-') {<br>
+          &nbsp;&nbsp;&nbsp; esNegatiu = true;<br>
+          &nbsp;&nbsp;&nbsp; ++i;<br>
+          } else if(c == '+') {<br>
+          &nbsp;&nbsp;&nbsp; ++i;<br>
+          }<br>
+          <br>
+          // Comprovar si té algun caràcter que no sigui 0-9 i que no tingui més d'un punt<br>
+          // També comprova si és real (si té punt i algun dels dígits no és 0)<br>
+          for ( ; i &lt; l; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; c = s.charAt(i);<br>
+          &nbsp;&nbsp;&nbsp; if (c == '.') {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ndx = i;&nbsp;&nbsp;&nbsp; // Guarda la posició del punt<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++punts;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (punts &gt; 1) return;<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (c &lt; '0' || c &gt; '9') return;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (c != '0' &amp;&amp; ndx &gt;= 0) esReal = true;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Si no és real, comprova si tot a l'esquerra del punt són 0s<br>
+          if (!esReal) {<br>
+          &nbsp;&nbsp;&nbsp; esZero = true;<br>
+          &nbsp;&nbsp;&nbsp; if (ndx &gt;= 0) i = ndx;<br>
+          &nbsp;&nbsp;&nbsp; else i = l;<br>
+          &nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --i;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c = s.charAt(i);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (c != '0' &amp;&amp; c != '+' &amp;&amp; c != '-') esZero = false;<br>
+          &nbsp;&nbsp;&nbsp; } while (i &gt; 0);<br>
+          }<br>
+          <br>
+          // Separar i mostrar part entera i decimals<br>
+          alert("Part entera: ");<br>
+          if (!esReal) ndx = l;<br>
+          for (i = 0; i &lt; ndx; ++i) alert(s.charAt(i));<br>
+          if (esReal) {<br>
+          &nbsp;&nbsp;&nbsp; alert("Part decimal: ");<br>
+          &nbsp;&nbsp;&nbsp; for (i = ndx + 1; i &lt; l; ++i) alert(s.charAt(i));<br>
+          &nbsp;&nbsp;&nbsp; alert();<br>
+          }<br>
+          <br>
+          alert(s + " és un número " + (esReal ? "real" : "enter"));<br>
+          if (esZero) alert(s + " té el valor 0");<br>
+          else alert(s + " és " + (esNegatiu ? "negatiu" : "positiu"));</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">let n;<br>
+          for (let i = 1; i &lt;= 9; ++i) {<br>
+          &nbsp;&nbsp;&nbsp; n = (i*100 + i*10 + i) / (i + i + i);<br>
+          &nbsp;&nbsp;&nbsp; alert("Dígit " + i +": " + n);<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Programar amb JavaScript">
+    <meta name="keywords" content="JavaScript">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Programar amb Java</header>
+    <section>
+      <h2>Plantilla per introduir dades, processar i mostrar resultats</h2>
+      <p>Un programa d'ordinador agafa unes dades, les processa i genera un resultat.<br>
+        Les dades poden ser números, text, accions amb el ratolí... i el resultat pot ser un valor numèric, un altre text, una línia...</p>
+      <p>Per començar a practicar amb dades bàsiques i operacions senzilles, es pot utilitzar una plantilla que ens permetrà:</p>
+      <ul>
+        <li>Introduir les dades que es volen processar</li>
+        <li>Executar l'aplicació</li>
+        <li>Mostrar el resultat</li>
+      </ul>
+      <p>Igual que en l'exemple <strong>Hello World</strong>, cal crear una carpeta (<span class="c_arxiu">PLANTILLA</span>) i tres arxius.</p>
+      <p>A part d'això, també és convenient que crear o buscar un logo, preferiblement en format ICO i amb el nom <span class="c_arxiu">favicon.ico</span>. Aquest arxiu s'ha de guardar dins de la carpeta <span class="c_arxiu">PLANTILLA</span>.<br>
+        Si es vol utilitzar altres formats o noms, s'ha de canviar el nom de l'arxiu dins de <span class="c_arxiu">plantilla.html</span>.</p>
+      <h4>Document HTML (<span class="c_arxiu">plantilla.html</span>):</h4>
+      <p class="p_codi">&lt;!doctype html&gt;<br>
+        &lt;html lang="ca"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&lt;head&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;title&gt;Plantilla&lt;/title&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;meta charset="UTF-8" /&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;link rel="icon" type="image/x-icon" href="<strong>favicon.ico</strong>"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;link rel="stylesheet" href="plantilla.css" type="text/css"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;script defer src="plantilla.js"&gt;&lt;/script&gt;<br>
+        &nbsp;&nbsp; &nbsp;&lt;/head&gt;<br>
+        <br>
+        &nbsp;&nbsp; &nbsp;&lt;body&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;h1&gt;Plantilla&lt;/h1&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;label for="d1"&gt;Dada 1&lt;/label&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;input id="d1"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;label for="d2"&gt;Dada 2&lt;/label&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&lt;input id="d2"&gt;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &lt;button id="executar"&gt;Executar&lt;/button&gt;<br>
+        &nbsp;&nbsp; &nbsp;&lt;/body&gt;<br>
+        &lt;/html&gt;</p>
+      <h4>Document CSS (<span class="c_arxiu">plantilla.css</span>):</h4>
+      <p class="p_codi">* {<br>
+        &nbsp;&nbsp; &nbsp;font-family: Arial,Helvetica,sans-serif;<br>
+        &nbsp;&nbsp; &nbsp;font-size: 1rem;<br>
+        }<br>
+        <br>
+        body {<br>
+        &nbsp;&nbsp; &nbsp;margin: 1rem 0;<br>
+        &nbsp;&nbsp; &nbsp;padding: 0 1rem;<br>
+        }<br>
+        <br>
+        h1 {<br>
+        &nbsp;&nbsp; &nbsp;font-size: 1.4rem;<br>
+        &nbsp;&nbsp; &nbsp;cursor: default;<br>
+        }<br>
+        <br>
+        label {<br>
+        &nbsp;&nbsp; &nbsp;box-sizing: border-box;<br>
+        }<br>
+        <br>
+        input {<br>
+        &nbsp;&nbsp; &nbsp;box-sizing: border-box;<br>
+        &nbsp;&nbsp; &nbsp;margin: 0 0 .5rem 0;<br>
+        &nbsp;&nbsp; &nbsp;padding: .1rem .2rem;<br>
+        &nbsp;&nbsp; &nbsp;width: 100%;<br>
+        }<br>
+        <br>
+        button {<br>
+        &nbsp;&nbsp; &nbsp;box-sizing: border-box;<br>
+        &nbsp;&nbsp; &nbsp;margin: 1rem 0;<br>
+        &nbsp;&nbsp; &nbsp;padding: .1rem .2rem;<br>
+        }</p>
+      <h4>Document JavaScript (<span class="c_arxiu">plantilla.js</span>):</h4>
+      <p class="p_codi">"use strict";<br>
+        <br>
+        function executar() {<br>
+        &nbsp;&nbsp; &nbsp;// Obtenir els 'inputs' del document i guardar-los en variables<br>
+        &nbsp;&nbsp; &nbsp;const d1 = document.getElementById("d1");<br>
+        &nbsp;&nbsp; &nbsp;const d2 = document.getElementById("d2");<br>
+        <br>
+        &nbsp;&nbsp; &nbsp;// Agafar el contingut dels 'inputs' i guardar-los en variables<br>
+        &nbsp;&nbsp; &nbsp;let v1 = d1.value;<br>
+        &nbsp;&nbsp; &nbsp;let v2 = d2.value;<br>
+        <br>
+        &nbsp;&nbsp; &nbsp;// Processar les dades i guardar el resultat en la variable 'r'<br>
+        &nbsp;&nbsp; &nbsp;let r = v1 + v2;<br>
+        <br>
+        &nbsp;&nbsp; &nbsp;// Mostrar el resultat<br>
+        &nbsp;&nbsp; &nbsp;alert(r);<br>
+        }<br>
+        <br>
+        // Quan es faci clic en l'element 'exec', cridar el mètode 'executar'<br>
+        const exec = document.getElementById("executar");<br>
+        exec.addEventListener("click", executar);</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

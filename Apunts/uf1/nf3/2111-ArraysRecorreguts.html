@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Arrays: recorreguts">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Arrays: recorreguts</header>
+    <section>
+      <h2>Consultar o modificar tots els elements d'un <em>array</em> (fer un recorregut)</h2>
+      <p>La millor forma de processar tots els elements d'un <em>array</em> és fer un bucle <span
+class="c_comanda">for</span> que recorri tots els elements:</p>
+      <p class="p_codi">let notes = [5, 8, 7];<br>
+        let total = 0;<br>
+        <br>
+        for (let i = 0; i &lt; notes.length; ++i) {<br>
+        &nbsp; total += notes[i];<br>
+        }<br>
+        alert("Mitjana: total / notes.length");</p>
+      <h3>Recorregut complet d'un <em>array</em> utilitzant un bucle <em>for-of<br>
+        </em></h3>
+      <p>Si es vol fer un recorregut complet<em></em>, es pot simplificar amb la següent versió del bucle <span
+class="c_comanda">for</span>:</p>
+      <p class="p_codi">let array = [5, 3, 4, 7, 2];<br>
+        for (<strong>let n of array</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; alert(n);<br>
+        }</p>
+      <p>La variable <span class="c_comanda">n</span> ha de ser del mateix tipus que els elements de l'<em>array</em>.<br>
+        En cada iteració del bucle, <span class="c_comanda">n</span> agafarà el valor d'un element de l'<em>array</em>: en la primera iteració, <span
+class="c_comanda">n</span> serà <span class="c_comanda">array[0]</span>, en la segona, <span
+class="c_comanda">array[1]</span>, etc...</p>
+      <p>Aquest bucle és equivalent a:</p>
+      <p class="p_codi">let array = [5, 3, 4, 7, 2];<br>
+        let n;<br>
+        for (let i = 0; i &lt; array.length; i++) {<br>
+        &nbsp;&nbsp;&nbsp; n = array[i];<br>
+        &nbsp;&nbsp;&nbsp; alert(n);<br>
+        }</p>
+      <p></p>
+      <h2>Utilitats de recòrrer tot l'<em>array</em></h2>
+      <h3>Inicialitzar tots els elements d'un <em>array</em> (inicialització procedural)</h3>
+      <p>Consisteix en crear un algorisme que doni valors a tots els elements de l'array.<br>
+        Es pot fer que aquest valor sigui el mateix per cada element (inicialitzar-los tots a 10) o posar un valor diferent per cada un (inicialitzar cada posició amb múltiples d'un número).</p>
+      <p class="p_codi">let n = [];<br>
+        <br>
+        // Copiar els elements al nou array<br>
+        for (let i = 0; i &lt; n.length; i++) {<br>
+        &nbsp; n[i] = (i + 1) * 5;<br>
+        }</p>
+      <h3>Copiar els valors d'un <em>array</em> en un altre</h3>
+      <p>Al contrari que passa amb les variables que contenen dades primitives (números, caràcters i booleans), no es pot copiar un array assignant-lo a un altre:</p>
+      <p class="p_codi">let n1 = 5;<br>
+        let n2 = n1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // OK: si es modifica n2 no es modifica n1 (són independents)<br>
+        let c1 = ['a', 'b', 'c'];<br>
+        let c2 = c1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // <strong>Possible ERROR</strong>: si es modifica un valor de c2, també es modifica en c1</p>
+      <p>El què cal fer és crear un nou array amb la mateixa mida (o superior) i copiar els valors un a un.</p>
+      <p class="p_codi">let n = [9,4,6,3];<br>
+        let m = [];&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Crear un array buit<br>
+        <br>
+        // Copiar els elements al nou array<br>
+        for (let i = 0; i &lt; n.length; i++) {<br>
+        &nbsp; m[i] = n[i];<br>
+        }</p>
+      <h3>Comparar <em>arrays</em><br>
+      </h3>
+      <p>Igual que passa amb els <em>strings</em>, no es pot saber si dos <em>arrays</em> són iguals utilitzant l'operador <span
+class="c_comanda">==</span>.</p>
+      <p>La forma de fer-ho és recórrer tots els elements dels dos <em>arrays</em> i comparar-los un a un (els dos <em>arrays</em> han de tenir la mateixa mida):</p>
+      <p class="p_codi">let a1 = [1, 2, 3];<br>
+        let a2 = [1, 2, 3];<br>
+        alert("Son iguals? " + (a1 == a2));&nbsp;&nbsp;&nbsp; // <strong>ERROR</strong>: dirà <strong>false</strong><br>
+        <br>
+        let sonIguals = true;<br>
+        for (let i = 0; i &lt; a1.length; ++i) {<br>
+        &nbsp; if (a1[i] != a2[i]) {<br>
+        &nbsp;&nbsp;&nbsp; sonIguals = false;<br>
+        &nbsp;&nbsp;&nbsp; break;<br>
+        &nbsp; }<br>
+        }<br>
+        alert("Son iguals? " + sonIguals);&nbsp;&nbsp;&nbsp; // <strong>OK</strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

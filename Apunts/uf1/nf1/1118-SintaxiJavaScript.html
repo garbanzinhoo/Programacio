@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Sintaxi del llenguatge JavaScript">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Sintaxi del llenguatge Java</header>
+    <section>
+      <h2>Sintaxi</h2>
+      <p>La sintaxi defineix les regles per escriure correctament un programa en un llenguatge determinat.</p>
+      <h3>Comentaris</h3>
+      <p>Un comentari és un text que no es traduirà a codi màquina (i per tant, no s'executarà).<br>
+        L'intèrpret el saltarà com si no existís.</p>
+      <p>Els comentaris serveixen per explicar i documentar el codi, però també per desactivar una part del codi.</p>
+      <p class="p_important"><strong>És molt important documentar el codi</strong>: ajudarà a altres programadors a entendre què fa cada part del programa, i a nosaltres mateixos per recordar el funcionament si més endavant cal modificar o corregir errors.</p>
+      <h5>Comentaris fins a final de línia</h5>
+      <p>Serveixen per posar una explicació breu.</p>
+      <p>Comencen amb <span class="c_comanda">//</span> i tot el text o codi que hi ha després fins al final de la línia no s'interpretarà.</p>
+      <p class="p_codi">let edat;&nbsp;&nbsp;&nbsp; <strong>// Edat de la&nbsp; persona</strong></p>
+      <h5>Comentaris multilína</h5>
+      <p>Serveixen per posar explicacions més llargues o per comentar blocs de codi.</p>
+      <p>Tot el text que estigui entre <span class="c_comanda">/*</span> i <span class="c_comanda">*/</span> no s'interpretarà.</p>
+      <p class="p_codi"><strong>/*</strong> Funcions auxiliars per gestionar la base de dades:<br>
+        &nbsp;&nbsp;&nbsp; - Afegir<br>
+        &nbsp;&nbsp;&nbsp; - Modificar<br>
+        &nbsp;&nbsp;&nbsp; - Esborrar <strong>*/</strong></p>
+      <h5>Comentaris de documentació</h5>
+      <p>Són iguals que els comentaris multilínia però tenen un format específic que, amb les eines adequades, permet generar automàticament un document amb les especificacions del programa.</p>
+      <p>S'han de posar abans de les definicions de les classes, funcions, variables...</p>
+      <p class="p_codi"><strong>/**</strong><br>
+        &nbsp;* Funció per ordenar un conjunt de números enters<br>
+        &nbsp;* <strong>@param</strong> numeros Array amb els números que s'han d'ordenar<br>
+        <strong>&nbsp;*/</strong><br>
+        function ordenar(numeros) {<br>
+        &nbsp;&nbsp;&nbsp; // Codi per ordenar una llista de números de més gran a més petit<br>
+        }</p>
+      <h3>Expressions</h3>
+      <p>Una expressió és un conjunt de dades i operadors que produeixen un resultat.<br>
+        No tenen perquè ser resultats numèrics:</p>
+      <p class="p_codi">let <strong>base = 10</strong>, <strong>altura = 5</strong>;<br>
+        alert(<strong>"L'area del rectangle és " + (base * altura) + " cm²"</strong>);<br>
+      </p>
+      <p></p>
+      <h3></h3>
+      <h3>Sentències</h3>
+      <p>Una sentència és la unitat bàsica d'execució.</p>
+      <p>Està formada per expressions, declaracions, instruccions del llenguatge... i es recomana que acabi amb <span class="c_comanda">;</span>.</p>
+      <p>Cada una de les línies següents és una sentència:</p>
+      <p class="p_codi">let total, preu = 123.5, iva = 21.0<strong>;</strong><br>
+        total = preu + preu * iva / 100<strong>;</strong><br>
+        alert("El preu total és " + total + " euros")<strong>;</strong></p>
+      <h3>Blocs de codi</h3>
+      <p>En JavaScript, un bloc de codi serveix per agrupar un conjunt d'instruccions (sentències) que s'executen com si fóssin una.</p>
+      <p>Els blocs comencen amb <span class="c_comanda">{</span> i acaben amb <span class="c_comanda">}</span>.</p>
+      <p class="p_codi">if (total &gt; 100.0) <strong>{</strong><br>
+        &nbsp;&nbsp;&nbsp; let dte = total * 10 / 100;<br>
+        &nbsp;&nbsp;&nbsp; total -= dte;<br>
+        &nbsp;&nbsp;&nbsp; alert("El preu amb descompte és " + total + " euros");<br>
+        <strong>}</strong></p>
+      <p class="p_important"><strong>Encara que JavaScript no ho exigeixi, el codi dins dels blocs ha d'anar indentat!</strong></p>
+      <h3>Estructures de control</h3>
+      <p>Normalment, els programes no executen només sentències de forma lineal (començant en la primera i acabant en l'última), sinò que, de vegades, cal executar unes sentències o unes altres en funció de determinades condicions, o repetir determinats blocs de codi.</p>
+      <p>En propers capítols es veuran les comandes que permeten crear aquestes estructures de control.</p>
+      <p></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

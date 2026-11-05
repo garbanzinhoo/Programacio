@@ -1,0 +1,123 @@
+<svg width="496" height="144" version="1.1" viewBox="0 0 496 144" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <motionconfig fps="50"/>
+  <motion stop="#i1" />
+  <motion stop="#i2" />
+  <motion stop="#i3" />
+  <motion href="#ry0">
+   <shift op0="0" />
+   <shift span="0.1" op1="1" />
+   <shift span="0.8" />
+   <shift id="i1" />
+   <shift span="0.1" op1="0" />
+  </motion>
+  <motion href="#ry1">
+   <shift op0="0" />
+   <shift span="#i1" />
+   <shift span="0.1" op1="1" />
+   <shift span="0.8" />
+   <shift id="i2" />
+   <shift span="0.1" op1="0" />
+  </motion>
+  <motion href="#ry2">
+   <shift op0="0" />
+   <shift span="#i2" />
+   <shift span="0.1" op1="1" />
+   <shift span="0.1" op1="0" />
+  </motion>
+  <motion href="#v21">
+   <shift op0="0" />
+   <shift span="0.5" />
+   <shift span="0.1" op1="1" />
+   <shift span="#i3" />
+   <shift span="0.2" />
+   <shift span="0.4" op1="0" />   
+  </motion>
+  <motion href="#v22">
+   <shift op0="0" />
+   <shift span="#i2" />
+   <shift span="0.1" />
+   <shift span="0.4" op1="1" xi="55" yi="-55" />
+   <shift id="i2a" />
+   <shift span="0.8" />
+   <shift id="i2b" />
+   <shift span="0.4" op1="0" />
+   <shift id="i3" />
+  </motion>
+  <motion href="#v31">
+   <shift op0="0" />
+   <shift span="#i1" />
+   <shift span="0.5" />
+   <shift span="0.1" op1="1" />
+  </motion>
+  <motion href="#v32">
+   <shift op0="0" />
+   <shift span="#i2" />
+   <shift span="0.1" />
+   <shift span="0.4" op1="1" xi="-55" yi="-55" />
+   <shift span="0.8" />
+   <shift span="0.4" op1="0" />
+  </motion>
+  <motion href="#vp">
+   <shift op0="0" />
+   <shift span="#i2a" />
+   <shift span="0.4" op1="1" />
+   <shift span="0.4" />
+   <shift span="0.4" op1="0" />
+  </motion>
+  <motion href="#v5">
+   <shift op0="0" />
+   <shift span="#i2b" />
+   <shift span="0.4" op1="1" />
+   <shift span="0.2" xi="-20" />
+   <shift span="0.4" op1="1" xi="-55" yi="55" />
+  </motion>
+  <motion href="#a">
+   <shift op0="0" />
+   <shift span="0.1" op1="1" />
+  </motion>
+  <motion href="#b">
+   <shift op0="0" />
+   <shift span="#i1" />
+   <shift span="0.1" op1="1" />
+  </motion>
+  
+ </defs>
+ <g transform="translate(-402,-100)">
+  <g>
+   <rect id="rg0" x="412" y="134" width="150" height="20" style="fill:#80e080;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000000"/>
+   <rect id="ry0" x="412" y="134" width="150" height="20" style="fill:#fea;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000000"/>
+   <text x="414.9" y="149.8" style="fill:#000000;font-family:monospace;font-size:16px;letter-spacing:0px;line-height:1.25em;word-spacing:0px" xml:space="preserve"><tspan x="414.9" y="149.8">let a = 2;</tspan></text>
+  </g>
+  <g>
+   <rect id="rg1" x="412" y="154" width="150" height="20" style="fill:#80e080;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000000"/>
+   <rect id="ry1" x="412" y="154" width="150" height="20" style="fill:#fea;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000000"/>
+   <text x="414.9" y="169.8" style="fill:#000000;font-family:monospace;font-size:16px;letter-spacing:0px;line-height:1.25em;word-spacing:0px" xml:space="preserve"><tspan x="414.9" y="169.8">let b = 3;</tspan></text>
+  </g>
+  <g>
+   <rect id="rg2" x="412" y="174" width="150" height="20" style="fill:#80e080;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000000"/>
+   <rect id="ry2" x="412" y="174" width="150" height="20" style="fill:#fea;stroke-dashoffset:9;stroke-linecap:round;stroke-width:2;stroke:#000000"/>
+   <text x="414.9" y="189.8" style="fill:#000000;font-family:monospace;font-weight:bold;font-size:16px;letter-spacing:0px;line-height:1.25em;word-spacing:0px" xml:space="preserve"><tspan x="414.9" y="189.8">a += b;</tspan></text>
+  </g>
+ </g>
+ <g id="a">
+  <rect x="220" y="54" width="90" height="80" style="fill:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:4;stroke:#000000"/>
+  <path d="m220 54 20-10h90v80l-20 10" style="fill:none;stroke-width:4;stroke:#000000"/>
+  <path d="m310 54 20-10" style="fill:none;stroke-width:4;stroke:#000000"/>
+  <path d="m220 104h90l20-10" style="fill:none;stroke-width:2px;stroke:#000000"/>
+  <text x="264.6" y="125.6" style="fill:#000000;font-family:sans-serif;font-size:22px;letter-spacing:0px;line-height:1.25em;stroke-width:2;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="264.6" y="125.6" style="stroke-width:2">a</tspan></text>
+ </g>
+ <g id="b">
+  <rect x="370" y="54" width="90" height="80" style="fill:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:4;stroke:#000000"/>
+  <path d="m370 54 20-10h90v80l-20 10" style="fill:none;stroke-width:4;stroke:#000000"/>
+  <path d="m460 54 20-10" style="fill:none;stroke-width:4;stroke:#000000"/>
+  <path d="m370 104h90l20-10" style="fill:none;stroke-width:2px;stroke:#000000"/>
+  <text x="414.6" y="125.6" style="fill:#000000;font-family:sans-serif;font-size:22px;letter-spacing:0px;line-height:1.25em;stroke-width:2;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="414.6" y="125.6" style="stroke-width:2">b</tspan></text>
+ </g>
+ <text id="v21" x="264.9" y="89.54" style="fill:#000000;font-family:sans-serif;font-size:32px;font-weight:bold;letter-spacing:0px;line-height:1.25em;stroke-width:2;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="264.9" y="89.54" style="font-size:32px;stroke-width:2">2</tspan></text>
+ <text id="v22" x="264.9" y="89.54" style="fill:#000000;font-family:sans-serif;font-size:32px;font-weight:bold;letter-spacing:0px;line-height:1.25em;stroke-width:2;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="264.9" y="89.54" style="font-size:32px;stroke-width:2">2</tspan></text>
+ <text id="v31" x="414.9" y="89.54" style="fill:#000000;font-family:sans-serif;font-size:32px;font-weight:bold;letter-spacing:0px;line-height:1.25em;stroke-width:2;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="414.9" y="89.54" style="font-size:32px;stroke-width:2">3</tspan></text>
+ <text id="v32" x="414.9" y="89.54" style="fill:#000000;font-family:sans-serif;font-size:32px;font-weight:bold;letter-spacing:0px;line-height:1.25em;stroke-width:2;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="414.9" y="89.54" style="font-size:32px;stroke-width:2">3</tspan></text>
+ <text id="v5" x="340.9" y="34.54" style="fill:#000000;font-family:sans-serif;font-size:32px;font-weight:bold;letter-spacing:0px;line-height:1.25em;stroke-width:2;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="340.9" y="34.54" style="font-size:32px;stroke-width:2">5</tspan></text>
+ <text id="vp" x="341.9" y="34.54" style="fill:#000000;font-family:sans-serif;font-size:32px;font-weight:bold;letter-spacing:0px;line-height:1.25em;stroke-width:2;text-align:center;text-anchor:middle;word-spacing:0px" xml:space="preserve"><tspan x="341.9" y="34.54" style="font-size:32px;stroke-width:2">+</tspan></text>
+</svg>

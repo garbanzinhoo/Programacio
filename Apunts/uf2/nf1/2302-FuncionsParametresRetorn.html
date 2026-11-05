@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Funcions: paràmetres i valor de retorn">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Funcions: paràmetres i valor de retorn</header>
+    <section>
+      <h2>Valor de retorn d'una funció</h2>
+      <p>Si es vol que la funció retorni un valor, cal utilitzar la paraula reservada <span class="c_comanda">return</span>:</p>
+      <p class="p_codi">function area(base, altura) {<br>
+        &nbsp;&nbsp;&nbsp; <strong>return base * altura;</strong><br>
+        }</p>
+      <p>Aquest valor es podrà assignar a una variable o ser utilitzat en una expressió:</p>
+      <p class="p_codi">let <strong>areaMetres = area(10, 5)</strong>;<br>
+        let areaCentimetres = <strong>area(10, 5) * 10000</strong>;</p>
+      <p>No s'indica de cap forma especial que una funció ha de retornar un valor ni de quin tipus ha de ser aquest.<br>
+        De fet, una funció pot finalitzar retornant un valor en alguns casos i res en altres (<strong>però que es pugui fer no vol dir que sigui recomanable fer-ho!</strong>):</p>
+      <p class="p_codi">function missatge(m) {<br>
+        &nbsp;&nbsp;&nbsp; if (typeof m === "string") return "Atenció: " + m;&nbsp;&nbsp; // Retorna <strong>string</strong><br>
+        &nbsp;&nbsp;&nbsp; if (m == 1) return "Codi de missatge: 0x01";&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Retorna <strong>string</strong><br>
+        &nbsp;&nbsp;&nbsp; if (m &gt; 10) return m;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Retorna <strong>número</strong><br>
+        &nbsp;&nbsp;&nbsp; // Si no és cap dels casos anterior, retorna <strong>undefined</strong><br>
+        }</p>
+      <p>Si una funció no retorna cap valor, és equivalent a retornar <span class="c_comanda">undefined</span>:</p>
+      <p class="p_codi">let m = missatge();<br>
+        if (<strong>m !== undefined</strong>) console.log(m);<br>
+        else console.log("Missatge desconegut");</p>
+      <h2>Paràmetres d'una funció</h2>
+      <p>Al cridar una funció, se li poden passar arguments (valors que es podran utilitzar dins de la funció).<br>
+        Aquests valors es guarden en els paràmetres de la funció (equivalen a variables locals de la funció).</p>
+      <p>Els arguments es guarden en els paràmetres seguint el mateix ordre.</p>
+      <p>En cas que el nombre d'arguments i de paràmetres no sigui el mateix:</p>
+      <ul>
+        <li>Si hi ha més arguments que paràmetres, es descarten els últims arguments sobrants.</li>
+        <li>Si hi ha més paràmetres que arguments, s'assigna el valor <span class="c_comanda">undefined</span> als últims paràmetres.</li>
+      </ul>
+      <h3>Paràmetres amb valor per defecte</h3>
+      <p>Antigament es podia assignar un valor per defecte comprovant si l'argument tenia el valor <span class="c_comanda">undefined</span>:</p>
+      <p class="p_codi">function error(m) {<br>
+        &nbsp;&nbsp;&nbsp; <strong>if (m == undefined) m = "Error desconegut";</strong><br>
+        &nbsp;&nbsp;&nbsp; alert(m);<br>
+        }<br>
+        <br>
+        error();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Mostrarà '<strong>Error desconegut</strong>'<br>
+        error("El valor no és vàlid");&nbsp; // Mostrarà '<strong>El valor no és vàlid</strong>'</p>
+      <p>Actualment es poden assignar valors per defecte en la mateixa definició de paràmetres.<br>
+        Si un argument no es passa o se li posa el valor <span class="c_comanda">undefined</span>, se li assigna el valor per defecte.<br>
+        Els paràmetres amb valor predefinit poden estar en qualsevol posició (no&nbsp; cal que siguin els últims):</p>
+      <p class="p_codi">function error(<strong>m = "Error desconegut"</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; alert(m);<br>
+        }<br>
+        <br>
+        error();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; // Mostrarà '<strong>Error desconegut</strong>'<br>
+        error("El valor no és vàlid");&nbsp; // Mostrarà '<strong>El valor no és vàlid</strong>'</p>
+      <h3>Paràmetres ocults</h3>
+      <p>A part dels paràmetres explícits, també hi ha dos paràmetres ocults:</p>
+      <ul>
+        <li><span class="c_comanda">arguments</span>: és un objecte <strong>similar a una llista</strong> amb els arguments que se li han passat i té la propietat <span class="c_comanda">length</span> per saber quants arguments se li han passat.<br>
+          Es pot convertir a una llista real fent <span class="c_comanda">let llista = Array.prototype.slice.call(arguments)</span>.</li>
+        <li><span class="c_comanda">this</span>: indica el context on s'executa la funció (l'objecte propietari de la funció):</li>
+        <ul>
+          <li>En una funció global, <span class="c_comanda">this</span> representa l'objecte <span class="c_comanda">window</span>.</li>
+          <li>En una funció que pertany a un objecte, <span class="c_comanda">this</span> representa l'objecte.</li>
+        </ul>
+      </ul>
+      <p>En el següent exemple:</p>
+      <ul>
+        <li><span class="c_comanda">arguments ≈ [5, 6, 7]</span></li>
+        <li><span class="c_comanda">this = alumne</span></li>
+      </ul>
+      <p class="p_codi">let <strong>alumne</strong> = {<br>
+        &nbsp; <strong>nom</strong>: "Mary",<br>
+        &nbsp; <strong>mitjana</strong>: function() {<br>
+        &nbsp;&nbsp;&nbsp; let suma = 0;<br>
+        &nbsp;&nbsp;&nbsp; for (let i = 0; i &lt; <strong>arguments.length</strong>; ++i) { suma += arguments[i]; }<br>
+        &nbsp;&nbsp;&nbsp; alert("Notes " + <strong>this.nom</strong> + ": " +&nbsp; <strong>Array.prototype.slice.call(arguments)</strong> +<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "\nMitjana: " + (suma / <strong>arguments.length</strong>));<br>
+        &nbsp; }<br>
+        }<br>
+        <br>
+        <strong>alumne.mitjana(5, 6, 7);</strong><br>
+      </p>
+      <p class="p_important">En la funció <span class="c_comanda">mitjana</span> no cal posar paràmetres i se li poden passar tants arguments com siguin necessaris.<br>
+        Seria convenient comprovar que el nombre d'arguments (<span class="c_comanda">arguments.length</span>) <strong>no és zero!</strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

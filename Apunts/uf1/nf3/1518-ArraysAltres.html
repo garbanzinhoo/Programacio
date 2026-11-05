@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Arrays: altres utilitats">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Arrays: altres utilitats</header>
+    <section>
+      <h2>Ampliar un <em>array</em></h2>
+      <p>Java no permet modificar la mida d'un <em>array</em>, però es pot ampliar fent els següents passos:</p>
+      <ol>
+        <li>Crear un <em>array</em> amb una mida més gran que l'original.</li>
+        <li>Copiar els valors de l'<em>array</em> original al nou.</li>
+        <li>Assignar la variable del nou <em>array</em> a la variable de l'<em>array</em> original.</li>
+      </ol>
+      <p class="p_codi">int n[] = {9,4,6,3};<br>
+        int m[] = new int[10];&nbsp;&nbsp;&nbsp; // Crear un array més gran<br>
+        <br>
+        // Copiar els elements al nou array<br>
+        for (int i = 0; i &lt; n.length; i++) {<br>
+        &nbsp; m[i] = n[i];<br>
+        }<br>
+        n = m;<br>
+        <br>
+        Mostar els elements de l'array original ampliat<br>
+        for (int i = 0; i &lt; n.length; i++) {<br>
+        &nbsp; out.println(n[i]);<br>
+        }</p>
+      <p class="p_important">Aquest sistema és molt ineficient, per tant es recomana reservar l'espai necessari des del principi.</p>
+      <h2><em>Arrays</em> auxiliars</h2>
+      <p>Els <em>array</em> auxiliars són útils en algunes situacions com les següents:</p>
+      <ul>
+        <li>Fer resums de dades</li>
+        <li>Agrupar dades</li>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

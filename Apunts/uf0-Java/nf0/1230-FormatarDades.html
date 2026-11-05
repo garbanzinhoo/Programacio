@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Mostrar dades amb format">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Mostrar dades amb format</header>
+    <section>
+      <h2>Mostrar les dades amb un format determinat</h2>
+      <p>El mètode <span class="c_comanda">System.out.printf(missatge, arguments)</span> permet incloure dins del text una sèrie de paràmetres per indicar en quin format es volen veure els arguments que se li passen.</p>
+      <p>El format d'aquests paràmetres és el següent (els què van entre <span class="c_comanda">[</span> i <span class="c_comanda">]</span> vol dir que són opcionals):</p>
+      <p class="p_codi">%[flags][width][.precision]conversion-character</p>
+      <ul>
+      </ul>
+      <p class="p_important">Depenent de la configuració local (país), el separador de decimals i de milers canvia entre <span class="c_comanda">.</span> i <span class="c_comanda">,</span>.</p>
+      <ul>
+        <li>El <span class="c_comanda">%</span> és obligatori. Indica que el que ve a continuació és l'especificació de format.</li>
+        <li><span class="c_comanda">flags</span>: pot contenir més d'un caràcter i cada un té un significat diferent:</li>
+        <ul>
+          <li><span class="c_comanda">-</span>: alinea a l'esquerra.</li>
+          <li><span class="c_comanda">+</span>: mostra el signe positiu davant dels números (el signe negatiu sempre es mostra).</li>
+          <li><span class="c_comanda">0</span>: afegeix zeros a l'esquerra dels números per completar el nombre de caràcters indicat en <span class="c_comanda">width</span>.</li>
+          <li><span class="c_comanda">,</span>: amb números més grans que 1000, separa cada tres dígits de la part entera amb <span class="c_comanda">.</span> o <span class="c_comanda">,</span>.</li>
+        </ul>
+        <li><span class="c_comanda">width</span>: és un número enter que indica el nombre mínim de caràcters que s'han de d'escriure (l'amplada de la columna quan es volen mostrar les dades en columnes).</li>
+        <li><span class="c_comanda">.precision</span>: és un número enter positiu que indica el nombre de decimals que s'han de d'escriure.<br>
+          S'ha de posar el <span class="c_comanda">.</span> abans dels dígits.</li>
+        <li>El <span class="c_comanda">conversion-caracter</span> és obligatori i consisteix en una lletra que indica el tipus de dada:</li>
+        <ul>
+          <li><span class="c_comanda">s</span>: text (<em>String</em>).</li>
+          <li><span class="c_comanda">d</span>: enters (<em>byte</em>, <em>short</em>, <em>int</em> o <em>long</em>).</li>
+          <li><span class="c_comanda">f</span>: reals (<em>float</em> o <em>double</em>).</li>
+          <li><span class="c_comanda">b</span>: booleans.</li>
+          <li><span class="c_comanda">t</span>: data i hora.</li>
+        </ul>
+      </ul>
+      <p class="p_codi">String nom = "Mary";<br>
+        int edat = 30;<br>
+        float altura = (float)1.68;<br>
+        // Mostrarà <strong>Hola Mary, tens 30 anys i medeixes 1,68 metres</strong><br>
+        System.out.printf("Hola <strong>%s</strong>, tens <strong>%d</strong> anys i medeixes <strong>%.2f</strong> metres<strong>\n</strong>", <strong>nom</strong>, <strong>edat</strong>, <strong>altura</strong>);<strong></strong></p>
+      <ul>
+        <ul>
+        </ul>
+      </ul>
+      <div class="p_important">
+        <p>Com que el símbol <span class="c_comanda">%</span> és un caràcter especial, si es vol escriure aquest caràcter cal posar <span class="c_comanda">%%</span>:</p>
+        <p class="p_codi">float iva = 21;<br>
+          System.out.printf("IVA: %.2f<strong>%%</strong>\n", iva);&nbsp;&nbsp;&nbsp; // Mostrarà <strong>IVA: 21,00%</strong></p>
+      </div>
+      <h3>Crear un strig amb format</h3>
+      <p>Si en comptes de mostrar les dades formatades per pantalla es vol crear un <em>string</em> amb les dades formatades, es pot fer amb el mètod <span class="c_comanda">format()</span> de la classe <em>String</em>:</p>
+      <p class="p_codi">String s = String.<strong>format</strong>("<strong>%02d</strong>:<strong>%02d</strong>:<strong>%02d</strong>", 1, 2, 3);&nbsp;&nbsp;&nbsp; // <strong>s = "01:02:03"</strong><br>
+        System.out.println(s);</p>
+      <p>El mètode <span class="c_comanda">format()</span> té els mateixos paràmetres que el mètode <span class="c_comanda">printf()</span>.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

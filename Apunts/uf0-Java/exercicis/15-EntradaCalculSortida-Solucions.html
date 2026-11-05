@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">char opcio;<br>
+          <br>
+          // Mostrar menú<br>
+          System.out.println("MENÚ");<br>
+          System.out.println("---------------------------------");<br>
+          System.out.println("A - Només un plat");<br>
+          System.out.println("B - Primer i segon");<br>
+          System.out.println("C - Primer, segon i postres");<br>
+          System.out.println("D - Primer, segon, postres i cafè");<br>
+          System.out.println("---------------------------------");<br>
+          <br>
+          // Preguntar quina opció i guardar la resposta<br>
+          System.out.print("Tria una opció (A, B, C o D): ");<br>
+          //opcio = scan.next().charAt(0);<br>
+          //scan.nextLine();<br>
+          opcio = scan.nextLine().charAt(0);<br>
+          <br>
+          // Mostrar opció triada<br>
+          System.out.println("Has triat l'opció " + opcio);<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">final String LLETRES = "TRWAGMYFPDXBNJZSQVHLCKE";<br>
+          int dni;<br>
+          int residu;<br>
+          char lletra;<br>
+          <br>
+          // Pregunta el DNI<br>
+          System.out.print("Escriu el teu DNI (8 dígits): ");<br>
+          <br>
+          // Espera que l'usuari l'introdueixi i el guarda a la variable 'dni'<br>
+          //dni = scan.nextInt();<br>
+          //scan.nextLine();<br>
+          dni = Integer.parseInt(scan.nextLine());<br>
+          <br>
+          // Divideix 'dni' entre 23 i guarda el 'residu' (serà un número entre 0 i 22)<br>
+          residu = dni % 23;<br>
+          // Agafa la lletra que es troba en la posició 'residu' i la guarda a 'lletra'<br>
+          lletra = LLETRES.charAt(residu);<br>
+          <br>
+          // Mostra la lletra del NIF<br>
+          System.out.println("La lletra del DNI " + dni + " és " + lletra);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">float base, altura;<br>
+          float area, hipotenusa, perimetre;<br>
+          <br>
+          // Introduir dades<br>
+          System.out.print("Base del triangle rectangle: ");<br>
+          base = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          System.out.print("Altura del triangle rectangle: ");<br>
+          altura = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          // Calcular àrea, hipotenusa i perímetre<br>
+          area = base * altura / 2;<br>
+          hipotenusa = (float)Math.sqrt((base * base) + (altura * altura));<br>
+          perimetre = base + altura + hipotenusa;<br>
+          <br>
+          // Mostrar resultats<br>
+          System.out.printf("Àrea: %.3f\nPerímetre: %.3f\n", area, perimetre);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">double radi;<br>
+          double areaC, perimetreC;<br>
+          <br>
+          // Introduir dades<br>
+          System.out.print("Radi del cercle: ");<br>
+          radi = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          // Calcular àrea i perímetre<br>
+          areaC = Math.PI * radi * radi;<br>
+          perimetreC = 2 * Math.PI * radi;<br>
+          <br>
+          // Mostrar resultats<br>
+          System.out.printf("Area del cercle: %,.6f\nPerímetre: %,.6f\n", areaC, perimetreC);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int edat;<br>
+          <br>
+          // Introduir dades<br>
+          System.out.print("Quants anys tens? ");<br>
+          edat = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          // Mostrar resultats<br>
+          System.out.println("Pots conduir cotxe: " + (edat &gt;= 18 &amp;&amp; edat &lt; 80));<br>
+          System.out.println("No estàs en edat de treballar: " + !(edat &gt;= 16 &amp;&amp; edat &lt;= 65));<br>
+          System.out.println("Has d'anar a la guarderia: " + (edat &lt; 3));<br>
+          System.out.println("Pots estudiar un CFGM: " + (edat &gt;= 18 &amp;&amp; edat &lt;= 24));</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// Constants<br>
+          final float P_UF1 = 74, P_UF2 = 40, P_UF3 = 23, P_UF4 = 26, P_UF5 = 30, P_UF6 = 22;<br>
+          <br>
+          // Variables<br>
+          float n1, n2, n3, n4, n5, n6;<br>
+          float suma, mitjana;<br>
+          <br>
+          // Introduir dades<br>
+          System.out.print("Introdueix les notes de les 6 UF: ");<br>
+          n1 = scan.nextFloat();<br>
+          n2 = scan.nextFloat();<br>
+          n3 = scan.nextFloat();<br>
+          n4 = scan.nextFloat();<br>
+          n5 = scan.nextFloat();<br>
+          n6 = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          // Calcular mitjana ponderada<br>
+          suma = P_UF1 + P_UF2 + P_UF3 + P_UF4 + P_UF5 + P_UF6;<br>
+          mitjana = (n1*P_UF1 + n2*P_UF2 + n3*P_UF3 + n4*P_UF4 + n5*P_UF5 + n6*P_UF6) / suma;<br>
+          <br>
+          // Mostrar resultat<br>
+          System.out.printf("Mitjana M03 Programació: %.1f\n", mitjana);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">int segonsTotals, minutsTotals;<br>
+          int segons, minuts, hores;<br>
+          <br>
+          // Introduir dades<br>
+          System.out.print("Introdueix quants segons: ");<br>
+          //segonsTotals = Integer.parseInt(scan.nextLine());<br>
+          segonsTotals = scan.nextInt();<br>
+          scan.nextLine();<br>
+          &nbsp;<br>
+          // Solució 1: basada en divisió i residu de segonsT / 60<br>
+          //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; per trobar els minutsT i segons<br>
+          minutsTotals = segonsTotals / 60;<br>
+          segons =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; segonsTotals % 60;<br>
+          //&nbsp; i divisió i residu de minutsT / 60 per trobar hores i minuts<br>
+          hores =&nbsp; minutsTotals / 60;<br>
+          minuts = minutsTotals % 60;<br>
+          &nbsp;<br>
+          // Solució 2: basada en calcular minutsT i hores<br>
+          //&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dividint per segonsT entre 60 i 3600<br>
+          minutsTotals = segonsTotals / 60;<br>
+          hores = segonsTotals / 3600;&nbsp;&nbsp;&nbsp; // També es pot fer hores = minutsTotals / 60;<br>
+          //&nbsp; i trobar els minuts i segons restant hores i minuts convertits a segons<br>
+          minuts = minutsTotals - (hores * 60);<br>
+          segons = segonsTotals - (minuts * 60) - (hores * 3600);<br>
+          &nbsp;<br>
+          System.out.printf("%02d:%02d:%02d\n", hores, minuts, segons);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">String producte;<br>
+          float preuOrig, tpcInc, tpcDte;<br>
+          float preuPreBF, preuBF, tpcDteReal;<br>
+          <br>
+          // Introduir dades<br>
+          System.out.print("Introdueix el nom del producte: ");<br>
+          producte = scan.nextLine();<br>
+          System.out.print("Introdueix el preu original: ");<br>
+          preuOrig = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          System.out.print("Introdueix el % d'increment: ");<br>
+          tpcInc = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          System.out.print("Introdueix el % de descompte: ");<br>
+          tpcDte = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          // Calcular<br>
+          preuPreBF = preuOrig + preuOrig * tpcInc / 100;<br>
+          preuBF = preuPreBF - preuPreBF * tpcDte / 100;<br>
+          tpcDteReal = (preuOrig - preuBF) * 100 / preuOrig;<br>
+          <br>
+          // Mostrar resultats<br>
+          System.out.printf("%-20s%15s%15s%15s%15s%15s\n", "Nom del producte", "Preu orig", "Preu pre BF", "Dte BlackFr", "Preu BlackFr", "Dte real");<br>
+          System.out.printf("%-20s%13.2f €%13.2f €%13.2f %%%13.2f €%13.2f %%\n", producte, preuOrig, preuPreBF, tpcDte, preuBF, tpcDteReal);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">float importPrestec, interesAnual;<br>
+          int nombrePlasos;<br>
+          float importInteresAnual, capitalTornar, importInteressos, importMensual;<br>
+          <br>
+          // Introduir dades<br>
+          System.out.print("Quants euros necessites? ");<br>
+          importPrestec = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          System.out.print("Introdueix l'interès anual: ");<br>
+          interesAnual = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          System.out.print("Introdueix quants plaços: ");<br>
+          nombrePlasos = scan.nextInt();<br>
+          scan.nextLine();<br>
+          <br>
+          // Calcular<br>
+          importInteresAnual = importPrestec * interesAnual / 100;<br>
+          importInteressos = importInteresAnual * nombrePlasos / 12;<br>
+          capitalTornar = importPrestec + importInteressos;<br>
+          importMensual = capitalTornar / nombrePlasos;<br>
+          <br>
+          // Mostrar resultats<br>
+          System.out.printf("Import del prèstec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %15.2f €\n",&nbsp; importPrestec);<br>
+          System.out.printf("Interès anual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %15.2f %%\n", interesAnual);<br>
+          System.out.printf("Nombre de plaços&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %12d plçs\n", nombrePlasos);<br>
+          System.out.printf("Import dels interessos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; %15.2f €\n",&nbsp; importInteressos);<br>
+          System.out.printf("Import a pagar mensualment&nbsp; %15.2f €\n",&nbsp; importMensual);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">float capacitat, consum100, consumM, consumKm;<br>
+          int metresTotals, metres, km;<br>
+          <br>
+          // Introduir dades<br>
+          System.out.print("Introdueix la capacitat en litres del dipòsit de benzina: ");<br>
+          capacitat = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          System.out.print("Introdueix el consum en litres per cada 100 Km: ");<br>
+          consum100 = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          // Calcular les unitats més petites (consum / m)<br>
+          consumKm = consum100 / 100;&nbsp;&nbsp;&nbsp;&nbsp; // Consum per Km<br>
+          consumM = consumKm / 1000;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Consum per metre<br>
+          <br>
+          // Solució 1:<br>
+          metresTotals = (int)(capacitat / consumM);<br>
+          km =&nbsp;&nbsp;&nbsp;&nbsp; metresTotals / 1000;<br>
+          metres = metresTotals % 1000;<br>
+          &nbsp;<br>
+          // Solució 2:<br>
+          km = (int)(capacitat / consumKm);<br>
+          metres = (int)(capacitat / consumM) - (km * 1000);<br>
+          &nbsp;<br>
+          System.out.printf("Pot recórrer %d Km i %d metres\n", km, metres);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">float preu, diners, canvi;<br>
+          int monedes, canviCentims;<br>
+          <br>
+          // Introduir dades<br>
+          System.out.print("Introdueix import a pagar: ");<br>
+          preu = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          System.out.print("Diners introduïts: ");<br>
+          diners = scan.nextFloat();<br>
+          scan.nextLine();<br>
+          <br>
+          // Calcular i mostrar la diferència<br>
+          canvi = diners - preu;<br>
+          System.out.printf("El canvi seran %.2f €:\n", canvi);<br>
+          &nbsp;<br>
+          // Cal canviar a cèntims i arrodonir per evitar<br>
+          //&nbsp; problemes al convertir a int (truncar)<br>
+          canviCentims = Math.round(canvi * 100);<br>
+          <br>
+          // Calcular i mostrar monedes de 2€ i el canvi pendent<br>
+          monedes = canviCentims / 200;<br>
+          canviCentims %= 200;<br>
+          System.out.printf("%d monedes de 2 euros\n", monedes);<br>
+          <br>
+          // Calcular i mostrar monedes de 1€ i el canvi pendent<br>
+          monedes = canviCentims / 100;<br>
+          canviCentims %= 100;<br>
+          System.out.printf("%d monedes de 1 euro\n", monedes);<br>
+          <br>
+          // Calcular i mostrar monedes de 50c i el canvi pendent<br>
+          monedes = canviCentims / 50;<br>
+          canviCentims %= 50;<br>
+          System.out.printf("%d monedes de 50 cent\n", monedes);<br>
+          <br>
+          // Calcular i mostrar monedes de 20c i el canvi pendent<br>
+          monedes = canviCentims / 20;<br>
+          canviCentims %= 20;<br>
+          System.out.printf("%d monedes de 20 cent\n", monedes);<br>
+          <br>
+          // Calcular i mostrar monedes de 10c i el canvi pendent<br>
+          monedes = canviCentims / 10;<br>
+          //canviCentims %= 10; // No és necessari si no cal tornar 5c, 2c i 1c<br>
+          System.out.printf("%d monedes de 10 cent\n", monedes);</p>
+      </div>
+    </section>
+  </body>
+</html>

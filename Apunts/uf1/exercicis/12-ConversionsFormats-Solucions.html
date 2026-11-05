@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">boolean resposta = 0;&nbsp;&nbsp;&nbsp; // <strong>Incorrecta (no es pot assignar <em>int</em> a <em>boolean</em>)</strong><br>
+          double sou = 1000;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // Correcta (un enter sempre es pot convertir a real)<br>
+          float lletra = 'a';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Correcta (un <em>char</em> és similar a un <em>short</em> o <em>int</em>):<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // només cal saber el codi (valor enter) del caràcter 'a'</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">System.out.println("Estic fins als @!<strong>\\</strong>?<strong>\"</strong>#€~ del coronavirus");<br>
+          System.out.println("Estic<strong>\n\t</strong>fins als<strong>\n\t\t</strong>@!\\?\"#€~<strong>\n\t\t\t</strong>del coronavirus");</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">char lletra = '0';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // lletra: '0' equival a 48<br>
+          char lletra2 = 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // lletra2: 0<br>
+          boolean sonIguals = lletra == lletra2;&nbsp;&nbsp;&nbsp; // sonIguals: false<br>
+          lletra = 'A';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // lletra: 'A' equival a 65<br>
+          lletra2 = 65;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // lletra2: 65<br>
+          sonIguals = lletra == lletra2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // sonIguals: true<br>
+          ++lletra;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // lletra: 'B' equival a 66<br>
+          lletra = '0' + '1';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // lletra: 'a' equival a 97 (48 + 49)</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">char c = 'c';<br>
+          System.out.println("És lletra? " + <strong>Character.isAlphabetic(c)</strong>);<br>
+          System.out.println("És dígit? " + <strong>Character.isDigit(c)</strong>);<br>
+          System.out.println("És majúscula? " + <strong>Character.isUpperCase(c)</strong>);<br>
+          System.out.println("És minúscula? " + <strong>Character.isLowerCase(c)</strong>);</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">System.out.printf("|%20d|\n", 53);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // <strong>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 53|</strong><br>
+          System.out.printf("|%-20d|\n", 53);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>|53&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |</strong><br>
+          System.out.printf("|%020d|\n", 53);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>|00000000000000000053|</strong><br>
+          System.out.printf("%,d\n", 10000000);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // <strong>10.000.000</strong><br>
+          System.out.printf("%.2f\n", 12.9f);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>12,90</strong><br>
+          System.out.printf("%,.2f\n", 54999.99789f);&nbsp;&nbsp;&nbsp; // <strong>55.000,00</strong></p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">double d = 564200.5947;<br>
+          System.out.printf("<strong>%.2f</strong>\n", d);&nbsp;&nbsp;&nbsp;&nbsp; // 564200,59<br>
+          System.out.printf("<strong>%,.2f</strong>\n", d);&nbsp;&nbsp;&nbsp; // 564.200,59<br>
+          System.out.printf("<strong>%08.0f</strong>\n", d);&nbsp;&nbsp; // 00564201<br>
+          System.out.printf("<strong>%+011.1f</strong>\n", d); // +00564200,6</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">System.out.printf("<strong>%-10s %-10s</strong>\n", "ANGLÈS", "CATALÀ");<br>
+          System.out.printf("<strong>%-10s %-10s</strong>\n", "--------", "--------");<br>
+          System.out.printf("<strong>%-10s %-10s</strong>\n", "man", "home");<br>
+          System.out.printf("<strong>%-10s %-10s</strong>\n", "woman", "dona");<br>
+          System.out.printf("<strong>%-10s %-10s</strong>\n", "...", "...");</p>
+      </div>
+    </section>
+  </body>
+</html>

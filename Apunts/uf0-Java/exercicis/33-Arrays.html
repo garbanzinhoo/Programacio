@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex"><em>Arrays</em></h1>
+      <div class="enun">
+        <h3>Notes de UFs en un <em>array</em></h3>
+        <p>Fes un programa que demani les 6 notes de les UF del Mòdul de Programació, les guardi en un <em>array</em> i busqui la nota mínima i la nota màxima.</p>
+        <p>Si la nota mínima és inferior a 5, ha de dir que no aprova el mòdul.<br>
+          En cas contrari, ha de calcular la mitjana i mostrar el resultat.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix nota UF1 entre 1 i 10: <strong>6</strong><br>
+          Introdueix nota UF2 entre 1 i 10: <strong>7</strong><br>
+          Introdueix nota UF3 entre 1 i 10: <strong>4</strong><br>
+          Introdueix nota UF4 entre 1 i 10: <strong>5</strong><br>
+          Introdueix nota UF5 entre 1 i 10: <strong>6</strong><br>
+          Introdueix nota UF6 entre 1 i 10: <strong>8</strong><br>
+          No aproves el mòdul</p>
+        <p class="p_consola">Introdueix nota UF1 entre 1 i 10: <strong>7</strong><br>
+          Introdueix nota UF2 entre 1 i 10: <strong>6</strong><br>
+          Introdueix nota UF3 entre 1 i 10: <strong>8</strong><br>
+          Introdueix nota UF4 entre 1 i 10: <strong>6</strong><br>
+          Introdueix nota UF5 entre 1 i 10: <strong>9</strong><br>
+          Introdueix nota UF6 entre 1 i 10: <strong>7</strong><br>
+          Nota mínima: 6<br>
+          Nota màxima: 9<br>
+          Mitjana: 7,2</p>
+      </div>
+      <div class="enun">
+        <h3>Notes d'alumnes en un <em>array</em></h3>
+        <p>Fes un programa que demani les notes de 10 alumnes i les guardi en un <em>array</em>.</p>
+        <p>Després ha de comptar quants han suspès i quants han aprovat.</p>
+        <p>Finalment, haurà de mostrar les notes dels aprovats i calcular la mitjana només dels aprovats.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix una nota entre 1 i 10: <strong>5</strong><br>
+          Introdueix una nota entre 1 i 10: <strong>4</strong><br>
+          Introdueix una nota entre 1 i 10: <strong>6</strong><br>
+          Introdueix una nota entre 1 i 10: <strong>3</strong><br>
+          Introdueix una nota entre 1 i 10: <strong>8</strong><br>
+          Aprovats: 3&nbsp;&nbsp; Suspesos: 2<br>
+          Notes dels aprovats: 5 6 8 <br>
+          Mitjana dels aprovats: 6,3</p>
+      </div>
+      <div class="enun">
+        <h3>Primers números parells</h3>
+        <p>Escriu un programa que inventi 1000 números enters aleatoris entre 100 i 10000 i els guardi dins d'un <em>array</em>.</p>
+        <p>Després ha de mostrar només els 10 primers números que siguin parells.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">5126<br>
+          1440<br>
+          482<br>
+          7972<br>
+          2396<br>
+          4732<br>
+          8174<br>
+          7364<br>
+          626<br>
+          8544</p>
+      </div>
+      <div class="enun">
+        <h3>Càlculs amb dues llistes</h3>
+        <p>Escriu un programa que inventi 20 números enters aleatoris entre 1 i 100 i que guardi 10 en un <em>array</em> i 10 en un altre. Mostra les dues llistes.</p>
+        <p>Després ha de mostrar el resultat de multiplicar els números de cada llista un per un.</p>
+        <p>Opcionalment pots fer que sumi cada número d’una llista amb tots els de l’altra llista.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">99 4 56 30 38 30 97 35 44 98 <br>
+          60 95 32 44 32 55 79 91 4 68 <br>
+          <br>
+          5940 380 1792 1320 1216 1650 7663 3185 176 6664 <br>
+          <br>
+          &nbsp;159 194 131 143 131 154 178 190 103 167<br>
+          &nbsp; 64&nbsp; 99&nbsp; 36&nbsp; 48&nbsp; 36&nbsp; 59&nbsp; 83&nbsp; 95&nbsp;&nbsp; 8&nbsp; 72<br>
+          &nbsp;116 151&nbsp; 88 100&nbsp; 88 111 135 147&nbsp; 60 124<br>
+          &nbsp; 90 125&nbsp; 62&nbsp; 74&nbsp; 62&nbsp; 85 109 121&nbsp; 34&nbsp; 98<br>
+          &nbsp; 98 133&nbsp; 70&nbsp; 82&nbsp; 70&nbsp; 93 117 129&nbsp; 42 106<br>
+          &nbsp; 90 125&nbsp; 62&nbsp; 74&nbsp; 62&nbsp; 85 109 121&nbsp; 34&nbsp; 98<br>
+          &nbsp;157 192 129 141 129 152 176 188 101 165<br>
+          &nbsp; 95 130&nbsp; 67&nbsp; 79&nbsp; 67&nbsp; 90 114 126&nbsp; 39 103<br>
+          &nbsp;104 139&nbsp; 76&nbsp; 88&nbsp; 76&nbsp; 99 123 135&nbsp; 48 112<br>
+          &nbsp;158 193 130 142 130 153 177 189 102 166</p>
+      </div>
+      <div class="enun">
+        <h3>Invertir <em>array</em> de lletres</h3>
+        <p>Genera 10 lletres aleatòriament entre la ‘A’ i la ‘Z’ i guarda-les en un <em>array</em>.</p>
+        <p>Escriu totes les lletres de l’<em>array</em>.</p>
+        <p>Escriu totes les lletres de l’<em>array</em> en ordre invers.</p>
+        <p>Inverteix els elements de l’array (intercanvia el primer amb l’últim, el segon amb el penúltim, etc) i escriu les lletres de l’<em>array</em> en l’ordre en què hagin quedat.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">&nbsp;X J B K V F P Z T Q<br>
+          &nbsp;Q T Z P F V K B J X<br>
+          &nbsp;Q T Z P F V K B J X</p>
+      </div>
+      <div class="enun">
+        <h3>Com estan ordenats?</h3>
+        <p>Partint d’una llista de números, dir si la llista està ordenada de més petit a més gran, de més gran a més petit o si no està ordenada.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">0 1 4 4 6 7 9 <br>
+          Ordre ascendent</p>
+        <p class="p_consola">9 7 6 4 4 1 0 <br>
+          Ordre descendent</p>
+        <p class="p_consola">1 3 5 5 4 2 <br>
+          No està ordenada</p>
+        <p class="p_consola">5 5 5 5 5 <br>
+          És constant!</p>
+      </div>
+      <div class="enun">
+        <h3>Llistes barrejades</h3>
+        <p>Fes un programa que, partint de dues llistes amb la mateixa mida, generi una nova llista intercalant els números de les dues anteriors. Al final ha de mostrar les 3 llistes.</p>
+        <p>Opcionalment, fes el mateix però sense suposar que les llistes tenen la mateixa mida.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">1 1 1 1 1 <br>
+          2 2 2 2 2 <br>
+          1 2 1 2 1 2 1 2 1 2</p>
+        <p class="p_consola">1 1 1 1 1<br>
+          2 2 2<br>
+          1 2 1 2 1 2 1 1</p>
+        <p class="p_consola">1 1 1<br>
+          2 2 2 2 2<br>
+          1 2 1 2 1 2 2 2</p>
+      </div>
+      <div class="enun">
+        <h3>Sumar elements aparellats d'una llista</h3>
+        <p>Genera una llista de 10 números enters aleatoris entre 0 i 99 i mostra-la.<br>
+          Mostra la suma del primer amb el segon, del segon amb el tercer…. i del penúltim amb l’últim.</p>
+        <p>Fes el mateix però sumant el primer amb l'últim, el segon amb el penúltim...</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">&nbsp; 83&nbsp; 28&nbsp; 10&nbsp; 21&nbsp; 70&nbsp; 59&nbsp; 47&nbsp; 12&nbsp; 88&nbsp; 50<br>
+          &nbsp;&nbsp;&nbsp;&nbsp; 111&nbsp; 38&nbsp; 31&nbsp; 91 129 106&nbsp; 59 100 138<br>
+          &nbsp;133 116&nbsp; 22&nbsp; 68 129</p>
+      </div>
+      <div class="enun">
+        <h3>Desplaçar els elements d'una llista</h3>
+        <p>Genera 10 lletres aleatòriament entre la ‘A’ i la ‘Z’, guarda-les en un array i mostra-les.<br>
+          Desplaça totes les lletres a la següent posició (la primera a la posició 2, la de la 2 a la 3, etc) i l’última lletra haurà d’anar a la primera posició. Aquesta operació s’anomena rotació.</p>
+        <p>Opcionalment, fes que el programa demani a l’usuari quin desplaçament vol fer (entre 1 i 9) i fes la rotació (desplaçament) corresponent.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">V T X M Y Z I S X E <br>
+          E V T X M Y Z I S X</p>
+        <p class="p_consola">Desplaçament (1-9): <strong>3</strong><br>
+          A I H Y G M K H T W <br>
+          H T W A I H Y G M K</p>
+      </div>
+      <div class="enun">
+        <h3>Buscar i comptar aparicions</h3>
+        <p>Genera una llista amb 40 números aleatoris entre 0 i 9 i mostra-la.<br>
+          Demana un número enter a l’usuari i mostra quantes vegades apareix i en quines posicions.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">&nbsp;6 0 6 0 5 1 4 9 4 4 8 9 8 6 3 3 4 7 4 0 0 9 2 6 8 9 7 3 9 1 5 4 2 9 7 5 4 5 4 1<br>
+          Quin número vols buscar? (0-9): <strong>7</strong><br>
+          Apareix 3 vegades:<br>
+          Posició 17<br>
+          Posició 26<br>
+          Posició 34</p>
+      </div>
+      <div class="enun">
+        <h3>Buscar i comptar dígits</h3>
+        <p>Genera un array amb 20 números enters aleatoris entre 0 i 9 i mostra els elements separats per un espai.</p>
+        <p>Escriu quantes vegades apareix cada dígit.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">2 0 4 3 8 0 8 5 0 6 3 2 8 7 4 6 4 8 6 7 <br>
+          0 --&gt; 3 vegades<br>
+          1 --&gt; 0 vegades<br>
+          2 --&gt; 2 vegades<br>
+          3 --&gt; 2 vegades<br>
+          4 --&gt; 3 vegades<br>
+          5 --&gt; 1 vegades<br>
+          6 --&gt; 3 vegades<br>
+          7 --&gt; 2 vegades<br>
+          8 --&gt; 4 vegades<br>
+          9 --&gt; 0 vegades</p>
+      </div>
+      <div class="enun">
+        <h3>Buscar i comptar lletres</h3>
+        <p>Genera 80 lletres aleatòriament entre la ‘A’ i la ‘Z’, guarda-les en un array i mostra-les.</p>
+        <p>Compta quantes vegades apareix cada lletra.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">GKMHDNEWWGOXKYHPPNFEACYBXWZCDBDGJTIWGYZEWDHDDHPRFLZZNIONTRHIRCQNTYGRSUPHZHRGZNDT<br>
+          A apareix 1 vegades<br>
+          B apareix 2 vegades<br>
+          C apareix 3 vegades<br>
+          D apareix 7 vegades<br>
+          E apareix 3 vegades<br>
+          F apareix 2 vegades<br>
+          G apareix 6 vegades<br>
+          H apareix 7 vegades<br>
+          I apareix 3 vegades<br>
+          J apareix 1 vegades<br>
+          K apareix 2 vegades<br>
+          L apareix 1 vegades<br>
+          M apareix 1 vegades<br>
+          N apareix 6 vegades<br>
+          O apareix 2 vegades<br>
+          P apareix 4 vegades<br>
+          Q apareix 1 vegades<br>
+          R apareix 5 vegades<br>
+          S apareix 1 vegades<br>
+          T apareix 4 vegades<br>
+          U apareix 1 vegades<br>
+          V no apareix cap vegada<br>
+          W apareix 5 vegades<br>
+          X apareix 2 vegades<br>
+          Y apareix 4 vegades<br>
+          Z apareix 6 vegades</p>
+      </div>
+      <div class="enun">
+        <h3>Buscar coincidències en dues llistes</h3>
+        <p>Genera dues llistes amb 40 números aleatoris entre 0 i 9 i mostra-les.<br>
+          Mostra totes les posicions en què coincideixen els números de les dues llistes i quin número és.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">&nbsp;3 8 4 0 8 4 8 5 1 8 6 4 4 7 5 7 9 3 4 5 5 7 6 2 9 8 3 0 8 5 5 0 4 2 7 9 4 2 4 4<br>
+          &nbsp;9 5 6 1 4 2 4 5 1 7 2 0 2 0 9 6 3 1 5 4 1 7 4 8 8 3 3 7 2 6 4 2 2 1 9 5 4 1 9 8<br>
+          Posició&nbsp; 7&nbsp;&nbsp; Número 5<br>
+          Posició&nbsp; 8&nbsp;&nbsp; Número 1<br>
+          Posició 21&nbsp;&nbsp; Número 7<br>
+          Posició 26&nbsp;&nbsp; Número 3<br>
+          Posició 36&nbsp;&nbsp; Número 4</p>
+      </div>
+    </section>
+  </body>
+</html>

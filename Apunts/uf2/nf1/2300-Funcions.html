@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Funcions en JavaScript">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Funcions en JavaScript</header>
+    <section>
+      <h2>Característiques de les funcions</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_function_definition.asp">Referència</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions">Referència detallada (MDN)</a></p>
+      <p>En JavaScript, les funcions són igual que qualsevol altre objecte:</p>
+      <ul>
+        <li>Es poden assignar a variables.</li>
+        <li>Es poden posar com a propietats d'altres objectes.</li>
+        <li>Es poden passar com a paràmetres a altres funcions.</li>
+        <li>Poden contenir propietats i mètodes (variables i funcions definides en el seu interior).</li>
+      </ul>
+      <h2>Definició d'una funció</h2>
+      <p>Per definir una funció s'utilitza la paraula reservada <span class="c_comanda">function</span>.<br>
+        Normalment se li dóna un nom (encara que també es poden definir funcions anònimes) i entre parèntesis es posen, si n'hi ha, els paràmetres que se li passaran quan se la cridi.<br>
+        Després es posen les instruccions que ha d'executar dins d'un bloc de codi (<span class="c_comanda">{...}</span>).</p>
+      <p>Com objectes que són, tenen algunes propietats per defecte.<br>
+        Per exemple, la propietat <strong>name</strong> guarda el nom, si en té.</p>
+      <p>Utilitzant la comanda <span class="c_comanda">typeof</span> es pot comprovar si un objecte és una funció.</p>
+      <p class="p_codi"><strong>function missatge() {<br>
+          &nbsp;&nbsp;&nbsp; console.log("Soc una funció!");<br>
+          }</strong><br>
+        <br>
+        missatge();&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Escriu '<strong>Soc una funció</strong>'<br>
+        console.log(<strong>missatge.name</strong>);&nbsp;&nbsp;&nbsp;&nbsp; // Escriu '<strong>missatge</strong>'<br>
+        console.log(<strong>typeof missatge</strong>);&nbsp;&nbsp; // Escriu '<strong>function</strong>'</p>
+      <h2>Ámbit d'una funció i invocació</h2>
+      <p>Una funció es pot utilitzar dins l'àmbit on s'ha definit:</p>
+      <ul>
+        <li>Si s'ha definit en el cos del programa, es guarda com una propietat o mètode de l'objecte <em><strong>window</strong></em> i estarà accessible des de qualsevol lloc del programa.</li>
+        <li>Si es defineix dins d'un objecte (com una propietat més), només es podrà invocar utilitzant aquest objecte.</li>
+        <li>Si es defineix dins d'una altra funció, només estarà accessible des de dins d'aquesta funció.</li>
+      </ul>
+      <p>Per fer que s'executi el codi d'una funció, cal cridar-la&nbsp;amb el seu nom i els arguments entre parèntesis:</p>
+      <p class="p_codi">function <strong>missatge(m)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; alert(m);<br>
+        }<br>
+        <br>
+        <strong> missatge("Hello world!");</strong></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

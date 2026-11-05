@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h4>Classe abstracta Animal i TestAnimal</h4>
+        <p class="p_codi"><strong>public abstract class Animal</strong> {<br>
+          &nbsp;&nbsp;&nbsp; // Atribut de la superclasse<br>
+          &nbsp;&nbsp;&nbsp; private String nom;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Constructor de la superclasse<br>
+          &nbsp;&nbsp;&nbsp; public Animal(String nom) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nom = nom;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // S'ha de crear en totes les subclasses<br>
+          &nbsp;&nbsp;&nbsp; <strong>public abstract void moure();</strong><br>
+          }<br>
+          <br>
+          <strong>class TestAnimal</strong> {<br>
+          &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animal cabra = new Mamifer("Cabra", "Estic saltant");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animal lleo = new Mamifer("Lleó", "Estic corrent");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animal sardina = new Peix("Sardina", 100);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Animal serp = new Animal("Serp");&nbsp;&nbsp; // ERROR<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cabra.moure();&nbsp;&nbsp; // Escriu Estic saltant (crida el mètode de la subclasse Mamifer)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lleo.moure();&nbsp;&nbsp;&nbsp; // Escriu Estic corrent (crida el mètode de la subclasse Mamifer)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sardina.moure(); // Escriu Estic nedant (crida el mètode de la subclasse Peix)<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe Animal modificada</h4>
+        <p class="p_codi"><strong>public class Mamifer extends Animal</strong> {<br>
+          &nbsp;&nbsp;&nbsp; <strong>String moviment;</strong><br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Mamifer(String nom, <strong>String moviment</strong>) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(nom);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.moviment = moviment;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètode sobreescrit<br>
+          &nbsp;&nbsp;&nbsp; <strong>public void moure()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(moviment);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h4>Classe abstracta Poligon</h4>
+        <p class="p_codi"><strong>public abstract class Poligon</strong> {<br>
+          &nbsp;&nbsp;&nbsp; // Atributs<br>
+          &nbsp;&nbsp;&nbsp; String nom;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Constructor<br>
+          &nbsp;&nbsp;&nbsp; public Poligon(String nom) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nom = nom;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètode estàtic per calcular la hipotenusa<br>
+          &nbsp;&nbsp;&nbsp; <strong>public static double calcularHipotenusa(double catet1, double catet2)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //return Math.sqrt(Math.pow(catet1, 2) + Math.pow(catet2, 2));<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return Math.hypot(catet1, catet2);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètodes abstractes<br>
+          &nbsp;&nbsp;&nbsp; <strong>public abstract double calcularArea();</strong><br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>public abstract double calcularPerimetre();</strong><br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Getters calculats<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double getArea()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return calcularArea();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>public double getPerimetre()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return calcularPerimetre();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe PoligonRegular</h4>
+        <p class="p_codi"><strong>public class PoligonRegular extends Poligon</strong> {<br>
+          &nbsp;&nbsp;&nbsp; double radi;<br>
+          &nbsp;&nbsp;&nbsp; int nCostats;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; double costat;<br>
+          &nbsp;&nbsp;&nbsp; double apotema;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public PoligonRegular(String nom, double radi, int nCostats) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(nom);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.radi = radi;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nCostats = nCostats;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; calcular();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; private void calcular() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double angle = 2 * Math.PI / nCostats;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double base = radi - radi * Math.cos(angle);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double altura = radi * Math.sin(angle);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; costat = Math.sqrt(base * base + altura * altura);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; apotema = Math.sqrt(radi * radi - costat * costat / 4);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètodes<br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularArea()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (nCostats * costat * apotema) / 2;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularPerimetre()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nCostats * costat;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nom +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ": nCostats=" + nCostats +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", lCostat=" + costat +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", apotema=" + apotema +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", area=" + getArea() +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", perímetre=" + getPerimetre();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe Quadrat</h4>
+        <p class="p_codi"><strong>public class Quadrat extends Poligon</strong> {<br>
+          &nbsp;&nbsp;&nbsp; double costat;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Quadrat(double costat) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super("Quadrat");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.costat = costat;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularArea()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return costat * costat;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularPerimetre()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return costat * 4;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nom +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ": lCostat=" + costat +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", area=" + getArea() +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", perímetre=" + getPerimetre();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe Rectangle</h4>
+        <p class="p_codi"><strong>public class Rectangle extends Poligon</strong> {<br>
+          &nbsp;&nbsp;&nbsp; double base, altura;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Rectangle(double base, double altura) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super("Rectangle");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.base = base;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.altura = altura;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètodes<br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularArea()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return base * altura;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularPerimetre()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return base * 2 + altura * 2;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nom +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ": base=" + base +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", altura=" + altura +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", area=" + getArea() +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", perímetre=" + getPerimetre();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe Rombe</h4>
+        <p class="p_codi"><strong>public class Rombe extends Poligon</strong> {<br>
+          &nbsp;&nbsp;&nbsp; double diagonalMajor, diagonalMenor;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Rombe(double diagonalMajor, double diagonalMenor) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super("Rectangle");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.diagonalMajor = diagonalMajor;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.diagonalMenor = diagonalMenor;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètodes<br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularArea()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return diagonalMajor * diagonalMenor / 2;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularPerimetre()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double dM2 = diagonalMajor / 2;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; double dm2 = diagonalMenor / 2;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return calcularHipotenusa(diagonalMajor / 2, dm2 = diagonalMenor / 2) * 4;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nom +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ": diagonal major=" + diagonalMajor +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", diagonal menor=" + diagonalMenor +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", area=" + getArea() +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", perímetre=" + getPerimetre();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe Trapezi</h4>
+        <p class="p_codi"><strong>public class Trapezi extends Poligon</strong> {<br>
+          &nbsp;&nbsp;&nbsp; double bMajor, bMenor, altura;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Trapezi(double bMajor, double bMenor, double altura) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super("Trapezi");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.bMajor = bMajor;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.bMenor = bMenor;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.altura = altura;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètodes<br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularArea()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ((bMajor + bMenor) / 2) * altura;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularPerimetre()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Per trapezi isòsceles<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return bMajor + bMenor + calcularHipotenusa((bMajor - bMenor) / 2, altura) * 2;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nom +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ": bMajor=" + bMajor +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", bMenor=" + bMenor +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", altura=" + altura +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", area=" + getArea() +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", perímetre=" + getPerimetre();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe Triangle</h4>
+        <p class="p_codi"><strong>public class Triangle extends Poligon</strong> {<br>
+          &nbsp;&nbsp;&nbsp; double base, altura;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Triangle(double base, double altura) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super("Triangle");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.base = base;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.altura = altura;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètodes<br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularArea()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (base * altura) / 2;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double calcularPerimetre()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return base * 3;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; @Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nom +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ": base=" + base +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", altura=" + altura +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", area=" + getArea() +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ", perímetre=" + getPerimetre();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe TestPoligon</h4>
+        <p class="p_codi"><strong>import java.util.Arrays;</strong><br>
+          <br>
+          <strong>public class TestPoligons</strong> {<br>
+          &nbsp;&nbsp;&nbsp; static Poligon[] llista = new Poligon[10];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[0] = new PoligonRegular("Pentagon", 10, 5);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[1] = new Quadrat(10);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[2] = new Triangle(20, 10);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[3] = new Trapezi(10, 8, 6);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[4] = new Rectangle(10, 5);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[5] = new Rombe(8, 6);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[6] = new PoligonRegular("Hexàgon", 8, 6);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[7] = new Triangle(16, 12);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[8] = new Quadrat(5);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[9] = new Rectangle(10, 2.5);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nLlista de polígons");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>showLlista();</strong><br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>public static void showLlista()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (Poligon poligon : llista) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(poligon);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h4>Classe abstracta Poligon que implementa la interfície Comparable</h4>
+        <p class="p_codi"><strong>public abstract class Poligon implements Comparable&lt;Poligon&gt;</strong> {<br>
+          &nbsp;&nbsp;&nbsp; // Atributs<br>
+          &nbsp;&nbsp;&nbsp; String nom;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Constructor<br>
+          &nbsp;&nbsp;&nbsp; public Poligon(String nom) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nom = nom;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètode estàtic per calcular la hipotenusa<br>
+          &nbsp;&nbsp;&nbsp; public static double calcularHipotenusa(double catet1, double catet2) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Math.sqrt(Math.pow(catet1, 2) + Math.pow(catet2, 2));<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Mètodes abstractes<br>
+          &nbsp;&nbsp;&nbsp; public abstract double calcularArea();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public abstract double calcularPerimetre();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>@Override</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>public boolean equals(Object poligon)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return ((Poligon)poligon).getArea() == this.getArea();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>public static boolean equals(Poligon p1, Poligon p2)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p1.equals(p2);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Comparable<br>
+          &nbsp;&nbsp;&nbsp; <strong>@Override</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>public int compareTo(Poligon p)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Double.compare(this.calcularArea(), p.calcularArea());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //if (this.calcularArea() &lt; p.calcularArea()) return -1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //else if (this.calcularArea() &gt; p.calcularArea()) return 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //else return 0;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>public static int compareTo(Poligon p1, Poligon p2)</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return p1.compareTo(p2);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Getters calculats<br>
+          &nbsp;&nbsp;&nbsp; <strong>public double getArea()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return calcularArea();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; <strong>public double getPerimetre()</strong> {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return calcularPerimetre();<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Classe TestPoligon</h4>
+        <p class="p_codi"><strong>import java.util.Arrays;</strong><br>
+          <br>
+          <strong>public class TestPoligons</strong> {<br>
+          &nbsp;&nbsp;&nbsp; static Poligon[] llista = new Poligon[10];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[0] = new PoligonRegular("Pentagon", 10, 5);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[1] = new Quadrat(10);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[2] = new Triangle(20, 10);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[3] = new Trapezi(10, 8, 6);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[4] = new Rectangle(10, 5);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[5] = new Rombe(8, 6);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[6] = new PoligonRegular("Hexàgon", 8, 6);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[7] = new Triangle(16, 12);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[8] = new Quadrat(5);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; llista[9] = new Rectangle(10, 2.5);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nLlista de polígons");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; showLlista();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Arrays.sort(llista);</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\nLlista de polígons ordenada segons l'àrea");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; showLlista();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Poligon p1 = llista[0];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Poligon p2 = llista[1];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Poligon p3 = llista[2];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (<strong>p1.compareTo(p2) &lt; 0</strong>)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n" + p1.nom + " és més petit que " + p2.nom);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (<strong>p2.equals(p3)</strong>)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("\n" + p2.nom + " i " + p3.nom + " tenen la mateixa àrea");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void showLlista() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (Poligon poligon : llista) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println(poligon);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <h4>Joc</h4>
+        <p class="p_codi">import java.util.Scanner;<br>
+          <br>
+          public class Joc {<br>
+          &nbsp;&nbsp;&nbsp; static final int FILES = 20;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; static final int COLUMNES = 20;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; private static Scanner scan = new Scanner(System.in);<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; private static boolean fi;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; private static Pocio pocio;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; private static Jugador asterix;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; private static Enemic[] legionaris = new Enemic[4];<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; private static Taulell bosc;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static void main(String[] args) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bosc = new Taulell(FILES, COLUMNES);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pocio = new Pocio('P', posicioAleatoria());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; asterix = new Jugador('J', posicioAleatoria());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; legionaris.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legionaris[i] = new Enemic((char)('1' + i), posicioAleatoria());<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi = false;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bosc.init(pocio, asterix, legionaris);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bosc.dibu();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fi = mouJugador();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!fi) fi = mouEnemics();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } while(!fi);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static boolean mouEnemics() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int dir;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; legionaris.length; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // TODO: s'haurien de moure cap l'Asterix<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dir = (int)(Math.random() * 4);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch(dir) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 0:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legionaris[i].mouL();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 1:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legionaris[i].mouR();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 2:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legionaris[i].mouU();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 3:<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; legionaris[i].mouD();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static boolean mouJugador() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char op;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; do {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("A - Left");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("D - Right");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("W - Up");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("S - Down");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println("Z - Exit");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; op = scan.nextLine().toUpperCase().charAt(0);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } while(!(op == 'A' || op == 'D' || op == 'W' || op == 'S' || op == 'Z'));<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; switch(op) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'A':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; asterix.mouL();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'D':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; asterix.mouR();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'W':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; asterix.mouU();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case 'S':<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; asterix.mouD();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return op == 'Z';<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public static Coordenades posicioAleatoria() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return new Coordenades(1, FILES - 2, 1, COLUMNES - 2);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Coordenades</h4>
+        <p class="p_codi">public class Coordenades {<br>
+          &nbsp;&nbsp;&nbsp; int fila;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; int columna;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Coordenades() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fila = 0;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; columna = 0;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Coordenades(int fila, int columna) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.fila = fila;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.columna = columna;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Coordenades(int minF, int maxF, int minC, int maxC) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fila = (int)(Math.random() * (maxF - minF + 1) + minF);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; columna = (int)(Math.random() * (maxC - minC + 1) + minC);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Taulell</h4>
+        <p class="p_codi">public class Taulell {<br>
+          &nbsp;&nbsp;&nbsp; private int files;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; private int columnes;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; private static char[][] taulell;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Taulell(int files, int columnes) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.files = files;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.columnes = columnes;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; taulell = new char[files][columnes];<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public void init(Pocio p, Jugador jug, Enemic[] enemics) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (i == 0 || j == 0 || i == files -1 || j == columnes - 1) taulell[i][j] = '#';<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else taulell[i][j] = ' ';<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; taulell[p.coord.fila][p.coord.columna] = p.nom;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; taulell[jug.coord.fila][jug.coord.columna] = jug.nom;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (Enemic e: enemics) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; taulell[e.coord.fila][e.coord.columna] = e.nom;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public void dibu() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; files; ++i) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int j = 0; j &lt; columnes; ++j) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.print(" " + taulell[i][j] + " ");<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.out.println();<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Element (abstracta)</h4>
+        <p class="p_codi">public abstract class Element {<br>
+          &nbsp;&nbsp;&nbsp; char nom;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; Coordenades coord;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Element(char nom, Coordenades c) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.nom = nom;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.coord = c;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Pocio (estén Element)</h4>
+        <p class="p_codi">public class Pocio extends Element {<br>
+          &nbsp;&nbsp;&nbsp; /**<br>
+          &nbsp;&nbsp;&nbsp;&nbsp; * Constructor per inicialitzar els atributs de la poció.<br>
+          &nbsp;&nbsp;&nbsp;&nbsp; * @param nom Lletra que identifica la poció<br>
+          &nbsp;&nbsp;&nbsp;&nbsp; * @param c Coordenades de la poció<br>
+          &nbsp;&nbsp;&nbsp;&nbsp; */<br>
+          &nbsp;&nbsp;&nbsp; public Pocio(char nom, Coordenades c) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(nom, c);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Moviment (interfície)</h4>
+        <p class="p_codi">public interface Moviment {<br>
+          &nbsp;&nbsp;&nbsp; void mouL();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; void mouR();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; void mouU();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; void mouD();<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; void setVelocitat(int velocitat);<br>
+          }</p>
+        <h4>Personatge (abstracta, implementa Moviment)</h4>
+        <p class="p_codi">abstract class Personatge extends Element implements Moviment {<br>
+          &nbsp;&nbsp;&nbsp; int velocitat;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; int energia;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public Personatge(char nom, Coordenades c, int velocitat) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(nom, c);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.velocitat = velocitat;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public void mouL() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; coord.columna -= velocitat;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (coord.columna &lt; 1) coord.columna = 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (energia &gt; 0) --energia;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public void mouR() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; coord.columna += velocitat;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (coord.columna &gt;= Joc.COLUMNES - 1) coord.columna = Joc.COLUMNES - 2;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (energia &gt; 0) --energia;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public void mouU() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; coord.fila -= velocitat;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (coord.fila &lt; 1) coord.fila = 1;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (energia &gt; 0) --energia;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public void mouD() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; coord.fila += velocitat;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (coord.fila &gt;= Joc.FILES - 1) coord.fila = Joc.FILES - 2;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (energia &gt; 0) --energia;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public void setVelocitat(int velocitat) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.velocitat = velocitat;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Jugador (estén Personatge)</h4>
+        <p class="p_codi">public class Jugador extends Personatge {<br>
+          &nbsp;&nbsp;&nbsp; public Jugador(char nom, Coordenades c) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(nom, c, 1);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; energia = 0;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; public void prenPocio() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; energia = 10;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+        <h4>Enemic (estén Personatge)</h4>
+        <p class="p_codi">public class Enemic extends Personatge {<br>
+          &nbsp;&nbsp;&nbsp; public Enemic(char nom, Coordenades c) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(nom, c, 1);<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }</p>
+      </div>
+    </section>
+  </body>
+</html>

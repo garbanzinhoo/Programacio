@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Modificacions i consultes a la BD">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Modificacions i consultes a la BD</header>
+    <section>
+      <h2>Modificacions i consultes a la BD</h2>
+      <p>Tot i que els objectes <strong>Statement</strong> i <strong>PreparedStatement</strong> tenen el mètode <span class="c_comanda">execute()</span> per executar sentències genèriques , és preferible utilitzar les següents:</p>
+      <ul>
+        <li><span class="c_comanda">executeUpdate(String sql_sentences)</span> per sentències que modifiquin la base de dades:</li>
+        <ul>
+          <li>CREATE TABLE</li>
+          <li>DROP TABLE</li>
+          <li>ALTER TABLE</li>
+          <li>INSERT INTO</li>
+          <li>DELETE FROM</li>
+          <li>UPDATE</li>
+        </ul>
+        <li><span class="c_comanda">executeQuery(String sql_sentence)</span> per sentències que facin consultes a la base de dades:</li>
+        <ul>
+          <li>SELECT</li>
+        </ul>
+      </ul>
+      <p>En el primer cas, només es retorna un valor enter que indica el nombre de registres afectats.<br>
+        En el segon cas es retornen les dades de la consulta en un objecte de tipus <strong>ResultSet</strong>.</p>
+      <h3>ResultSet</h3>
+      <p>Aquest objecte conté les dades resultat de la consulta.</p>
+      <p>Conté un apuntador que, al principi, està situat just abans del primer registre retornat.<br>
+        Per recórrer tots els registres cal utilitzar la comanda <span class="c_comanda">next()</span> fins que retorni <span class="c_comanda">false</span> (fila inexistent):</p>
+      <p>Per obtenir els camps de cada registre cal utilitzar els mètodes <span class="c_comanda">getXXX(nom_o_index_del_camp)</span>:</p>
+      <ul>
+        <li><span class="c_comanda">String getString()</span></li>
+        <li><span class="c_comanda">int getInt()</span></li>
+        <li><span class="c_comanda">int getDouble()</span></li>
+        <li><span class="c_comanda">java.sql.Date getDate()</span></li>
+        <li>etc...</li>
+      </ul>
+      <p class="p_codi">ResultSet rs = stmt.executeQuery("SELECT nif,nom,edat FROM alumnes");<br>
+        <strong>while(rs.next())</strong> {<br>
+        &nbsp;&nbsp;&nbsp; String nif = <strong>rs.getString("nif")</strong>;<br>
+        &nbsp;&nbsp;&nbsp; String nom = <strong>rs.getString("nom")</strong>;<br>
+        &nbsp;&nbsp;&nbsp; int edat = <strong>rs.getInt(3)</strong>;&nbsp;&nbsp; // És més eficient (no ha de buscar pel nom del camp)<br>
+        }</p>
+      <p>Normalment no caldrà tenir en compte el tipus de la dada perquè es convetirà automàticament:<br>
+        si s'utilitza <span class="c_comanda">getString()</span> amb un camp numèric, retornarà el valor convertit a <span class="c_comanda">String</span>;<br>
+        si s'utilitza <span class="c_comanda">getInt()</span> amb un camp de text, retornarà <span class="c_comanda">0</span>.</p>
+      <p class="p_important">El paràmetre pot ser el nom del camp o l'índex.<br>
+        Cal tenir en compte que, en aquest últim cas, la primera columna és la 1, no la 0!<br>
+        Accedir utilitzant l'índex és més eficient però cal saber en quin ordre estan els camps retornats.</p>
+      <p class="p_important">En una BD, els camps poden tenir valors nulls, però en el cas dels mètodes que retornen un valor, si el camp conté un valor <span class="c_comanda">null</span>, retornen 0.<br>
+        Per saber si realment és 0 o null cal cridar el mètode <span class="c_comanda">wasNull()</span> just després de llegir el camp.</p>
+      <h3>ResultSetMetaData</h3>
+      <p>De vegades, especialment si cal executar sentències no predefinides, pot ser necessari conèixer quines dades hi ha en el <strong>ResultSet</strong> (quantes columnes, el nom i el tipus de cada columna...).</p>
+      <p>Per conèixer aquestes i altres dades, es pot utilitzar un <strong>ResultSetMetaData</strong>:</p>
+      <p class="p_codi"><strong>ResultSetMetaData rsmd = rs.getMetaData();</strong><br>
+        int nCols = <strong>rsmd.getColumnCount()</strong>;<br>
+        s = new String[nCols][2];<br>
+        for (int i = 0; i &lt; nCols; i++) {<br>
+        &nbsp;&nbsp;&nbsp; s[i][0] =&nbsp; <strong>rsmd.getColumnName(i + 1)</strong>;<br>
+        &nbsp;&nbsp;&nbsp; s[i][1] =&nbsp; <strong>rsmd.getColumnTypeName(i + 1)</strong>;<br>
+        }</p>
+      <h2>Camps de tipus DATE</h2>
+      <p>En Java, quan es treballa amb dates que s'hauran de guardar en una base de dades, és recomanable crear-les en objectes <strong>java.sql.Date</strong> en lloc de <strong>java.util.Date</strong>, però en el moment de guardar-les és preferible convertir-les a text, i llegir-les com a text al recuperar-les:</p>
+      <p class="p_codi">import java.sql.*;<br>
+        <strong>// Guardar</strong> (<strong>es guarda com "2000-01-01"</strong>)<br>
+        Date data = Date.valueOf("2000-01-01");<br>
+        Statement stmt = con.createStatement();<br>
+        stmt.executeUpdate("UPDATE taula SET naixement='" + <strong>data.toString()</strong> + "' WHERE id=5");<br>
+        <strong>// Llegir</strong><br>
+        ResultSet rs = stmt.executeQuery("SELECT naixement FROM taula WHERE id=5");<br>
+        rs.next();<br>
+        data = <strong>Date.valueOf(rs.getString(1))</strong>;</p>
+      <p>Si no, la data es pot guardar en un valor de tipus <strong>long</strong> equivalent als <strong>mil·lisegons des de 1970-01-01</strong>:</p>
+      <p class="p_codi">import java.sql.*;<br>
+        <strong>// Guardar</strong> (<strong>es guarda com 946681200000</strong>)<br>
+        Date data = Date.valueOf("2000-01-01");<br>
+        Statement stmt = con.createStatement();<br>
+        stmt.executeUpdate("UPDATE taula SET naixement=" + <strong>data.getTime()</strong> + " WHERE id=5");<br>
+        <strong>// Llegir</strong><br>
+        ResultSet rs = stmt.executeQuery("SELECT naixement FROM taula WHERE id=5");<br>
+        rs.next();<br>
+        data = <strong>new Date(rs.getLong(1))</strong>;</p>
+      <h5>Exemples utilitzant <em>PreparedStatement</em></h5>
+      <p>Guardar i recuperar com a text:</p>
+      <p class="p_codi">import java.sql.*;<br>
+        <strong>// Guardar</strong> (<strong>es guarda com "2000-01-01"</strong>)<br>
+        Date data = Date.valueOf("2000-01-01");<br>
+        PreparedStatement stmt = con.prepareStatement("UPDATE taula SET naixement=? WHERE id=?");<br>
+        stmt.<strong>setString(1, data.toString())</strong>;<br>
+        stmt.setInt(2, 10);<br>
+        stmt.executeUpdate();<br>
+        <strong>// Llegir</strong><br>
+        stmt = con.prepareStatement("SELECT naixement FROM taula WHERE id=?");<br>
+        stmt.setInt(1, 10);<br>
+        ResultSet rs = stmt.executeQuery();<br>
+        rs.next();<br>
+        data = <strong>Date.valueOf(rs.getString(1))</strong>;</p>
+      <p>Guardar i recuperar com a data (valor <strong>long</strong>):</p>
+      <p class="p_codi">import java.sql.*;<br>
+        <strong>// Guardar</strong> (<strong>es guarda com 946681200000</strong>)<br>
+        Date data = Date.valueOf("2000-01-01");<br>
+        PreparedStatement stmt = con.prepareStatement("UPDATE taula SET naixement=? WHERE id=?");<br>
+        stmt.<strong>setDate(1, data)</strong>;<br>
+        stmt.setInt(2, 10);<br>
+        stmt.executeUpdate();<br>
+        <strong>// Llegir</strong><br>
+        stmt = con.prepareStatement("SELECT naixement FROM taula WHERE id=?");<br>
+        stmt.setInt(1, 10);<br>
+        ResultSet rs = stmt.executeQuery();<br>
+        rs.next();<br>
+        data = <strong>rs.getDate(1)</strong>;</p>
+      <h3>Funcions per convertir entre dates i mil·lisegons</h3>
+      <h5>Convertir a mil·lisegons</h5>
+      <p class="p_codi">// <strong>d</strong> és el camp que conté la data en format AAAA-MM-DD<br>
+        (strftime('%s',<strong>d</strong>) - strftime('%s','1970-01-01')) * 1000;</p>
+      <h5>Convetir a data</h5>
+      <p class="p_codi">// <strong>m</strong> és el camp que conté la data en mil·lisegons<br>
+        strftime('%Y-%m-%d', <strong>m</strong>/1000, 'unixepoch')</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

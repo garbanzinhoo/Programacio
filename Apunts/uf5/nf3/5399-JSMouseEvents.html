@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Esdeveniments del ratolí">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Esdeveniments del ratolí</header>
+    <section>
+      <h2>Esdeveniments del ratolí (<em>mouse events</em>)</h2>
+      <h3>Propietats</h3>
+      <p>Les principals propietats estan relacionades amb la posició del ratolí:</p>
+      <ul>
+        <li><span class="c_comanda">offsetX</span> / <span class="c_comanda">offsetY</span>: distància des de la cantonada superior esquerra de l'element objectiu (<em>target</em>).</li>
+        <li><span class="c_comanda">clientX</span> / <span class="c_comanda">clientY</span>: distància des de la cantonada superior esquerra de la finestra (<em>viewport</em>).<br>
+          Si el document es troba dins d'un <em>iframe</em>, distància fins el marge de l'<em>iframe</em>.</li>
+        <li><span class="c_comanda">pageX</span> / <span class="c_comanda">pageY</span>: distància des de la cantonada superior esquerra de la pàgina.<br>
+          És igual que <span class="c_comanda">clientX</span> i <span class="c_comanda">clientY</span> excepte si la pàgina està desplaçada amb els <em>scrolls</em>.</li>
+        <li><span class="c_comanda">screenX</span> / <span class="c_comanda">screenY</span>: distància des de la cantonada superior esquerra de la pantalla.</li>
+      </ul>
+      <p class="p_important">En determinades circumstàncies, <span class="c_comanda">offsetX</span> i <span class="c_comanda">offsetY</span> poden donar diferents resultats en diferents navegadors!</p>
+      <ul>
+      </ul>
+      <ul>
+      </ul>
+      <p><img class="noborder" alt="apunts dwec mouse coordinates offset client page screen" src="imatges/mouseCoord.svg" style="width:25em;"></p>
+      <p>En el següent exemple es pot veure la diferència entre <span class="c_comanda">client</span> i <span class="c_comanda">page</span> quan es desplaça la pàgina amb l'<em>scroll</em>:</p>
+      <p class="codepen" data-height="320" data-theme-id="dark" data-default-tab="js,result" data-user="pere-sanchez" data-slug-hash="VwZPEGB" style="height: 320px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="MouseCoords"> <span>See the Pen <a href="https://codepen.io/pere-sanchez/pen/VwZPEGB/"> MouseCoords</a> by Pere Sánchez (<a href="https://codepen.io/pere-sanchez">@pere-sanchez</a>) </span></p>
+      <p>Altres propietats permeten saber si s'estava prement també alguna tecla de control: </p>
+      <ul>
+        <li><span class="c_comanda">event.shiftKey</span></li>
+        <li><span class="c_comanda">event.ctrlKey</span></li>
+        <li><span class="c_comanda">event.altKey</span></li>
+        <li><span class="c_comanda">event.metaKey</span> (tecla Windows)</li>
+      </ul>
+      <h3>Esdeveniments relacionats amb els botons</h3>
+      <p class="p_important">Mai s'ha de pressuposar l'ordre en què es generen els esdeveniments del ratolí: poden variar en diferents navegadors i sistemes operatius.</p>
+      <ul>
+        <li><span class="c_comanda">click</span>: es genera després de prémer i deixar anar el botó principal.</li>
+        <li><span class="c_comanda">dblclick</span>: es genera després de prémer per segona vegada el botó principal.<br>
+          El segon clic no ha d'estar gaire separat del primer ni en el temps ni en la distància.</li>
+        <li><span class="c_comanda">contextmenu</span> (botó secundari): es genera al prémer el botó secundari.</li>
+        <li><span class="c_comanda">mousedown</span>: es genera al prémer el botó principal.</li>
+        <li><span class="c_comanda">mouseup</span>: es genera al deixar anar el botó principal.</li>
+      </ul>
+      <p class="p_important">En els jocs s'acostuma a utilitzar <span class="c_comanda">mousedown</span> (i <span class="c_comanda">mouseup</span>) en lloc de <span class="c_comanda">click</span>.</p>
+      <p class="p_important">Per saber quin botó s'ha premut (principal o secundari) es pot consultar la propietat <span class="c_comanda">event.button</span>.<br>
+        El botó secundari normalment és el botó dret, però també es poden intercanviar.</p>
+      <h3>Esdeveniments relacionats amb el moviment</h3>
+      <p> </p>
+      <ul>
+        <li><span class="c_comanda">mousemove</span>: detecta quan es desplaça el ratolí.<br>
+          Les propietats <span class="c_comanda">movementX</span> i <span class="c_comanda">movementY</span> permeten saber la distància recorreguda des de la posició de l'últim esdeveniment <span class="c_comanda">mousemove</span>.</li>
+        <li><span class="c_comanda">mouseenter</span> / <span class="c_comanda">mouseleave</span>: detecta quan el ratolí entra o surt de l'objecte.</li>
+        <li><span class="c_comanda">mouseover</span> / <span class="c_comanda">mouseout</span>: detecta quan el ratolí se situa a sobre de l'objecte o a fora.</li>
+      </ul>
+      <h4>Diferència entre "mouseenter" i "mouseover"</h4>
+      <ul>
+        <li><span class="c_comanda">mouseenter</span> només es dispara quan el ratolí entre dins l'objecte, no quan entra dins dels seus fills.</li>
+        <li><span class="c_comanda">mouseover</span> es dispara quan el ratolí entre dins l'objecte, quan entra dins dels seus fills i també quan, al sortir d'algun fill, torna a entrar dintre seu o dintre d'un dels seus fills.</li>
+      </ul>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_event_mouseenter_mouseover">Exemple</a></p>
+      <h3>Exemple (click, mousedown, mousemove, mouseup i mouseout)</h3>
+      <p class="codepen" data-height="380" data-theme-id="dark" data-default-tab="js,result" data-user="pere-sanchez" data-slug-hash="OJLXZvG" style="height: 380px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="Dibu"> <span>See the Pen <a href="https://codepen.io/pere-sanchez/pen/OJLXZvG/">Dibu</a> by Pere Sánchez (<a href="https://codepen.io/pere-sanchez">@pere-sanchez</a>) on <a href="https://codepen.io">CodePen</a>.</span></p>
+      <script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+      <h3>Esdeveniments relacionats amb la roda (<em>wheel events</em>)</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/obj_wheelevent.asp">Referència</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event">Referència detallada (MDN)</a></p>
+      <h4>wheel</h4>
+      <p>Aquest esdeveniment serveix de detectar les accions de l'usuari sobre la roda del ratolí.</p>
+      <p>Normalment es considera que la roda actua sobre l'eix vertical.<br>
+        En aquest cas, la principal propietat és <span class="c_comanda">deltaY</span>.</p>
+      <p class="p_important">Si s'utilitza per fer <em>zoom</em> sobre un element, és preferible gestionar-ho des de l'element pare per evitar que, al fer-se petit l'objecte, el punter quedi fora de l'objecte i deixi de rebre els esdeveniments.</p>
+      <p>En el següent exemple, utilitza la rodeta del ratolí per moure la bola.<br>
+        Es pot moure també en horitzontal si es manté premuda la tecla <kbd><span>Shift</span></kbd>.</p>
+      <p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="js,result" data-user="pere-sanchez" data-slug-hash="NWNQMPd" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="MouseWheel"> <span>See the Pen <a href="https://codepen.io/pere-sanchez/pen/NWNQMPd"> MouseWheel</a> by Pere Sánchez (<a href="https://codepen.io/pere-sanchez">@pere-sanchez</a>) on <a href="https://codepen.io">CodePen</a>.</span> </p>
+      <script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
+      <h3>Esdeveniments relacionats amb l'arrossegament d'objectes (<em>drag events</em>)</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/obj_dragevent.asp">Referència</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/DragEvent">Referència detallada (MDN)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_ondrop">Exemple senzill</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Document/drag_event">Exemple més complet</a></p>
+      <p>Permet detectar quan l'usuari intenta arrossegar un objecte de la pàgina.</p>
+      <ul>
+        <li><span class="c_comanda">drag</span>: es dispara cada poc temps mentre l'objecte s'està arrossegant (és poc utilitzat).</li>
+        <li><span class="c_comanda">dragstart</span>: es dispara quan l'usuari comença a arrossegar l'objecte.</li>
+        <li><span class="c_comanda">dragend</span>: es dispara quan l'usuari acaba d'arrossegar l'objecte.</li>
+        <li><span class="c_comanda">dragenter</span>: es dispara quan l'objecte entra en la zona on es pot deixar.</li>
+        <li><span class="c_comanda">dragleave</span>: es dispara quan l'objecte surt de la zona on es pot deixar.</li>
+        <li><span class="c_comanda">dragover</span>: es dispara cada poc temps mentre l'objecte s'arrossega dins de la zona on es pot deixar.</li>
+        <li><span class="c_comanda">drop</span>: es dispara quan l'objecte es deixa anar dins de la zona on es pot deixar.</li>
+      </ul>
+      <h3>Esdeveniments relacionats amb pantalles tàctils (<em>touch events</em>)</h3>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/jsref/obj_touchevent.asp">Referència</a></p>
+      <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Touch_events">Referència detallada (MDN)</a></p>
+      <p>Es generen quan l'usuari actua amb un o més dits sobre la pantalla.</p>
+      <p>Els possibles esdeveniments són:</p>
+      <ul>
+        <li><span class="c_comanda">touchstart</span>: equivalent al <span class="c_comanda">mousedown</span> del ratolí.</li>
+        <li><span class="c_comanda">touchmove</span>: similar al <span class="c_comanda">mousemove</span> del ratolí.</li>
+        <li><span class="c_comanda">touchend</span>: equivalent al <span class="c_comanda">mouseup</span> del ratolí.</li>
+        <li><span class="c_comanda">touchcancel</span>: es produeix quan s'interromp algun punt de contacte (s'han premut massa punts, un punt de contacte ha sortit fora de la pantalla...).</li>
+      </ul>
+      <p>Propietats:</p>
+      <p> </p>
+      <ul>
+        <li><span class="c_comanda">touches</span>: llista amb tots els punts de contacte.</li>
+        <li><span class="c_comanda">targetTouches</span>: llista amb tots els punts de contacte.</li>
+        <li><span class="c_comanda">changedTouches</span>: <strong> llista amb els punts que s'han modificat des de l'últim esdeveniment.</strong></li>
+      </ul>
+      <p class="p_important">Per saber quants punts simultanis permet un navegador, es pot consultar la propietat <span class="c_comanda">navigator.maxTouchPoints</span>.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

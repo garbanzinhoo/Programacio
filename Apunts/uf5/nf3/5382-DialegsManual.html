@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Diàlegs">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Diàlegs</header>
+    <section>
+      <h2>Crear diàlegs manualment</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JDialog.html">JDialog ref. (Java SE 17)</a></p>
+      <ol>
+        <li>Crear una classe que hereti de <em>JDialog</em>.</li>
+        <li>Crear i afegir els elements del diàleg.</li>
+        <li>Crear els <em>listeners</em> dels botons i altres elements.</li>
+        <li>Crear el codi per inicialitzar el diàleg i/o per obtenir les dades. </li>
+      </ol>
+      <p>La major part del codi és el mateix que s'ha fet utilitzant l'IDE.<br>
+        Només cal agafar el panell principal (<em>contentPane</em>), canviar el seu <em>layout</em> i crear els elements:</p>
+      <p class="p_codi">// Panell principal<br>
+        contentPane = (JPanel) getContentPane();<br>
+        <br>
+        // Botons OK i Cancel<br>
+        buttonOK = new JButton("OK");<br>
+        buttonCancel = new JButton("Cancel");<br>
+        <br>
+        // Afegir botons OK i Cancel a un panell<br>
+        JPanel pBotons = new JPanel(new GridLayout(1,2, 10, 0));<br>
+        pBotons.add(buttonOK);<br>
+        pBotons.add(buttonCancel);<br>
+        pBotons.setAlignmentX( Component.LEFT_ALIGNMENT );<br>
+        <br>
+        // CheckBox i RadioButton<br>
+        transparent = new JCheckBox("Transparent");<br>
+        vermell = new JRadioButton("Vermell");<br>
+        verd = new JRadioButton("Verd");<br>
+        blau = new JRadioButton("Blau");<br>
+        <br>
+        // Afegir botons de colors a un grup i seleccionar el primer<br>
+        ButtonGroup bg = new ButtonGroup();<br>
+        bg.add(vermell);<br>
+        bg.add(verd);<br>
+        bg.add(blau);<br>
+        vermell.setSelected(true);<br>
+        <br>
+        // Afegir botons de colors a un panell<br>
+        JPanel pRadio = new JPanel();<br>
+        pRadio.setLayout(new BoxLayout(pRadio, BoxLayout.Y_AXIS));<br>
+        pRadio.setBorder(new EmptyBorder(12, 20, 10, 10));<br>
+        pRadio.add(vermell);<br>
+        pRadio.add(verd);<br>
+        pRadio.add(blau);<br>
+        <br>
+        // Configurar panell principal<br>
+        contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));<br>
+        contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));<br>
+        <br>
+        // Afegir CheckBox i panells secundaris al panell principal<br>
+        contentPane.add(transparent);<br>
+        contentPane.add(pRadio);<br>
+        contentPane.add(pBotons);</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

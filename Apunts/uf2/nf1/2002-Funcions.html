@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Funcions en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Funcions en Java</header>
+    <section>
+      <h2>Paràmetres d'entrada i valor de retorn d'una funció</h2>
+      <p>Les funcions més senzilles, com les vistes fins ara, tenen una utilitat força limitada.</p>
+      <p>Per augmentar la reusabilitat i llegibilitat del codi es poden afegir dues característiques importants:</p>
+      <ul>
+        <li>A una funció se li poden passar diverses dades per generalitzar el seu funcionament.<br>
+          Aquestes dades poden ser primitives (enters, caràcters...), <em>Strings</em>, <em>arrays</em> o altres objectes.</li>
+        <li>Una funció pot retornar un valor que es podrà assignar a una variable o utilitzar-lo en una expressió.<br>
+          Aquest valor pot ser una dada primitiva (enter, caràcter...), un <em>String</em>, un <em>array</em> o un altre objecte.</li>
+      </ul>
+      <p>Això també reduirà la utilització de variables globals que només s'utilitzen en un bloc de codi.</p>
+      <p>Si una funció es dissenya correctament, no caldrà que altres programadors sàpiguen com funciona internament: només hauran de saber quines dades se li han de passar per que faci la seva tasca.</p>
+      <ul>
+      </ul>
+      <h2>Funcions que retornen un valor</h2>
+      <h4>Configurar el tipus de valor de retorn</h4>
+      <p>Per fer que una funció retorni un valor, en la seva definició s'ha de canviar la paraula <span class="c_comanda">void</span> pel tipus de dada que ha de retornar (<span class="c_comanda">int</span>, <span class="c_comanda">float</span>, <span class="c_comanda">char</span>, <span class="c_comanda">boolean</span>, <span class="c_comanda">String</span>...).</p>
+      <p>També cal que, per sortir de la funció, s'utilitzi la paraula <span class="c_comanda">return</span> i una dada del mateix tipus que el tipus de retorn que s'ha definit al principi.<br>
+        La instrucció <span class="c_comanda">return</span> es pot utilitzar en més d'un lloc dins de la funció.</p>
+      <p class="p_codi">static <strong>boolean</strong> verificarDades() {<br>
+        &nbsp;&nbsp;&nbsp; if (edat &lt; 0) <strong>return false;</strong><br>
+        &nbsp;&nbsp;&nbsp; else <strong>return true;</strong><br>
+        }</p>
+      <div class="p_important">
+        <p>Si s'ha definit una funció per retornar un valor d'un tipus determinat, no pot retornar un valor d'un tipus diferent o no retornar cap valor:</p>
+        <p class="p_codi">static <strong>boolean</strong> verificarDades() {<br>
+          &nbsp;&nbsp;&nbsp; if (edat &lt; 0) return false;&nbsp;&nbsp;&nbsp; // <strong>OK</strong><br>
+          &nbsp;&nbsp;&nbsp; else if (edat == 0) return;&nbsp;&nbsp;&nbsp; // <strong>ERROR: ha de retornar true o false</strong><br>
+          &nbsp;&nbsp;&nbsp; else return "Edat OK"; &nbsp; &nbsp; &nbsp; &nbsp; // <strong>ERROR: ha de retornar true o false</strong><br>
+          }</p>
+      </div>
+      <h4>Utilitzar el valor de retorn</h4>
+      <p>El valor de retorn de la funció anterior es podria utilitzar de la següent forma:</p>
+      <p class="p_codi"><span style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">public static void<span>&nbsp;</span></span><strong style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">main</strong><span
+          style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">(final String[] args) {</span> <br>
+        &nbsp;&nbsp;&nbsp; do {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Introduir dades<br>
+        &nbsp;&nbsp;&nbsp; } while (<strong>!verificarDades()</strong>);<br>
+        }</p>
+      <p>Com es veurà més endavant, el valor de retorn també es pot utilitzar en altres expressions més complexes per completar altres càlculs matemàtics, en expressions lògiques, per assignar un valor a una variable, etc.</p>
+      <h2>Funcions amb paràmetres d'entrada</h2>
+      <h3>Reutilització del codi</h3>
+      <p>Una funció pot realitzar sempre la mateixa tasca amb les mateixes dades i proporcionar sempre el mateix resultat, però serà molt més útil si pot adaptar el seu funcionament partint de dades diferents.</p>
+      <p>Si les funcions es programen pensant en un cas general en lloc del cas concret que es pretén resoldre, es pot estalviar molta feina aprofitant el codi en diverses parts del programa.</p>
+      <p></p>
+      <p>Encara que es pot aconseguir el mateix efecte utilitzant dades globals per adaptar el seu funcionament, el més recomanable és passar les dades necessàries directament a la funció.<br>
+        Això es pot fer utilitzant paràmetres d'entrada:</p>
+      <p class="p_codi">// Mostrar les dades d'un array de números enters separats per comes<br>
+        static void mostrarArrayEnters(<strong>int[] array</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; int l = array.length - 1;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; l; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.print(array[i] + ", ");<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; System.out.println(array[l]);<br>
+        }</p>
+      <p>Es pot cridar aquesta funció des de la funció <span class="c_comanda">main</span> per visualitzar les dades de diferents <em>arrays</em>:</p>
+      <p class="p_codi"><span style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">public static void<span>&nbsp;</span></span><strong style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">main</strong><span
+          style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">(final String[] args) {</span> <br>
+        &nbsp;&nbsp;&nbsp; int[] numerosParells = {0, 2, 4, 6, 8};<br>
+        &nbsp;&nbsp;&nbsp; int[] numerosPrimers = {2, 3, 5, 7, 11, 13, 17, 19};<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; mostrarArrayEnters(<strong>numerosParells</strong>);<br>
+        &nbsp;&nbsp;&nbsp; mostrarArrayEnters(<strong>numerosPrimers</strong>);<br>
+        }</p>
+      <h4>Paràmetres i arguments</h4>
+      <p>Els paràmetres d'entrada es poden considerar i utilitzar com si fossin variables locals.</p>
+      <p>Els paràmetres no tenen perquè tenir el mateix nom que els arguments que s'utilitzen al cridar la funció.</p>
+      <p>Els arguments que s'utilitzen al cridar la funció han de ser del mateix tipus que els paràmetres d'aquesta.</p>
+      <p>Si un paràmetre és una dada primitiva, encara que es modifiqui el seu valor dins de la funció, no farà que es modifiqui la variable passada com a argument al cridar a la funció:</p>
+      <p class="p_codi"><span style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">public static void<span>&nbsp;</span></span><strong style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">main</strong><span
+          style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">(final String[] args) {</span> <br>
+        &nbsp;&nbsp;&nbsp; int x = 5;<br>
+        &nbsp;&nbsp;&nbsp; doblarEnter(<strong>x</strong>);<br>
+        &nbsp;&nbsp;&nbsp; System.out.println(x);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Mostrarà <strong>5</strong><br>
+        }<br>
+        <br>
+        static void doblarEnter(<strong>int x</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; x *= 2;<br>
+        &nbsp;&nbsp;&nbsp; System.out.println(x);&nbsp;&nbsp;&nbsp; // Mostrarà <strong>10</strong><br>
+        }</p>
+      <p>Si un paràmetre és un objecte (per exemple, un <em>array</em>), sí que es modificarà l'objecte que s'ha utilitzat al cridar la funció:</p>
+      <p class="p_codi"> <span style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">public static void<span>&nbsp;</span></span><strong style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">main</strong><span
+          style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">(final String[] args) {</span> <br>
+        &nbsp;&nbsp;&nbsp; int[] numeros = {1, 2, 3, 4, 5};<br>
+        &nbsp;&nbsp;&nbsp; doblarArray(<strong>numeros</strong>);<br>
+        &nbsp;&nbsp;&nbsp; mostrarArrayEnters(numeros);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Mostrarà <strong>2, 4, 6, 8, 10<br>
+        </strong>}<br>
+        <br>
+        static void doblarArray(<strong>int[] array</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; array.length; ++i) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array[i] *= 2;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; mostrarArrayEnters(array);&nbsp;&nbsp;&nbsp; // Mostrarà <strong>2, 4, 6, 8, 10</strong><br>
+        }</p>
+      <div class="p_important">
+        <p><strong>ATENCIÓ</strong>: els <em>Strings</em> són objectes <strong>immutables</strong>, per tant es comporten com si fossin dades primitives (encara que es modifiquin dins d'una funció, la variable externa no es modifica):</p>
+        <p class="p_codi">public static void main(final String[] args) {<br>
+          &nbsp;&nbsp;&nbsp; String <strong>text</strong> = "Text original";<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(text);&nbsp;&nbsp;&nbsp; // Escriu <strong>Text original</strong><br>
+          &nbsp;&nbsp;&nbsp; modificarString(<strong>text</strong>);<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(text);&nbsp;&nbsp;&nbsp; // Escriu <strong>Text original</strong> (no s'ha modificat)<br>
+          }<br>
+          <br>
+          static void modificarString(String <strong>s</strong>) {<br>
+          &nbsp;&nbsp;&nbsp; <strong>s</strong> += " mes text afegit";<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Escriu <strong>Text original mes text afegit</strong><br>
+          }</p>
+        <p>Si es vol modificar la variable externa <strong>text</strong>, cal que la funció retorni l'<em>string</em> modificat:</p>
+        <p class="p_codi">public static void main(final String[] args) {<br>
+          &nbsp;&nbsp;&nbsp; String text = "Text original";<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(text);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Escriu <strong>Text original</strong><br>
+          &nbsp;&nbsp;&nbsp; <strong>text = </strong>modificarString(text);<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(text);&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Escriu <strong>Text original mes text afegit</strong><br>
+          }<br>
+          <br>
+          static <strong>String</strong> modificarString(String s) {<br>
+          &nbsp;&nbsp;&nbsp; s += " mes text afegit";<br>
+          &nbsp;&nbsp;&nbsp; System.out.println(s);<br>
+          &nbsp;&nbsp;&nbsp; <strong>return s;</strong><br>
+          }</p>
+      </div>
+      <h2>Funcions amb el mateix nom però diferents paràmetres</h2>
+      <p>Aquesta característica s'anomena <strong>sobrecàrrega de funcions</strong> o <strong>funcions sobrecarregades</strong>.</p>
+      <p>Dos funcions (o més) poden tenir el mateix nom sempre que el nombre de paràmetres o els tipus dels paràmetres siguin diferents:</p>
+      <p class="p_codi">void <strong>f1</strong>(char c) {<br>
+        }<br>
+        <br>
+        void <strong>f1</strong>(int n) {&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // <strong>OK: mateix nom però diferent tipus de paràmetre</strong><br>
+        }<br>
+        <br>
+        void <strong>f1</strong>(char c, int n) {&nbsp;&nbsp; // <strong>OK: mateix nom però diferent nombre de paràmetres</strong><br>
+        }<br>
+        <br>
+        void <strong>f1</strong>(int n, char c) {&nbsp;&nbsp; // <strong>OK: mateix nom però diferent tipus de paràmetres</strong><br>
+        }</p>
+      <div class="p_important">
+        <p> El tipus de retorn no es té en compte: no s'accepten funcions que tinguin el mateix nom i el mateix tipus i nombre de paràmetres encara que tinguin diferent tipus de retorn:</p>
+        <p class="p_codi">void <strong>f1</strong>(int a) {<br>
+          }<br>
+          <br>
+          int <strong>f1</strong>(int b) {&nbsp;&nbsp;&nbsp; // <strong>ERROR: mateix nom i tipus de paràmetres</strong><br>
+          }<br>
+        </p>
+      </div>
+      <h2>Funcions amb paràmetres d'entrada i valor de retorn</h2>
+      <p>El cas més genèric són les funcions que retornen un valor a partir d'uns paràmetres d'entrada.</p>
+      <p>S'acostumen a utilitzar per realitzar càlculs o processar dades i retornar el valor o les dades obtingudes.</p>
+      <h5>Generar caràcter aleatori</h5>
+      <p class="p_codi"><span style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">public static void<span>&nbsp;</span></span><strong style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">main</strong><span
+          style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">(final String[] args) {</span> <br>
+        &nbsp;&nbsp;&nbsp; char c = caracterAleatori(<strong>'A'</strong>, <strong>'Z'</strong>);<br>
+        }<br>
+        <br>
+        static <strong>char</strong> caracterAleatori(<strong>char caracterIni</strong>, <strong>char caracterFi</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; return (char)(Math.random() * (caracterFi - caracterIni + 1) + caracterIni);<br>
+        }</p>
+      <h5>Calcular l'àrea del cercle i el perímetre d'un triangle rctangle</h5>
+      <p class="p_codi"><span style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">public static void<span>&nbsp;</span></span><strong style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">main</strong><span
+          style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">(final String[] args) {</span> <br>
+        &nbsp;&nbsp;&nbsp; double area = areaCercle(<strong>10</strong>);<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; double base = 3, altura = 4;<br>
+        &nbsp;&nbsp;&nbsp; double perimetre = base + altura + hipotenusa(base, altura);<br>
+        }<br>
+        <br>
+        static <strong>double</strong> areaCercle(<strong>double radi</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; return Math.PI * radi * radi;<br>
+        }<br>
+        <br>
+        static <strong>double</strong> hipotenusa(<strong>double b, double a</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; return Math.sqrt(b * b + a * a);<br>
+        }</p>
+      <h5>Què es pot conduir a certa edat?</h5>
+      <p class="p_codi"><span style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">public static void<span>&nbsp;</span></span><strong style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">main</strong><span
+          style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">(final String[] args) {</span> <br>
+        &nbsp;&nbsp;&nbsp; int edat = scan.nextInt();<br>
+        &nbsp;&nbsp;&nbsp; System.out.println(conduir(<strong>edat</strong>));<br>
+        }<br>
+        <br>
+        static <strong>String</strong> conduir(<strong>int edat</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; if (edat &lt; 12) return "Pots conduir un patinet";<br>
+        &nbsp;&nbsp;&nbsp; if (edat &lt; 18) return "Pots conduir una moto";<br>
+        &nbsp;&nbsp;&nbsp; if (edat &gt; 75) return "Més val que no condueixis";<br>
+        &nbsp;&nbsp;&nbsp; return "Pots conduir cotxe i moto";<br>
+        }</p>
+      <h5>Crear i inicialitzar un array d'enters amb un valor determinat</h5>
+      <p class="p_codi"><span style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">public static void<span>&nbsp;</span></span><strong style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">main</strong><span
+          style="color: rgb(0, 0, 0); font-family: &quot;Courier New&quot;, Courier, monospace; font-size: 14.4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: nowrap; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(224, 224, 224); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">(final String[] args) {</span> <br>
+        &nbsp;&nbsp;&nbsp; int[] a = omplirArrayEnters(<strong>10</strong>, <strong>5</strong>);&nbsp; // Crea un array de 10 elements inicialitzats a 5<br>
+        &nbsp;&nbsp;&nbsp; mostrarArrayEnters(a);<br>
+        }<br>
+        <br>
+        static <strong>int[]</strong> omplirArrayEnters(<strong>int elements</strong>, <strong>int valor</strong>) {<br>
+        &nbsp;&nbsp;&nbsp; int[] array = new int[elements];<br>
+        &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; elements; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; array[i] = valor;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; return array;<br>
+        }</p>
+      <h2> Funcions amb un nombre indeterminat de paràmetres</h2>
+      <p>De vegades pot ser útil tenir una funció a la que se li puguin passar N arguments sense saber prèviament quants seran.</p>
+      <p>Aquesta característica s'anomena <em>varargs</em> (nombre d'arguments variables).</p>
+      <p>Una funció d'aquest tipus que ja s'ha utilitzat és la funció <span class="c_comanda">printf()</span>.<br>
+        La seva definició és <span class="c_comanda">printf(String format, Object... arguments)</span>.<br>
+        El primer argument que se li passa ha de ser un <em>String</em> per indicar el format.<br>
+        Després se li pot passar qualsevol nombre d'arguments.</p>
+      <p>Per accedir a cada argument, es fa igual que si el paràmetre <span class="c_comanda">arguments</span> fos un <em>array</em>: <span class="c_comanda">arguments.length</span> és la quantitat d'arguments, <span class="c_comanda">arguments[0]</span> és el primer argument, etc...</p>
+      <p>Condicions d'ús dels <em>varargs</em>:</p>
+      <ul>
+        <li>Aquest paràmetre sempre ha d'anar al final de la declaració de la funció.</li>
+        <li>Només pot haver-hi un paràmetre d'aquest tipus.</li>
+        <li>Tots els arguments han de ser del mateix tipus (o que es puguin transformar a aquest tipus), però si es posa el tipus <strong>Object</strong>, poden ser de qualsevol tipus, perquè qualsevol valor es pot convertir a <strong>Object</strong>.</li>
+      </ul>
+      <h6>Exemple</h6>
+      <p class="p_codi">mostrarValors(1, 2, 3);<br>
+        mostrarValors(2, 4, 6, 8, 10, 12);<br>
+        <br>
+        static void mostrarValors(int... numeros) {<br>
+        &nbsp;&nbsp;&nbsp; for (int i = 0; i &lt; numeros.length; i++)<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.println(numeros[i]);<br>
+        }</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

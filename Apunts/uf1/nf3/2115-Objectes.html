@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Objectes en JavaScript">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Objectes en JavaScript</header>
+    <section>
+      <h2>Objectes definits per l'usuari</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/js/js_objects.asp">Referència</a></p>
+      <h3>Objectes bàsics</h3>
+      <p>Un objecte, al contrari que les variables primitives, pot contenir més d'un valor (pot està format per diverses dades que, a més, poden ser de diferents tipus).</p>
+      <p>Les variables que formen un objecte se'n diuen&nbsp;<strong>propietats</strong> o <strong>atributs</strong> i poden ser de diferents tipus, fins i tot altres objectes compostos (<em>arrays</em> o objectes de qualsevol tipus).<br>
+        Cada propietat té un nom i un valor associat.</p>
+      <p>Els objectes es representen amb claus i separant les propietats amb una coma: </p>
+      <ul>
+        <li><span class="c_comanda">{}</span> és un objecte buit.</li>
+        <li><span class="c_comanda">{nom: "Peter", cicle: "DAW"}</span> és un objecte amb 2 propietats o atributs.</li>
+      </ul>
+      <p>Es poden afegir propietats de forma dinàmica.</p>
+      <p>Si el nom d'una propietat ha de contenir espais (cosa no recomanable), cal posar-lo entre cometes.</p>
+      <h4>Crear, inicialitzar i eliminar objectes senzills</h4>
+      <p class="p_codi">let alumne = {nom: "Mary", curs: 1};&nbsp; // Es crea un objecte i se l'assigna a una variable<br>
+        <br>
+        alumne.curs = 2;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; // Es canvia la propietat 'curs' de l'objecte<br>
+        alumne = {};&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // S'assigna a la variable un objecte buit<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // També es pot fer <strong>alumne = undefined;</strong></p>
+      <h4>Assignació d'objectes</h4>
+      <p>Al contrari que passa amb les variables primitives, al assignar a una variable una altra que conté un objecte, no es fa una còpia del contingut, sinó que totes dues variables apunten al mateix objecte.</p>
+      <p>Això implica que si es modifica alguna propietat en alguna de les variables, també es modifica en l'altra:</p>
+      <p class="p_codi">let alumne1 = {nom:"Mary", curs:1};<br>
+        let alumne2 = alumne1;&nbsp;&nbsp; // Totes dues variables <strong>apunten al mateix objecte</strong><br>
+        <br>
+        alumne1.nom = "Peter";&nbsp;&nbsp; // 'alumne2.nom' també serà "Peter"<br>
+        alumne2 = {};&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Ara l'objecte només està assignat a la variable 'alumne1'<br>
+        alumne1 = undefined;&nbsp;&nbsp;&nbsp;&nbsp; // Una altra forma de treure un objecte d'una variable<br>
+      </p>
+      <p class="p_important">Quan un objecte no està assignat a cap variable, s'envia a la recollida d'escombraries per ser eliminat.</p>
+      <h3>Objectes complexos</h3>
+      <p>Tenen propietats que són altres objectes o <em>arrays</em>.</p>
+      <p class="p_codi">let alumne = {<br>
+        &nbsp; DNI: 12345678,<br>
+        &nbsp; nom: "Peter",<br>
+        &nbsp; dicle: "DAW",<br>
+        &nbsp; dataNaixement: <strong>new Date("2000-12-31")</strong>,<br>
+        &nbsp; moduls: <strong>["M01", "M02", "M03"]</strong>,<br>
+        &nbsp; pagaments: <strong>{matricula:true, excursions:false}</strong><br>
+        };<br>
+        <br>
+        alumne.moduls.push("M04");<br>
+        alumne.pagaments.excursions = true;</p>
+      <h3><em>Arrays</em> d'objectes</h3>
+      <p class="p_codi">let alumnes = [{nom:"Mary", curs:1}, {nom:"Peter", curs:2}];</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

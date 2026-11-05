@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Dades, constants i variables en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Dades, constants i variables en Java</header>
+    <section>
+      <h2>Tipus de dades</h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_data_types.asp">Tipus de dades en Java</a></p>
+      <p>En un programa es poden utilitzar diferents tipus de dades:</p>
+      <ul>
+        <li>Valors simples (<em>primitive data</em>):</li>
+        <ul>
+          <li><strong>Booleans</strong>: només poden representar dos valors (si/no, vertader/fals...).</li>
+          <li><strong>Números</strong>: enters o decimals (la part decimal se separa amb un punt).</li>
+          <li><strong>Caràcters</strong>: lletres, dígits i altres símbols.</li>
+        </ul>
+        <li>Valors compostos: <strong>cadenes de caràcters</strong>, <strong>dates</strong>, <strong></strong><strong>llistes</strong> i <strong>objectes</strong> (es veuran més endavant).</li>
+      </ul>
+      <h3>Literals</h3>
+      <p>Els <strong>literals</strong> representen un valor que ja es coneix en el moment d'escriure el programa.<br>
+        No es guarden en memòria sinò que formen part del codi del programa.</p>
+      <ul>
+        <li><strong>Literals booleans</strong>: <span class="c_comanda">true</span> o <span class="c_comanda">false</span>.</li>
+        <li><strong>Literals numèrics</strong>: <span class="c_comanda">2768</span>, <span class="c_comanda">12.59</span> o <span class="c_comanda">3.45e3</span> (notació científica equivalent a <strong>3,45 x 10<sup>3</sup></strong> = <strong>3450.0</strong>).</li>
+        <li><strong>Literals de caràcter</strong>: <span class="c_comanda">'H'</span>, <span class="c_comanda">'7'</span> o <span class="c_comanda">'@'</span> (s'han de posar entre cometes simples).</li>
+      </ul>
+      <p>En el següent exemple, el número <strong><span>10</span></strong> i el missatge <strong>"La nota no pot ser superior a 10"</strong>, són literals:</p>
+      <p class="p_codi">if (nota &gt; <strong>10</strong>) System.out.println(<strong>"La nota no pot ser superior a 10"</strong>);</p>
+      <h3>Constants i variables</h3>
+      <p>Les <strong>constants</strong> i les <strong>variables</strong> permeten guardar un valor en la memòria de l'ordinador.<br>
+        La diferència és que el valor que es guarda en una constant no es pot modificar.</p>
+      <p>Els tipus que es poden utilitzar en Java són els següents:</p>
+      <ul>
+        <li><strong>boolean</strong>: <span class="c_comanda">true</span> o <span class="c_comanda">false</span> (ocupa un byte encara que només utilitza un bit).</li>
+      </ul>
+      <p><img alt="" src="./imatges/bool.svg" style="width:5em" class="noborder"></p>
+      <ul>
+        <li><strong>byte</strong>: des de <span class="c_comanda">-128</span> fins a <span class="c_comanda">127</span> (ocupa un byte).</li>
+        <li><strong>short</strong>: des de <span class="c_comanda">-32768</span> fins a <span class="c_comanda">32767</span> (ocupa 2 bytes).</li>
+        <li><strong>int</strong>: des de <span class="c_comanda">-2147483648</span> fins a <span class="c_comanda">2147483647</span> (ocupa 4 bytes).</li>
+        <li><strong>long</strong>: des de <span class="c_comanda">-2<sup>63</sup></span> fins a <span class="c_comanda">2<sup>63</sup> - 1</span> (ocupa 8 bytes).<br>
+          Es pot indicar que un literal és d'aquest tipus afegint una <span class="c_comanda">L</span> al final: <span class="c_comanda">45876L</span></li>
+      </ul>
+      <p><img alt="" src="./imatges/integer.svg" style="width:30em" class="noborder"></p>
+      <ul>
+        <li><strong>float</strong>: números reals amb 6 o 7 decimals (ocupa 8 bytes).<br>
+          Es pot indicar que un literal és d'aquest tipus afegint una <span class="c_comanda">F</span> al final: <span class="c_comanda">45876F</span></li>
+        <li><strong>double</strong>: números reals amb 15 decimals (ocupa 16 bytes).<br>
+          Es pot indicar que un literal és d'aquest tipus afegint una <span class="c_comanda">D</span> al final: <span class="c_comanda">45876D</span></li>
+      </ul>
+      <p><img alt="" src="./imatges/real.svg" style="width:25em" class="noborder"></p>
+      <ul>
+        <li><strong>char</strong>: en Java, ocupa 2 bytes. És similar a <em>short</em>. Només pot contenir un caràcter.</li>
+        <li><strong>String</strong>: és una classe d'objectes. Serveix per guardar text (conjunt de caràcters).</li>
+      </ul>
+      <p><img alt="" src="./imatges/text.svg" style="width:25em" class="noborder"></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">XML</h1>
+      <p>Per fer els exercicis necessitaràs els segúents arxius:</p>
+      <ul>
+        <li><a download="" target="_blank" rel="noopener" href="arxius/menu.xml">menu.xml</a></li>
+        <li><a download="" target="_blank" rel="noopener" href="arxius/llibres.xml">llibres.xml</a></li>
+        <li><a download="" target="_blank" rel="noopener" href="arxius/musica.xml">musica.xml</a></li>
+        <li><a download="" target="_blank" rel="noopener" href="arxius/plantes.xml">plantes.xml</a></li>
+      </ul>
+      <div class="enun">
+        <h3>Mostrar arbre d'elements</h3>
+        <p>Fes un programa que mostri en forma d'arbre els elements d'un arxiu XML.<br>
+          Opcionalment, també pots fer que es mostrin els atributs de cada element, si en té.</p>
+        <p>Per exemple, amb l'arxiu <strong>menu.xml</strong> hauria de sortir una cosa semblant a la següent (el text destacat correspon als nodes de tipus <strong>text</strong>; la resta són nodes de tipus <strong>element</strong>):</p>
+        <p class="p_consola">esmorzar<br>
+          &nbsp;&nbsp;&nbsp; tipus<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; nom<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>Lleuger</strong><br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; preu<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>5.95€</strong><br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; descripcio<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>Café i Croissant</strong><br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; calories<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>650</strong><br>
+          &nbsp;&nbsp;&nbsp; tipus<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; nom<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>Normal</strong><br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; preu<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>7.95€</strong><br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; descripcio<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>Suc de taronja i tostades amb mantega i melmelada</strong><br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; calories<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>900</strong><br>
+          ...</p>
+      </div>
+      <div class="enun">
+        <h3>Filtrar elements</h3>
+        <p>Amb l'arxiu <strong>llibres.xml</strong>:</p>
+        <ul>
+          <li>mostra la informació dels llibres del gènere <strong>Fantasy</strong>.</li>
+          <li>mostra la informació dels llibres que tinguin la paraula <strong>Microsoft</strong> en la seva <strong>descripció</strong>.</li>
+          <li>mostra la informació dels llibres amb un preu inferior a <strong>5 €uros</strong>.</li>
+          <li>mostra la informació del llibre amb l'identificador <strong>bk106</strong>.</li>
+          <li>guarda els llibres en un <strong>HashMap</strong> utilitzant com a clau el seu identificador.</li>
+          <ul>
+            <li>busca en el HashMap el llibre amb l'identificador <strong>bk106</strong> i mostra la seva informació.</li>
+            <li>busca en el HashMap el llibre amb l'identificador <strong>bk107</strong> i esborra'l del document i del HashMap.<br>
+              Mostra tots els llibres del document (no del HashMap) per comprovar que realment s'ha esborrat.</li>
+          </ul>
+        </ul>
+        <p>Amb l'arxiu <strong>musica.xml</strong>:</p>
+        <ul>
+          <li>mostra els discos que costen entre <strong>8€</strong> i <strong>9€</strong>.</li>
+          <li>mostra <strong>agrupats</strong> els discos que tenen el <strong>mateix preu</strong> (només cal mostrar el títol).<br>
+            Opcionalment, mostra'ls <strong>ordenats de més barats a més cars</strong>.</li>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Processar dades</h3>
+        <p>Amb l'arxiu <strong>plantes.html</strong>:</p>
+        <ul>
+          <li>incrementa un <strong>20%</strong> el preu de totes les plantes.</li>
+          <li>tradueix els que tenen tipus de llum <strong>Shade</strong> per <strong>Ombra</strong>.</li>
+          <li>afegeix un element <strong>WATHERING</strong> a totes les plantes i posa-hi el text <strong>Every day</strong>.</li>
+          <li>afegeix una planta (per exemple una rosa) amb totes les seves dades.</li>
+        </ul>
+        <p>Crea un nou document en memòria per guardar dades sobre les teves aficions.</p>
+        <p>Convé que, després de cada modificació, mostris les dades per comprovar que s'ha fet correctament.</p>
+        <ul>
+        </ul>
+        <ul>
+          <ul>
+          </ul>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Guardar document</h3>
+        <p>Guarda l'arxiu <strong>plantes.xml</strong> després de fer les modificacions de l'exercici anterior.</p>
+        <p>Guarda en l'arxiu <strong>aficions.xml</strong> el document creat amb les teves aficions.</p>
+      </div>
+    </section>
+  </body>
+</html>

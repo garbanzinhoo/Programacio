@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex"><em>Strings</em></h1>
+      <div class="enun">
+        <h3><em>String</em> al revés</h3>
+        <p>Fes un programa que mostri un <em>string</em> però escrit al revés.</p>
+        <p>Primer, fes-ho escrivint cada caràcter individualment.<br>
+          Després, fes el mateix però crea primer un <em>string</em> al revés i escriu aquest <em>string</em>.</p>
+        <p>Opcionalment, busca un mètode de la classe <span class="c_comanda">StringBuilder</span> que ho faci automàticament.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p>Si la frase és <strong>Hello world!</strong></p>
+        <p class="p_consola">!dlroW olleH</p>
+      </div>
+      <div class="enun">
+        <h3>Posició dels espais en un <em>String</em></h3>
+        <p>Utilitzant un bucle, localitza en quina posició estan tots els espais d'un <em>string</em>.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Hi havia una vegada...<br>
+          2 8 12</p>
+      </div>
+      <div class="enun">
+        <h3>Acrònims</h3>
+        <p>Escriu en majúscules les inicials de cada paraula d'una frase (acrònim).</p>
+        <p>Si la frase és <strong>Administració sistemes informàtics xarxa</strong>:</p>
+        <p class="p_consola">ASIX</p>
+        <p><b style="font-weight:normal;" id="docs-internal-guid-5b4aa6fb-7fff-b2b3-d95d-d5b10bbff093"><span style="font-size:11pt;font-family:Roboto,sans-serif;color:#212529;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Opcionalment, que només ho faci amb les paraules de més de 3 lletres.<br>També hauries de tenir en compte que pot haver-hi més d'un espai al principi, al final o entre les paraules.</span></b></p>
+        <p>Si la frase és "&nbsp;&nbsp; <strong>Administració&nbsp;&nbsp; de&nbsp;&nbsp; sistemes&nbsp;&nbsp; informàtics&nbsp;&nbsp; en&nbsp;&nbsp; xarxa&nbsp;&nbsp; </strong>":</p>
+        <p class="p_consola">ASIX<br>
+          <b style="font-weight:normal;"><span style="font-size:11pt;font-family:Roboto,sans-serif;color:#212529;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"></span></b> </p>
+      </div>
+      <div class="enun">
+        <h3>Substituir espais</h3>
+        <p>Utilitzant un bucle, crea un <em>string</em> igual que un altre però substituint els espais que hi ha entre les paraules per <span class="c_comanda">|</span>.<br>
+          Després, busca un mètode de la classe <strong>String</strong> que ho faci i prova'l.</p>
+        <p>Si la frase és <strong>Hi havia una vegada...</strong>:</p>
+        <p class="p_consola">Hi|havia|una|vegada...</p>
+        <p>Opcionalment, fes que encara que hi hagi més d'un espai seguit, només posi un <span class="c_comanda">|</span>.</p>
+        <p>Si la frase és "&nbsp;&nbsp; <strong>Hi&nbsp;&nbsp; havia &nbsp; una&nbsp;&nbsp; vegada...&nbsp; </strong>":</p>
+        <p class="p_consola">Hi|havia|una|vegada...</p>
+      </div>
+      <div class="enun">
+        <h3>Detectar caràcters especials</h3>
+        <p>Utilitza el mètode <span class="c_comanda">contains(value)</span> per detectar si un <em>string</em> conté algun dels caràcters <span class="c_comanda">@</span>, <span class="c_comanda">#</span> o <span class="c_comanda">€</span>.<br>
+          Si no detecta correctament algun d’aquests caràcters, pots utilitzar altres similars (<span class="c_comanda">$</span>, <span class="c_comanda">&amp;</span>, <span class="c_comanda">%</span>...).</p>
+        <p>Opcionalment, indica quins conté concretament.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p></p>
+        <p class="p_consola">Prov@ conté algun dels caràcters especials</p>
+      </div>
+      <div class="enun">
+        <h3>Quina paraula va primer?</h3>
+        <p>A partir de 2 paraules, determinar quina és més petita que l'altra lexicogràficament (quina aniria primer en el diccionari) sense tenir en compte majúscules i minúscules.<br>
+          Pots utilitzar el mètode <span class="c_comanda">compareToIgnoreCase(value)</span>.</p>
+        <p>Millora el programa indicant també quina és més curta.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p>Si les paraules són <strong>abc</strong> i <strong>DEF</strong>:</p>
+        <p class="p_consola">abc va abans que DEF<br>
+          Tenen la mateixa llargada</p>
+        <p> Si les paraules són <strong>alumnes</strong> i <strong>ALUMNE</strong>:</p>
+        <p class="p_consola">ALUMNE va abans que alumnes<br>
+          ALUMNE és més curta que alumnes<br>
+        </p>
+      </div>
+      <div class="enun">
+        <h3>Separar paraules</h3>
+        <p>Utilitza els mètodes <span class="c_comanda">indexOf(value)</span> i <span class="c_comanda">substring(start, end)</span> per separar la primera paraula de la resta d'una frase.</p>
+        <p>Opcionalment, separa totes les paraules i tingues en compte que pot haver-hi més d'un espai entre cada paraula i també al principi i al final de la frase.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p>Si la frase és "&nbsp;&nbsp; <strong>Administració &nbsp; de&nbsp;&nbsp; sistemes &nbsp; informàtics &nbsp; en &nbsp; xarxa &nbsp; </strong>":</p>
+        <p class="p_consola">Administració<br>
+          de<br>
+          sistemes<br>
+          informàtics<br>
+          en<br>
+          xarxa</p>
+      </div>
+      <div class="enun">
+        <h3>Adreça de correu</h3>
+        <p>Fes un programa que, demanant el nom i primer cognom d'un alumne, generi la seva adreça de correu.<br>
+          Fes les comprovacions que creguis necessàries.<b style="font-weight:normal;" id="docs-internal-guid-b4533326-7fff-2863-dd81-a6b5c081f328"><span style="font-size:11pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"></span></b> </p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Escriu el teu nom i primer cognom: <strong>Pere</strong><br>
+          Només has posat el nom<br>
+          Escriu el teu nom i primer cognom: <strong>Pere Pi Zarra</strong><br>
+          p.pi@sapalomera.cat</p>
+      </div>
+      <div class="enun">
+        <h3>Paraules pentavocàliques</h3>
+        <p>Detecta si una paraula conté totes les vocals (només vocals sense accents ni dièresis), però poden ser majúscules o minúscules.</p>
+        <p>Opcionalment, fes que digui quines vocals falten.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">MURCIELAGO: conté totes les vocals</p>
+        <p class="p_consola">COCHE: li falten les vocals AIU</p>
+      </div>
+      <div class="enun">
+        <h3>Majúscules o minúscules?</h3>
+        <p>Detecta si una paraula està escrita completament amb majúscules, amb minúscules o amb una barreja.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">MURCIELAGO: totes majúscules</p>
+        <p class="p_consola">murcielago: totes minúscules</p>
+        <p class="p_consola">MuRcIeLaGo: barrejades</p>
+      </div>
+      <div class="enun">
+        <h3>Ordenar lletres</h3>
+        <p>Ordena les lletres d’una paraula de més petita a més gran.</p>
+        <p>Un possible mètode seria:</p>
+        <ol>
+          <li>Repetir mentre quedin lletres en la paraula</li>
+          <ol style="list-style-type:decimal">
+            <li>Recórrer les lletres de la paraula per trobar en quina posició està la lletra més petita</li>
+            <li>Treure la lletra més petita i afegir-la a un altre <em>string</em>.</li>
+          </ol>
+        </ol>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">MuRcIeLaGo<br>
+          GILMRaceou</p>
+      </div>
+      <div class="enun">
+        <h3>Capicues i palíndroms</h3>
+        <p>Comprovar si un número enter és capicua (invertint els seus dígits dóna el mateix número).</p>
+        <p>Opcionalment, fer que comprovi si una frase és un palíndrom (llegint-la de dreta a esquerra surt la mateixa que llegint-la d'esquerra a dreta).</p>
+        <p>En aquest cas, primer cal eliminar els espais i qualsevol caràcter que no sigui una lletra.<br>
+          Per no complicar-ho innecessàriament, es considerarà que només s’utilitzaran lletres de l’alfabet anglès (A-Z sense accents, dièresis, Ñ, Ç…) però podran estar en majúscules o minúscules.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">1234567890 no és capicua<br>
+          A TI NO, BONITA és palíndrom</p>
+        <p class="p_consola">123454321 és capicua<br>
+          A TI NO, BONITO no és palíndrom</p>
+      </div>
+    </section>
+  </body>
+</html>

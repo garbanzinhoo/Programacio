@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Estructures de repetició en Java">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Estructures de repetició en Java</header>
+    <section>
+      <h2>Estructures de repetició (<em>loops</em>)</h2>
+      <p>Aquestes estructures també s'anomenen iteracions o bucles.</p>
+      <p>Normalment no es desitja que el bucle es repeteixi infinites vegades, per tant cal posar una condició de repetició: el bucle es repetirà mentre aquesta condició sigui certa.</p>
+      <p class="p_important">Si no es vol que el bucle es repeteixi de forma indefinida deixant el programa "penjat", cal assegurar-se que en algun moment la condició per repetir el bucle serà falsa.</p>
+      <h3>while</h3>
+      <p><img alt="" src="./imatges/While.svg" style="width:10em" class="noborder"></p>
+      <p>Serveix per executar un bloc de codi mentre la condició de repetició sigui certa.</p>
+      <p>Normalment s'utilitza quan no se sap quantes vegades s'ha d'executar el bucle.</p>
+      <p>La sintaxi és:</p>
+      <p class="p_codi"><strong>while (condicio_repeticio)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; // Codi que s'executarà repetidament<br>
+        }</p>
+      <p>Si la primera vegada la condició és falsa, el codi no s'executa cap vegada:</p>
+      <p class="p_codi">let n = 10;<br>
+        <br>
+        <strong> while (n &lt; 10)</strong> {<br>
+        &nbsp; n++;<br>
+        }</p>
+      <h3>Bucle infinit</h3>
+      <p>De vegades pot interessar fer un bucle que es repeteixi de forma indefinida.<br>
+        Si és el cas, només cal posar <span class="c_comanda">true</span> en la condició:</p>
+      <p class="p_codi"><strong>while (true)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; let n = prompt("Escriu un número enter");<br>
+        &nbsp;&nbsp;&nbsp; alert("El doble de " + n + " és " + (n * 2));<br>
+        }</p>
+      <h3>do ... while</h3>
+      <p><img alt="" src="./imatges/DoWhile.svg" style="width:10em" class="noborder"></p>
+      <p>Igual que <span class="c_comanda">while</span>, però el codi s'executa al menys una vegada.</p>
+      <p>La sintaxi és: </p>
+      <p class="p_codi"><strong>do {<br>
+        </strong>&nbsp;&nbsp;&nbsp; // Codi que s'executarà repetidament<strong><br>
+          } while (condicio_repeticio);</strong><br>
+      </p>
+      <p>A diferència de l'exemple anterior, la variable s'incrementa en 1:</p>
+      <p class="p_codi">let n = 10;<br>
+        <br>
+        do {<br>
+        &nbsp; n++;<br>
+        } while (n &lt; 10);</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

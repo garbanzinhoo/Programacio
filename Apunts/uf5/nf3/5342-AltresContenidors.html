@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Contenidors">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Contenidors</header>
+    <section>
+      <h2><em>JSplitPane</em></h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JSplitPane.html">JSplitPane ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/splitpane.html">Com utilitzar un <em>JSplitPane</em></a></p>
+      <p>Es un contenidor dividit en dues zones separades per una barra horitzontal o vertical que es pot desplaçar per modificar la mida de les dues àrees.</p>
+      <p>Per triar la distribució en horitzontal o vertical cal posar en el primer paràmetre del constructor:</p>
+      <ul>
+        <li><em>JSplitPane.<strong>HORIZONTAL_SPLIT</strong></em></li>
+        <li><em>JSplitPane.<strong>VERTICAL_SPLIT</strong></em></li>
+      </ul>
+      <p>Per posar un component en una de les zones cal utilitzar les següents comandes:</p>
+      <ul>
+        <li><span class="c_comanda">setLeftComponent()</span></li>
+        <li><span class="c_comanda">setRightComponent()</span></li>
+        <li><span class="c_comanda">setTopComponent()</span></li>
+        <li><span class="c_comanda">setBottomComponent()<br></span></li>
+      </ul>
+      <p>També hi ha mètodes per obtenir i modificar al posició i la mida de la barra divisòria.</p>
+      <p class="p_codi">JTextArea textArea1 = new JTextArea();<br>
+        textArea1.setFont(new Font("Serif", Font.PLAIN, 16));<br>
+        textArea1.setText(text);<br>
+        <br>
+        JTextArea textArea2 = new JTextArea();<br>
+        textArea2.setFont(new Font("Serif", Font.PLAIN, 20));<br>
+        textArea2.setText(text);<br>
+        <br>
+        Dimension minimumSize = new Dimension(100, 50);<br>
+        <strong>textArea1.setMinimumSize(minimumSize);</strong><br>
+        <strong>textArea2.setMinimumSize(minimumSize);</strong><br>
+        <br>
+        <strong>JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, textArea1, textArea2);</strong><br>
+        <strong>splitPane.setDividerLocation(150);</strong><br>
+        finestra.setContentPane(splitPane);&nbsp;&nbsp;&nbsp; // Canvia el contenidor principal</p>
+      <p class="p_important">És recomanable ficar els components dins d'un <em>JScrollPane</em> i afegir aquests objectes al <em>JSplitPane</em>.</p>
+      <p><img alt="" src="./imatges/Panells/PanellSplit.png" style="width:25em" class="noborder"></p>
+      <h2><em>JTabbedPane</em></h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.desktop/javax/swing/JTabbedPane.html">JTabbedPane ref. (Java SE 17)</a></p>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html">Com utilitzar un <em>JTabbedPane</em></a></p>
+      <p>Aquest contenidor permet crear diferents zones posades unes sobre les altres i accedir-hi a través d'unes pestanyes situades en la part superior.</p>
+      <p>Per afegir noves pestanyes cal utilitzar la comanda <span class="c_comanda">addTab()</span> amb el nom de la pestanya i el component.</p>
+      <p class="p_codi">JTextArea textArea1 = new JTextArea();<br>
+        textArea1.setFont(new Font("Serif", Font.PLAIN, 16));<br>
+        textArea1.setText(text);<br>
+        <br>
+        JTextArea textArea2 = new JTextArea();<br>
+        textArea2.setFont(new Font("Serif", Font.PLAIN, 20));<br>
+        textArea2.setText(text);<br>
+        <br>
+        JTextArea textArea3 = new JTextArea();<br>
+        textArea3.setFont(new Font("Serif", Font.PLAIN, 24));<br>
+        textArea3.setText(text);<br>
+        <br>
+        <strong>JTabbedPane tabbedPane = new JTabbedPane();</strong><br>
+        <strong>tabbedPane.addTab("Pestanya 1", textArea1);</strong><br>
+        <strong>tabbedPane.addTab("Pestanya 2", textArea2);</strong><br>
+        <strong>tabbedPane.addTab("Pestanya 3", textArea3);</strong><br>
+        finestra.setContentPane(tabbedPane);&nbsp;&nbsp;&nbsp; // Canvia el contenidor principal</p>
+      <p class="p_important">És recomanable ficar els components dins d'un <em>JScrollPane</em> i afegir aquests objectes al <em>JTabbedPane</em>.</p>
+      <p><img alt="" src="./imatges/Panells/PanellTabbed.png" style="width:25em" class="noborder"></p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

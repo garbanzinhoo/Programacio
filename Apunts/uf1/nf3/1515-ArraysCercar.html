@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Arrays: cercar">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Arrays: cercar</header>
+    <section>
+      <h2>Cercar elements dins d'un <em>array</em></h2>
+      <h3>Buscar tots els elements amb un valor determinat</h3>
+      <p>Es pot utilitzar per comptar els elements que tenen un valor determinat.</p>
+      <p>En aquest cas, s'ha de recórrer tota la llista (fer un recorregut) i utilitzar un <strong>comptador</strong>.</p>
+      <p class="p_codi">int <strong>suspesos</strong> = 0;<br>
+        int[] notes = {5, 3, 8, 4, 7};<br>
+        <br>
+        for (int i = 0; i &lt; notes.length; ++i) {<br>
+        &nbsp; if (notes[i] &lt; 5) ++suspesos;<br>
+        }<br>
+        System.out.println("Suspesos: " + suspesos);</p>
+      <h3>Buscar el primer element (o l'últim) que conté un valor determinat</h3>
+      <p>Si els elements d'una llista no estan ordenats, l'única forma de trobar un element concret serà recórrer tota la llista però sortint del bucle quan es trobi l'element.</p>
+      <p>Es pot utiiltzar un <strong>semàfor</strong> per detectar si s'ha sortit del bucle perquè s'ha trobat l'element o perquè s'ha arribat al final sense trobar l'element.</p>
+      <p class="p_codi">String[] frase = {"M'encanta", "programar", "en", "Java"};<br>
+        <br>
+        boolean trobada = false;<br>
+        int i = 0;<br>
+        <br>
+        while (i &lt; frase.length &amp;&amp; !trobada) {<br>
+        &nbsp; if (frase[i].equals("programar")) trobada = true;<br>
+        &nbsp; ++i;<br>
+        }<br>
+        if (trobada) System.out.println("Paraula trobada en la posició " + (i - 1));<br>
+        else System.out.println("No s'ha trobat la paraula");</p>
+      <p>També es pot fer utilitzant un bucle <span class="c_comanda">for</span> amb un <span class="c_comanda">break</span>.</p>
+      <p class="p_codi">String[] frase = {"M'encanta", "programar", "en", "Java"};<br>
+        <br>
+        boolean trobada = false;<br>
+        int i;<br>
+        <br>
+        for (i = 0; i &lt; frase.length; ++i) {<br>
+        &nbsp; if (frase[i].equals("programar")) {<br>
+        &nbsp;&nbsp;&nbsp; trobada = true;<br>
+        &nbsp;&nbsp;&nbsp; break;<br>
+        &nbsp; }<br>
+        }<br>
+        if (trobada) System.out.println("Paraula trobada en la posició " + i);<br>
+        else System.out.println("No s'ha trobat la paraula");</p>
+      <p>Per trobar l'últim element amb un valor determinat, només s''ha de començar a llegir la llista pel final:</p>
+      <p class="p_codi">String[] frase = {"No", "m'agrada", "programar", "en", "Java",<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; "però", "no", "sé", "programar", "en", "Python"};<br>
+        <br>
+        boolean trobada = false;<br>
+        int i;<br>
+        <br>
+        for (i = frase.length - 1; i &gt;= 0 ; i--) {<br>
+        &nbsp; if (frase[i].equals("programar")) {<br>
+        &nbsp;&nbsp;&nbsp; trobada = true;<br>
+        &nbsp;&nbsp;&nbsp; break;<br>
+        &nbsp; }<br>
+        }<br>
+        if (trobada) System.out.println("Paraula trobada en la posició " + i);<br>
+        else System.out.println("No s'ha trobat la paraula");</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<title>.</title>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<meta name="description" content="Tipografia">
+<meta name="keywords" content="">
+<meta name="author" content="Pere Sánchez">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="apunts.css" type="text/css">
+<script defer="defer" src="apunts.js"></script>
+</head>
+  <body onload="TIP(2,3);">
+    <header>Tipografia</header>
+    <section>
+      <h2>Tipografies utilitzades</h2>
+      <p>A continuació es poden veure alguns exemples dels estils utilitzats per destacar diferents tipus de text.</p>
+      <h4>Rutes de carpetes i noms d'arxius</h4>
+      <p><span class="c_arxiu">C:\Windows\System</span></p>
+      <p><span class="c_arxiu">/etc/apt/sources.list</span></p>
+      <h4>Comandes i programes</h4>
+      <p><span class="c_comanda">shutdown -r</span></p>
+      <p><span class="c_comanda">sudo nano /etc/network/interfaces</span></p>
+      <h4>Paràmetres configurables</h4>
+      <p>Adreça IP del servidor:&nbsp;<span class="c_configura">172.30.A.10</span></p>
+      <p>Porta d'enllaç:&nbsp;<span class="c_configura">172.30.0.1</span></p>
+      <h4>Comandes o arxius de configuració</h4>
+      <p>Executa les següents comandes per instal·lar el servei LDAP:</p>
+      <p class="p_codi">sudo apt update<br>
+        sudo apt install <strong>slapd</strong></p>
+      <p>Edita l'arxiu <span class="c_arxiu">/etc/hosts</span>:</p>
+      <p class="p_codi">127.0.0.1&nbsp;&nbsp;&nbsp; localhost<br>
+        127.0.1.1&nbsp;&nbsp;&nbsp; <span class="c_configura">usxxx.ldapxxx.local&nbsp;&nbsp;&nbsp; usxxx</span></p>
+      <h4>Comandes amb la consola</h4>
+      <p class="p_consola">usuari@usxxx:~$ <strong>ldapsearch -x -LLL dn</strong><br>
+        dn: dc=ldapxxx,dc=local<br>
+        dn: cn=admin,dc=ldapxxx,dc=local</p>
+      <h4>Anotacions importants</h4>
+      <p class="p_important"><strong>ATENCIÓ:</strong> això és important !!!</p>
+      <footer><br></footer>
+    </section>
+  </body>
+</html>

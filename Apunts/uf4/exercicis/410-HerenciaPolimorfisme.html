@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Herència i polimorfisme</h1>
+      <div class="enun">
+        <h3>Animals</h3>
+        <p>Crea i prova la classe <strong>Animal</strong> i les subclasses <strong>Mamifer</strong>, <strong>Peix</strong> i <strong>Ocell</strong> seguint l'exemple dels apunts.</p>
+      </div>
+      <div class="enun">
+        <h3>Alumnes i profes</h3>
+        <p>Crea i prova les següents classes:</p>
+        <ul>
+          <li><strong>Data</strong>: ha de tenir dos constructors:</li>
+          <ul>
+            <li>Constructor amb els paràmetres dia, mes (números enters).</li>
+            <li>Constructor amb un <em>String</em> amb el format <strong>DD-MM-AAAA</strong>.</li>
+          </ul>
+          <p>Els constructors han de llançar una excepció si els paràmetres són incorrectes.<br>
+            Les dades introduïdes s'han de verificar a fons!<br>
+            Es pot utilitzar la comanda <span class="c_comanda">d.matches("[0-9][0-9]-[0-9][0-9]-[0-9]{4}")</span> per comprovar el format <strong>DD-MM-AAAA</strong>.</p>
+          <li><strong>Membre</strong>: aquesta classe ha de contenir dades que poden ser comuns a tots els membres de l'institut:</li>
+          <ul>
+            <li>Usuari (s'ha de generar automàticament amb la primera lletra del nom i el primer cognom).</li>
+            <li>Nom.</li>
+            <li>Cognoms.</li>
+            <li>Data de naixement.</li>
+          </ul>
+          <li><strong>Alumne</strong> i <strong>Professor</strong>: aquestes classes han de ser filles de la classe <strong>Membre</strong> i tenir els seus propis atributs i mètodes.</li>
+          <ul>
+            <li>Alumne: <strong>cicle</strong> (s'ha de verificar que sigui "ESO", "BTX", "SMX", "ASIX", "DAW") i <strong>curs</strong> (1 o 2).</li>
+            <li>Professor: <strong>departament</strong> (pot ser "Informàtica", "Ciències" o "Lletres") i <strong>funcionari</strong> (<em>true</em> o <em>false</em>).</li>
+          </ul>
+          <p>Sempre que sigui possible, han d'aprofitar els mètodes de la classe pare.</p>
+        </ul>
+        <p>També s'ha de crear una classe per fer proves.<br>
+          Ha de tenir un únic <em>array</em> per afegir tant profes com alumnes.<br>
+          Finalment, ha de mostrar la informació de tots els objectes del l'<em>array</em> indicant si són profes o alumnes.</p>
+      </div>
+      <div class="enun">
+        <h3>Mitjans de transport</h3>
+        <p>Crea la següent estructura de classes (pots treure o afegir altres classes):</p>
+        <ul>
+          <li><strong>Transport</strong></li>
+          <ul>
+            <li>Terrestre</li>
+            <ul>
+              <li>Tren</li>
+              <li>Cotxe</li>
+              <li>Patinet</li>
+            </ul>
+            <li>Maritim</li>
+            <ul>
+              <li>Vaixell</li>
+              <li>Submari</li>
+            </ul>
+            <li>Aeri</li>
+            <ul>
+              <li>Avio</li>
+            </ul>
+          </ul>
+        </ul>
+        <p>Guarda en un únic <em>array</em> les dades de diferents mitjans de transport.</p>
+        <p>Crea un menú amb opcions per buscar i mostrar els que pertanyin a una determinada categoria.<br>
+          Pots fer-ho només amb les categories finals (Tren, Cotxe, Vaixell...) o incloure també les classes superiors (Transport, Terrestre, Aeri...).</p>
+      </div>
+      <div class="enun">
+        <h3>Components d'un ordinador</h3>
+        <p>Aprofitant la solució de l'exercici <strong>Taller d'ordinadors</strong>, fes les següents modificacions:</p>
+        <ul>
+          <li>Crea la classe <strong>Component</strong> amb els atributs comuns a tots els components: marca, model i preu.</li>
+          <ul>
+            <li>Ha de tenir un constructor per inicialitzar aquests atributs.</li>
+            <li>Ha de tenir <em>getters</em> per tots ells i només un <em>setter</em> pel preu.</li>
+            <li>Ha de sobreescriure el mètode <span class="c_comanda">toString()</span> per retornar aquests atributs.</li>
+          </ul>
+          <li>Crea (o modifica) les següents classes com a subclasses de la classe <strong>Component</strong>:</li>
+          <ul>
+            <li>Monitor</li>
+            <li>Teclat</li>
+            <li>Ratoli</li>
+            <li>Caixa</li>
+            <li>PlacaBase</li>
+            <li>Processador</li>
+            <li>Memoria</li>
+            <li>DiscDur</li>
+            <li>FontAlimentacio</li>
+          </ul>
+          <p>Les subclasses han de tenir un constructor amb els atributs de <strong>Component</strong> més els seus propis.<br>
+            També han de sobreescriure el mètode <span class="c_comanda">toString()</span> de forma que retorni la informació de <strong>Component</strong> més els seus atributs.</p>
+          <li>La classe <strong>Ordinador</strong>, en comptes de tenir un atribut per cada tipus de component, tindrà un <em>array</em> amb espai per 10 components.</li>
+          <ul>
+            <li>Ha de tenir un métode per afegir i treure components.<br>
+              Hauria de verificar que el component no estigui repetit.</li>
+            <li>Ha de tenir un mètode per calcular el preu.<br>
+              Hauria de verificar que no falti cap component i mostrar un avís.</li>
+            <li>Ha de sobreescriure el mètode <span class="c_comanda">toString()</span> per mostrar el nom de l'ordinador, les característiques de tots els components i el preu final.</li>
+          </ul>
+        </ul>
+      </div>
+      <div class="enun">
+        <h3>Polígons regulars</h3>
+        <p>Crea la classe <strong>PoligonRegular</strong> que tingui un constructor amb els atributs <strong>nom</strong>, <strong>radi</strong> i <strong>costats</strong>.<br>
+          També ha de tenir un constructor només amb el <strong>nom</strong>.</p>
+        <p>Ha de tenir un mètode privat per calcular la mida de cada costat i l'apotema:</p>
+        <p class="p_codi">double angle = 2 * Math.PI / nCostats;<br>
+          double base = radi - radi * Math.cos(angle);<br>
+          double altura = radi * Math.sin(angle);<br>
+          <strong>costat</strong> = Math.sqrt(base * base + altura * altura);<br>
+          <strong>apotema</strong> = Math.sqrt(radi * radi - costat * costat / 4);</p>
+        <p>Ha de tenir un mètode per calcular l'àrea i un per calcular el perímetre:</p>
+        <p class="p_codi"><strong>area</strong> = (nCostats * costat * apotema) / 2<br>
+          <strong>perimetre</strong> = nCostats * costat</p>
+        <p>Ha de sobreescriure el mètode <span class="c_comanda">toString()</span> per mostrar totes les dades.</p>
+        <p>També ha de sobreescriure el mètode <span class="c_comanda">equals(Object o)</span> per comprovar si dos polígons són iguals.<br>
+          La condició d'igualtat serà que el nom sigui igual o que el perímetre o l'àrea siguin similars amb un marge d'error de <strong>0.1</strong>.</p>
+        <h4>Quadrat</h4>
+        <p>Crea la subclasse <strong>Quadrat</strong> que tingui un constructor només amb la mida de la <strong>base</strong>.</p>
+        <p>Ha de tenir sobreescrits els mètodes per calcular l'àrea i el perímetre.</p>
+        <p>Ha de sobreescriure el mètode <span class="c_comanda">toString()</span> per mostrar totes les dades.</p>
+        <h4>Triangle equilàter</h4>
+        <p>Crea la subclasse <strong>TriangleEquilater</strong> que tingui un constructor només amb la mida de la <strong>base</strong><strong></strong>.</p>
+        <p>Ha de calcular l'altura amb la fórmula:</p>
+        <p class="p_codi"><strong>altura</strong> = base * Math.sin(Math.PI / 3)</p>
+        <p>Ha de tenir sobreescrits els mètodes per calcular l'àrea i el perímetre.</p>
+        <p>Ha de sobreescriure el mètode <span class="c_comanda">toString()</span> per mostrar totes les dades.</p>
+        <h5>Hexagon</h5>
+        <p>Aquesta classe ha de ser subclasse de <strong>TriangleEquilater</strong>.</p>
+        <p>Se li ha de passar la mida del costat al constructor.</p>
+        <p>L'àrea serà 6 vegades la del triangle que tingui la mateixa base.</p>
+        <p>El perímetre serà el doble que el del triangle amb la mateixa base.</p>
+        <p>Utilitza els mètodes de la classe <strong>TriangleEquilater</strong> per fer aquests càlculs.</p>
+        <h4>Proves</h4>
+        <p>Crea la classe <strong>TestPoligonRegular</strong> per fer les proves.</p>
+        <p>Utilitza només variables de tipus <strong>PoligonRegular</strong>.</p>
+        <ul>
+          <ul>
+          </ul>
+        </ul>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació orientada a objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació orientada a objectes</header>
+    <section>
+      <h2>Herència</h2>
+      <p>En el mon real, s'acostumen a fer generalitzacions i especialitzacions per facilitar la organització dels coneixements.<br>
+        Per exemple, es pot subdividir el concepte <strong>Animal</strong> (generalització) en <strong>Mamifer</strong>, <strong>Peix</strong> i <strong>Ocell</strong> (especialitzacions).<br>
+        <strong>Animal</strong> conté les característiques comunes a tots, mentre que les altres contenen les que són úniques de cada un.<br>
+      </p>
+      <p>La classe <strong>Animal</strong> és la superclasse (o classe "mare") de les altres, que són les subclasses (o classes "filles") de la primera.<br>
+        <strong>Les subclasses hereten les característiques de la superclasse (atributs i mètodes públics i protegits).</strong></p>
+      <div class="p_important">
+        <p>Una jerarquia de classes pot tenir molts nivells, no només dos.</p>
+        <p>Fer un bon disseny de la jerarquia de classes facilita la ampliació de l'aplicació evitant la duplicació d'atributs i mètodes si més endavant cal crear altres tipus d'objectes semblants als que ja n'hi ha.</p>
+      </div>
+      <h3>Classe Object</h3>
+      <p>En Java, la classe <strong>Object</strong> és la classe base principal.</p>
+      <p>Totes les classes hereten d'aquesta encara que no es posi <span class="c_comanda">extends Object</span>.</p>
+      <p>Aquesta classe conté mètodes que pot utilitzar qualsevol altra classe:</p>
+      <ul>
+        <li><span class="c_comanda">toString()</span>: retorna un <em>string</em> amb informació sobre l'objecte.<br>
+          Per defecte, retorna l'identificador intern de l'objecte:</li>
+        <p class="p_codi"><strong>sardina.toString()</strong> --&gt; <strong>uf4.animals.Peix@5ca881b5</strong></p>
+        <li><span class="c_comanda">equals(Object o)</span>: retorna <strong>true</strong> si un objecte és igual al que se li passa per paràmetre.<br>
+          Per defecte, retorna <strong>true</strong> si les dues referències apunten al mateix objecte:</li>
+        <p class="p_codi">Peix peix1 = new Peix("Sardina");<br>
+          Peix peix2 = new Peix("Sardina");<br>
+          <strong>peix1.equals(peix2)</strong> --&gt; <strong>false</strong><br>
+          peix2 = peix1;<br>
+          <strong>peix1.equals(peix2)</strong> --&gt; <strong>true</strong></p>
+        <li><span class="c_comanda">getClass()</span>: retorna la classe de l'objecte (no el nom de la classe!).<br>
+          A partir de la classe es pot obtenir el nom curt amb el mètode <span class="c_comanda">getSimpleName()</span>.</li>
+      </ul>
+      <p>Alguns d'aquests mètodes, es poden sobreescriure en les altres classes per modificar la seva funcionalitat.</p>
+      <p>Per exemple, es pot fer que <span class="c_comanda">toString()</span> retorni els atributs de l'objecte concatenats en un <em>string</em> o fer que <span class="c_comanda">equals()</span> retorni <strong>true</strong> si determinats atributs dels dos objectes són iguals.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

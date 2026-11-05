@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">System.out.println(9 - 3);<br>
+          System.out.println(10 * 2.5);<br>
+          System.out.println(9 / 2);<br>
+          System.out.println(9 / -2.0);<br>
+          System.out.println(9 % 2);<br>
+          System.out.println(-9 % 2);<br>
+          System.out.println(3 + 4 * 5);<br>
+          System.out.println((3 + 4) * 5);<br>
+          System.out.println(-(5 + 3) / (3 - 1));<br>
+          System.out.println((-5 + 3) / (3 - 1));</p>
+        <p class="p_consola">6<br>
+          25.0<br>
+          4<br>
+          -4.5<br>
+          1<br>
+          -1<br>
+          23<br>
+          35<br>
+          -4<br>
+          -1<br>
+        </p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_consola">a = 10<br>
+          b = 3<br>
+          c = 5<br>
+          a = 11<br>
+          b = 4<br>
+          c = 22</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">System.out.println();<br>
+          System.out.println(false &amp;&amp; true);<br>
+          System.out.println(true &amp;&amp; true);<br>
+          System.out.println(false || false);<br>
+          System.out.println(false || true);<br>
+          System.out.println(!true);<br>
+          System.out.println(!(true || false));<br>
+          System.out.println(!true &amp;&amp; !false);<br>
+          System.out.println(!(true &amp;&amp; false));<br>
+          System.out.println(!true || !false);<br>
+          System.out.println(!((true &amp;&amp; true) || (false &amp;&amp; false)));</p>
+        <p class="p_consola">false<br>
+          true<br>
+          false<br>
+          true<br>
+          false<br>
+          false<br>
+          false<br>
+          true<br>
+          true<br>
+          false<br>
+          <strong></strong></p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">System.out.println("Operador AND (&amp;&amp;)");<br>
+          System.out.println("false &amp;&amp; false --&gt; " + (false &amp;&amp; false));<br>
+          System.out.println("false &amp;&amp; true --&gt; " + (false &amp;&amp; true));<br>
+          System.out.println("true &amp;&amp; false --&gt; " + (true &amp;&amp; false));<br>
+          System.out.println("true &amp;&amp; true --&gt; " + (true &amp;&amp; true));<br>
+          System.out.println();<br>
+          System.out.println("Operador OR (||)");<br>
+          System.out.println("false || false --&gt; " + (false || false));<br>
+          System.out.println("false || true --&gt; " + (false || true));<br>
+          System.out.println("true || false --&gt; " + (true || false));<br>
+          System.out.println("true || true --&gt; " + (true || true));<br>
+          System.out.println();<br>
+          System.out.println("Operador NOT (!)");<br>
+          System.out.println("!false --&gt; " + (!false));<br>
+          System.out.println("!true --&gt; " + (!true));</p>
+        <p class="p_consola">Operador AND (&amp;&amp;)<br>
+          false &amp;&amp; false --&gt; false<br>
+          false &amp;&amp; true --&gt; false<br>
+          true &amp;&amp; false --&gt; false<br>
+          true &amp;&amp; true --&gt; true<br>
+          <br>
+          Operador OR (||)<br>
+          false || false --&gt; false<br>
+          false || true --&gt; true<br>
+          true || false --&gt; true<br>
+          true || true --&gt; true<br>
+          <br>
+          Operador NOT (!)<br>
+          !false --&gt; true<br>
+          !true --&gt; false</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">x == 0<br>
+          x != 10<br>
+          x &gt; 0<br>
+          x &gt; 0 || x &lt; 0<br>
+          x &gt;= 10<br>
+          x &lt; y<br>
+          x &gt; 2 * y<br>
+          x &gt;= -5 &amp;&amp; x &lt;= 5<br>
+          x &lt; -5 || x &gt; 5&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>!(x &gt;= -5 &amp;&amp; x &lt;= 5)</strong><br>
+          x &gt; 4 &amp;&amp; y &gt; 5<br>
+          x &gt; 4 &amp;&amp; y &lt;= 5&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>x &gt; 4 &amp;&amp; !(y &gt; 5)</strong><br>
+          x != 10 &amp;&amp; y != 10</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">final int IVA = 21;<br>
+          float preu = 123.45f;<br>
+          float preuDTE = preu - preu * <strong>15</strong> / 100;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // DTE (15) és un literal<br>
+          // float preuDTE = preu * (1 - <strong>(float)</strong>15 / 100);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Si no es converteix, ERROR!<br>
+          float preuIVA = preuDTE + preuDTE * <strong>IVA</strong> / 100;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // IVA és una constant<br>
+          // float preuIVA = preuDTE * (1 + (float)IVA / 100);&nbsp; // Si no es converteix, ERROR!<br>
+          System.out.println(preu);<br>
+          System.out.println(preuDTE);<br>
+          System.out.println(preuIVA);</p>
+      </div>
+      <div class="sol">
+        <h4>Solució</h4>
+        <p class="p_codi">int base = 15;<br>
+          int altura = 21;<br>
+          int radi = 10;<br>
+          System.out.println("Hipotenusa: " + Math.sqrt(base * base + altura * altura));<br>
+          System.out.println("Àrea cercle: " + Math.PI * Math.pow(radi, 2));</p>
+      </div>
+    </section>
+  </body>
+</html>

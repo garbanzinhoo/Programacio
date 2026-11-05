@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Arrays: introducció">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Arrays: introducció</header>
+    <section>
+      <h2>Utilitat dels <em>arrays</em></h2>
+      <p><a target="_blank" rel="noopener" href="https://www.w3schools.com/java/java_arrays.asp">Referència <em>arrays</em></a></p>
+      <p>Si es vol utilitzar un conjunt de dades relativament gran per processar-les després de diferents formes, no és útil tenir-les guardades en variables independents, especialment si no es coneix el nombre de dades.</p>
+      <p>Per exemple, si tenim les notes de 30 alumnes, no és pràctic utilitzar les variables n1, n2, n3, ... , n30.</p>
+      <p>Per això s'han inventat els <em>arrays</em>.</p>
+      <p>Aquest tipus d'objectes permeten emmagatzemar un conjunt de dades utilitzant una única variable.<br>
+      </p>
+      <p class="p_important">En java, tots els elements d'un <em>array</em> han de ser del mateix tipus.<br>
+      </p>
+      <h2>Definir i inicialitzar <em>arrays</em></h2>
+      <p>Per definir una variable de tipus <em>array</em> cal indicar el tipus de dades que contindrà (int, String...), afegir claudàtors (<span class="c_comanda">[]</span>) i el nom de la variable.<br>
+        També es poden posar els claudàtors després del nom de la variable.</p>
+      <p class="p_important">Els <em>array</em> tenen una mida fixa (nombre d'elements que pot contenir) i s'ha d'indicar en el moment de definir-los. Després ja no es podrà modificar aquesta mida.</p>
+      <h3>Inicialitzar amb valors literals</h3>
+      <p>Els valors, siguin números, caràcters, Strings..., s'han de posar entre claus i separats per comes:</p>
+      <p class="p_codi">int[] notes = <strong>{5, 8, 7}</strong>;<br>
+        String colors[] = <strong>{"Vermell", "Verd", "Blau"}</strong>;<br>
+      </p>
+      <h3>Inicialitzar amb mida i valor per defecte</h3>
+      <p>S'ha d'utilitzar la paraula <span class="c_comanda">new</span>, afegir el tipus i, entre claudàtors, la mida de l'<em>array</em>.<br>
+        La mida de l'<em>array</em> es posar amb un literal (un número) o amb una variable o constant.</p>
+      <p>En el cas de dades primitives (números, caràcters i booleans), cada element s'inicialitza a <span class="c_comanda">0</span> o <span class="c_comanda">false</span>.<br>
+        En el cas dels <em>strings</em> o altres objectes, s'inicialitza amb el valor <span class="c_comanda">null</span>.</p>
+      <p class="p_codi">final int <strong>mida = 3</strong>;<br>
+        char[] lletres = <strong>new char[mida]</strong>;<br>
+        int[] notes = <strong>new int[3]</strong>;<br>
+        String colors[] = <strong>new String[3]</strong>;</p>
+      <p>Per saber la mida d'un array es pot consultar l'atribut <span class="c_comanda">length</span>:</p>
+      <p class="p_codi">int mida = <strong>notes.length</strong>;</p>
+      <h2>Guardar i recuperar el valor d'una posició de l'<em>array</em></h2>
+      <p>Per accedir a cada element de l'<em>array</em> s'ha de posar el nom de l'<em>array</em> i, entre claudàtors, la posició de l'element:</p>
+      <p class="p_codi">int nota = <strong>notes[2]</strong>;&nbsp;&nbsp; // Afaga la nota que hi ha en la posició 2 i la guarda en 'nota'<br>
+        <strong>notes[1]</strong> = nota;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // Guarda la 'nota' en la posició 1 de l'<em>array</em></p>
+      <p class="p_important">La primera posició d'un <em>array</em> és la posició <strong>0</strong> i l'última és <strong>mida - 1</strong>.<br>
+        Si s'intenta accedir a una posició fora d'aquests límits, es produirà l'excepció <span class="c_comanda">Index out of bounds</span>.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

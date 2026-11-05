@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="JSON">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>JSON</header>
+    <section>
+      <h2>Documents JSON</h2>
+      <p>Els documents JSON estan formats per diferents tipus d'elements.</p>
+      <h5>Elements simples</h5>
+      <ul>
+        <li>Strings: <strong>"X"</strong>, <strong>"Peter"</strong>, <strong>"Frase amb unes quantes paraules"</strong></li>
+        <li>Números: <strong>5</strong>, <strong>12.3</strong>, <strong>0.97562965587</strong></li>
+        <li>Booleans: <strong>true</strong> o <strong>false</strong></li>
+        <li>Valor null: <strong>null</strong></li>
+      </ul>
+      <h5>Elements compostos</h5>
+      <ul>
+        <li>Arrays: <strong>["Peter", 35, true]</strong></li>
+        <li>Objectes: <strong>{"nom":"Peter", "edat":35, "profe":true}</strong></li>
+      </ul>
+      <div class="p_important">
+        <p>Els element que formen un <em>array</em> o els valors dels atributs d'un objecte poden ser de qualsevol tipus vàlid en JSON, inclós altres <em>arrays</em> o altres objectes.<br>
+          Per millorar la llegibilitat, s'acostuma a escriure de forma tabulada:</p>
+        <p class="p_codi">[<br>
+          &nbsp;&nbsp; &nbsp;[<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;"Peter",<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;35,<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;true<br>
+          &nbsp;&nbsp; &nbsp;],<br>
+          &nbsp;&nbsp; &nbsp;{<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; "nom": "Peter",<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;"edat": 35,<br>
+          &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;"profe": true<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          ]</p>
+        <p class="p_codi">{<br>
+          &nbsp;&nbsp;&nbsp; "dades": {<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "nom": "Peter",<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "edat": 35,<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; "profe": true<br>
+          &nbsp;&nbsp;&nbsp; },<br>
+          &nbsp;&nbsp;&nbsp; "notes": [<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 5,<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 8,<br>
+          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 3.5<br>
+          &nbsp;&nbsp;&nbsp; ]<br>
+          }</p>
+      </div>
+      <h2>Crear un objecte JSON a partir d'un text JSON</h2>
+      <p><a target="_blank" rel="noopener" href="https://code.google.com/archive/p/json-simple/downloads">json-simple.jar</a> és una llibreria que permet transformar un text que conté dades en format JSON en un objecte JSON.</p>
+      <p>Un cop afegida la llibreria al projecte, cal importar algunes classes:</p>
+      <p class="p_codi">import org.json.simple.JSONObject;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // Per crear objectes JSON<br>
+        import org.json.simple.JSONArray;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Per crear <em>arrays</em> JSON<br>
+        import org.json.simple.parser.JSONParser;&nbsp; // Per transformar un text en un element JSON<br>
+        import org.json.simple.parser.ParseException;<br>
+        import java.io.FileReader;<br>
+        import java.io.IOException;</p>
+      <h3>Llegir un arxiu de text amb dades JSON i transformar-lo a un objecte JSON</h3>
+      <p class="p_codi">JSONParser parser = new JSONParser();<br>
+        <br>
+        try {<br>
+        &nbsp;&nbsp;&nbsp; // Llegir arxiu JSON i transformar en objecte<br>
+        &nbsp;&nbsp;&nbsp; Object obj = parser.parse(new FileReader("./json/dades.json"));<br>
+        &nbsp;&nbsp;&nbsp; // TODO: codi per tractar les dades de l'objecte JSON<br>
+        } catch (IOException | ParseException e) {<br>
+        &nbsp;&nbsp;&nbsp; e.printStackTrace();<br>
+        }</p>
+      <h3>Comprovar si l'element és un objecte, un <em>array </em>o un element simple</h3>
+      <p class="p_codi">if (obj instanceof JSONObject) {<br>
+        &nbsp;&nbsp;&nbsp; // És un objecte: {...}<br>
+        } else if (obj instanceof JSONArray) {<br>
+        &nbsp;&nbsp;&nbsp; // És un array: [...]<br>
+        } else {<br>
+        &nbsp;&nbsp;&nbsp; // Pot ser un String, un número, un booleà o null<br>
+        &nbsp;&nbsp;&nbsp; if (obj instanceof String) ...;<br>
+        &nbsp;&nbsp;&nbsp; else if (obj instanceof Number) ...;<br>
+        &nbsp;&nbsp;&nbsp; else if (obj instanceof Boolean) ...;<br>
+        &nbsp;&nbsp;&nbsp; else ...;<br>
+        }</p>
+      <h3>Obtenir els elements d'un array o els valors dels atributs d'un objecte</h3>
+      <p class="p_codi">Object[] elements = ((JSONArray)obj).toArray();&nbsp;&nbsp;&nbsp; // Elements de l'array<br>
+        for (int i = 0; i &lt; elements.length; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; // TODO: processar <strong>elements[i]</strong> (pot ser un element simple, un JSONArray o un JSONObject)<br>
+        }</p>
+      <p class="p_codi">JSONObject jsonObject = (JSONObject) obj;<br>
+        Object[] claus = <strong>jsonObject.keySet()</strong>.toArray();&nbsp;&nbsp;&nbsp; // Noms dels atributs de l'objecte<br>
+        for (int i = 0; i &lt; claus.length; ++i) {<br>
+        &nbsp;&nbsp;&nbsp; // TODO: processar <strong>obj.get(claus[i])</strong> (pot ser un element simple, un JSONArray o un JSONObject)<br>
+        }</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

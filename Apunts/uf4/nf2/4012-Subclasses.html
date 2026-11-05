@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Introducció a la programació orientada a objectes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Introducció a la programació orientada a objectes</header>
+    <section>
+      <h2>Creació de subclasses</h2>
+      <p>Cada subclasse ha d'anar en un arxiu propi (no s'han de juntar amb altres classes o subclasses).</p>
+      <p>Per crear subclasses, cal afegir <span class="c_comanda">extends ClasseMare</span> a la definició de la subclasse:</p>
+      <p class="p_codi"><strong>// Classe "mare"</strong><br>
+        public class <strong>Animal</strong> { ... }</p>
+      <p class="p_codi"><strong>// Classe "filla"</strong><br>
+        public class <strong>Mamifer extends Animal</strong> { ... }</p>
+      <p class="p_codi"><strong>// Classe "filla"</strong><br>
+        public class <strong>Peix extends Animal</strong> { ... }</p>
+      <p class="p_codi"><strong>// Classe "filla"</strong><br>
+        public class <strong>Ocell extends Animal</strong> { ... }</p>
+      <h4>Constructors de subclasse i mètode <em>super()</em></h4>
+      <p>Per no haver d'inicialitzar els atributs que té la classe "mare", es pot utilitzar el mètode <span
+class="c_comanda">super()</span> amb els atributs que tingui algun dels constructors de la superclasse.</p>
+      <p class="p_codi">public class <strong>Peix extends Animal</strong> {<br>
+        &nbsp;&nbsp;&nbsp; int profunditat;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public Peix(String nom, int profunditat) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>super(nom);</strong><br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; this.profunditat = profunditat;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public int getProfunditat() {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return profunditat<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_important">Aquesta funció s'ha de posar la primera dins del constructor de la subclasse.</p>
+      <h2>Creació i utilització d'objectes d'una subclasse</h2>
+      <p>Una forma és crear una variable del mateix tipus que la subclasse:</p>
+      <p class="p_codi"><strong>Peix</strong> sardina = <strong>new Peix</strong>("Sardina");</p>
+      <h3>Utilitzar variables de superclasse amb objectes de subclasse</h3>
+      <p>També es pot crear una variable de la superclasse i assignar-li un objecte de la subclasse.<br>
+        De fet, és el més recomanable quan es volen crear conjunts amb diferents tipus d'objectes.</p>
+      <p class="p_codi"><strong>Animal</strong> sardina = <strong>new Peix</strong>("Sardina", 100);</p>
+      <p>L'avantatge de fer-ho així és que després es pot afegir qualsevol tipus d'animal a un <em>array</em> genèric:</p>
+      <p class="p_codi"><strong>Animal[] animals = new Animal[5];</strong><br>
+        <strong>Animal</strong> ovella = <strong>new Mamifer</strong>("Ovella");<br>
+        <strong>animals[0] = ovella;</strong><br>
+        <strong>animals[1] = </strong><strong>new Peix</strong>("Sardina", 100)<strong>;</strong></p>
+      <p class="p_important">El cas més extrem seria crear un array de tipus <strong>Object</strong> per guardar qualsevol tipus d'objecte.<br>
+        Però això no és recomanable (té més inconvenients que avantatges).</p>
+      <p>Si es necessita saber de quin tipus concret és un dels animals de la llista, es pot fer:</p>
+      <p class="p_codi">String classe = animals[1].<strong>getClass().getSimpleName()</strong>;&nbsp;&nbsp;&nbsp; // <strong>classe = "Peix"</strong></p>
+      <p>O també comprovar si pertany a una classe concreta utilitzant l'operació <span
+class="c_comanda">instanceof</span>:</p>
+      <p class="p_codi">if (<strong>animals[1] instanceof Peix</strong>)&nbsp;&nbsp;&nbsp; // Comprovar si l'animal és de la classe Peix</p>
+      <h4>Problemes al crear una subclasse utilitzant una variable d'una superclasse</h4>
+      <p>Si una subclasse té un mètode que no està sobreescrit en la superclasse, el compilador indicarà que l'objecte no disposa d'aquest mètode.</p>
+      <p class="p_codi">System.out.println("Profunditat: " + <strong>animals[1].getProfunditat()</strong>); &nbsp; <strong>// ERROR</strong></p>
+      <p>En canvi, si li diem al compilador que l'animal és de la classe <strong>Peix</strong> fent un <em>cast</em>, ja no hi haurà problema:</p>
+      <p class="p_codi">System.out.println("Profunditat: " + <strong>((Peix)animals[1]).getProfunditat()</strong>); &nbsp; <strong>// OK</strong></p>
+      <p>El problema pot venir durant l'execució si resulta que l'animal en realitat no és un <strong>Peix</strong>:</p>
+      <p class="p_codi">System.out.println("Profunditat: " + <strong>((Peix)animals[0]).getProfunditat()</strong>); &nbsp; <strong>// ERROR</strong></p>
+      <div class="p_important">
+        <p>Abans de fer una conversió, cal assegurar-se que aquesta és correcta:</p>
+        <p class="p_codi">if (<strong>animals[0] instanceof Peix</strong>)&nbsp;&nbsp;&nbsp; // <strong>Comprovar si l'animal és de la classe Peix</strong><br>
+          &nbsp;&nbsp;&nbsp; System.out.println("Profunditat: " + ((Peix)animals[0]).getProfunditat());<br>
+          else<br>
+          &nbsp;&nbsp;&nbsp; System.out.println("No es pot saber la profunditat perquè no és un peix!");</p>
+      </div>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

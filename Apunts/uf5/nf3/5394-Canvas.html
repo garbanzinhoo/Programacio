@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Canvas">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Canvas</header>
+    <section>
+      <h2>Canvas</h2>
+      <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/17/docs/api//java.desktop/java/awt/Canvas.html">Canvas ref. (Java SE 17)</a></p>
+      <p>Aquest tipus de component consisteix en una àrea rectangular sobre la qual es pot dibuixar.</p>
+      <p class="p_important">Habitualment s'utilitza en jocs i animacions perquè permet utilitzar la tècnica del <em>Double Buffer</em>.<br>
+        Aquesta tècnica consisteix en dibuixar la imatge en segon pla i mostrar-la quan s'ha acabat de dibuixar, de forma sincronitzada amb l'actualització de la pantalla.<br>
+        D'aquesta forma s'evita el <em>flickering</em> (parpalleig) de les imatges animades.</p>
+      <p>El doble <em>buffer</em> s'ha de configurar en l'objecte <strong>Canvas</strong> però un cop s'ha ajustat i mostrat la finestra.<br>
+        Si es fa abans, generarà l'excepció <strong>IllegalStateException: Component must have a valid peer</strong>.</p>
+      <p class="p_codi"><strong>BufferStrategy strategy;</strong><br>
+        <br>
+        public void crearDobleBuffer() {<br>
+        &nbsp;&nbsp;&nbsp; <strong>setIgnoreRepaint(true);</strong>&nbsp;&nbsp;&nbsp; &nbsp; // Només es redibuixa amb la comanda <strong>strategy.show()</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>createBufferStrategy(2);</strong>&nbsp;&nbsp;&nbsp;&nbsp; // Crea el doble <em>buffer</em><br>
+        &nbsp;&nbsp;&nbsp; <strong>strategy = getBufferStrategy();</strong>&nbsp;&nbsp; // Objecte que gestiona el doble buffer<br>
+        }<br>
+        <br>
+        public static void main(String[] args) {<br>
+        <strong>&nbsp;&nbsp;&nbsp; CanvasJoc canvas = new CanvasJoc();</strong>&nbsp;&nbsp;&nbsp; // Crear Canvas<br>
+        &nbsp;&nbsp;&nbsp; JFrame f = new JFrame("DobleBuffer");&nbsp; // Crear finestra<br>
+        <strong>&nbsp;&nbsp;&nbsp; f.getContentPane().add(canvas);</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Afegir Canvas al panell principal<br>
+        &nbsp;&nbsp;&nbsp; f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);<br>
+        &nbsp;&nbsp;&nbsp; f.setResizable(false);<br>
+        &nbsp;&nbsp;&nbsp; f.pack();<br>
+        &nbsp;&nbsp;&nbsp; f.setVisible(true);<br>
+        <strong>&nbsp;&nbsp;&nbsp; canvas.crearDobleBuffer();</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; // Crear doble <em>buffer</em><strong><br>
+        </strong>&nbsp;&nbsp;&nbsp; canvas.jugar();<strong><br>
+        </strong>}</p>
+      <p>I per dibuixar en el <em>buffer</em> corresponent:</p>
+      <p class="p_codi">public void dibuixar() {<br>
+        &nbsp;&nbsp;&nbsp; <strong>Graphics2D g = (Graphics2D) strategy.getDrawGraphics();</strong><br>
+        &nbsp;&nbsp;&nbsp; super.paint(g);&nbsp;&nbsp;&nbsp;&nbsp; // Esborra el fons<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; // Dibuixar la imatge<br>
+        &nbsp;&nbsp;&nbsp; // ...<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>g.dispose();</strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Allibera els recursos que utilitza <em>Graphics</em><br>
+        &nbsp;&nbsp;&nbsp; <strong>strategy.show();</strong>&nbsp;&nbsp;&nbsp; // Mostra la imatge del <em>buffer</em> sobre el què s'ha dibuixat<br>
+        }</p>
+      <p>Relacionat amb els jocs i les animacions, també cal saber com generar imatges amb una certa freqüència.</p>
+      <p>Una forma senzilla pot ser utilitzar el mètode <span class="c_comanda">Thread.sleep(milliseconds)</span> dins d'un bucle:</p>
+      <p class="p_codi">public void animacio() {<br>
+        &nbsp;&nbsp;&nbsp; while (true) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; processar();<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; dibuixar();<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; try {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; <strong>Thread.sleep(100);</strong><br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } catch (InterruptedException e) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; e.printStackTrace();<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }<br>
+      </p>
+      <p>El problema del mètode anterior és que, depenent del què es trigui en processar i dibuixar, el temps entre una imatge i la següent pot ser variable.</p>
+      <p>Un sistema millor és utilitzat <span class="c_comanda">Timer.scheduleAtFixedRate(TimerTask t, delay, period)</span>.</p>
+      <p class="p_codi">public void animacio() {<strong><br>
+        </strong>&nbsp;&nbsp;&nbsp; <strong>java.util.Timer timer = new java.util.Timer();</strong><br>
+        &nbsp;&nbsp;&nbsp; <strong>timer.scheduleAtFixedRate</strong>(<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; new TimerTask(){<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; @Override<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; public void run(){&nbsp;&nbsp;&nbsp; // Tasca que s'ha d'executar repetidament<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; processar();<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dibuixar();<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; },<br>
+        <strong>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 0</strong>,&nbsp;&nbsp;&nbsp;&nbsp; // Retard de la primera execució<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>100</strong>&nbsp;&nbsp;&nbsp; // Temps entre l'inici de cada execució<br>
+        &nbsp;&nbsp;&nbsp; );<br>
+        }</p>
+      <p class="p_important">El paquet <strong>java.swing</strong> també conté una classe <strong>Timer</strong>, però la que s'ha d'utilitzar és la del paquet <strong>java.util</strong>, per això no n'hi ha prou amb posar <strong>Timer</strong>: cal especificar <span class="c_comanda">java.util.Timer</span>.</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

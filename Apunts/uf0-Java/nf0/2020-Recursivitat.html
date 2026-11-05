@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Recursivitat">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Recursivitat</header>
+    <section>
+      <h2>Recursivitat</h2>
+      <p>La recursivitat no és un concepte abstracte que hagi inventat la humanitat.<br>
+        La natura te nombrosos exemples: <a target="_blank" rel="noopener" href="https://es.wikipedia.org/wiki/Fractal">les formes fractals</a>.</p>
+      <p>Aquest és un concepte força complicat però molt útil per resoldre determinats problemes.</p>
+      <p>Un codi recursiu es pot convertir a codi iteratiu (bucles), i normalment serà més eficient, però en alguns casos pot complicar força el codi.<br>
+        Quan s'enten com funciona, el codi recursiu pot ser la forma més simple de programar algunes tasques.</p>
+      <h3>Utilitats de la recursivitat</h3>
+      <p>Alguns casos en què pot ser útil la recursivitat:</p>
+      <ul>
+        <li>Recórrer una estructura de dades amb diferents nivells i subnivells:</li>
+        <ul>
+          <li>Mostrar l'arbre de carpetes d'un sistema de fitxers.</li>
+          <li>Buscar un arxiu dins d'un sistema de fitxers.</li>
+          <li>Llistar tots els elements d'un document HTML.</li>
+          <li>Trobar tots els antecessors d'un element HTML fins arribar a l'arrel del document.</li>
+        </ul>
+        <li>Resoldre problemes complexos:</li>
+        <ul>
+          <li>Qualsevol problema que es pugui descomposar en parts similars cada cop més petites:</li>
+          <ul>
+            <li>Ordenar un gran nombre de paraules: primer separar les que comencen per cada lletra; després, dins de cada grup, separar les que tenen la segona lletra igual, etc...</li>
+            <li>Ordenar factures per data: agrupar les del mateix any; després, dins de cada any, agrupar les que són del mateix mes; finalment, dins de cada mes, agrupar les del mateix dia.</li>
+          </ul>
+          <li>Jocs intel·ligents (o no): escacs, 4 en ratlla, Candy Crush....</li>
+          <li>Generar els horaris d'un institut.</li>
+          <li>Generar o resoldre "sudokus".</li>
+          <li>Generar o resoldre laberints.</li>
+        </ul>
+      </ul>
+      <p></p>
+      <h2>Funcions recursives</h2>
+      <p>Es diu que una funció és recursiva quan dins del seu codi es fa una crida a sí mateixa.</p>
+      <p>El problema és que, si una funció es crida a sí mateixa sense aturar-se mai, arribarà un moment que es produirà una excepció per falta de memòria (<em>stack overflow</em>).<br>
+        Per tant, s'han de programar assegurant que en algun moment s'aturarà la recursivitat.</p>
+      <h3>Esquema bàsic d'una funció recursiva</h3>
+      <p>La forma general més simple (encara que pot variar una mica depenent del problema) és tenir una estructura condicional que aturi la recursivitat quan s'arribi a una condició determinada (cas base).<br>
+        En cas contrari s'executarà el codi que torna a cridar la funció (cas recursiu).</p>
+      <p class="p_important">Una bona forma de veure què fa la funció recursiva en cada iteració és escriure els arguments que rep.</p>
+      <h4>Exemple 1: càlcul del factorial d'un número enter</h4>
+      <p>Aquest és un cas que es pot resoldre fàcilment amb un bucle, però també és fàcil de fer-ho recursivament i entendre com funciona.</p>
+      <p>A més, es pot veure clarament que es tracta d'un càlcul recursiu:</p>
+      <p class="p_important">El <strong>factorial de N</strong> és N multiplicat pel <strong>factorial de N-1</strong> (cas recursiu) fins que <strong>N = 1</strong> (cas base).</p>
+      <h5>Codi utilitzant un bucle</h5>
+      <p class="p_codi">long n = <strong>factorial(5)</strong>;<br>
+        <br>
+        static <strong>long factorial(long n)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; long r = n;<br>
+        &nbsp;&nbsp;&nbsp; while (n &gt; 2) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; --n;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; r *= n;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; return r;<br>
+        }</p>
+      <h5>Codi recursiu</h5>
+      <p class="p_codi">long n = <strong>factorial(5)</strong>;<br>
+        <br>
+        static <strong>long factorial(long n)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; if (n == 1) {&nbsp;&nbsp;&nbsp; // <strong>Cas base</strong><br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return n;<br>
+        &nbsp;&nbsp;&nbsp; } else {&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; // <strong>Cas recursiu</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return n * factorial(n - 1);<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <p class="p_important"><em>Off the record</em>, si algú es pregunta per a què serveix calcular el factorial... els factorials s'utilitzen per calcular permutacions, i a partir d'aquí es poden calcular probabilitats.<br>
+        Per exemple, si tenim 9 cartes (de l'1 al 9) i agafem 3 a l'atzar, quina probabilitat hi ha de que sumin 12 o més?</p>
+      <h4>Exemple 2: cerca binària en un array ordenat</h4>
+      <h5>Codi utilitzant un bucle</h5>
+      <p class="p_codi">int n[] = {3,4,6,9};<br>
+        int posicio = <strong>cercaBinaria(n, 6)</strong>;<br>
+        <br>
+        static <strong>int cercaBinaria(int[] array, int valor)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; int min = 0;<br>
+        &nbsp;&nbsp;&nbsp; int max = array.length - 1;<br>
+        &nbsp;&nbsp;&nbsp; int mid = 0;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; while (min &lt;= max) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; mid = (min + max) / 2;<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (array[mid] &lt; valor) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; min = mid + 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Agafar la meitat superior de la llista<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } else if (array[mid] &gt; valor) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; max = mid - 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Agafar la meitat inferior de la llista<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } else {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Valor trobat<br>
+        &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; if (array.length &gt; 0 &amp;&amp; array[mid] == valor) return mid;<br>
+        &nbsp;&nbsp;&nbsp; else return -1;<br>
+        }</p>
+      <h5>Codi recursiu</h5>
+      <p class="p_codi">int n[] = {3,4,6,9};<br>
+        int posicio = <strong>cercaBinaria(n, 6)</strong>;<br>
+        <br>
+        static int cercaBinaria(int[] array, int valor) {<br>
+        &nbsp;&nbsp;&nbsp; return <strong>cercaBinariaRecursiva(array, valor, 0, array.length - 1)</strong>;<br>
+        }<br>
+        <br>
+        static <strong>int cercaBinariaRecursiva(int[] array, int valor, int min, int max)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; if (min &gt; max) {&nbsp;&nbsp;&nbsp; // <strong>Cas base</strong><br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return -1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // No s'ha trobat el valor<br>
+        &nbsp;&nbsp;&nbsp; } else {&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // <strong>Cas recursiu</strong><br>
+        &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; int mid = (min + max) / 2;<br>
+        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; if (array[mid] &lt; valor) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Buscar en la meitat superior de la llista<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return cercaBinariaRecursiva(array, valor, mid + 1, max);<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } else if (array[mid] &gt; valor) {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Buscar en la meitat inferior de la llista<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return cercaBinariaRecursiva(array, valor, min, mid - 1);<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } else {<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return mid; // Valor trobat<br>
+        &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; }<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        }</p>
+      <h4>Exemple 3: llistar tots els arxius d'una carpeta i totes les subcarpetes</h4>
+      <h5>Pseudocodi</h5>
+      <p class="p_codi"><strong>llistarArxius(carpeta)</strong> {<br>
+        &nbsp;&nbsp;&nbsp; arxius = obtenir arxius dins de <strong>carpeta</strong><br>
+        &nbsp;&nbsp;&nbsp; mostrar arxius<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; subcarpetes = obtenir carpetes dins de <strong>carpeta</strong><br>
+        &nbsp;&nbsp;&nbsp; si hi ha subcarpetes<br>
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; per cada subcarpeta cridar el mètode <strong>llistarArxius(subcarpeta_N)</strong><br>
+        }</p>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Exercicis</title>
+    <meta name="description" content="Exercicis">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <h1 class="ex">Condicional <em>If</em></h1>
+      <div class="enun">
+        <h3>Calcular preu final botiga <em>on-line</em></h3>
+        <p>Si vols muntar una botiga online, necessitaràs un programa que faci els següents càlculs:<br>
+          A partir del preu introduït, fer un descompte del 10% si és superior o igual a 500 €.<br>
+          Si el preu final és inferior a 20 €, afegir 5 € pel transport.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix el preu: <strong>600</strong><br>
+          El preu final és 540.0</p>
+        <p class="p_consola">Introdueix el preu: <strong>15</strong><br>
+          El preu final és 20.0</p>
+      </div>
+      <div class="enun">
+        <h3>Comprovar contrasenya</h3>
+        <p>Posa una contrasenya de tipus numèric en una constant i fes que el programa pregunti la contrasenya.<br>
+          Després ha de mostrar un missatge indicant si la contrasenya és correcta o no.</p>
+        <p>Opcionalment, fes que la contrasenya sigui de tipus text (<em>String</em>).<br>
+          Per comparar dades de tipus text s'ha d'utilitzar una funció especial (no es pot utilitzar <span class="c_comanda">==</span>):</p>
+        <p class="p_codi">// <strong>text1</strong> i <strong>text2</strong> poden ser literals, constants o variables de tipus String<br>
+          // el resultat serà <strong>true</strong> si text1 és igual a text2 i <strong>false</strong> en cas contrari<br>
+          if (<strong>text1.equals(text2)</strong>) ...</p>
+      </div>
+      <div class="enun">
+        <h3>Comprovar múltiples</h3>
+        <p>Fes un programa que digui si un número és múltiple d'un altre o no.</p>
+        <p>Els números han de ser enters i els ha d'introduir l'usuari.</p>
+      </div>
+      <div class="enun">
+        <h3>Negatiu, positiu o zero</h3>
+        <p>Fes un programa que digui si un número enter introduït per l'usuari és negatiu, positiu o zero.</p>
+      </div>
+      <div class="enun">
+        <h3>Què pots fer a la teva edat?</h3>
+        <p>Fes un programa que et pregunti l'edat i mostri els següents missatges depenent de la condició:</p>
+        <ul>
+          <li>Si l'edat és més gran o igual que 18 i inferior a 80: "Pots conduir un cotxe"</li>
+          <li>Si no tens entre 16 i 65 anys, tots dos inclosos: "No estàs en edat de treballar"</li>
+          <li>Si tens menys de 3 anys: "Has d'anar a la guarderia"</li>
+          <li>Si tens entre 18 i 24 anys, tot dos inclosos: "Pots estudiar un CFGS"</li>
+        </ul>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Quants anys tens? <strong>18</strong><br>
+          Pots conduir cotxe<br>
+          Pots estudiar un CFGM</p>
+        <p class="p_consola">Quants anys tens? <strong>2</strong><br>
+          No estàs en edat de treballar<br>
+          Has d'anar a la guarderia</p>
+      </div>
+      <div class="enun">
+        <h3>Quin és el més gran</h3>
+        <p>Introduïnt dos números reals, dir quin dels dos és més gran.</p>
+        <p>Opcionalment, fer el mateix amb 3 números.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix dos números reals separats per espais: <strong>25 15</strong><br>
+          25.0 és el més gran</p>
+        <p class="p_consola">Introdueix tres números reals separats per espais: <strong>2 5 3</strong><br>
+          5.0 és el més gran</p>
+      </div>
+      <div class="enun">
+        <h3>Tornar el canvi optimitzat</h3>
+        <p>Modifica el programa de la màquina que calcula el canvi en monedes de forma que no mostri les monedes que tenen la quantitat igual a 0.</p>
+        <p>Opcionalment es pot fer que, si el número de monedes és 1, digui <strong>1 moneda de...</strong>&nbsp; (en singular) enlloc de <strong>1 monedes de...</strong></p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix import a pagar: <strong>8,10</strong><br>
+          Diners introduïts: <strong>10</strong><br>
+          El canvi seran 1,90 €:<br>
+          1 moneda de 1 euro<br>
+          1 moneda de 50 cent<br>
+          2 monedes de 20 cent</p>
+      </div>
+      <div class="enun">
+        <h3>És any de traspàs</h3>
+        <p>Fes un programa que, introduint un any, digui si és de traspàs o no.</p>
+        <p>Un any és de traspàs si és divisible entre 400, o si és divisible entre 4 però no entre 100.</p>
+        <p>Comprova-ho amb els anys 2000 (sí), 2020 (sí), 2100 (no), 2222 (no).</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix un any: <strong>2000</strong><br>
+          SÍ és any de traspàs</p>
+        <p class="p_consola">Introdueix un any: <strong>2020</strong><br>
+          SÍ és any de traspàs</p>
+        <p class="p_consola">Introdueix un any: <strong>2100</strong><br>
+          NO és any de traspàs</p>
+        <p class="p_consola">Introdueix un any: <strong>2222</strong><br>
+          NO és any de traspàs</p>
+      </div>
+      <div class="enun">
+        <h3>Calculadora simple</h3>
+        <p>Fes una calculadora que demani a l'usuari dos números i una operació (<strong>+</strong>&nbsp; <strong>-</strong>&nbsp; <strong>*</strong>&nbsp; <strong>/</strong>), faci el càlcul amb doble precisió i mostri el resultat.</p>
+        <p>Si l'operació triada no és cap de les anteriors, ha de mostrar un&nbsp; missatge d'error.</p>
+        <h5>Exemple de sortida per consola</h5>
+        <p class="p_consola">Introdueix el primer valor: <strong>123,5</strong><br>
+          Introdueix el segon valor: <strong>46,789</strong><br>
+          Quina operació vols fer (+ - * /)? <strong>+</strong><br>
+          El resultat és 170.289</p>
+      </div>
+    </section>
+  </body>
+</html>

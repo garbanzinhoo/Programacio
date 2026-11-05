@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Solucions</title>
+    <meta name="description" content="Solucions">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../exercicis.js"></script>
+  </head>
+  <body>
+    <section>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          let frase = "Desenvolupament, Aplicacions, Web";<br>
+          let paraules = [];<br>
+          <br>
+          <br>
+          paraules = frase.trim().split(" ");<br>
+          <br>
+          let resultat = "";<br>
+          for (let i = 0; i &lt; paraules.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; resultat += paraules[i] + "\n";<br>
+          }<br>
+          console.log(resultat);<br>
+          <br>
+          <br>
+          paraules = frase.trim().split(", ");<br>
+          <br>
+          resultat = "";<br>
+          for (let i = 0; i &lt; paraules.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; resultat += paraules[i] + " ";<br>
+          }<br>
+          console.log(resultat);<br>
+          <br>
+          <br>
+          paraules = frase.trim().split(", ");<br>
+          <br>
+          resultat = "";<br>
+          for (let i = paraules.length - 1; i &gt;= 0; i--) {<br>
+          &nbsp;&nbsp;&nbsp; resultat += paraules[i] + " ";<br>
+          }<br>
+          console.log(resultat);</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          const MIN = 'A', MAX = 'Z';<br>
+          let frase;<br>
+          let offset;<br>
+          <br>
+          frase = prompt("Escriu una frase");<br>
+          offset = parseInt(prompt("Quin desplaçament vols?"));<br>
+          <br>
+          let xifrat = frase.trim().toUpperCase().split("");<br>
+          <br>
+          // Encriptar<br>
+          for (let i = 0; i &lt; xifrat.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; // Només si és una lletra entre 'A' i 'Z'<br>
+          &nbsp;&nbsp;&nbsp; if (xifrat[i] &gt;= MIN &amp;&amp; xifrat[i] &lt;= MAX) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; let lletraXifrada = String.fromCharCode(xifrat[i].charCodeAt(0) + offset);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Si el resultat és més gran que 'Z' agafa una a partir de 'A'<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (lletraXifrada &gt; MAX) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lletraXifrada = String.fromCharCode(xifrat[i].charCodeAt(0) + offset - 26);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xifrat[i] = lletraXifrada;<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar array encriptat lletra a lletra<br>
+          let resultat = "Frase encriptada: ";<br>
+          for (let i = 0; i &lt; xifrat.length; i++) {<br>
+          &nbsp;&nbsp;&nbsp; resultat += xifrat[i];<br>
+          }<br>
+          alert(resultat);<br>
+          <br>
+          // Mostrar array encriptat convertint l'array de caràcters a string<br>
+          alert("Frase encriptada: " + xifrat.join(""));</p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">// <a target="_blank" rel="noopener" href="https://www.sapalomera.cat/moodlecf/apunts/daw/prog/index.html?ref=1512">Apunts <em>arrays</em> ordenats</a></p>
+      </div>
+      <div class="sol">
+        <h3>Solució</h3>
+        <p class="p_codi">"use strict";<br>
+          <br>
+          let paraula;<br>
+          let paraules = [<br>
+          &nbsp;&nbsp;&nbsp; "Ordinador",<br>
+          &nbsp;&nbsp;&nbsp; "Monitor",<br>
+          &nbsp;&nbsp;&nbsp; "Ratolí",<br>
+          &nbsp;&nbsp;&nbsp; "Teclat",<br>
+          &nbsp;&nbsp;&nbsp; "Altaveu",<br>
+          &nbsp;&nbsp;&nbsp; "Programa",<br>
+          &nbsp;&nbsp;&nbsp; "USB",<br>
+          &nbsp;&nbsp;&nbsp; "Xarxa",<br>
+          &nbsp;&nbsp;&nbsp; "Router",<br>
+          &nbsp;&nbsp;&nbsp; "Micròfon"<br>
+          ];<br>
+          const MIDA = paraules.length;<br>
+          <br>
+          // Ordenar<br>
+          for (let i = 0; i &lt; MIDA - 1; i++) {<br>
+          &nbsp;&nbsp;&nbsp; for (let j = i + 1; j &lt; MIDA; j++) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (paraules[i].toUpperCase() &gt; paraules[j].toUpperCase()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraula = paraules[i];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraules[i] = paraules[j];<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paraules[j] = paraula;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          }<br>
+          <br>
+          // Mostrar paraules ordenades<br>
+          alert("Paraules ordenades:\n" + paraules.join("\n"));<br>
+          <br>
+          // Buscar paraules fins que la parauls sigui FI<br>
+          do {<br>
+          &nbsp;&nbsp;&nbsp; // Demanar paraula<br>
+          &nbsp;&nbsp;&nbsp; paraula = prompt("Paraula");<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Buscar paraula<br>
+          &nbsp;&nbsp;&nbsp; let min = 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Primera posició de la llista<br>
+          &nbsp;&nbsp;&nbsp; let max = MIDA - 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Última posició de la llista<br>
+          &nbsp;&nbsp;&nbsp; let mid = 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Posició central (inicialitzar per evitar error)<br>
+          &nbsp;&nbsp;&nbsp; let comparacions = 0;<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; while (min &lt;= max) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Calcular la posició central del tram entre min i max<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mid = Math.floor((min + max) / 2);<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ++comparacions;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (paraules[mid].toUpperCase() &lt; paraula.toUpperCase()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min = mid + 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Agafar la meitat superior<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (paraules[mid].toUpperCase() &gt; paraula.toUpperCase()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max = mid - 1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Agafar la meitat inferior<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Valor trobat<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          <br>
+          &nbsp;&nbsp;&nbsp; // Indicar posició i quantes comparacions ha hagut de fer<br>
+          &nbsp;&nbsp;&nbsp; if (MIDA &gt; 0 &amp;&amp; paraules[mid].toUpperCase() === paraula.toUpperCase()) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("S'ha trobat la paraula en la posició " + mid +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " fent " + comparacions + " comparacions");<br>
+          &nbsp;&nbsp;&nbsp; } else {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert("NO s'ha trobat la paraula en la llista" +<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " fent " + comparacions + " comparacions");<br>
+          &nbsp;&nbsp;&nbsp; }<br>
+          } while (!paraula.toUpperCase() === "FI");</p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>.</title>
+    <meta name="description" content="Disseny amb classes">
+    <meta name="keywords" content="">
+    <meta name="author" content="Pere Sánchez">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../apunts.css" type="text/css">
+    <script defer="defer" src="../../apunts.js"></script>
+  </head>
+  <body onload="TIP(2,3);">
+    <header>Disseny amb classes</header>
+    <section>
+      <h2>Disseny i implementació d'un programa amb classes</h2>
+      <p>El primer problema consisteix en <strong>identificar els objectes necessaris</strong> per emmagatzemar i gestionar les dades (aixó donarà lloc a les classes d'objectes).<br>
+        Es pot pensar que cada tipus d'objecte equival a una taula en una base de dades, i cada objecte creat és equivalent a un registre de la taula.</p>
+      <p>Un cop identificats els tipus d'objectes, cal <strong>determinar els atributs i mètodes</strong> per cada tipus.<br>
+        Els atributs serien els camps de la taula, mentre que els mètodes han de servir per obtenir (<em>getters</em>), modificar (<em>setters</em>) i fer altres operacions amb els valors dels atributs de cada objecte.</p>
+      <p>Després cal pensar les classes que gestionaran l'aplicació (classes amb atributs i mètodes estàtics).<br>
+        En el cas de les classes de gestió, normalment s'aplica l'esquema <strong>Model-Vista-Controlador</strong>.</p>
+      <p>En el <strong>Model</strong> és on se situaran i gestionaran els conjunts d'objectes amb les dades de l'aplicació.<br>
+        En el <strong>Controlador</strong> i en la <strong>Vista</strong> es posaran els objectes per rebre i mostrar informació a l'usuari (botons, camps de text, imatges, finestres amb llistes o taules...).</p>
+      <h2>Disseny de les classes</h2>
+      <p>El millor és començar per dissenyar les classes més generals i acabar amb les més concretes, intentant localitzar atributs i mètodes comuns a diferents tipus d'objectes i posant-los en les superclasses.</p>
+      <p>És recomanable utilitzar alguna eina per fer gràfics UML.</p>
+      <h3>Símbols i tipografia UML pel disseny de classes</h3>
+      <p>Cada classe es dibuixa en un requadre amb 3 parts:</p>
+      <ul>
+        <li>Nom (part superior)</li>
+        <li>Atributs (part central)</li>
+        <li>Mètodes (part inferior)</li>
+      </ul>
+      <p>Si una classe o un mètode son <strong>abstractes</strong>, s'ha de posar el nom en <strong><em>cursiva</em></strong>.</p>
+      <ul>
+      </ul>
+      <p>En el cas dels atributs cal indicar:</p>
+      <ul>
+        <li>Els modificadors d'accés</li>
+        <ul>
+          <li>static (<u>subratllat</u>)</li>
+          <li>public (<span class="c_comanda">+</span>)</li>
+          <li>protectec (<span class="c_comanda">#</span>)</li>
+          <li>package (per defecte, sense modificador) (<span class="c_comanda">~</span>)</li>
+          <li>private (<span class="c_comanda">-</span>)</li>
+        </ul>
+        <li>El nom i el tipus (int, String, Classe, llista...) separats per <span class="c_comanda">:</span></li>
+      </ul>
+      <p>En el cas dels mètodes, a més, cal especificar:</p>
+      <ul>
+        <li> el nom i el tipus de cada paràmetre entre parèntesis i separats per <span class="c_comanda">:</span></li>
+        <li>el tipus del valor de retorn al final del tot i separat per <span class="c_comanda">:</span></li>
+      </ul>
+      <h4>Exemples d'atributs</h4>
+      <p><strong>+<u>FILES</u>: int</strong>&nbsp;&nbsp; (public static final int FILES;)</p>
+      <p><strong>-apotema: double</strong>&nbsp;&nbsp; (private double apotema;)</p>
+      <p><strong>~alumnes: llista Alumne</strong>&nbsp;&nbsp; (Alumne[] alumnes;)</p>
+      <h4>Exemples de mètodes</h4>
+      <p><strong>+<u>convertPreu</u>(preu: float): String</strong>&nbsp;&nbsp; (public static String convertPreu(float preu);)</p>
+      <p><em><strong>~calcularArea(): double</strong></em> &nbsp; (abstract double calcularArea();)</p>
+      <p><strong>#calcHipo(c1: double, c2: double) : double</strong>&nbsp;&nbsp; (protected double calcHipo(doucle c1, double c2);)<br>
+      </p>
+      <h3>Modificadors d'accés</h3>
+      <h4>Atributs</h4>
+      <p>En els atributs, s'ha d'intentar que siguin el més restrictius possible sense que això impliqui una creació innecessària de <em>getters</em> i <em>setters</em>.</p>
+      <p>En la majoria de cassos, el mès convenient serà no posar modificador, suposant que, si hi ha subclasses, estaran en el mateix paquet.<br>
+        Això permetrà que es pugui accedir lliurament als atributs des de les classes del mateix paquet.<br>
+        Només caldrà posar <em>getters</em> i/o <em>setters</em> en els atributs que s'hagin de poder accedir des d'altres paquets.</p>
+      <p>Si algun atribut requereix validació abans de ser modificat sí que serà convenient posar-lo privat i crear el corresponent <em>getter</em> i <em>setter</em> amb les verificacions necessàries.</p>
+      <h4>Mètodes</h4>
+      <p>En general, els mètodes seran públics, exceptuant els que siguin mètodes auxiliars que només s'utilitzen en la mateixa classe o des de les subclasses o classes del mateix paquet.<br>
+        En aquests casos s'haurà de de valorar si posar-los privats, protegits o per defecte.</p>
+      <h3>Subclasses i interfícies</h3>
+      <p>Per indicar que una classe és subclasse d'una altra, es posarà una fletxa de la subclasse a la classe.</p>
+      <p>Les interfícies es dibuixen igual que les classes però posant al davant del nom <span class="c_comanda">&lt;&lt;interface&gt;&gt;</span></p>
+      <p>Per indicar que una classe implementa una interfície, s'unirà la classe amb la interfície utilitzant una fletxa amb línia discontínua apuntant de la classe a la interfície.</p>
+      <h3>Classes estàtiques o per un objecte únic</h3>
+      <p>Les classes que no s'han d'instanciar (perquè només cal un objecte d'aquest tipus, per exemple la Vista), contindran atributs i mètodes estàtics.</p>
+      <h3>Classes per crear objectes</h3>
+      <p>Les classes que han de servir per crear objectes, contindran principalment atributs i mètodes no estàtics.</p>
+      <h2>Implementació de les classes</h2>
+      <p>La implementació també hauria de començar per les classes més generals i acabar amb les més concretes.</p>
+      <p>A més d'implementar cada classe, convé implementar també una classe per provar-la.</p>
+      <h3>Mètodes per obtenir informació</h3>
+      <p>A part dels mètodes <em>getters</em>, que normalment s'utilitzen per obtenir una sola dada, es poden crear altres mètodes per obtenir més dades de cop o dades calculades a partir d'altres atributs.</p>
+      <p>Un mètode que acostumen a oferir la majoria de les classes de Java és <span class="c_comanda">toString()</span>.<br>
+        Aquest mètode retorna un <em>String</em> amb informació de l'objecte, i Java l'utilitza quan necessita transformar un objecte en un text.<br>
+        Cada classe pot implementar-lo com més li convingui (si la classes no implementa aquest mètode i s'intenta printar un objecte, mostrarà la seva referència):</p>
+      <p class="p_codi">public class Persona {<br>
+        &nbsp;&nbsp;&nbsp; String nom;<br>
+        &nbsp;&nbsp;&nbsp; int edat;<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; public Persona(String n, int e) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nom = n;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; edat = e;<br>
+        &nbsp;&nbsp;&nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; <strong>@Override<br>
+          &nbsp;&nbsp;&nbsp; public String toString() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nom + " " + edat;<br>
+          &nbsp;&nbsp;&nbsp; }</strong><br>
+        }<br>
+        <br>
+        Persona p = new Persona("Mary", 18);<br>
+        System.out.println("Alumne: " + <strong>p</strong>);</p>
+      <p>També es poden crear altres mètodes per retornar la informació en un format determinat:</p>
+      <p class="p_codi">public class Persona {<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        &nbsp;&nbsp;&nbsp; <br>
+        &nbsp;&nbsp;&nbsp; <strong>public String getInfo() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return "Nom: " + nom + "\nEdat: " + edat;<br>
+          &nbsp;&nbsp;&nbsp; }</strong><br>
+        }<br>
+        <br>
+        Persona p = new Persona("Mary", 18);<br>
+        System.out.println(<strong>p.getInfo()</strong>);</p>
+      <p class="p_important">No és convenient que la mateixa classe implementi mètodes per mostrar la informació de l'objecte.<br>
+        D'aquesta funció s'han d'encarregar les classes de la Vista, que hauran de cridar als <em>getters</em>, <strong>toString</strong> o altres mètodes de la classe per obtenir la informació i mostrar-la de la forma apropiada.</p>
+      <ul>
+      </ul>
+      <footer><br>
+      </footer>
+    </section>
+  </body>
+</html>
