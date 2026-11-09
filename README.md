@@ -9,17 +9,17 @@ Tot el codi és JavaScript i s'executa al navegador. Cada exercici té el seu `i
 | Carpeta | Contingut |
 |---|---|
 | `01_Exercicis` | Primers exercicis |
-| `02_Exercicis Strings` | Exercicis amb cadenes de text |
-| `03_Introduir dades` | Entrada de dades amb `prompt` |
+| `02_Exercicis_Strings` | Exercicis amb cadenes de text |
+| `03_Introduir_dades` | Entrada de dades amb `prompt` |
 | `04_IF` | Condicionals (`if`, `else`, `switch`) |
-| `05_Acces restringit` | Exercicis d'accés restringit |
+| `05_Acces_restringit` | Exercicis d'accés restringit |
 | `06_While` | Bucles `while` |
 | `07_For` | Bucles `for` |
 | `08_Funcions` | Funcions |
-| `09_Repàs_string` | Repàs de strings |
+| `09_Repas_string` | Repàs de strings |
 | `10_Exercicis_funcions_amb_parametres` | Funcions amb paràmetres, mòduls (`import`/`export`) i JSDoc |
 | `Menu` | Menú que reuneix diversos exercicis |
-| `Examen 1` | Examen |
+| `Examen_1` | Examen |
 | `Apunts` | Apunts |
 | `utils` | Funcions reutilitzables (validacions) importades des dels exercicis |
 
