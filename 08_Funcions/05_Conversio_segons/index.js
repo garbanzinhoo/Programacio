@@ -1,4 +1,5 @@
 "use strict";
+import { esEnter, estaEntre } from "../../utils/validacions.js";
 /*
 1 - Convertir segons a HH:MM:SS
 Crea les següents funcions:

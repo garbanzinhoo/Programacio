@@ -21,7 +21,7 @@ export function esPositiu(valor){
 }
 
 // Retorna true si valor està entre min i max (inclosos)
-function estaEntre(valor, min, max){
+export function estaEntre(valor, min, max){
     return valor >= min && valor <= max;
 }
 
