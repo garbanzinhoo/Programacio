@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Control d'accés</title>
+  <script defer src="index.js"></script>
+</head>
+<body>
+  <h1>Control d'accés</h1>
+
+  <form id="formulari">
+    <p>Edat: <input type="number" id="edat" min="0"></p>
+    <p><input type="checkbox" id="teAcreditacio"> Té acreditació</p>
+    <p>Nivell (1-5): <input type="number" id="nivell" min="1" max="5"></p>
+    <p><input type="checkbox" id="haFetCurs"> Ha superat el curs de seguretat</p>
+    <p>Hores de curs: <input type="number" id="horesCurs" min="0"></p>
+    <p><input type="checkbox" id="teAutoritzacio"> Té autorització especial</p>
+    <p><input type="checkbox" id="esTreballador"> És treballador</p>
+    <p><input type="checkbox" id="esResponsable"> És responsable d'un departament</p>
+    <p>Zona:
+      <select id="zona">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+      </select>
+    </p>
+    <p>Hora (0-23): <input type="number" id="hora" min="0" max="23" ></p>
+    <p>Dia:
+      <select id="dia">
+        <option value="dilluns">dilluns</option>
+        <option value="dimarts">dimarts</option>
+        <option value="dimecres">dimecres</option>
+        <option value="dijous">dijous</option>
+        <option value="divendres">divendres</option>
+        <option value="dissabte">dissabte</option>
+        <option value="diumenge">diumenge</option>
+      </select>
+    </p>
+    <p>Incidències: <input type="number" id="incidencies" min="0"></p>
+    <p><input type="checkbox" id="convidat"> És convidat</p>
+    <p><input type="checkbox" id="acompanyat"> Va acompanyat d'una persona autoritzada</p>
+
+    <button type="button" onclick="comprovar()">Comprovar</button>
+  </form>
+
+  <p id="resultat"></p>
+
