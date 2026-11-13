@@ -106,3 +106,7 @@ function invertirText(text){
     }
     return resultat;
 }
+
+//ordenar array de gran a petit y de petit a gran amb un return
+//Retornar array amb valors entre un MIN y un MAX amb un return
+//
